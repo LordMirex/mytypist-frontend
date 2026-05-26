@@ -1,4 +1,8 @@
 # MyTypist Frontend
+---
+## 📜 Project Directives
+For mandatory agent instructions and workflow rules, refer to the root [README.md](../README.md).
+---
 Frontend application for MyTypist.
 
 ## Development Context

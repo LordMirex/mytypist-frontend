@@ -20,8 +20,8 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Optimize for Vercel
-    minify: 'terser',
+    // Optimize for production
+    minify: 'esbuild',
     sourcemap: false,
     rollupOptions: {
       output: {
@@ -30,12 +30,6 @@ export default defineConfig(({ mode }) => ({
           ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
           routing: ['react-router-dom']
         }
-      }
-    },
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
       }
     }
   },

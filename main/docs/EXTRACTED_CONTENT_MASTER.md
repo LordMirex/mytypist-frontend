@@ -34,6 +34,30 @@ This document contains the exact text, labels, and content structure extracted f
   2. **AI Generates Content**: Advanced AI analyzes requirements and generates accurate content.
   3. **Review & Customize**: Make adjustments and export in preferred formats.
 
+### Pricing Plans & Tier Details (v1)
+- **Free Plan (₦0/forever)**:
+  - 5 documents per month.
+  - 2 e-signatures per month.
+  - Basic templates & Email support.
+- **Professional Plan (₦7,500/month)**:
+  - Unlimited documents & e-signatures.
+  - Premium templates & Priority support.
+  - Team collaboration & Custom branding.
+  - Analytics dashboard.
+- **Enterprise Plan (₦12,000/month)**:
+  - SSO integration.
+  - Dedicated account manager.
+  - SLA guarantee & Advanced analytics.
+  - White-label options.
+
+### Product Features (v1)
+- **AutoType Documents**: Create professional documents instantly with intelligent automation.
+- **AutoSign E-Signatures**: Legally binding e-signatures complying with global standards.
+- **Save Hours Daily**: Reduce document processing time by 90%.
+- **Enterprise Security**: Bank-level encryption (GDPR, HIPAA, SOC 2).
+- **Team Collaboration**: Real-time collaboration with role-based permissions.
+- **Instant Integration**: Connect with Google Drive, Dropbox, Slack.
+
 ---
 
 ## 2. Legal Documentation (Exact Text)

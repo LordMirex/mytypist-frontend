@@ -34,7 +34,13 @@ This document serves as the final, exhaustive roadmap for extracting, merging, a
 - **User Hub**: Use v2 `UserDashboard.jsx` as the base. [See DASHBOARD_AND_USER_SYSTEM_SPEC.md](./DASHBOARD_AND_USER_SYSTEM_SPEC.md)
 - **Admin Suite**: Use v1 Admin pages as the baseline logic. [See ADMIN_SYSTEM_SPEC.md](./ADMIN_SYSTEM_SPEC.md)
 
-## 4. Implementation Steps
+## 4. Deep-Dive Specifications
+- **Maturity Audit**: [See COMPLETENESS_AND_MATURITY_AUDIT.md](./COMPLETENESS_AND_MATURITY_AUDIT.md)
+- **Logic Extraction**: [See LOGIC_EXTRACTION_HOOKS_STATE.md](./LOGIC_EXTRACTION_HOOKS_STATE.md)
+- **Asset Catalog**: [See VISUAL_ASSET_AND_ICON_CATALOG.md](./VISUAL_ASSET_AND_ICON_CATALOG.md)
+- **Engineering Guide**: [See ENGINEERING_RECONSTRUCTION_AND_IMPROVEMENT_GUIDE.md](./ENGINEERING_RECONSTRUCTION_AND_IMPROVEMENT_GUIDE.md)
+
+## 5. Implementation Steps
 
 1. **Step 1: Environment Setup**: 
    - Initialize `main` with v1's TypeScript/Vite boilerplate.

@@ -1,5 +1,6 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "mytypist-v1",
+  "description": "MyTypist Legacy Functional Baseline — Part of the Document Operating System",
   "private": true,
   "version": "0.0.0",
   "type": "module",

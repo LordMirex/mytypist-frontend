@@ -1,6 +1,7 @@
 {
-  "name": "mytypist",
+  "name": "mytypist-v2",
   "version": "0.1.0",
+  "description": "MyTypist Premium Feature Shell — Part of the Document Operating System",
   "private": true,
   "rocketCritical": {
     "dependencies": [

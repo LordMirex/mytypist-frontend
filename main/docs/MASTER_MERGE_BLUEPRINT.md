@@ -2,10 +2,14 @@
 
 This document serves as the final, exhaustive roadmap for extracting, merging, and completing the MyTypist frontend within the `main` directory.
 
+## 🎯 The Vision
+Move away from "AI mockup" designs toward a unique, professional business core UI/UX. The final product must feel like a custom-built enterprise solution, not a generic template. The design for all current versions (v1 and v2) is considered "AI mockup quality" and must be completely overhauled into something professional and unique.
+
 ## 1. Core Architecture & Design
 - **Language**: TypeScript (from v1) - [See TECHNICAL_IMPLEMENTATION_SPEC.md](./TECHNICAL_IMPLEMENTATION_SPEC.md)
 - **Framework**: React 18+ with Vite.
 - **Styling**: Tailwind CSS + Shadcn UI.
+- **Design Strategy**: Professional research-backed UI/UX. No random mockups. Every page must feel arranged, complete, and guided.
 - **Design Tokens**: [See DESIGN_SYSTEM_AND_TOKENS.md](./DESIGN_SYSTEM_AND_TOKENS.md)
   - **Fonts**: Inter (Sans) + Playfair Display (Serif/Accent).
   - **Colors**: HSL-based (v1) with semantic naming extension (v2: `conversion`, `canvas`, `trust`).

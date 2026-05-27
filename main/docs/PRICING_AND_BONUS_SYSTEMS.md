@@ -5,6 +5,7 @@
 - **v2 (PricingUpgrade)**: A high-conversion, long-form sales page. It includes an interactive **Usage Calculator**, a detailed **Comparison Table**, FAQs, and Testimonials. It introduces a "token-based" terminology that isn't present in v1.
 
 ## Detailed Comparison
+- **User Feedback**: v1 was a nice first proto, but v2 is "beautiful" and "almost complete". The calculations for various user types are well done and ready for users.
 
 ### 1. Pricing Structure & Tiers
 - **v1 Tiers**: Free (₦0), Professional (₦7,500), Enterprise (₦12,000).

@@ -5,8 +5,20 @@
 - **v2 (DocumentCreatorStudio)**: A modern, split-pane "Form + Live Preview" studio. It prioritizes a guided experience (Form fields) over raw text editing. It includes advanced features like progress tracking, full-screen preview, and a mobile-specific view toggle.
 
 ## Detailed Comparison
+- **User Feedback**: v1 shows the first visuals of the ideas but was not accurate. v2 is "almost good enough for the final project" with its advanced logic and forms.
 
 ### 1. User Interface (UI)
+- **Source of Truth (v2 Features)**: The final Studio must include and improve upon these v2 features:
+  - **Structured Forms**: Advanced field-based inputs.
+  - **Progress Status**: Real-time completion tracking.
+  - **Live Preview**: Frontend-side rendering (even without backend).
+  - **Conversion Logic**: Integrated document generation logic.
+  - **Undo/Redo**: History management.
+  - **Help Icons**: Crucial for providing user samples of what to put in every input field.
+  - **Drafting**: Save and resume capability.
+- **UI/UX Goal**: Move beyond "shitty AI mockups" to a professional, uniquely guided experience.
+
+### 2. User Experience (UX)
 - **v1**:
   - **Layout**: Uses a 1:3 grid (Sidebar:Main).
   - **Editing**: Heavy reliance on `Textarea` with a mono font. It feels like a "Raw Text" editor.

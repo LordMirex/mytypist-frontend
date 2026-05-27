@@ -3,6 +3,7 @@
 This document details the architecture, features, and UI requirements for the final MyTypist user workspace, merging the logic of `v1` with the premium aesthetics of `v2`.
 
 ## 1. User Dashboard (Overview)
+- **User Feedback**: v1 has the "worst lazy AI design". v2 is the superior iteration with modern features like the **Template Market**. The final dashboard must be robust, professional, and unique.
 
 ### Layout & Navigation
 - **Base Layout**: v2 Split layout with a left sidebar for desktop and a top tab bar for mobile.

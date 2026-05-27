@@ -5,13 +5,16 @@ This is the ultimate reference for rebuilding MyTypist from scratch using the in
 ## 1. Core Reconstruction Strategy
 
 ### The "No Code on Hand" Challenge
-If you lose the original source code, this entire `main/docs` folder contains:
-1.  **UI Definitions**: Every color, shadow, and font from the v2 design system.
-2.  **Logic Blueprints**: Every hook, filtering algorithm, and state transition.
-3.  **Content Database**: Every bit of text, pricing detail, and FAQ category.
-4.  **Route Architecture**: The complete 25+ page site map.
+... (UI/Logic/Content/Route definitions) ...
 
-## 2. Major Improvement Advice
+## 2. Professional "Business Core" Mandate
+Move away from "AI mockup" designs. The current versions (v1, v2) are ~30% complete and rely on generic templates. To reach "Business Core" status, the next AI must:
+1.  **Eliminate Mockup Aesthetic**: Avoid Shadcn/Tailwind default looks. Create a unique, professional business core site with a distinct brand identity.
+2.  **Guided UI/UX**: The Document Studio and Dashboard must be "well-guided," leading the user intuitively through complex tasks.
+3.  **Arranged Content**: Ensure all landing and public pages have content that is professionally arranged, removing the "unarranged and incomplete" feel of current mockups.
+4.  **Production Logic**: Every feature must have real production logic. No placeholder buttons. Previews must transition from frontend-only to backend-driven rendering.
+
+## 3. Major Improvement Advice
 
 ### A. AI Integration (The "Real" AutoType)
 - **Current State**: v1 is just a UI shell with hardcoded text.

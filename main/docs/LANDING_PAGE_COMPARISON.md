@@ -5,8 +5,17 @@
 - **v2 (JavaScript/Custom Icon wrapper)**: Focuses on "Professional Documents Instantly". It is much more interactive, featuring a live search bar with suggestions and a rotating template preview. It feels more like a modern SaaS tool.
 
 ## Visual & Aesthetic Details
+- **User Feedback**: Both v1 and v2 look "totally incomplete" and like generic AI templates. The final design must be professional and unique, moving beyond these "shitty mockup" designs.
 
-### 1. Typography & Branding
+### 1. Conversion Flow (High Priority)
+- **Desired Flow**: v2's template listing approach is preferred. Users should be able to:
+  1. Select a template they want.
+  2. Fill out the form.
+  3. See a preview of the document.
+  4. **Sign up/Log in** before being able to download the final result.
+- **Rationale**: This creates a high conversion rate by letting users experience the value before requiring an account.
+
+### 2. Typography & Branding
 - **v1**: 
   - Uses large, bold headlines (up to `text-7xl`).
   - Employs a `bg-gradient-to-r from-primary to-primary/80` for emphasis.

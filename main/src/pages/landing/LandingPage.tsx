@@ -1,107 +1,228 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Check } from 'lucide-react'
 
-const featureRows = [
+/* ── Document mockup ── */
+function DocMockup() {
+  return (
+    <div className="lp-mockup">
+      {/* App chrome bar */}
+      <div className="lp-mockup-chrome">
+        <div className="lp-mockup-dots">
+          <div className="lp-mockup-dot" style={{ background: '#ff5f57' }} />
+          <div className="lp-mockup-dot" style={{ background: '#febc2e' }} />
+          <div className="lp-mockup-dot" style={{ background: '#28c840' }} />
+        </div>
+        <span className="lp-mockup-chrome-label">MyTypist · Studio — Acceptance Letter</span>
+      </div>
+
+      {/* Body: mini sidebar + doc canvas */}
+      <div className="lp-mockup-body">
+        {/* Mini sidebar */}
+        <div className="lp-mockup-sidebar">
+          {[
+            { color: 'var(--color-accent)', width: 18 },
+            { color: 'rgba(255,255,255,0.15)', width: 14 },
+            { color: 'rgba(255,255,255,0.1)', width: 16 },
+            { color: 'rgba(255,255,255,0.1)', width: 12 },
+            { color: 'rgba(255,255,255,0.1)', width: 15 },
+          ].map((bar, i) => (
+            <div
+              key={i}
+              className="lp-mockup-sidebar-icon"
+              style={{ background: bar.color, width: bar.width }}
+            />
+          ))}
+        </div>
+
+        {/* Document canvas area */}
+        <div className="lp-mockup-doc-area">
+          <div className="lp-mockup-paper">
+            {/* Doc header */}
+            <div className="lp-mockup-doc-header">
+              <div className="lp-mockup-doc-logo-row">
+                <div className="lp-mockup-doc-logo-bar" style={{ width: 3, height: 18 }} />
+                <div className="lp-mockup-doc-logo-text" />
+              </div>
+              <div className="lp-mockup-doc-title">Acceptance Letter</div>
+              <div className="lp-mockup-doc-meta">REF · 2026/ACC/001 · CONFIDENTIAL</div>
+            </div>
+
+            {/* Doc body */}
+            <div className="lp-mockup-doc-body">
+              <div className="lp-mockup-doc-line">
+                Dear <span className="lp-mockup-field lp-mockup-field--filled">Student Name</span>,
+              </div>
+              <div className="lp-mockup-doc-line" style={{ lineHeight: 1.6 }}>
+                We are pleased to inform you that your application to the{' '}
+                <span className="lp-mockup-field">Department</span> programme
+                at <span className="lp-mockup-field">Institution Name</span> has
+                been reviewed and accepted.
+              </div>
+              <div className="lp-mockup-doc-line">
+                Your student ID is <span className="lp-mockup-field">Student ID</span> and
+                your matriculation date is <span className="lp-mockup-field">Start Date</span>.
+              </div>
+              <div className="lp-mockup-doc-line" style={{ marginTop: 6, lineHeight: 1.6 }}>
+                Please report to the Academic Affairs office no later than{' '}
+                <span className="lp-mockup-field">Deadline Date</span> to complete
+                your registration formalities.
+              </div>
+
+              {/* Signature block */}
+              <div className="lp-mockup-sig-block">
+                <div className="lp-mockup-sig-line">
+                  <div style={{ height: 14 }} />
+                  <div className="lp-mockup-sig-rule" />
+                  <div className="lp-mockup-sig-label">Authorized Officer</div>
+                </div>
+                <div className="lp-mockup-sig-line">
+                  <div style={{ height: 14 }} />
+                  <div className="lp-mockup-sig-rule" />
+                  <div className="lp-mockup-sig-label">Date</div>
+                </div>
+              </div>
+
+              {/* Inspector hint */}
+              <div style={{
+                marginTop: 14,
+                padding: '8px 10px',
+                background: 'rgba(108,71,255,0.05)',
+                border: '1px solid rgba(108,71,255,0.15)',
+                borderRadius: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+              }}>
+                <div style={{ fontSize: 8, fontWeight: 600, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Inspector · Student Name</div>
+                {[
+                  ['Value', 'John Adeyemi Okafor'],
+                  ['Type', 'Text · Required'],
+                  ['Status', '✓ Filled'],
+                ].map(([k, v]) => (
+                  <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 8, color: '#6b6b63' }}>
+                    <span style={{ color: '#9e9e94' }}>{k}</span>
+                    <span style={{ color: k === 'Status' ? '#059669' : '#3a3a35', fontFamily: k === 'Value' ? 'inherit' : 'var(--font-mono)' }}>{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Pipeline bar */}
+      <div className="lp-mockup-pipeline">
+        {[
+          { label: 'Draft', state: 'done' },
+          { label: 'Fidelity Check', state: 'done' },
+          { label: 'Approval', state: 'active' },
+          { label: 'Sign', state: 'neutral' },
+          { label: 'Archive', state: 'neutral' },
+        ].map((s, i, arr) => (
+          <div key={s.label} style={{ display: 'flex', alignItems: 'center' }}>
+            <div className={`lp-mockup-stage lp-mockup-stage--${s.state}`}>
+              <div
+                className="lp-mockup-stage-dot"
+                style={{
+                  background: s.state === 'done'
+                    ? 'var(--color-status-complete)'
+                    : s.state === 'active'
+                      ? 'var(--color-accent)'
+                      : 'var(--color-border)',
+                }}
+              />
+              {s.label}
+            </div>
+            {i < arr.length - 1 && <div className="lp-mockup-stage-arrow" />}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* ── Feature rows data ── */
+const features = [
   {
     label: 'Creator Studio',
-    description: 'A three-panel workspace where documents are built, not generated. Block-based architecture with live preview fidelity. Keyboard-first, Cmd+K for everything.',
+    desc: 'Three-panel workspace: form inputs left, live document preview center, placeholder inspector right. 100% WYSIWYG fidelity between preview and final output. Keyboard-first — Cmd+K for every action.',
+    proof: 'Referenced from Figma\'s panel architecture and Acrobat\'s megaverb toolbar. No step wizards, no guided flow unless requested.',
   },
   {
     label: 'Document Pipeline',
-    description: 'Documents move through connected stages — Draft → Verify → Approve → Sign → Archive. Real-time status, per-document error isolation, and clean retry UX.',
+    desc: 'Documents don\'t get "created" — they move through connected operational stages. Draft → Fidelity Check → Approval → Sign → Archive. Status badges, per-document error isolation, clean retry UX.',
+    proof: 'Pattern derived from Trigger.dev\'s workflow visualization. Color-coded 6px status dots, not colored banners.',
   },
   {
     label: 'E-Signatures',
-    description: 'Sequential and parallel signing workflows. No account required for recipients. Every event logged with a binding audit trail. Legal-grade reliability.',
+    desc: 'Drag-and-drop signature field placement in the document canvas. Sequential and parallel workflows. No account required for recipients to sign. Every event timestamped in a binding audit trail.',
+    proof: 'DocuSign gets recipient UX right (no login). Notarize gets it wrong (forces account creation). We follow DocuSign\'s pattern.',
   },
   {
     label: 'Document Vault',
-    description: 'Versioned storage where every save is a snapshot. Full-text search across documents, templates, and their contents. 100+ hand-crafted templates.',
+    desc: 'Every save creates a version. Full diff history, full-text search across documents, templates, and their contents. 100+ hand-crafted templates — quality over quantity.',
+    proof: 'Notion-style versioned block storage. No 500-template dump — 100 curated, each hand-built with correct typography and structure.',
+  },
+  {
+    label: 'Command Center',
+    desc: 'Real-time pipeline throughput, latency, and fidelity gauges. Team management with role-based permissions. Bulk operations and compliance checks — not charts, clean data tables.',
+    proof: 'Dub-style admin layout. Linear-style data tables. No "chart vomit" dashboards — operational data only.',
   },
 ]
 
-const professionalFeatures = [
+/* ── Pricing features ── */
+const proFeatures = [
   'Unlimited documents',
   'Up to 10 team seats',
   '50 curated templates',
   'Sequential e-signatures',
-  'Draft → Check → Approve → Export pipeline',
-  'Email support (4h response)',
+  'Pipeline: Draft → Check → Approve → Export',
+  'Email support · 4h response',
   '14-day full-featured trial',
 ]
 
-const enterpriseFeatures = [
+const entFeatures = [
   'Everything in Professional',
   'Unlimited team seats',
   '100+ curated + custom templates',
   'Sequential + parallel + signature templates',
-  'Full pipeline with Sign + Archive stages',
+  'Full pipeline incl. Sign + Archive',
   'SSO / SAML integration',
-  'Audit logging & custom branding',
+  'Audit logging + custom branding',
   'Full API read/write access',
-  'Dedicated support (1h response)',
+  'Dedicated support · 1h response',
 ]
 
+/* ── Competitor positioning ── */
 const competitors = [
-  { name: 'DocuSign', issue: 'AI widget disrupting core workflow. Pricing creep. Legacy debt.' },
-  { name: 'PandaDoc', issue: 'Rigid guided flow. Fights you on images. Complex for enterprise.' },
-  { name: 'SignWell', issue: 'No mobile app. Two native integrations. Confusing multi-party routing.' },
-  { name: 'Notarize', issue: 'Forces account creation on recipients. $25–75 per transaction.' },
+  { name: 'DocuSign', issue: 'AI widget disrupting core signing workflow. Users actively leaving. Legacy architecture, pricing creep, bolted-on modules.' },
+  { name: 'PandaDoc', issue: 'Rigid step-by-step guided flow. Fights you on image formatting. Expensive tiers with capability fragmentation.' },
+  { name: 'SignWell', issue: 'No mobile app. Only 2 native integrations. Confusing multi-party routing. Free tier creates hard limits.' },
+  { name: 'Notarize / Proof', issue: 'Forces account creation for recipients. $25–75 per-transaction pricing. State law fragmentation.' },
+  { name: 'Local platforms', issue: 'Each solves one piece (doc gen OR e-sign OR notarization). No integrated pipeline. Basic web UX.' },
+  { name: 'Generic builders', issue: 'Template UX with no precision formatting. AI content generation as main value. No audit trail, no pipeline.' },
 ]
+
+/* ─────────────────────────────────────────────────── */
 
 export function LandingPage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-bg)', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
 
-      {/* ── Header ── */}
-      <header style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-        height: 48,
-        display: 'flex',
-        alignItems: 'center',
-        borderBottom: '1px solid var(--color-border)',
-        background: 'var(--color-surface)',
-        padding: '0 32px',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginRight: 40 }}>
-          <div style={{
-            width: 22,
-            height: 22,
-            background: 'var(--color-accent)',
-            borderRadius: 3,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            fontWeight: 700,
-            fontSize: 12,
-            flexShrink: 0,
-          }}>M</div>
-          <span style={{ fontWeight: 600, fontSize: 14, letterSpacing: '-0.2px', color: 'var(--color-text-primary)' }}>
-            MyTypist
-          </span>
-        </div>
+      {/* ══ HEADER ══ */}
+      <header className="lp-header">
+        <Link to="/" className="lp-header-brand">
+          <div className="lp-header-logo">M</div>
+          <span className="lp-header-name">MyTypist</span>
+        </Link>
 
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 24, flex: 1 }}>
+        <nav className="lp-header-nav">
           {['Templates', 'Pricing', 'Blog', 'FAQ', 'Support'].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              style={{
-                fontSize: 13,
-                color: 'var(--color-text-secondary)',
-                textDecoration: 'none',
-                letterSpacing: '-0.1px',
-              }}
-            >
-              {item}
-            </a>
+            <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>
           ))}
         </nav>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div className="lp-header-actions">
           <Link to="/auth" style={{ textDecoration: 'none' }}>
             <button className="btn btn--ghost btn--sm">Sign in</button>
           </Link>
@@ -111,374 +232,269 @@ export function LandingPage() {
         </div>
       </header>
 
-      {/* ── Hero ── */}
-      <section style={{
-        maxWidth: 760,
-        margin: '0 auto',
-        padding: '96px 32px 80px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-      }}>
-        <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 6,
-          height: 24,
-          padding: '0 10px',
-          borderRadius: 9999,
-          border: '1px solid var(--color-border)',
-          background: 'var(--color-surface)',
-          fontSize: 11,
-          fontWeight: 500,
-          color: 'var(--color-text-secondary)',
-          letterSpacing: '0.02em',
-          marginBottom: 32,
-        }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-accent)', display: 'inline-block' }} />
-          SOC 2 COMPLIANT · ENTERPRISE-GRADE
-        </div>
+      {/* ══ HERO — Split: copy left, document right ══ */}
+      <section className="lp-hero">
+        {/* Left: copy */}
+        <div className="lp-hero-copy">
+          <div className="lp-hero-eyebrow">
+            <div className="lp-hero-eyebrow-dot" />
+            Document Operating System
+          </div>
 
-        <h1 style={{
-          fontSize: 52,
-          fontWeight: 600,
-          lineHeight: 1.08,
-          letterSpacing: '-1.5px',
-          color: 'var(--color-text-primary)',
-          marginBottom: 20,
-          fontFamily: 'var(--font-sans)',
-        }}>
-          The Operating System<br />
-          for <span style={{ color: 'var(--color-accent)' }}>Documents</span>.
-        </h1>
+          <h1 className="lp-hero-headline">
+            The workspace where<br />
+            documents become <em>infrastructure</em>.
+          </h1>
 
-        <p style={{
-          fontSize: 16,
-          lineHeight: 1.65,
-          color: 'var(--color-text-secondary)',
-          maxWidth: 520,
-          marginBottom: 36,
-        }}>
-          Precision drafting, secure signing, and automated pipelines.
-          Built for teams who treat documents as infrastructure — not as afterthoughts.
-        </p>
+          <p className="lp-hero-sub">
+            Precision drafting with formatting fidelity guarantees.
+            Binding e-signatures with full audit trails.
+            Automated pipelines from first draft to archived record.
+            Built for teams that can't afford to get documents wrong.
+          </p>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 48 }}>
-          <Link to="/studio" style={{ textDecoration: 'none' }}>
-            <button className="btn btn--primary" style={{ height: 38, padding: '0 20px', fontSize: 14 }}>
-              Start free trial
-              <ArrowRight size={14} style={{ marginLeft: 6 }} />
+          <div className="lp-hero-actions">
+            <Link to="/studio" style={{ textDecoration: 'none' }}>
+              <button className="btn btn--primary" style={{ height: 36, padding: '0 18px', fontSize: 13 }}>
+                Start free trial
+                <ArrowRight size={13} style={{ marginLeft: 6 }} />
+              </button>
+            </Link>
+            <button className="btn btn--secondary" style={{ height: 36, padding: '0 18px', fontSize: 13 }}>
+              Request demo
             </button>
-          </Link>
-          <button className="btn btn--secondary" style={{ height: 38, padding: '0 20px', fontSize: 14 }}>
-            Request demo
-          </button>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          {['No credit card required', '14-day free trial', 'Trusted by 10,000+ teams'].map((item) => (
-            <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-              <Check size={12} style={{ color: 'var(--color-status-complete)', flexShrink: 0 }} />
-              <span style={{ fontSize: 12, color: 'var(--color-text-tertiary)' }}>{item}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Pipeline stage preview ── */}
-      <section style={{
-        borderTop: '1px solid var(--color-border)',
-        borderBottom: '1px solid var(--color-border)',
-        background: 'var(--color-surface)',
-        padding: '24px 32px',
-        overflowX: 'auto',
-      }}>
-        <div style={{
-          maxWidth: 960,
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 0,
-        }}>
-          {[
-            { label: 'Draft', status: 'complete', count: '3 docs' },
-            { label: 'Fidelity Check', status: 'complete', count: '3 / 3 OK' },
-            { label: 'Approval', status: 'active', count: '2 pending' },
-            { label: 'Sign', status: 'neutral', count: 'Queued' },
-            { label: 'Archive', status: 'neutral', count: 'Waiting' },
-          ].map((stage, i, arr) => (
-            <div key={stage.label} style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-              <div style={{
-                flex: 1,
-                padding: '10px 16px',
-                borderRadius: 'var(--radius-xs)',
-                border: `1px solid ${stage.status === 'active' ? 'var(--color-accent-border)' : 'var(--color-border)'}`,
-                background: stage.status === 'active' ? 'var(--color-accent-muted)' : 'var(--color-bg)',
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
-                  <div style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: '50%',
-                    background: stage.status === 'complete'
-                      ? 'var(--color-status-complete)'
-                      : stage.status === 'active'
-                        ? 'var(--color-accent)'
-                        : 'var(--color-status-neutral)',
-                    flexShrink: 0,
-                  }} />
-                  <span style={{
-                    fontSize: 12,
-                    fontWeight: 500,
-                    color: stage.status === 'active' ? 'var(--color-accent)' : 'var(--color-text-primary)',
-                  }}>
-                    {stage.label}
-                  </span>
-                </div>
-                <div style={{ fontSize: 11, color: 'var(--color-text-tertiary)', paddingLeft: 12 }}>
-                  {stage.count}
-                </div>
-              </div>
-              {i < arr.length - 1 && (
-                <div style={{ width: 24, height: 1, background: 'var(--color-border)', flexShrink: 0 }} />
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Features ── */}
-      <section id="features" style={{ maxWidth: 960, margin: '0 auto', padding: '80px 32px' }}>
-        <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
-            What's inside
-          </div>
-          <h2 style={{ fontSize: 28, fontWeight: 600, letterSpacing: '-0.6px', color: 'var(--color-text-primary)', maxWidth: 420, lineHeight: 1.2 }}>
-            Precision operations, not just document creation.
-          </h2>
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-          {featureRows.map((feature, i) => (
-            <div key={feature.label} style={{
-              display: 'grid',
-              gridTemplateColumns: '220px 1fr',
-              gap: 40,
-              padding: '24px 0',
-              borderTop: i === 0 ? '1px solid var(--color-border)' : undefined,
-              borderBottom: '1px solid var(--color-border)',
-            }}>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', paddingTop: 1 }}>
-                {feature.label}
-              </div>
-              <div style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--color-text-secondary)' }}>
-                {feature.description}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Why not competitors ── */}
-      <section style={{
-        background: 'var(--color-surface)',
-        borderTop: '1px solid var(--color-border)',
-        borderBottom: '1px solid var(--color-border)',
-        padding: '80px 32px',
-      }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
-          <div style={{ marginBottom: 48 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
-              The landscape
-            </div>
-            <h2 style={{ fontSize: 28, fontWeight: 600, letterSpacing: '-0.6px', color: 'var(--color-text-primary)', maxWidth: 400, lineHeight: 1.2 }}>
-              Why teams leave everything else behind.
-            </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 0 }}>
-            {competitors.map((c, i) => (
-              <div key={c.name} style={{
-                padding: '20px 24px',
-                borderTop: i < 2 ? '1px solid var(--color-border)' : undefined,
-                borderBottom: '1px solid var(--color-border)',
-                borderRight: i % 2 === 0 ? '1px solid var(--color-border)' : undefined,
-              }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-tertiary)', marginBottom: 6 }}>
-                  {c.name}
-                </div>
-                <div style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--color-text-secondary)' }}>
-                  {c.issue}
-                </div>
+          <div className="lp-hero-trust">
+            {[
+              'No credit card required · 14-day full trial',
+              'No account needed for document recipients',
+              'SOC 2 compliant · AES-256 encryption',
+            ].map((item) => (
+              <div key={item} className="lp-hero-trust-item">
+                <div className="lp-hero-trust-dot" />
+                {item}
               </div>
             ))}
           </div>
+        </div>
 
-          <div style={{
-            marginTop: 32,
-            padding: '20px 24px',
-            background: 'var(--color-accent-muted)',
-            border: '1px solid var(--color-accent-border)',
-            borderRadius: 'var(--radius-xs)',
-          }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-accent)', marginBottom: 6 }}>
-              MyTypist
+        {/* Right: live document preview mockup */}
+        <div className="lp-hero-preview">
+          <DocMockup />
+        </div>
+      </section>
+
+      {/* ══ PIPELINE STRIP ══ */}
+      <div className="lp-pipeline-strip">
+        <div className="lp-pipeline-inner">
+          {[
+            { num: '01', name: 'Draft', desc: 'Block-based editor with live preview. Precision formatting.' },
+            { num: '02', name: 'Fidelity Check', desc: 'Automated layout verification. 100% preview-to-output parity.' },
+            { num: '03', name: 'Approval', desc: 'Route to reviewers with role-based permissions.' },
+            { num: '04', name: 'Sign', desc: 'Drag-and-drop e-signature with binding audit trail.' },
+            { num: '05', name: 'Archive', desc: 'Versioned vault storage with full-text search.' },
+          ].map((stage, i) => (
+            <div key={stage.name} className={`lp-pipeline-stage${i === 1 ? ' lp-pipeline-stage--active' : ''}`}>
+              <div className="lp-pipeline-stage-top">
+                <span className="lp-pipeline-stage-num">{stage.num}</span>
+                <span className="lp-pipeline-stage-name">{stage.name}</span>
+              </div>
+              <div className="lp-pipeline-stage-desc">{stage.desc}</div>
             </div>
-            <div style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--color-text-primary)' }}>
-              No AI gimmicks. No per-transaction pricing. No account required to sign. A pipeline model where documents are managed as lifecycle stages — from first draft to archived record.
+          ))}
+        </div>
+      </div>
+
+      {/* ══ FEATURES ══ */}
+      <section className="lp-section" id="features">
+        <div className="lp-section-eyebrow">Capabilities</div>
+        <h2 className="lp-section-heading">
+          Built for document operations,<br />not document creation.
+        </h2>
+
+        {features.map((f) => (
+          <div key={f.label} className="lp-features-row">
+            <div className="lp-features-label">{f.label}</div>
+            <div className="lp-features-desc">{f.desc}</div>
+            <div className="lp-features-proof">{f.proof}</div>
+          </div>
+        ))}
+      </section>
+
+      {/* ══ POSITIONING ══ */}
+      <section className="lp-pos-strip" id="comparison">
+        <div className="lp-section" style={{ paddingBottom: 0 }}>
+          <div className="lp-section-eyebrow">Why not the others</div>
+          <h2 className="lp-section-heading" style={{ marginBottom: 24 }}>
+            Every competitor solves one part.<br />We replaced the whole workflow.
+          </h2>
+        </div>
+        <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 40px 80px' }}>
+          <div className="lp-pos-grid">
+            {competitors.map((c) => (
+              <div key={c.name} className="lp-pos-cell">
+                <div className="lp-pos-cell-product">{c.name}</div>
+                <div className="lp-pos-cell-issue">{c.issue}</div>
+              </div>
+            ))}
+          </div>
+          <div className="lp-pos-mytypist">
+            <div className="lp-pos-mytypist-label">MyTypist</div>
+            <div className="lp-pos-mytypist-text">
+              No AI gimmicks. No per-transaction fees. No account required for recipients.
+              A pipeline model where documents are managed as operational artifacts —
+              from precision draft to archived, signed record. The same approach
+              Linear took to issue tracking. We're taking it to document operations.
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Pricing ── */}
-      <section id="pricing" style={{ maxWidth: 960, margin: '0 auto', padding: '80px 32px' }}>
-        <div style={{ marginBottom: 48 }}>
-          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
-            Pricing
-          </div>
-          <h2 style={{ fontSize: 28, fontWeight: 600, letterSpacing: '-0.6px', color: 'var(--color-text-primary)', lineHeight: 1.2 }}>
-            Subscription pricing. No per-document fees.
-          </h2>
-          <p style={{ fontSize: 14, color: 'var(--color-text-secondary)', marginTop: 8, lineHeight: 1.6 }}>
-            14-day full-featured trial on both plans. No credit card required.
-          </p>
-        </div>
+      {/* ══ PRICING ══ */}
+      <section className="lp-section" id="pricing">
+        <div className="lp-section-eyebrow">Pricing</div>
+        <h2 className="lp-section-heading">
+          Subscription pricing. No per-document fees.<br />No surprise costs.
+        </h2>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'var(--color-border)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-xs)', overflow: 'hidden' }}>
+        <div className="lp-pricing-grid">
           {/* Professional */}
-          <div style={{ background: 'var(--color-surface)', padding: '32px 32px' }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 16 }}>
-              Professional
+          <div className="lp-plan">
+            <div className="lp-plan-tier">Professional</div>
+            <div className="lp-plan-price">
+              <span className="lp-plan-amount">$49</span>
+              <span className="lp-plan-per">/month</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 6 }}>
-              <span style={{ fontSize: 36, fontWeight: 600, letterSpacing: '-1px', color: 'var(--color-text-primary)' }}>$49</span>
-              <span style={{ fontSize: 13, color: 'var(--color-text-tertiary)' }}>/month</span>
+            <div className="lp-plan-local">or ₦49,000/month · billed monthly</div>
+            <div className="lp-plan-cta">
+              <Link to="/studio" style={{ textDecoration: 'none', display: 'block' }}>
+                <button className="btn btn--secondary" style={{ width: '100%', height: 34, fontSize: 13 }}>
+                  Start 14-day trial
+                </button>
+              </Link>
             </div>
-            <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginBottom: 28 }}>
-              or ₦49,000/month · billed monthly
-            </div>
-            <Link to="/studio" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--secondary" style={{ width: '100%', height: 36, fontSize: 13, marginBottom: 28 }}>
-                Start free trial
-              </button>
-            </Link>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {professionalFeatures.map((f) => (
-                <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                  <Check size={13} style={{ color: 'var(--color-status-complete)', marginTop: 2, flexShrink: 0 }} />
-                  <span style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>{f}</span>
+            <div className="lp-plan-divider" />
+            <div className="lp-plan-features">
+              {proFeatures.map((f) => (
+                <div key={f} className="lp-plan-feature">
+                  <Check size={12} className="lp-plan-feature-check" style={{ color: 'var(--color-status-complete)' }} />
+                  {f}
                 </div>
               ))}
             </div>
           </div>
 
           {/* Enterprise */}
-          <div style={{ background: 'var(--color-bg)', padding: '32px 32px' }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 16 }}>
-              Enterprise
+          <div className="lp-plan lp-plan--enterprise">
+            <div className="lp-plan-tier">Enterprise</div>
+            <div className="lp-plan-price">
+              <span className="lp-plan-amount">$149</span>
+              <span className="lp-plan-per">/month</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 6 }}>
-              <span style={{ fontSize: 36, fontWeight: 600, letterSpacing: '-1px', color: 'var(--color-text-primary)' }}>$149</span>
-              <span style={{ fontSize: 13, color: 'var(--color-text-tertiary)' }}>/month</span>
+            <div className="lp-plan-local">or ₦149,000/month · billed monthly</div>
+            <div className="lp-plan-cta">
+              <button
+                className="btn btn--primary"
+                style={{ width: '100%', height: 34, fontSize: 13 }}
+              >
+                Contact sales
+              </button>
             </div>
-            <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginBottom: 28 }}>
-              or ₦149,000/month · billed monthly
-            </div>
-            <button
-              className="btn btn--primary"
-              style={{ width: '100%', height: 36, fontSize: 13, marginBottom: 28 }}
-              onClick={() => {}}
-            >
-              Contact sales
-            </button>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {enterpriseFeatures.map((f) => (
-                <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                  <Check size={13} style={{ color: 'var(--color-accent)', marginTop: 2, flexShrink: 0 }} />
-                  <span style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.4 }}>{f}</span>
+            <div className="lp-plan-divider" />
+            <div className="lp-plan-features">
+              {entFeatures.map((f) => (
+                <div key={f} className="lp-plan-feature">
+                  <Check size={12} className="lp-plan-feature-check" style={{ color: 'var(--color-accent)' }} />
+                  {f}
                 </div>
               ))}
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ── CTA strip ── */}
-      <section style={{
-        background: 'var(--color-text-primary)',
-        padding: '64px 32px',
-      }}>
-        <div style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{
-            fontSize: 28,
-            fontWeight: 600,
-            letterSpacing: '-0.6px',
-            color: '#efeeeb',
-            lineHeight: 1.2,
-            marginBottom: 16,
-          }}>
-            Ready to run documents like infrastructure?
-          </h2>
-          <p style={{ fontSize: 14, lineHeight: 1.6, color: '#8a8a80', marginBottom: 32 }}>
-            14-day trial, full features, no credit card. Your first pipeline in under 2 minutes.
-          </p>
-          <Link to="/studio" style={{ textDecoration: 'none' }}>
-            <button className="btn btn--primary" style={{ height: 38, padding: '0 24px', fontSize: 14 }}>
-              Start free trial
-              <ArrowRight size={14} style={{ marginLeft: 6 }} />
-            </button>
-          </Link>
+        {/* Add-on note */}
+        <div style={{
+          marginTop: 16,
+          padding: '14px 20px',
+          background: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          borderTop: 'none',
+          borderRadius: '0 0 var(--radius-xs) var(--radius-xs)',
+          fontSize: 12,
+          color: 'var(--color-text-tertiary)',
+          lineHeight: 1.5,
+        }}>
+          Enterprise add-ons: dedicated infrastructure, custom integrations, on-premise hosting (regulated industries). Annual billing available — contact sales for pricing.
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer style={{
-        borderTop: '1px solid var(--color-border)',
-        padding: '40px 32px',
-        background: 'var(--color-surface)',
-      }}>
-        <div style={{ maxWidth: 960, margin: '0 auto', display: 'grid', gridTemplateColumns: '200px 1fr', gap: 48 }}>
+      {/* ══ CTA STRIP ══ */}
+      <section className="lp-cta-strip">
+        <h2 className="lp-cta-headline">
+          Documents are legal infrastructure.<br />Treat them like it.
+        </h2>
+        <p className="lp-cta-sub">
+          14-day trial, all features, no card required. Your first complete pipeline in under 2 minutes.
+        </p>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          <Link to="/studio" style={{ textDecoration: 'none' }}>
+            <button className="btn btn--primary" style={{ height: 36, padding: '0 20px', fontSize: 13 }}>
+              Start free trial
+              <ArrowRight size={13} style={{ marginLeft: 6 }} />
+            </button>
+          </Link>
+          <button
+            className="btn btn--ghost"
+            style={{ height: 36, padding: '0 20px', fontSize: 13, color: '#6b6b63', border: '1px solid rgba(255,255,255,0.1)' }}
+          >
+            View demo
+          </button>
+        </div>
+      </section>
+
+      {/* ══ FOOTER ══ */}
+      <footer className="lp-footer">
+        <div className="lp-footer-inner">
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <div style={{
-                width: 20,
-                height: 20,
-                background: 'var(--color-accent)',
-                borderRadius: 3,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                fontWeight: 700,
-                fontSize: 11,
-              }}>M</div>
-              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>MyTypist</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+              <div className="lp-header-logo">M</div>
+              <span className="lp-header-name">MyTypist</span>
             </div>
-            <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', lineHeight: 1.5 }}>
-              Document Operating System.
-              <br />
-              Built for precision.
+            <p className="lp-footer-brand-desc">
+              Document Operating System.<br />
+              Precision drafting. Binding signatures.<br />
+              Automated pipelines.
+            </p>
+            <div style={{ marginTop: 16, display: 'flex', gap: 10 }}>
+              {['SOC 2', 'GDPR', 'HIPAA-ready'].map((badge) => (
+                <div key={badge} style={{
+                  padding: '2px 8px',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: 10,
+                  fontWeight: 600,
+                  color: 'var(--color-text-tertiary)',
+                  letterSpacing: '0.3px',
+                }}>
+                  {badge}
+                </div>
+              ))}
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
+          <div className="lp-footer-links">
             {[
-              { heading: 'Product', links: ['Studio', 'Templates', 'Pipeline', 'Vault', 'Pricing'] },
-              { heading: 'Company', links: ['About', 'Blog', 'FAQ', 'Support'] },
-              { heading: 'Legal', links: ['Terms of Service', 'Privacy Policy'] },
-              { heading: 'Connect', links: ['Contact', 'Become a Partner', 'API Docs'] },
+              { heading: 'Product', links: ['Studio', 'Templates', 'Pipeline', 'Signatures', 'Vault', 'Pricing'] },
+              { heading: 'Company', links: ['About', 'Blog', 'FAQ', 'Support', 'Become a Partner'] },
+              { heading: 'Legal', links: ['Terms of Service', 'Privacy Policy', 'Cookie Policy'] },
+              { heading: 'Developers', links: ['API Docs', 'Webhooks', 'Status', 'Changelog'] },
             ].map((col) => (
               <div key={col.heading}>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 12 }}>
-                  {col.heading}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div className="lp-footer-col-heading">{col.heading}</div>
+                <div className="lp-footer-col-links">
                   {col.links.map((link) => (
-                    <a key={link} href="#" style={{ fontSize: 12, color: 'var(--color-text-secondary)', textDecoration: 'none' }}>
-                      {link}
-                    </a>
+                    <a key={link} href="#" className="lp-footer-link">{link}</a>
                   ))}
                 </div>
               </div>
@@ -486,21 +502,9 @@ export function LandingPage() {
           </div>
         </div>
 
-        <div style={{
-          maxWidth: 960,
-          margin: '32px auto 0',
-          paddingTop: 20,
-          borderTop: '1px solid var(--color-border)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}>
-          <span style={{ fontSize: 11, color: 'var(--color-text-quaternary)' }}>
-            © 2026 MyTypist. All rights reserved.
-          </span>
-          <span style={{ fontSize: 11, color: 'var(--color-text-quaternary)' }}>
-            SOC 2 · GDPR · HIPAA-ready
-          </span>
+        <div className="lp-footer-bottom">
+          <span className="lp-footer-bottom-text">© 2026 MyTypist. All rights reserved.</span>
+          <span className="lp-footer-bottom-text">Built for precision. Not for decoration.</span>
         </div>
       </footer>
     </div>

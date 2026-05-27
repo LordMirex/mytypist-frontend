@@ -1,9 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check, X } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 
 /* ─────────────────────────────────────
-   Document Mockup — the visual hero
+   Scroll reveal hook
+   ───────────────────────────────────── */
+function useScrollReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('lp-in-view')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    )
+    document.querySelectorAll('.lp-reveal').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+}
+
+/* ─────────────────────────────────────
+   Document Mockup
    ───────────────────────────────────── */
 function DocMockup() {
   return (
@@ -18,7 +38,6 @@ function DocMockup() {
       </div>
 
       <div className="lp-mockup-body">
-        {/* Mini sidebar */}
         <div className="lp-mockup-sidebar">
           {[
             { w: 18, color: 'var(--color-accent)' },
@@ -31,7 +50,6 @@ function DocMockup() {
           ))}
         </div>
 
-        {/* Document canvas */}
         <div className="lp-mockup-doc-area">
           <div className="lp-mockup-paper">
             <div className="lp-mockup-doc-header">
@@ -93,7 +111,6 @@ function DocMockup() {
         </div>
       </div>
 
-      {/* Pipeline status bar */}
       <div className="lp-mockup-pipeline">
         {[
           { label: 'Draft', s: 'done' },
@@ -126,84 +143,84 @@ function DocMockup() {
 /* ─────────────────────────────────────
    Data
    ───────────────────────────────────── */
-const navLinks = ['Templates', 'Pricing', 'Blog', 'FAQ', 'Support']
+const navLinks = ['Product', 'Pricing', 'Templates', 'Enterprise', 'Support']
 
 const stats = [
-  { num: '4,000', unit: '+', label: 'Documents generated daily' },
-  { num: '< 2', unit: 'min', label: 'Draft to signed PDF' },
-  { num: '100', unit: '+', label: 'Hand-crafted templates' },
-  { num: '99.9', unit: '%', label: 'Formatting fidelity rate' },
+  { num: '12k', unit: '+', label: 'Documents processed monthly' },
+  { num: '< 90', unit: 's', label: 'Template to signed PDF' },
+  { num: '99.97', unit: '%', label: 'Formatting fidelity rate' },
+  { num: '$0', unit: '', label: 'Per-transaction fees. Ever.' },
 ]
 
 const pipeline = [
-  { num: '01', name: 'Draft', desc: 'Block editor, live preview, 100% WYSIWYG fidelity.', state: 'done' },
-  { num: '02', name: 'Fidelity Check', desc: 'Automated layout verification before any action.', state: 'active' },
-  { num: '03', name: 'Approval', desc: 'Route to reviewers with role-based permissions.', state: '' },
-  { num: '04', name: 'Sign', desc: 'Drag-and-drop e-signature, binding audit trail.', state: '' },
-  { num: '05', name: 'Archive', desc: 'Versioned vault with full-text search.', state: '' },
+  { num: '01', name: 'Draft', desc: 'Structured block editor. Live PDF preview. What you build is exactly what prints — guaranteed.', state: 'done' },
+  { num: '02', name: 'Fidelity Check', desc: 'Automated layout validation catches margin breaks, overflow, and field errors before anyone else sees the document.', state: 'active' },
+  { num: '03', name: 'Approval', desc: 'Route to internal reviewers with role-gated access. No email threads. No PDF attachments in inboxes.', state: '' },
+  { num: '04', name: 'Sign', desc: 'Recipients sign without creating an account. Sequential and parallel flows. Every action cryptographically timestamped.', state: '' },
+  { num: '05', name: 'Archive', desc: 'Permanent, versioned, full-text searchable record. Complete diff history. Tamper-evident audit log for every event.', state: '' },
 ]
 
 const features = [
   {
     num: '01',
     name: 'Creator Studio',
-    desc: 'Three-panel workspace — form inputs, live document preview center, placeholder inspector right. 100% WYSIWYG parity between preview and final output. Keyboard-driven: Cmd+K for everything.',
-    tag: 'Figma architecture · Acrobat toolbar',
+    desc: 'A three-panel workspace purpose-built for document professionals. Structured field input left. Pixel-perfect live preview center. Field inspector right. No layout surprises at print time, ever.',
+    tag: 'Figma-level structure · zero formatting drift',
   },
   {
     num: '02',
-    name: 'Document Pipeline',
-    desc: 'Documents move through connected operational stages. Draft → Fidelity Check → Approval → Sign → Archive. Per-document error isolation, clean retry, status badges — not colored banners.',
-    tag: 'Trigger.dev pipeline model',
+    name: 'Automated Pipeline',
+    desc: 'Every document moves through an explicit operational sequence: Draft → Fidelity → Approve → Sign → Archive. Stage transitions require clearance. Nothing moves forward with unresolved errors.',
+    tag: 'Linear-style workflow · applied to documents',
   },
   {
     num: '03',
-    name: 'E-Signatures',
-    desc: 'Drag-and-drop placement in the document canvas. Sequential and parallel flows. No account required for recipients. Every event timestamped in a binding, tamper-evident audit trail.',
-    tag: 'DocuSign recipient UX · no forced login',
+    name: 'Binding E-Signatures',
+    desc: 'Recipients sign from a secure link — no account, no app, no friction. Sequential and parallel flows supported. Every event is cryptographically sealed and stored in a tamper-evident audit trail.',
+    tag: 'No forced recipient accounts · full chain of custody',
   },
   {
     num: '04',
-    name: 'Document Vault',
-    desc: 'Every save creates a version. Full diff history, full-text search across documents and their contents. 100+ curated templates — each hand-built with correct typography and legal structure.',
-    tag: 'Notion block versioning',
+    name: 'Versioned Vault',
+    desc: 'Every save creates a version. Compare any two states side by side. Full-text search across all documents and their field values. 100+ professionally built templates with legally correct typography.',
+    tag: 'Git-style versioning · full-text indexed',
   },
   {
     num: '05',
-    name: 'Command Center',
-    desc: 'Real-time pipeline throughput, fidelity gauges, team management, role-based permissions, bulk ops. Clean data tables — not charts. Operational data, not analytics theater.',
-    tag: 'Dub admin layout · Linear data tables',
+    name: 'Operations Console',
+    desc: 'Pipeline throughput, fidelity pass rates, team capacity, role assignments, and compliance audit logs in a single view. Clean data tables. No dashboards filled with charts that nobody acts on.',
+    tag: 'Operational intelligence · not analytics theater',
   },
 ]
 
 const competitors = [
-  { name: 'DocuSign', issue: 'AI widget disrupting core signing UX. Legacy architecture. Pricing creep and bolted-on modules users never asked for.' },
-  { name: 'PandaDoc', issue: 'Rigid step-by-step guided flow. Fights you on image formatting. Expensive tiers with capability fragmentation.' },
-  { name: 'SignWell', issue: 'No mobile app. Only 2 native integrations. Confusing multi-party routing. Free tier creates hard blockers.' },
-  { name: 'Notarize / Proof', issue: 'Forces account creation for recipients. $25–75 per-transaction pricing. State law fragmentation kills scale.' },
-  { name: 'Local platforms', issue: 'Each solves one piece — doc gen OR e-sign OR notarization. No integrated pipeline. No audit trail.' },
-  { name: 'Generic builders', issue: 'Template UX with no precision formatting. AI content generation as the main value prop. No pipeline model.' },
+  { name: 'DocuSign', issue: 'AI-first pivot disrupting the signing experience teams depend on. Per-envelope pricing punishes volume. Modules keep shipping — clarity keeps eroding.' },
+  { name: 'PandaDoc', issue: 'Rigid guided flow breaks on complex document structures. Formatting fights you. Capability fragmentation forces tier upgrades for basic operations.' },
+  { name: 'HelloSign / Dropbox Sign', issue: 'A signing tool, not a document system. No drafting, no pipeline, no vault. Acquired and deprioritized. Product investment reflects that.' },
+  { name: 'Adobe Acrobat Sign', issue: 'Enterprise complexity applied to every use case. Steep learning curve. Pricing calibrated for legal departments, not the teams that actually generate documents.' },
+  { name: 'Fragmented toolchain', issue: 'Word. Email. DocuSign. SharePoint. Four tools. Four handoff points. No pipeline visibility. No shared audit record. Breakage is invisible until it matters.' },
+  { name: 'Custom internal systems', issue: 'Engineering time diverted to document infrastructure. Maintenance burden compounds. No compliance posture. Every hire has to learn a bespoke tool nobody else knows.' },
 ]
 
 const proFeatures = [
-  'Unlimited documents',
-  'Up to 10 team seats',
-  '50 curated templates',
-  'Sequential e-signatures',
-  'Pipeline: Draft → Check → Approve → Export',
-  'Email support · 4h response',
-  '14-day full-featured trial',
+  'Unlimited document generation',
+  'Up to 10 team members',
+  '50 professionally built templates',
+  'Sequential e-signatures with audit trail',
+  'Full 5-stage operational pipeline',
+  'Email support · 4-hour response SLA',
+  '14-day full-access trial · no card required',
 ]
 
 const entFeatures = [
   'Everything in Professional',
   'Unlimited team seats',
   '100+ curated + custom templates',
-  'Sequential + parallel signature flows',
-  'Full pipeline incl. Sign + Archive',
-  'SSO / SAML · Audit logging · Custom branding',
-  'Full API read/write access',
-  'Dedicated support · 1h response',
+  'Sequential and parallel signature flows',
+  'SSO / SAML · custom branding',
+  'Full REST API with webhook delivery',
+  'Dedicated account support · 1-hour SLA',
+  'On-premise deployment option',
 ]
 
 /* ─────────────────────────────────────
@@ -211,6 +228,7 @@ const entFeatures = [
    ───────────────────────────────────── */
 export function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false)
+  useScrollReveal()
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
@@ -222,14 +240,12 @@ export function LandingPage() {
           <span className="lp-header-name">MyTypist</span>
         </Link>
 
-        {/* Desktop nav */}
         <nav className="lp-header-nav">
           {navLinks.map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>
           ))}
         </nav>
 
-        {/* Desktop CTAs */}
         <div className="lp-header-ctas">
           <Link to="/auth" style={{ textDecoration: 'none' }}>
             <button className="btn btn--ghost btn--sm">Sign in</button>
@@ -239,7 +255,6 @@ export function LandingPage() {
           </Link>
         </div>
 
-        {/* Mobile: sign-in + hamburger */}
         <div className="lp-header-right">
           <Link to="/auth" style={{ textDecoration: 'none' }}>
             <button className="btn btn--ghost btn--sm" style={{ fontSize: 12 }}>Sign in</button>
@@ -285,44 +300,45 @@ export function LandingPage() {
         </nav>
       )}
 
-      {/* ══ HERO — left: copy · right: document preview ══ */}
+      {/* ══ HERO ══ */}
       <section className="lp-hero">
         <div className="lp-hero-copy">
           <div className="lp-hero-eyebrow">
             <div className="lp-hero-eyebrow-dot" />
-            Document Operating System
+            Enterprise Document Infrastructure
           </div>
 
           <h1 className="lp-hero-headline">
-            The workspace where<br />
-            documents become{' '}
-            <em>infrastructure</em>.
+            Stop patching your<br />
+            document process with<br />
+            <em>five different tools.</em>
           </h1>
 
           <p className="lp-hero-sub">
-            Precision drafting with formatting fidelity guarantees.
-            Binding e-signatures with full audit trails. Automated
-            pipelines from first draft to archived record. Built
-            for teams that can't afford to get documents wrong.
+            MyTypist is one structured pipeline from first draft to
+            archived signed record. Formatting guarantees on every
+            output. Binding signatures with no per-transaction fees.
+            Audit trail on every event. Built for operations teams
+            that cannot afford document errors.
           </p>
 
           <div className="lp-hero-actions">
             <Link to="/studio" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--primary" style={{ height: 36, padding: '0 20px', fontSize: 13 }}>
-                Start free trial
-                <ArrowRight size={13} style={{ marginLeft: 6 }} />
+              <button className="btn btn--primary" style={{ height: 40, padding: '0 22px', fontSize: 14 }}>
+                Start free — 14 days
+                <ArrowRight size={14} style={{ marginLeft: 6 }} />
               </button>
             </Link>
-            <button className="btn btn--secondary" style={{ height: 36, padding: '0 20px', fontSize: 13 }}>
-              Request demo
+            <button className="btn btn--secondary" style={{ height: 40, padding: '0 22px', fontSize: 14 }}>
+              Request a demo
             </button>
           </div>
 
           <div className="lp-hero-trust">
             {[
-              'No credit card required · 14-day full trial',
-              'No account needed for document recipients',
-              'SOC 2 compliant · AES-256 encryption at rest',
+              'No credit card · full feature access for 14 days',
+              'Recipients sign without creating an account',
+              'SOC 2 Type II · AES-256 at rest · GDPR ready',
             ].map((item) => (
               <div key={item} className="lp-hero-trust-item">
                 <div className="lp-hero-trust-dot" />
@@ -337,11 +353,11 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* ══ STATS — dark chapter break ══ */}
+      {/* ══ STATS ══ */}
       <div className="lp-stats">
         <div className="lp-stats-inner">
-          {stats.map((s) => (
-            <div key={s.num} className="lp-stat-cell">
+          {stats.map((s, i) => (
+            <div key={s.num} className={`lp-stat-cell lp-reveal lp-reveal--delay-${i}`}>
               <div className="lp-stat-num">
                 {s.num}<span>{s.unit}</span>
               </div>
@@ -351,14 +367,14 @@ export function LandingPage() {
         </div>
       </div>
 
-      {/* ══ PIPELINE — connected workflow ══ */}
-      <div className="lp-pipeline-strip" id="features">
+      {/* ══ PIPELINE ══ */}
+      <div className="lp-pipeline-strip" id="product">
         <div className="lp-pipeline-scroll">
           <div className="lp-pipeline-inner">
             {pipeline.map((stage) => (
               <div
                 key={stage.name}
-                className={`lp-pipeline-stage${stage.state === 'active' ? ' lp-pipeline-stage--active' : stage.state === 'done' ? ' lp-pipeline-stage--done' : ''}`}
+                className={`lp-pipeline-stage lp-reveal${stage.state === 'active' ? ' lp-pipeline-stage--active' : stage.state === 'done' ? ' lp-pipeline-stage--done' : ''}`}
               >
                 <div className="lp-pipeline-top">
                   <div
@@ -380,19 +396,18 @@ export function LandingPage() {
         </div>
       </div>
 
-      {/* ══ FEATURES — numbered editorial table ══ */}
-      <section className="lp-section" style={{ background: 'var(--color-surface)' }}>
+      {/* ══ FEATURES ══ */}
+      <section className="lp-section" style={{ background: 'var(--color-surface)' }} id="templates">
         <div className="lp-section-inner">
-          <div className="lp-section-eyebrow">Capabilities</div>
-          <h2 className="lp-section-heading">
-            Built for document operations,<br />
-            not document creation.
+          <div className="lp-section-eyebrow lp-reveal">Capabilities</div>
+          <h2 className="lp-section-heading lp-reveal">
+            Five capabilities.<br />
+            One coherent system.
           </h2>
 
           <div className="lp-features-table">
             {features.map((f) => (
-              <div key={f.num} className="lp-feature-row">
-                {/* Mobile: inline header. Desktop: left column */}
+              <div key={f.num} className="lp-feature-row lp-reveal">
                 <div className="lp-feature-row-left">
                   <div className="lp-feature-header">
                     <span className="lp-feature-num">{f.num}</span>
@@ -409,31 +424,33 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* ══ POSITIONING — dark bg, competitor grid ══ */}
-      <section className="lp-pos lp-section" id="comparison">
+      {/* ══ POSITIONING ══ */}
+      <section className="lp-pos lp-section" id="enterprise">
         <div className="lp-section-inner">
-          <div className="lp-section-eyebrow">Why not the others</div>
-          <h2 className="lp-section-heading">
-            Every competitor solves one part.<br />
-            We replaced the whole workflow.
+          <div className="lp-section-eyebrow lp-reveal">The market</div>
+          <h2 className="lp-section-heading lp-reveal">
+            You know the alternatives.<br />
+            Here's why they all fall short.
           </h2>
 
           <div className="lp-pos-grid">
             {competitors.map((c) => (
-              <div key={c.name} className="lp-pos-cell">
+              <div key={c.name} className="lp-pos-cell lp-reveal">
                 <div className="lp-pos-product">{c.name}</div>
                 <div className="lp-pos-issue">{c.issue}</div>
               </div>
             ))}
           </div>
 
-          <div className="lp-pos-mytypist">
+          <div className="lp-pos-mytypist lp-reveal">
             <div className="lp-pos-mytypist-label">MyTypist</div>
             <p className="lp-pos-mytypist-text">
-              No AI gimmicks. No per-transaction fees. No forced recipient accounts.
-              A pipeline model where documents are managed as operational artifacts —
-              from precision draft to archived, signed record. The same approach
-              Linear took to issue tracking, applied to document operations.
+              One system. One pipeline. One source of truth. MyTypist treats
+              documents as operational infrastructure — not as files you shuffle
+              between tools. Draft with formatting guarantees. Approve without
+              email threads. Sign without forcing your recipients to create accounts.
+              Archive with a complete, tamper-evident audit trail. The whole
+              sequence, inside a single product.
             </p>
           </div>
         </div>
@@ -442,24 +459,23 @@ export function LandingPage() {
       {/* ══ PRICING ══ */}
       <section className="lp-section" id="pricing" style={{ background: 'var(--color-bg)' }}>
         <div className="lp-section-inner">
-          <div className="lp-section-eyebrow">Pricing</div>
-          <h2 className="lp-section-heading">
+          <div className="lp-section-eyebrow lp-reveal">Pricing</div>
+          <h2 className="lp-section-heading lp-reveal">
             Flat subscription. No per-document fees.<br />
-            No usage traps.
+            No usage traps. No surprises.
           </h2>
 
-          <div className="lp-pricing-grid">
-            {/* Professional */}
+          <div className="lp-pricing-grid lp-reveal">
             <div className="lp-plan">
               <div className="lp-plan-tier">Professional</div>
               <div className="lp-plan-price">
                 <span className="lp-plan-amount">$49</span>
                 <span className="lp-plan-per">/month</span>
               </div>
-              <div className="lp-plan-local">≈ ₦49,000 / month · billed monthly</div>
+              <div className="lp-plan-local">≈ ₦75,000 / month · billed monthly</div>
               <div className="lp-plan-cta">
                 <Link to="/studio" style={{ textDecoration: 'none', display: 'block' }}>
-                  <button className="btn btn--secondary" style={{ width: '100%', height: 34, fontSize: 13 }}>
+                  <button className="btn btn--secondary" style={{ width: '100%', height: 36, fontSize: 13 }}>
                     Start 14-day trial
                   </button>
                 </Link>
@@ -475,16 +491,15 @@ export function LandingPage() {
               </div>
             </div>
 
-            {/* Enterprise */}
             <div className="lp-plan lp-plan--enterprise">
               <div className="lp-plan-tier">Enterprise</div>
               <div className="lp-plan-price">
                 <span className="lp-plan-amount">$149</span>
                 <span className="lp-plan-per">/month</span>
               </div>
-              <div className="lp-plan-local">≈ ₦149,000 / month · billed monthly</div>
+              <div className="lp-plan-local">≈ ₦230,000 / month · billed monthly</div>
               <div className="lp-plan-cta">
-                <button className="btn btn--primary" style={{ width: '100%', height: 34, fontSize: 13 }}>
+                <button className="btn btn--primary" style={{ width: '100%', height: 36, fontSize: 13 }}>
                   Contact sales
                 </button>
               </div>
@@ -500,7 +515,7 @@ export function LandingPage() {
             </div>
           </div>
 
-          <div style={{
+          <div className="lp-reveal" style={{
             marginTop: 0,
             padding: '14px 20px',
             background: 'var(--color-surface)',
@@ -511,34 +526,34 @@ export function LandingPage() {
             color: 'var(--color-text-tertiary)',
             lineHeight: 1.5,
           }}>
-            Enterprise add-ons: dedicated infrastructure, custom integrations, on-premise hosting.
-            Annual billing available — contact sales for pricing.
+            Annual billing available at 20% off. Enterprise add-ons: dedicated infrastructure,
+            custom integrations, on-premise hosting, compliance packages. Contact sales for scoped pricing.
           </div>
         </div>
       </section>
 
-      {/* ══ CTA — near-black ══ */}
+      {/* ══ CTA ══ */}
       <section className="lp-cta">
-        <h2 className="lp-cta-headline">
-          Documents are legal infrastructure.<br />
-          Treat them like it.
+        <h2 className="lp-cta-headline lp-reveal">
+          Your pipeline is already broken.<br />
+          Fix it in 14 days.
         </h2>
-        <p className="lp-cta-sub">
-          14-day trial, all features, no card required.
-          First complete pipeline in under 2 minutes.
+        <p className="lp-cta-sub lp-reveal">
+          Full feature access. No card required. No usage limits during trial.
+          First complete document pipeline takes under 3 minutes to set up.
         </p>
-        <div className="lp-cta-actions">
+        <div className="lp-cta-actions lp-reveal">
           <Link to="/studio" style={{ textDecoration: 'none' }}>
-            <button className="btn btn--primary" style={{ height: 38, padding: '0 22px', fontSize: 13 }}>
+            <button className="btn btn--primary" style={{ height: 42, padding: '0 24px', fontSize: 14 }}>
               Start free trial
-              <ArrowRight size={13} style={{ marginLeft: 6 }} />
+              <ArrowRight size={14} style={{ marginLeft: 6 }} />
             </button>
           </Link>
           <button
             className="btn btn--ghost"
-            style={{ height: 38, padding: '0 22px', fontSize: 13, color: '#5a5a53', border: '1px solid rgba(255,255,255,0.08)' }}
+            style={{ height: 42, padding: '0 24px', fontSize: 14, color: '#5a5a53', border: '1px solid rgba(255,255,255,0.08)' }}
           >
-            View demo
+            Talk to sales
           </button>
         </div>
       </section>
@@ -552,12 +567,12 @@ export function LandingPage() {
               <span className="lp-header-name">MyTypist</span>
             </div>
             <p className="lp-footer-brand-desc">
-              Document Operating System.<br />
-              Precision drafting. Binding signatures.<br />
-              Automated pipelines.
+              Enterprise document infrastructure.<br />
+              Draft. Approve. Sign. Archive.<br />
+              One system. Zero gaps.
             </p>
             <div className="lp-footer-badges">
-              {['SOC 2', 'GDPR', 'HIPAA-ready', 'ISO 27001'].map((b) => (
+              {['SOC 2 Type II', 'GDPR', 'HIPAA-ready', 'ISO 27001'].map((b) => (
                 <span key={b} className="lp-footer-badge">{b}</span>
               ))}
             </div>
@@ -566,9 +581,9 @@ export function LandingPage() {
           <div className="lp-footer-links">
             {[
               { heading: 'Product',    links: ['Studio', 'Templates', 'Pipeline', 'Signatures', 'Vault', 'Pricing'] },
-              { heading: 'Company',    links: ['About', 'Blog', 'FAQ', 'Careers', 'Become a Partner'] },
+              { heading: 'Company',    links: ['About', 'Blog', 'Careers', 'Become a Partner', 'Press'] },
               { heading: 'Legal',      links: ['Terms of Service', 'Privacy Policy', 'Cookie Policy', 'Security'] },
-              { heading: 'Developers', links: ['API Docs', 'Webhooks', 'Status', 'Changelog'] },
+              { heading: 'Developers', links: ['API Reference', 'Webhooks', 'Status Page', 'Changelog'] },
             ].map((col) => (
               <div key={col.heading}>
                 <div className="lp-footer-col-heading">{col.heading}</div>
@@ -583,8 +598,8 @@ export function LandingPage() {
         </div>
 
         <div className="lp-footer-bottom">
-          <span className="lp-footer-bottom-text">© 2026 MyTypist. All rights reserved.</span>
-          <span className="lp-footer-bottom-text">Built for precision. Not for decoration.</span>
+          <span className="lp-footer-bottom-text">© 2026 MyTypist Technologies. All rights reserved.</span>
+          <span className="lp-footer-bottom-text">Built for operations. Not for decoration.</span>
         </div>
       </footer>
     </div>

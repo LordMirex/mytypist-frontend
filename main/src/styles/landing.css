@@ -3,7 +3,31 @@
    Base styles = mobile. Scale up with min-width breakpoints.
    ================================================================ */
 
-/* ── Header — frosted glass, always sharp ── */
+/* ── Scroll reveal ── */
+.lp-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lp-reveal.lp-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lp-reveal--delay-0 { transition-delay: 0s; }
+.lp-reveal--delay-1 { transition-delay: 0.08s; }
+.lp-reveal--delay-2 { transition-delay: 0.16s; }
+.lp-reveal--delay-3 { transition-delay: 0.24s; }
+
+/* ── Header slide-down on load ── */
+@keyframes lp-header-enter {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* ── Header — glassmorphism, slides in on load ── */
 .lp-header {
   position: sticky;
   top: 0;
@@ -13,11 +37,12 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(18px) saturate(200%);
-  -webkit-backdrop-filter: blur(18px) saturate(200%);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.04);
+  animation: lp-header-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .lp-header-brand {

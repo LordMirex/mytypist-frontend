@@ -22,9 +22,8 @@ const navItems = [
   { to: '/studio/vault',     icon: Archive,         label: 'Vault'      },
 ]
 
-const accountItems = [
+const settingsItems = [
   { to: '/studio/settings', icon: Settings, label: 'Settings' },
-  { to: '/studio/admin',    icon: Shield,   label: 'Admin'    },
 ]
 
 export function Sidebar() {
@@ -119,7 +118,7 @@ export function Sidebar() {
         <div className="sidebar-section">
           {!collapsed && <div className="sidebar-section-label">Account</div>}
           <nav className="sidebar-nav">
-            {accountItems.map((item) => (
+            {settingsItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
@@ -136,6 +135,26 @@ export function Sidebar() {
               </NavLink>
             ))}
           </nav>
+        </div>
+
+        {/* Admin — visually distinct elevated access */}
+        <div className="sidebar-admin-block">
+          <NavLink
+            to="/studio/admin"
+            className={({ isActive }) =>
+              `sidebar-item sidebar-item--admin${isActive ? ' sidebar-item--admin-active' : ''}`
+            }
+            title={collapsed ? 'Admin Console' : undefined}
+            onClick={closeMobile}
+          >
+            <Shield size={15} className="sidebar-item-icon" />
+            {!collapsed && (
+              <>
+                <span className="sidebar-item-label">Admin Console</span>
+                <span className="sidebar-admin-badge">Admin</span>
+              </>
+            )}
+          </NavLink>
         </div>
       </div>
 

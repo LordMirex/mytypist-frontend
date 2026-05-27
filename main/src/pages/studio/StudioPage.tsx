@@ -110,7 +110,7 @@ export function StudioPage() {
               <div className="input-label" style={{ marginBottom: 12 }}>Permissions</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <input type="checkbox" checked />
+                  <input type="checkbox" defaultChecked readOnly />
                   <span style={{ fontSize: 13 }}>Publicly viewable</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

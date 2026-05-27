@@ -1,8 +1,10 @@
 :root {
   /* --- Accent --- */
   --color-accent: #6C47FF;
-  --color-accent-hover: #7B5AFF;
-  --color-accent-muted: rgba(108, 71, 255, 0.12);
+  --color-accent-hover: #5B36E8;
+  --color-accent-active: #4A2AD1;
+  --color-accent-muted: rgba(108, 71, 255, 0.08);
+  --color-accent-border: rgba(108, 71, 255, 0.2);
   --color-accent-text: #FFFFFF;
 
   /* --- Neutrals (Light) --- */
@@ -23,15 +25,17 @@
 
   /* --- Status --- */
   --color-status-draft: #B8B8B0;
-  --color-status-draft-bg: rgba(184, 184, 176, 0.10);
-  --color-status-pending: #F5A623;
-  --color-status-pending-bg: rgba(245, 166, 35, 0.10);
+  --color-status-draft-bg: rgba(184, 184, 176, 0.08);
+  --color-status-pending: #D97706;
+  --color-status-pending-bg: rgba(217, 119, 6, 0.08);
   --color-status-progress: #6C47FF;
-  --color-status-progress-bg: rgba(108, 71, 255, 0.10);
-  --color-status-complete: #22C55E;
-  --color-status-complete-bg: rgba(34, 197, 94, 0.10);
-  --color-status-failed: #EF4444;
-  --color-status-failed-bg: rgba(239, 68, 68, 0.10);
+  --color-status-progress-bg: rgba(108, 71, 255, 0.08);
+  --color-status-complete: #059669;
+  --color-status-complete-bg: rgba(5, 150, 105, 0.08);
+  --color-status-failed: #DC2626;
+  --color-status-failed-bg: rgba(220, 38, 38, 0.08);
+  --color-status-neutral: #9e9e94;
+  --color-status-neutral-bg: rgba(158, 158, 148, 0.08);
 
   /* --- Interactive --- */
   --color-hover: rgba(0, 0, 0, 0.04);

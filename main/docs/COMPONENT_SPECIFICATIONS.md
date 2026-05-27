@@ -1,7 +1,9 @@
 # MyTypist — Component Specifications
 
 > Defines every core component, its states, behaviors, interactions, and layout logic.
-> All components must comply with PRODUCT_UI_SYSTEM.md.
+> All components must comply with PRODUCT_UI_SYSTEM.md (which is grounded in `references/`, where 10 observation files across 6 products provide the evidence for every design rule).
+> 
+> **Reference hierarchy:** Linear (shell) → Notion (documents) → Acrobat (operations) → Figma (panels) → Trigger.dev (workflows) → Dub (admin). See `references/README.md`.
 
 ---
 

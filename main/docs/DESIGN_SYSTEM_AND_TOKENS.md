@@ -1,28 +1,43 @@
-# Design System & Design Tokens: Precision Enterprise Editorial
+# Design Tokens — Reference
 
-This document specifies the visual language for the MyTypist **Document Operating System**.
+Auto-generated from `PRODUCT_UI_SYSTEM.md`. Do not edit manually.
+When implementing, extract tokens from the master spec into `src/styles/tokens.css`.
 
-## 1. Visual Identity: Precision Enterprise Editorial
-The goal is **restrained sophistication** and **operational clarity**. Move beyond "mockup" aesthetics to a unique, professional business core identity.
+## Token Categories
 
-### Typography (The Soul of MyTypist)
-- **Sans (Primary UI)**: **Inter**. Focus on high information density and spatial consistency.
-- **Serif (Editorial Hierarchy)**: **Playfair Display**. Use for headings, document titles, and premium accents.
-- **Hierarchy**: Emphasize typography-based navigation and clear rhythm. Avoid oversized typography.
+### Typography
+- Font stack: Inter (UI), JetBrains Mono (code), Instrument Serif (editorial)
+- Scale: 11px–36px (10 sizes) with specific line-heights
+- Vertical rhythm: 4px baseline grid
 
-### Color Palette (Monochrome Dominant)
-- **Base**: Monochrome palette (Grayscale/Slate). 
-- **Restrained Usage**: Extremely limited color for critical signals ONLY (e.g., specific trust/success/error indicators).
-- **Surface**: Paper-like surfaces, clean grid systems, and thin dividers. Avoid glowing buttons or trendy gradients.
+### Color
+- Warm neutral base (not cool gray), violet-indigo accent (not blue)
+- Trust green for signatures/completion, amber for caution, red for errors
+- Full light + dark palettes
 
-### Interaction & Effects
-- **Shadows**: Minimal shadows. Focus on precision alignment and spacing rhythm instead of elevation.
-- **Motion**: Restrained, professional transitions (Framer Motion). Micro-behaviors focused on interaction smoothness.
-- **Document Realism**: UI patterns that feel like professional publishing software (Adobe Acrobat, Figma, Notion).
+### Spacing
+- 4px base unit, extended through 96px
+- Density zones: Operational (dense), Editorial (airy), Table (scannable)
 
-## 2. Extraction Recommendations for 'main'
+### Motion
+- 50ms–350ms duration range
+- `cubic-bezier(0.16, 1, 0.3, 1)` as standard curve
+- Spring reserved for toggle/checkbox only
 
-1. **Config Format**: Use v1's **TypeScript (`.ts`)** format for the final `tailwind.config.ts`.
-2. **Typography**: Declare the dual-font system (Inter + Playfair Display).
-3. **Spacing Scale**: Obsess over spacing consistency and rhythm. Port v2's extended spacing (`18`, `88`, `128`).
-4. **Plugins**: Ensure `tailwindcss-animate`, `@tailwindcss/typography`, and `@tailwindcss/forms` are included.
+### Layout Constants
+- Sidebar: 256px open, 48px collapsed
+- Inspector: 280px
+- Chrome height: 48px
+- Toolbar height: 44px
+- Reading max-width: 720px (66ch)
+
+## Implementation Order
+
+1. `tokens.css` — All CSS custom properties
+2. `tailwind.config.ts` — Map tokens to Tailwind theme
+3. `typography.css` — Type scale with rhythm utilities
+4. Components — One by one, starting with navigational chrome
+
+---
+
+*Refer to PRODUCT_UI_SYSTEM.md for the full specification with rationale and constraints.*

@@ -1,429 +1,565 @@
 # MyTypist — Product UI System
 
-> **Supreme Design Authority**
-> This file governs all visual and interaction decisions for the MyTypist Document Operating System. Every UI component, layout, and interaction must conform to the rules defined here.
+> **Supreme Design Authority — Grounded in Reference Research**
+> Every rule below comes from studying real products. See `references/` for annotated observations.
+> No abstract opinions. No designer preferences. Only what works, with evidence.
+
+---
+
+## 0. Reference Hierarchy & Evidence
+
+Each reference contributes specific, documented patterns. The folders in `references/` contain annotated screenshots and structured observations. This spec composes those findings.
+
+| Reference | Folder | Contributes | Evidence File |
+|---|---|---|---|
+| **Linear** | `references/linear/` | Minimal-radius data surfaces (2-4px), dimmed sidebar, Cmd-K primacy, status dots, color restraint | `sidebar-and-navigation.md`, `border-radius-and-elevation.md`, `command-palette.md`, `color-and-status-dots.md` |
+| **Notion** | `references/notion/` | Block architecture, 3px block radius, 96px content margins, warm text color, quiet UI hierarchy | `block-architecture.md`, `typography-and-spacing.md` |
+| **Acrobat** | `references/acrobat/` | Megaverb toolbar, three-view structure (Home/Tools/Document), customizable toolbar, tabbed documents | `document-operations-and-toolbar.md` |
+| **Figma** | `references/figma/` | Three-panel architecture, contextual properties inspector, resizable panels, bottom toolbar | `panel-architecture.md` |
+| **Trigger.dev** | `references/triggerdev/` | Workflow pipeline visualization, status badge language, run metadata for progress, retry UX | `workflow-pipeline.md` |
+| **Dub** | `references/dub/` | Clean settings layout, data table patterns, empty states, billing pages, refined spacing | `admin-and-settings.md` |
 
 ---
 
 ## 1. Product Identity
 
-MyTypist is a **Document Operating System**. The interface must communicate:
+MyTypist is a **Document Operating System**. The interface must feel like a tool for serious document work — not a template builder, not an AI wrapper, not a PDF utility.
 
-- Precision
-- Reliability
-- Operational speed
-- Formatting fidelity
-- Document craftsmanship
+### Core Attributes
 
-### Non-Negotiable
+1. **Precision** — Every pixel is intentional. Nothing is "close enough."
+2. **Calm** — The interface is quiet. It does not shout. Information is surfaced, not announced.
+3. **Editorial** — Typography is the primary design material. Layout serves reading and writing.
+4. **Trust** — Documents are binding. Signatures are serious. The UI must convey reliability.
+5. **Operational Speed** — Keyboard-driven, minimal interruption, optimistic updates, fast.
 
-The product must NOT resemble:
-- Generic AI SaaS tools
-- Startup landing page templates
-- Crypto dashboards
-- Gradient-heavy interfaces
-- Admin CRUD panels
-- Bootstrap admin templates
+### Non-Negotiable Bans
+
+- No blue-default SaaS accent (`#2563eb`, `#3b82f6`, standard Tailwind blue)
+- No card-based UI on data surfaces (Linear rule: 2-4px radius on panels/tables, 8-12px on floating only)
+- No gradient backgrounds, glowing buttons, or floating action buttons
+- No skeleton screens (Linear: inline shimmer or no loading state)
+- No "AI" badges, sparkle icons, or robot imagery
+- No full-page loading states
+- No tutorial modals on first visit (contextual hints only)
+- No bounce/spring animations on modals or panels (Linear rule: spring only for toggles)
+- No stagger animations or parallax
 
 ### Tone
+
 - Professional without being corporate
 - Operational without being cold
 - Premium without being flashy
+- Dense without being overwhelming
+- Quiet — the UI hierarchy loses to user content (Notion principle)
 
 ---
 
-## 2. Layout Philosophy
+## 2. Layout Architecture
 
-### Primary Pattern: Workspace-Oriented Layouts
-
-```
-┌─────────────────────────────────────────────┐
-│              Global Command Bar              │
-├──────────┬──────────────────┬────────────────┤
-│          │                  │                │
-│ Sidebar  │  Main Workspace  │  Inspector     │
-│          │                  │  Panel         │
-│ Templates│  Live Preview    │                │
-│ Workflows│  Editor          │  Properties    │
-│ Activity │  Pipeline        │  Typography    │
-│ Billing  │                  │  Validation    │
-│ Settings │                  │  Formatting    │
-│          │                  │                │
-└──────────┴──────────────────┴────────────────┘
-```
-
-### Required Patterns
-- Split-pane interfaces
-- Inspector sidebars
-- Live document previews
-- Contextual toolbars
-- Persistent navigation
-
-### Forbidden Patterns
-- Vertically stacked dashboard cards
-- Isolated CRUD pages
-- Excessive modals for main workflows
-- Full-page loading states
-
----
-
-## 3. Interaction Principles
-
-### Hierarchy
-1. **Keyboard efficiency** — Every action must be accessible via keyboard
-2. **Progressive disclosure** — Show complexity only when needed
-3. **Minimal interruption** — Avoid modals for workflow actions; use inline panels
-4. **Contextual actions** — Show actions relevant to the current selection
-5. **Optimistic updates** — Update UI immediately, confirm asynchronously
-6. **Workflow continuity** — Never force the user to leave their workflow context
-
-### Command Palette
-- Global search and action system (Linear-style)
-- Triggered by `Cmd+K` / `Ctrl+K`
-- Supports fuzzy search across templates, documents, settings, actions
-
-### Empty States
-- Never show raw "no data" messages
-- Provide a clear next action
-- Use illustration or layout, not decoration
-
----
-
-## 4. Typography Rules
-
-### Primary Stack
-- **Inter** — UI text, labels, navigation, body content
-- **Geist** — Alternative for code-adjacent surfaces
-
-### Editorial
-- Use serif only for marketing pages and long-form editorial headings
-- Never use serif in application UI surfaces
-
-### Scale
-```
---text-xs:   0.75rem  (12px) — Labels, metadata
---text-sm:   0.875rem (14px) — UI body, navigation
---text-base: 1rem     (16px) — Document body
---text-lg:   1.125rem (18px) — Section headings
---text-xl:   1.25rem  (20px) — Panel titles
---text-2xl:  1.5rem   (24px) — Page headings
---text-3xl:  1.875rem (30px) — Primary headings
-```
-
-### Rules
-- Consistent vertical rhythm (4px baseline grid)
-- Restrained font scaling (no oversized hero type in app)
-- High readability at all sizes
-- Editorial hierarchy in document views
-
----
-
-## 5. Spacing System
-
-### Base Unit: 4px
+### Application Shell (Linear Inverted-L + Figma Three-Panel)
 
 ```
---space-1:  4px
---space-2:  8px
---space-3:  12px
---space-4:  16px
---space-5:  20px
---space-6:  24px
---space-8:  32px
---space-10: 40px
---space-12: 48px
---space-16: 64px
+┌──────────────────────────────────────────────────────────────┐
+│  Global Chrome   48px   [breadcrumb]     [⌘K]   [user]      │
+├──────────┬───────────────────────┬───────────────────────────┤
+│          │                       │                           │
+│  SIDEBAR │     MAIN WORKSPACE    │     INSPECTOR (280px)     │
+│          │                       │                           │
+│  256px   │  ┌─────────────────┐  │  Contextual properties    │
+│  (open)  │  │ Context Toolbar │  │  based on selection:      │
+│  48px    │  │ (megaverbs)     │  │  - Placeholder props      │
+│  (icon)  │  ├─────────────────┤  │  - Typography controls    │
+│          │  │                 │  │  - Validation status      │
+│          │  │  Content Area   │  │  - Version history        │
+│          │  │  (flat, z-rad)  │  │  - Page thumbnails        │
+│          │  │                 │  │                           │
+│          │  └─────────────────┘  │  Collapsible (⌘I)        │
+│          │                       │  Resizable                │
+└──────────┴───────────────────────┴───────────────────────────┘
 ```
 
-### Layout Density
-- Sidebar items: 32px height
-- Navigation items: 36px height
-- Workspace padding: 24px
-- Panel gutters: 16px
-- Document margins: 48px
+### Key Layout Rules
 
----
+1. **Minimal border-radius on data surfaces (2px), larger on floating elements (10px)** — Linear principle. Panels, sidebars, content areas get 2px (sharp, subtle). Modals, dropdowns, command palette get 10px. The 8px gap creates the visual hierarchy.
+2. **Sidebar is dimmer than content area** — Linear 2025 refresh principle. After user navigates, sidebar recedes, content takes visual precedence.
+3. **Inspector is contextual** — Figma principle. Shows different properties based on what's selected: document properties, placeholder properties, signature field properties.
+4. **Toolbar shows megaverbs** — Acrobat principle. Not generic icons, but outcome-oriented actions: Edit / Preview / Sign / Share / Export.
+5. **Panels are resizable** — Figma UI3 principle. User can widen inspector for complex property editing.
 
-## 6. Motion Rules
+### Layout When No Document Is Open (Acrobat Home)
 
-### Philosophy
-Motion must feel **operational**, not decorative.
-
-### Allowed
-- Subtle transitions (150-200ms)
-- Panel slide animations (200-250ms)
-- Workflow continuity feedback (progress through pipeline)
-- Hover refinement (scale or background change only)
-- Height/width transitions for expandable panels
-
-### Forbidden
-- Floating effects
-- Exaggerated motion
-- Delayed interfaces (skeleton-first, then content)
-- Cinematic animations
-- Rotations or 3D transforms
-- Bounce or spring physics in UI
-
-### Timing
 ```
---duration-fast:    100ms
---duration-normal:  200ms
---duration-slow:    250ms
---ease-default:     cubic-bezier(0.16, 1, 0.3, 1)
---ease-spring:      cubic-bezier(0.34, 1.56, 0.64, 1)  // reserved for micro-interactions only
+┌──────────────────────────────────────────────┐
+│  Public Header   [logo] [nav] [cta buttons]   │
+├──────────────────────────────────────────────┤
+│                                              │
+│         RECENT DOCUMENTS / TEMPLATES         │
+│         (flat list, 2px radius)              │
+│                                              │
+│         QUICK ACTIONS: Create / Upload /     │
+│         Batch / Sign                         │
+│                                              │
+├──────────────────────────────────────────────┤
+│  Footer                                       │
+└──────────────────────────────────────────────┘
+```
+
+### Navigation
+
+**Authenticated sidebar** (ordered by workflow, not alphabetically):
+```
+▸ Templates        Template gallery + search
+▸ Studio           Document creator (main editor)
+▸ My Documents     Recent + saved documents
+▸ Drafts           In-progress documents
+▸ Batch            Batch processing workflow
+▸ Signatures       Signature library + create
+▸ ──────────────
+▸ Billing          Subscription, wallet, invoices
+▸ Activity         History + analytics
+▸ Settings         Profile, security, API keys
+─── (admin only) ───
+▸ Admin Dashboard
+▸ Users / Health / Audit / Blog / FAQ
+```
+
+**Public header** (unsigned):
+```
+[Logo]  Templates  Pricing  Blog  FAQ  Support  [Sign In]  [Start Free]
 ```
 
 ---
 
-## 7. Color System
+## 3. Border Radius & Elevation System
+
+**This is the single most important visual rule.** It is what eliminates the "SaaS template" look.
+
+### Rule
+| Element Type | Border Radius | Elevation |
+|---|---|---|
+| Data surfaces (panels, sidebars, content areas, tables, lists) | **2px** | Flat (no shadow) |
+| Floating elements (modals, dropdowns, command palette, popovers) | **10px** | Shadow: elevation |
+| Document blocks in editor | **3px** | Flat |
+| Buttons | **6px** | Flat |
+| Input fields | **6px** | Flat, focus ring only |
+| Status badges / tags | **9999px** (pill) | Flat |
+
+### Implementation
+```css
+--radius-xs:     2px      /* Data surfaces: panels, sidebars, tables, content areas */
+--radius-sm:     4px      /* List items, table rows, small containers */
+--radius-md:     6px      /* Buttons, inputs, interactive controls */
+--radius-lg:     10px     /* Floating elements: modals, dropdowns, command palette */
+--radius-xl:     16px     /* Large modals, dialog overlays */
+--radius-full:   9999px   /* Status badges, tag pills ONLY */
+```
+
+### Rationale
+Linear uses a graduated minimal-radius system: 2-4px on data surfaces (subdued, feels sharp), 6-8px on interactive controls, 8-12px on floating elements. The gap between surface radii and floating radii creates a clear two-tier visual hierarchy. The effect is achieved through **contrast between radii**, not through absolute zero.
+
+Notion uses 3px radius on its content blocks — barely rounded. This keeps blocks feeling like text containers rather than cards. Cards have presence. Blocks disappear.
+
+**Do NOT use:** `rounded-lg`, `rounded-md`, `rounded-xl` from Tailwind on any panel, card, sidebar, table, or content container.
+
+---
+
+## 4. Typography System
+
+Typography is the primary design material. Not decoration. The interface must read like a well-typeset publication.
+
+### Font Stack
+```css
+--font-sans:  'Inter', -apple-system, 'Segoe UI', sans-serif
+--font-mono:  'JetBrains Mono', 'SF Mono', 'Fira Code', monospace
+--font-serif: 'Instrument Serif', 'Georgia', serif
+```
+
+### Scale (with line height)
+
+```css
+--fs-micro:   0.6875rem  (11px) / 1.3   — Badges, metadata
+--fs-xs:      0.75rem    (12px) / 1.4   — Labels, sidebar items, table cells
+--fs-sm:      0.8125rem  (13px) / 1.5   — UI body, nav, secondary text
+--fs-base:    0.9375rem  (15px) / 1.6   — **Document body** (print convention)
+--fs-lg:      1.0625rem  (17px) / 1.5   — Subheadings, panel titles
+--fs-xl:      1.25rem    (20px) / 1.4   — Section headings
+--fs-2xl:     1.5rem     (24px) / 1.3   — Page headings
+--fs-3xl:     1.75rem    (28px) / 1.25  — Primary headings
+```
+
+### Typography Rules
+
+1. **Document body is 15px, not 16px.** 16px is the web default. 15px is the print-body convention. This single change makes the document reading experience feel more refined, less "web app."
+2. **Line height is generous: 1.6 for body text.** Notion uses 1.5-1.6. Most SaaS apps use 1.4. Generous leading signals editorial quality.
+3. **No medium (500) weight anywhere.** Notion principle: body at 400, headings at 600. No semibold for labels. UI hierarchy stays quiet so user content hierarchy takes priority.
+4. **Text color is warm dark gray, not pure black.** Notion uses `#37352F`. MyTypist uses `--text-primary: #1a1a17` — warm, not cool.
+5. **Max line length: 66 characters** in document reading mode. Maintained by 720px max-width + 64px horizontal padding.
+6. **Serif (Instrument Serif) reserved for document titles and editorial headings** — Notion principle: serif positions content alongside journals and books. Never use serif in UI chrome.
+
+### Vertical Rhythm
+```css
+--rhythm:   4px  /* Baseline grid unit */
+--stack-xs: 4px  /* Tight spacing between related elements */
+--stack-sm: 8px  /* Label to value */
+--stack-md: 16px /* Paragraphs */
+--stack-lg: 24px /* Sections */
+--stack-xl: 40px /* Major breaks */
+```
+
+---
+
+## 5. Color System
 
 ### Strategy
-- **Monochrome dominant** — The interface is primarily black, white, and grey
-- **Restrained accent** — Reserved for actions, validation, workflow status
-- **Minimal gradients** — None in application UI; limited use in marketing
-- **Subtle borders** — Use `hsla` borders, not solid
-- **Paper-like surfaces** — Document area uses warm off-white, not pure white
+
+- **Near-monochrome dominant** — Warm neutrals, not cool grays. Color is rare and meaningful (Linear principle).
+- **Violet-indigo accent** — NOT blue. Distinguishes from 90% of SaaS products.
+- **Status colors** — Green for completed/verified, amber for pending/modified, red for errors. Used only for functional signals (Linear status dots pattern).
+- **Background tints at very low opacity** — `rgba(accent, 0.05)` for selections, `rgba(status, 0.08)` for status backgrounds (Linear principle).
 
 ### Palette
 
 ```css
-/* Surfaces */
---bg-app:            #f5f5f4    /* Warm off-white workspace */
---bg-elevated:       #ffffff    /* Cards, panels, modals */
---bg-hover:          #f0efed    /* Hover states */
---bg-active:         #e8e7e4    /* Active/selected */
+/* ── SURFACES (warm neutrals) ── */
 
---bg-dark:           #1a1a17    /* Dark mode base */
---bg-dark-elevated:  #242420    /* Dark mode elevated */
---bg-dark-hover:     #2e2e29    /* Dark mode hover */
+--surface-app:           #f8f7f4    /* Workspace background (warm off-white) */
+--surface-elevated:      #ffffff    /* Panels, modals, inspector */
+--surface-hover:         #efeeeb    /* Hover state */
+--surface-active:        #e6e5e1    /* Active/selected */
+--surface-overlay:       rgba(23, 23, 20, 0.4)
+--surface-document:      #fcfcfa    /* Document preview area */
 
-/* Text */
---text-primary:      #1a1a17
---text-secondary:    #6b6b63
---text-tertiary:     #a3a39a
---text-disabled:     #c5c5bd
+/* ── DARK SURFACES (Linear warm dark sidebar) ── */
 
---text-on-dark:      #f5f5f4
---text-dark-secondary: #9e9e94
+--surface-dark:          #161615    /* Sidebar, dark mode base */
+--surface-dark-elevated: #1e1e1b    /* Dark mode panels */
+--surface-dark-hover:    #262622
+--surface-dark-active:   #2e2e29
 
-/* Accent */
---accent:            #2b6bf3    /* Primary blue */
---accent-hover:      #1a5ad9
---accent-subtle:     #eef3ff    /* Background tint for selected states */
+/* ── TEXT (warm, not pure black) ── */
 
-/* Status */
---success:           #16a34a
---warning:           #d97706
---error:             #dc2626
---info:              #2563eb
+--text-primary:          #1a1a17    /* Body text */
+--text-secondary:        #6b6b63    /* Labels, descriptions */
+--text-tertiary:         #9e9e94    /* Placeholder, metadata */
+--text-quaternary:       #c5c5bd    /* Subtle borders */
 
-/* Borders */
---border:            hsla(40, 6%, 70%, 0.3)
---border-hover:      hsla(40, 6%, 50%, 0.4)
---border-light:      hsla(40, 6%, 90%, 0.5)
+--text-on-dark:          #efeeeb
+--text-on-dark-secondary:#8a8a80
+
+/* ── ACCENT (violet-indigo — NOT blue) ── */
+
+--accent:                #6C47FF    /* Primary (deep violet-indigo) */
+--accent-hover:          #5B36E8
+--accent-active:         #4A2AD1
+--accent-subtle:         rgba(108, 71, 255, 0.08)  /* Selection backgrounds */
+--accent-border:         rgba(108, 71, 255, 0.2)   /* Subtle accent borders */
+
+--accent-dark:           #8B6FFF
+--accent-dark-hover:     #7A5EFF
+--accent-dark-subtle:    rgba(108, 71, 255, 0.15)
+
+/* ── STATUS DOTS (Linear-style, functional only) ── */
+
+--status-success:        #059669    /* Completed, signed, verified */
+--status-success-bg:     rgba(5, 150, 105, 0.08)
+--status-warning:        #D97706    /* Pending, modified, expiring */
+--status-warning-bg:     rgba(217, 119, 6, 0.08)
+--status-error:          #DC2626    /* Failed, rejected, critical */
+--status-error-bg:       rgba(220, 38, 38, 0.08)
+--status-neutral:        #9e9e94    /* Draft, queued, idle */
+--status-neutral-bg:     rgba(158, 158, 148, 0.08)
+--status-active:         #6C47FF    /* In progress, executing */
+--status-active-bg:      rgba(108, 71, 255, 0.08)
+
+/* ── BORDERS ── */
+
+--border:                hsla(45, 6%, 75%, 0.3)
+--border-hover:          hsla(45, 6%, 60%, 0.4)
+--border-light:          hsla(45, 6%, 85%, 0.4)
+--border-focus:          #6C47FF
+
+--border-dark:           hsla(45, 3%, 25%, 0.4)
+--border-dark-hover:     hsla(45, 3%, 35%, 0.5)
 ```
 
 ### Accent Usage Rules
-Accent color reserved for:
-- Primary action buttons
-- Active navigation states
-- Selection highlights
-- Validation indicators
-- Workflow progress
-- Link text
 
-### Surface Strategy
-- Document workspace: warm off-white (`#f5f5f4`)
-- Sidebars/panels: pure white with subtle borders
-- Inspector: same as sidebar, narrower
-- Modals: elevated white with larger shadow
+Violet-indigo (`#6C47FF`) is used ONLY for:
+- Primary action buttons (one per view)
+- Active navigation indicator (3px left border — Linear pattern)
+- Focus rings on inputs
+- Link text
+- Command palette selection highlight
+- In-progress workflow indicators
+
+Never use accent for:
+- Background fills or decorative elements
+- Non-interactive surfaces
+- Secondary buttons (use outline/gray instead)
+- Data visualization
+
+### Status Color Usage
+
+Status colors appear as:
+- **6px dots** — Linear-style status indicators on list items
+- **Badge backgrounds** — `rgba(color, 0.08)` with matching dot
+- **Never as large colored surfaces**
 
 ---
 
-## 8. Workspace Architecture
+## 6. Spacing System
 
-### Application Shell
-
-```
-┌──────────────────────────────────────────────────────┐
-│  Global Command Bar  [Cmd+K]                         │
-│  ┌────────┬─────────────────────┬──────────────────┐ │
-│  │        │                     │                  │ │
-│  │  LEFT  │      MAIN           │     RIGHT        │ │
-│  │ SIDEBAR│     WORKSPACE       │    INSPECTOR      │ │
-│  │        │                     │                  │ │
-│  │ 256px  │     1fr             │    320px         │ │
-│  │        │                     │                  │ │
-│  └────────┴─────────────────────┴──────────────────┘ │
-└──────────────────────────────────────────────────────┘
-```
-
-### Left Sidebar (256px)
-- Navigation items with icons
-- Section headers for grouping
-- Active state with accent indicator
-- Collapsible to icon-only (64px)
-
-### Main Workspace (1fr)
-- Dynamic based on route
-- Document editor, preview, pipeline
-- Contextual toolbar at top
-
-### Right Inspector (320px)
-- Shows when editing documents/templates
-- Placeholder properties
-- Typography controls
-- Validation feedback
-- Formatting options
-- Dismissable
-
-### Global Command Bar
-- Fixed at top (48px)
-- Breadcrumb on left side
-- Global actions on right
-- Cmd+K triggers command palette
-
-### Navigation Items (Authenticated)
-```
-Templates        [icon]  Template gallery + search
-Studio           [icon]  Document creator (main workspace)
-Dashboard        [icon]  Overview stats + recent activity
-Batch            [icon]  Batch processing workflow
-Signatures       [icon]  Signature library + create
-Billing          [icon]  Subscription, wallet, invoices
-Activity         [icon]  Document history + analytics
-Settings         [icon]  Profile, security, API keys
-───
-Admin            [icon]  (visible only to admin/moderator roles)
+### Base: 4px
+```css
+--space-1:   4px
+--space-2:   8px
+--space-3:   12px
+--space-4:   16px
+--space-5:   20px
+--space-6:   24px
+--space-7:   28px
+--space-8:   32px
+--space-10:  40px
+--space-12:  48px
+--space-16:  64px
+--space-20:  80px
 ```
 
-### Navigation Items (Public Header)
-```
-Home  Templates  Pricing  Blog  FAQ  Support  Login  Sign Up
+### Layout Constants
+```css
+--sidebar-width:         256px
+--sidebar-collapsed:     48px
+--inspector-width:       280px
+--chrome-height:         48px
+--toolbar-height:        44px
+--sidebar-item-height:   32px
+--content-max-width:     720px    /* Reading width ~66ch */
+--document-margin:       64px     /* Notion-style wide content padding */
 ```
 
-### Admin Navigation (Additional items, within existing sidebar)
+### Density Zones
+
+| Zone | Horizontal Padding | Vertical Spacing | Character |
+|---|---|---|---|
+| Sidebar items | 12px | 6px | Dense, operational (Linear) |
+| Inspector rows | 16px | 8px | Dense, inspectable (Figma) |
+| Document content | 64px | 4px (between blocks) | Wide margins, editorial (Notion) |
+| Data tables | 12px | 8px | Dense, scannable (Dub) |
+| Modals | 24px | 16px | Focused |
+
+---
+
+## 7. Workspace Navigation
+
+### Sidebar (Linear-Inspired)
+
+- 256px wide, dim background (`--surface-dark` in dark mode, `--surface-elevated` with lower opacity in light mode)
+- **Sidebar is dimmer than content** — a few notches darker/lower contrast so content takes precedence after navigation
+- 32px item height, 12px horizontal padding
+- Active: 3px accent left border + `--accent-subtle` background
+- Hover: `--surface-hover`
+- Section headers: all-caps 10px `--text-tertiary`, 8px padding above, 4px below
+- Collapse to icon-only (48px) with `Cmd+\`
+- **No expand/collapse sections** — all items visible, scroll if needed (Linear pattern)
+- Icons: 18x18, no colored backgrounds (Linear 2025 refresh de-emphasized icons)
+
+### Global Chrome (48px)
+
+- Breadcrumb navigation (left)
+- Cmd+K trigger: pill-shaped, subtle, shows "⌘K" hint
+- Global actions: notifications (dot-only, no count badge), user menu
+- Background: elevated surface, 1px bottom border
+
+### Public Header
+
+- 48px, `--surface-elevated`, centered max-width
+- Nav links: `--text-secondary`, 14px/1.4
+- CTA button: `--accent` filled (one per page)
+
+---
+
+## 8. Document Operations Toolbar (Acrobat-Inspired "Megaverbs")
+
+When a document is open, the toolbar shows outcome-oriented actions, not generic icons:
+
 ```
-Dashboard        [icon]  Admin overview stats
-Users            [icon]  User management
-Templates        [icon]  Template CRUD + classification
-Blog             [icon]  Blog editor
-FAQ              [icon]  FAQ editor
-Support          [icon]  Ticket management
-Campaigns        [icon]  Email campaign management
-Security         [icon]  Security incidents + monitoring
-Health           [icon]  System health + performance
-Audit            [icon]  Audit log viewer
-Analytics        [icon]  Full analytics suite
-Roles            [icon]  Role & permission management
+[← Back]  │  Edit    Preview    Sign    Share    Export  │  [More ▾]
 ```
+
+### Toolbar Modes
+
+| Mode | Megaverbs Shown |
+|---|---|
+| **Browse** (template list) | Sort, Filter, Search, Create New |
+| **Preview** (document viewing) | Zoom, Page Nav, Download, Print, Sign, Share |
+| **Edit** (document editor) | Font, Size, Bold/Italic/Underline, Align, Color, Insert Placeholder, Undo/Redo |
+| **Sign** | Place Signature, Place Date, Initial Here, Send for Signature |
+| **Batch** | Add Files, Configure Mapping, Preview, Run All, Export All |
+
+### Customizable Toolbar
+
+Right-click toolbar → "Customize" to add/remove tools (Acrobat power-user feature). User preferences persist per workspace.
 
 ---
 
 ## 9. Signature Components
 
-These define the visual uniqueness of MyTypist:
+### 9.1 Live Document Preview Engine
+- Page-accurate rendering: margins, page breaks, headers, footers, spacing
+- WYSIWYG fidelity to DOCX/PDF output
+- Zoom: 50% to 200% with Fit Page / Fit Width presets
+- Background: `--surface-document` — warm paper-like, not pure white
+- **Zero border-radius** on preview surface
 
-### 1. Live Document Preview Engine
-- Real-time rendering of document with applied placeholders
-- Feels alive and accurate
-- WYSIWYG fidelity to final output
-- Page-accurate rendering with margins, breaks, spacing
+### 9.2 Formatting Fidelity Indicators
+- Template-matches: subtle border (accent-tinted) — "Matches template"
+- User modifications: amber dot + "Modified" tooltip
+- Custom overrides: green dot + "Custom" tooltip
+- Displayed as 6px status dots next to each placeholder (Linear pattern)
 
-### 2. Placeholder Inspector Panel
-- Property-panel style (like design software)
-- Shows detected placeholders with their formatting
-- Inline editing with preview feedback
-- Document intelligence (auto-detects type, offers suggestions)
+### 9.3 Placeholder Inspector Panel (Figma-Inspired)
+- Right panel showing all detected placeholders as a property list
+- Each item: label + value + formatting info + status dot
+- Inline editing with instant preview update
+- Smart type detection with validation feedback
+- Resizable panel width
 
-### 3. Formatting Fidelity Indicators
-- Visual indicators showing original template formatting vs. user overrides
-- Green dot: Matches template
-- Yellow dot: Modified
-- Blue dot: Custom override
+### 9.4 Generation Workflow Pipeline (Trigger.dev-Inspired)
+Horizontal connected stages with status badges:
 
-### 4. Generation Workflow Pipeline
-- Visual pipeline: Upload → Detect → Validate → Process → Export
-- Each stage shows status (pending, active, complete, error)
-- Clickable to jump to that stage
-- Timeline view for batch operations
+```
+● Upload    →   ● Detect    →   ● Validate    →   ● Generate   →   ● Export
+  [3 docs]      [3/3 OK]       [2/3 OK, 1 ⚠]     [2/3 done]      [0/3 done]
+```
 
-### 5. Typography-Aware Editing Surfaces
-- Document editor that respects type scale
-- Vertical rhythm maintained
-- Live font preview
-- Consistent with final output
+- Pending: gray dot + outline style
+- Active: accent pulse animation
+- Complete: green check
+- Error: red X 
+- Progress: percentage + current step label
+- Click any stage to jump to details
+- Batch mode: shows all items with individual status + retry button
+
+### 9.5 Activity Timeline (Linear-Inspired)
+- Left-aligned vertical timeline with 6px status dots
+- Event types: Created, Edited, Signed, Shared, Exported
+- Timestamps relative ("2h ago", "Yesterday")
+- Click to expand details
+- Filterable by event type
 
 ---
 
-## 10. Reference Mapping
+## 10. Motion System
 
-| Area | Primary Reference | What To Study |
+### Philosophy
+Motion communicates state change, not personality. Every animation answers "what just happened?" within 200ms. (Linear principle: fast, operational.)
+
+### Timing
+```css
+--duration-instant:   50ms     /* Hover, active states */
+--duration-fast:      100ms    /* Focus rings, toggle switches */
+--duration-normal:    200ms    /* Panel slides, dropdowns, modals */
+--duration-slow:      250ms    /* Page transitions, mode switches */
+```
+
+### Curves
+```css
+--ease-out:    cubic-bezier(0.16, 1, 0.3, 1)  /* Standard — Linear-style */
+--ease-in:     cubic-bezier(0.4, 0, 0.68, 0.06)
+--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1)  /* Toggles and checkboxes ONLY */
+```
+
+### Motion Bans
+- No spring on modals, panels, or page transitions (Linear rule)
+- No stagger animations
+- No parallax or scroll-triggered animations
+- No skeleton screens
+- No hover animations on surfaces (scale, lift, glow)
+- No bounce
+
+---
+
+## 11. Dark Mode (Linear-Inspired Warm Dark)
+
+- Sidebar: `--surface-dark` (#161615) — warm dark, not pure black
+- Elevated: `--surface-dark-elevated` (#1e1e1b)
+- Accent: brightens to `--accent-dark` (#8B6FFF)
+- Borders: `--border-dark` family
+- Document surface: `--surface-dark-elevated`
+- Text: `--text-on-dark` family
+- Toggle: icon-only button in global chrome
+
+---
+
+## 12. Component States
+
+Every interactive component implements these states:
+
+| State | Visual | Timing |
 |---|---|---|
-| Workspace UX | Linear | Sidebar density, spacing, keyboard UX, cmd palette, transitions, panel systems, information hierarchy |
-| Typography | Notion | Typography rhythm, document spacing, content readability, subtle surfaces, editor feel, minimal color |
-| Document Handling | Adobe Acrobat | Document preview layouts, toolbar organization, page rendering, annotation UX |
-| Motion | Pitch | Animations, onboarding flow, premium motion restraint, collaborative UI feel |
-| Layout Systems | Figma | Panel organization, floating controls, contextual actions, workspace density, modular interface |
-| Technical Architecture | Dub.co | Next.js implementation, polished settings, clean analytics, component architecture |
+| **default** | Resting | — |
+| **hover** | `--surface-hover` | 50ms |
+| **active** | `--surface-active` | 50ms |
+| **focus** | 2px `--border-focus` ring | 100ms |
+| **disabled** | `--text-quaternary`, no pointer | — |
+| **loading** | 16px spinner, accent | 600ms loop |
+| **empty** | Message + action (never "no data") | — |
+| **error** | `--status-error` dot + message | — |
+| **success** | `--status-success` dot + flash | 200ms |
 
 ---
 
-## 11. Component States
+## 13. Layout Adaptation
 
-Every component must define these states:
-
-| State | Description |
-|---|---|
-| **default** | Resting state, no interaction |
-| **hover** | Mouse cursor above |
-| **active** | Currently pressed/selected |
-| **focus** | Keyboard focus indicator |
-| **disabled** | Action not available |
-| **loading** | Processing state |
-| **empty** | No content to display |
-| **error** | Validation or system error |
-| **success** | Operation completed |
+| Breakpoint | Sidebar | Inspector | Toolbar | Document |
+|---|---|---|---|---|
+| >= 1280px | Open (256px) | Open (280px) | Full | Side-by-side |
+| 1024-1279px | Open | Collapsed (open via icon) | Full | Side-by-side |
+| 768-1023px | Collapsed (48px) | Bottom sheet | Condensed | Single column |
+| < 768px | Drawer overlay | Full-screen sheet | Icon menu | Single page, scrollable |
 
 ---
 
-## 12. Responsive Behavior
+## 14. What NOT To Build
 
-### Breakpoints
-```
---bp-sm:   640px    — Mobile
---bp-md:   768px    — Tablet
---bp-lg:   1024px   — Small desktop
---bp-xl:   1280px   — Desktop
---bp-2xl:  1536px   — Large desktop
-```
+These patterns produce generic, SaaS-looking, or AI-template UIs:
 
-### Adaptation Rules
-- Below 1024px: Right inspector collapses to bottom sheet
-- Below 768px: Left sidebar becomes a drawer overlay
-- Below 640px: Single column, top navigation, bottom sheet menus
-- Document preview switches to scrollable single-page on mobile
+1. **4-column stat cards** at top of every dashboard — Linear has none. Neither should we.
+2. **Card-based data UI** — Zero radius on all data surfaces. No card containers for list items.
+3. **Circular avatars with online dots** — Square avatars are more serious.
+4. **Notification bell with red badge count** — Subtle dot or nothing.
+5. **"Getting started" checklist** — Contextual tooltip hints instead.
+6. **Step wizard (Step 1 of 4...)** — Inline progressive disclosure instead.
+7. **Search bar "Search..." at top** — Cmd+K is the search. Always.
+8. **Animated counters on stats** — Just show the number.
+9. **"Powered by" badges** — Never.
+10. **AI sparkle icons or robot imagery** — Never.
+11. **Gradient hero sections** — Landing page only, and only if truly needed.
+12. **Card hover animations (scale, lift)** — Flat surfaces don't float.
 
 ---
 
-## 13. File Organization
+## 15. Files
 
 ```
-frontend/main/
-├── references/
-│   ├── linear/
-│   │   ├── screenshots/
-│   │   └── observations.md
-│   ├── notion/
-│   ├── figma/
-│   ├── acrobat/
-│   └── pitch/
-├── docs/
-│   ├── PRODUCT_UI_SYSTEM.md        ← This file
-│   ├── COMPONENT_SPECIFICATIONS.md
-│   ├── WIREFRAME_BLUEPRINTS.md
-│   ├── DESIGN_SYSTEM_AND_TOKENS.md
-│   └── ... (existing docs)
-└── src/
-    └── ...
+references/
+├── linear/        ← sidebar-and-navigation.md, border-radius-and-elevation.md,
+│                    command-palette.md, color-and-status-dots.md
+├── notion/        ← block-architecture.md, typography-and-spacing.md
+├── acrobat/       ← document-operations-and-toolbar.md
+├── figma/         ← panel-architecture.md
+├── triggerdev/    ← workflow-pipeline.md
+└── dub/           ← admin-and-settings.md
+
+docs/
+├── PRODUCT_UI_SYSTEM.md         ← This file (supreme design authority)
+├── COMPONENT_SPECIFICATIONS.md  ← Component-level specs
+├── WIREFRAME_BLUEPRINTS.md      ← Layout wireframes
+├── PAGES_AND_ROUTES_SPEC.md     ← Route map
+└── DESIGN_SYSTEM_AND_TOKENS.md  ← Token reference
 ```
+
+---
+
+*Every rule in this document is grounded in reference evidence. If you disagree with a rule, go study the reference product first, then propose the change with evidence.*

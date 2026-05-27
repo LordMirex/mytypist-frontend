@@ -1,7 +1,9 @@
 # MyTypist — Wireframe Blueprints
 
 > Low-fidelity layout structures for every major screen in the Document Operating System.
-> These are structural blueprints — interaction and styling details are in PRODUCT_UI_SYSTEM.md and COMPONENT_SPECIFICATIONS.md.
+> These are structural blueprints — interaction and styling details are in PRODUCT_UI_SYSTEM.md (grounded in `references/` observation files) and COMPONENT_SPECIFICATIONS.md.
+> 
+> **Design basis:** See `references/README.md` — 10 observation files across 6 products inform all layout decisions.
 
 ---
 

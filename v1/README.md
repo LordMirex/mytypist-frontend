@@ -1,6 +1,12 @@
-# Welcome to your Lovable project
+# MyTypist Frontend v1 (Legacy Functional Baseline)
+---
+## 📜 Project Directives
+For mandatory agent instructions and workflow rules, refer to the root [README.md](../../README.md).
+---
+**Mission**: Document craftsmanship and operational precision. 
+**Identity**: Part of the MyTypist **Document Operating System**.
 
-## Project info
+This version serves as the functional baseline for the platform's breadth (25+ pages).
 
 **URL**: https://lovable.dev/projects/886debe2-c9f6-4d8e-988c-40bcf90cadf2
 

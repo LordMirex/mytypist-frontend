@@ -1,15 +1,15 @@
-# MyTypist Frontend
+# MyTypist Frontend — Precision Editorial Workspace
 ---
 ## 📜 Project Directives
 For mandatory agent instructions and workflow rules, refer to the root [README.md](../README.md).
 ---
-Frontend application for MyTypist.
+Precision Editorial workspace for the MyTypist **Document Operating System**.
 
 ## Development Context
-- Part of the `mytypist-workspace/` meta-environment.
-- **Standards:** All changes must comply with the root `GEMINI.md` and `AGENTS.md` guidelines.
+- **Identity:** High-precision editorial infrastructure.
+- **Standards:** All changes must comply with the root `README.md` and `AGENTS.md` guidelines.
 - **Workflow:** Strictly follow the feature-branching and atomic commit rules defined in the workspace root.
-- **Verification:** Ensure visual parity with the approved design requirements before committing.
+- **Verification:** Ensure visual parity with the **Precision Enterprise Editorial** standards before committing.
 
 ## Technical Manifesto
 - **Primary Configuration:** `package.json`, `tsconfig.json`

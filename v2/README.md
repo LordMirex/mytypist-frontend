@@ -1,6 +1,12 @@
-# React
+# MyTypist Frontend v2 (Premium Feature Shell)
+---
+## 📜 Project Directives
+For mandatory agent instructions and workflow rules, refer to the root [README.md](../../README.md).
+---
+**Mission**: Document craftsmanship and operational precision. 
+**Identity**: Part of the MyTypist **Document Operating System**.
 
-A modern React-based project utilizing the latest frontend technologies and tools for building responsive web applications.
+This version provides the premium logic for core studio and pricing features.
 
 ## 🚀 Features
 

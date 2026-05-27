@@ -1,4 +1,10 @@
-# Main Frontend Development
+# MyTypist Frontend — The Unified Editorial Workspace
+---
+## 📜 Project Directives
+For mandatory agent instructions and workflow rules, refer to the root [README.md](../../README.md).
+---
+**Strategic Identity**: THE DOCUMENT OPERATING SYSTEM  
+**Design Language**: Precision Enterprise Editorial  
 
 This directory is the designated workspace for the final, unified version of the MyTypist frontend.
 

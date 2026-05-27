@@ -1,0 +1,2 @@
+- [Mobile-first CSS rule](mobile-first.md) — All CSS base styles target mobile; scale UP with min-width queries. Never max-width overrides. User confirmed this is required.
+- [Landing page architecture](landing-arch.md) — Split hero (copy left, doc mockup right), dark stats strip, pipeline strip, numbered feature table, competitor grid, dark CTA. Each section must have a distinct visual identity.

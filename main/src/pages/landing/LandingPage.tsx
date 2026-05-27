@@ -1,11 +1,13 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight, Check, X } from 'lucide-react'
 
-/* ── Document mockup ── */
+/* ─────────────────────────────────────
+   Document Mockup — the visual hero
+   ───────────────────────────────────── */
 function DocMockup() {
   return (
     <div className="lp-mockup">
-      {/* App chrome bar */}
       <div className="lp-mockup-chrome">
         <div className="lp-mockup-dots">
           <div className="lp-mockup-dot" style={{ background: '#ff5f57' }} />
@@ -15,60 +17,51 @@ function DocMockup() {
         <span className="lp-mockup-chrome-label">MyTypist · Studio — Acceptance Letter</span>
       </div>
 
-      {/* Body: mini sidebar + doc canvas */}
       <div className="lp-mockup-body">
         {/* Mini sidebar */}
         <div className="lp-mockup-sidebar">
           {[
-            { color: 'var(--color-accent)', width: 18 },
-            { color: 'rgba(255,255,255,0.15)', width: 14 },
-            { color: 'rgba(255,255,255,0.1)', width: 16 },
-            { color: 'rgba(255,255,255,0.1)', width: 12 },
-            { color: 'rgba(255,255,255,0.1)', width: 15 },
-          ].map((bar, i) => (
-            <div
-              key={i}
-              className="lp-mockup-sidebar-icon"
-              style={{ background: bar.color, width: bar.width }}
-            />
+            { w: 18, color: 'var(--color-accent)' },
+            { w: 14, color: 'rgba(255,255,255,0.15)' },
+            { w: 16, color: 'rgba(255,255,255,0.1)' },
+            { w: 12, color: 'rgba(255,255,255,0.08)' },
+            { w: 15, color: 'rgba(255,255,255,0.08)' },
+          ].map((b, i) => (
+            <div key={i} style={{ width: b.w, height: 3, borderRadius: 2, background: b.color }} />
           ))}
         </div>
 
-        {/* Document canvas area */}
+        {/* Document canvas */}
         <div className="lp-mockup-doc-area">
           <div className="lp-mockup-paper">
-            {/* Doc header */}
             <div className="lp-mockup-doc-header">
               <div className="lp-mockup-doc-logo-row">
-                <div className="lp-mockup-doc-logo-bar" style={{ width: 3, height: 18 }} />
-                <div className="lp-mockup-doc-logo-text" />
+                <div style={{ width: 3, height: 18, background: 'var(--color-accent)', borderRadius: 2 }} />
+                <div style={{ width: 52, height: 6, borderRadius: 1, background: '#1a1a17' }} />
               </div>
               <div className="lp-mockup-doc-title">Acceptance Letter</div>
               <div className="lp-mockup-doc-meta">REF · 2026/ACC/001 · CONFIDENTIAL</div>
             </div>
 
-            {/* Doc body */}
             <div className="lp-mockup-doc-body">
               <div className="lp-mockup-doc-line">
                 Dear <span className="lp-mockup-field lp-mockup-field--filled">Student Name</span>,
               </div>
-              <div className="lp-mockup-doc-line" style={{ lineHeight: 1.6 }}>
+              <div className="lp-mockup-doc-line">
                 We are pleased to inform you that your application to the{' '}
                 <span className="lp-mockup-field">Department</span> programme
-                at <span className="lp-mockup-field">Institution Name</span> has
-                been reviewed and accepted.
+                at <span className="lp-mockup-field">Institution Name</span>{' '}
+                has been reviewed and accepted.
               </div>
               <div className="lp-mockup-doc-line">
                 Your student ID is <span className="lp-mockup-field">Student ID</span> and
-                your matriculation date is <span className="lp-mockup-field">Start Date</span>.
+                your start date is <span className="lp-mockup-field">Start Date</span>.
               </div>
-              <div className="lp-mockup-doc-line" style={{ marginTop: 6, lineHeight: 1.6 }}>
-                Please report to the Academic Affairs office no later than{' '}
-                <span className="lp-mockup-field">Deadline Date</span> to complete
-                your registration formalities.
+              <div className="lp-mockup-doc-line">
+                Report to Academic Affairs no later than{' '}
+                <span className="lp-mockup-field">Deadline Date</span>.
               </div>
 
-              {/* Signature block */}
               <div className="lp-mockup-sig-block">
                 <div className="lp-mockup-sig-line">
                   <div style={{ height: 14 }} />
@@ -82,26 +75,16 @@ function DocMockup() {
                 </div>
               </div>
 
-              {/* Inspector hint */}
-              <div style={{
-                marginTop: 14,
-                padding: '8px 10px',
-                background: 'rgba(108,71,255,0.05)',
-                border: '1px solid rgba(108,71,255,0.15)',
-                borderRadius: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 4,
-              }}>
-                <div style={{ fontSize: 8, fontWeight: 600, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Inspector · Student Name</div>
+              <div className="lp-mockup-inspector">
+                <div className="lp-mockup-inspector-label">Inspector · Student Name</div>
                 {[
                   ['Value', 'John Adeyemi Okafor'],
                   ['Type', 'Text · Required'],
                   ['Status', '✓ Filled'],
                 ].map(([k, v]) => (
-                  <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 8, color: '#6b6b63' }}>
+                  <div key={k} className="lp-mockup-inspector-row">
                     <span style={{ color: '#9e9e94' }}>{k}</span>
-                    <span style={{ color: k === 'Status' ? '#059669' : '#3a3a35', fontFamily: k === 'Value' ? 'inherit' : 'var(--font-mono)' }}>{v}</span>
+                    <span style={{ color: k === 'Status' ? '#059669' : '#3a3a35' }}>{v}</span>
                   </div>
                 ))}
               </div>
@@ -110,28 +93,27 @@ function DocMockup() {
         </div>
       </div>
 
-      {/* Pipeline bar */}
+      {/* Pipeline status bar */}
       <div className="lp-mockup-pipeline">
         {[
-          { label: 'Draft', state: 'done' },
-          { label: 'Fidelity Check', state: 'done' },
-          { label: 'Approval', state: 'active' },
-          { label: 'Sign', state: 'neutral' },
-          { label: 'Archive', state: 'neutral' },
-        ].map((s, i, arr) => (
-          <div key={s.label} style={{ display: 'flex', alignItems: 'center' }}>
-            <div className={`lp-mockup-stage lp-mockup-stage--${s.state}`}>
+          { label: 'Draft', s: 'done' },
+          { label: 'Fidelity', s: 'done' },
+          { label: 'Approval', s: 'active' },
+          { label: 'Sign', s: 'neutral' },
+          { label: 'Archive', s: 'neutral' },
+        ].map((st, i, arr) => (
+          <div key={st.label} style={{ display: 'flex', alignItems: 'center' }}>
+            <div className={`lp-mockup-stage lp-mockup-stage--${st.s}`}>
               <div
                 className="lp-mockup-stage-dot"
                 style={{
-                  background: s.state === 'done'
-                    ? 'var(--color-status-complete)'
-                    : s.state === 'active'
-                      ? 'var(--color-accent)'
-                      : 'var(--color-border)',
+                  background:
+                    st.s === 'done' ? 'var(--color-status-complete)'
+                    : st.s === 'active' ? 'var(--color-accent)'
+                    : 'var(--color-border)',
                 }}
               />
-              {s.label}
+              {st.label}
             </div>
             {i < arr.length - 1 && <div className="lp-mockup-stage-arrow" />}
           </div>
@@ -141,36 +123,68 @@ function DocMockup() {
   )
 }
 
-/* ── Feature rows data ── */
+/* ─────────────────────────────────────
+   Data
+   ───────────────────────────────────── */
+const navLinks = ['Templates', 'Pricing', 'Blog', 'FAQ', 'Support']
+
+const stats = [
+  { num: '4,000', unit: '+', label: 'Documents generated daily' },
+  { num: '< 2', unit: 'min', label: 'Draft to signed PDF' },
+  { num: '100', unit: '+', label: 'Hand-crafted templates' },
+  { num: '99.9', unit: '%', label: 'Formatting fidelity rate' },
+]
+
+const pipeline = [
+  { num: '01', name: 'Draft', desc: 'Block editor, live preview, 100% WYSIWYG fidelity.', state: 'done' },
+  { num: '02', name: 'Fidelity Check', desc: 'Automated layout verification before any action.', state: 'active' },
+  { num: '03', name: 'Approval', desc: 'Route to reviewers with role-based permissions.', state: '' },
+  { num: '04', name: 'Sign', desc: 'Drag-and-drop e-signature, binding audit trail.', state: '' },
+  { num: '05', name: 'Archive', desc: 'Versioned vault with full-text search.', state: '' },
+]
+
 const features = [
   {
-    label: 'Creator Studio',
-    desc: 'Three-panel workspace: form inputs left, live document preview center, placeholder inspector right. 100% WYSIWYG fidelity between preview and final output. Keyboard-first — Cmd+K for every action.',
-    proof: 'Referenced from Figma\'s panel architecture and Acrobat\'s megaverb toolbar. No step wizards, no guided flow unless requested.',
+    num: '01',
+    name: 'Creator Studio',
+    desc: 'Three-panel workspace — form inputs, live document preview center, placeholder inspector right. 100% WYSIWYG parity between preview and final output. Keyboard-driven: Cmd+K for everything.',
+    tag: 'Figma architecture · Acrobat toolbar',
   },
   {
-    label: 'Document Pipeline',
-    desc: 'Documents don\'t get "created" — they move through connected operational stages. Draft → Fidelity Check → Approval → Sign → Archive. Status badges, per-document error isolation, clean retry UX.',
-    proof: 'Pattern derived from Trigger.dev\'s workflow visualization. Color-coded 6px status dots, not colored banners.',
+    num: '02',
+    name: 'Document Pipeline',
+    desc: 'Documents move through connected operational stages. Draft → Fidelity Check → Approval → Sign → Archive. Per-document error isolation, clean retry, status badges — not colored banners.',
+    tag: 'Trigger.dev pipeline model',
   },
   {
-    label: 'E-Signatures',
-    desc: 'Drag-and-drop signature field placement in the document canvas. Sequential and parallel workflows. No account required for recipients to sign. Every event timestamped in a binding audit trail.',
-    proof: 'DocuSign gets recipient UX right (no login). Notarize gets it wrong (forces account creation). We follow DocuSign\'s pattern.',
+    num: '03',
+    name: 'E-Signatures',
+    desc: 'Drag-and-drop placement in the document canvas. Sequential and parallel flows. No account required for recipients. Every event timestamped in a binding, tamper-evident audit trail.',
+    tag: 'DocuSign recipient UX · no forced login',
   },
   {
-    label: 'Document Vault',
-    desc: 'Every save creates a version. Full diff history, full-text search across documents, templates, and their contents. 100+ hand-crafted templates — quality over quantity.',
-    proof: 'Notion-style versioned block storage. No 500-template dump — 100 curated, each hand-built with correct typography and structure.',
+    num: '04',
+    name: 'Document Vault',
+    desc: 'Every save creates a version. Full diff history, full-text search across documents and their contents. 100+ curated templates — each hand-built with correct typography and legal structure.',
+    tag: 'Notion block versioning',
   },
   {
-    label: 'Command Center',
-    desc: 'Real-time pipeline throughput, latency, and fidelity gauges. Team management with role-based permissions. Bulk operations and compliance checks — not charts, clean data tables.',
-    proof: 'Dub-style admin layout. Linear-style data tables. No "chart vomit" dashboards — operational data only.',
+    num: '05',
+    name: 'Command Center',
+    desc: 'Real-time pipeline throughput, fidelity gauges, team management, role-based permissions, bulk ops. Clean data tables — not charts. Operational data, not analytics theater.',
+    tag: 'Dub admin layout · Linear data tables',
   },
 ]
 
-/* ── Pricing features ── */
+const competitors = [
+  { name: 'DocuSign', issue: 'AI widget disrupting core signing UX. Legacy architecture. Pricing creep and bolted-on modules users never asked for.' },
+  { name: 'PandaDoc', issue: 'Rigid step-by-step guided flow. Fights you on image formatting. Expensive tiers with capability fragmentation.' },
+  { name: 'SignWell', issue: 'No mobile app. Only 2 native integrations. Confusing multi-party routing. Free tier creates hard blockers.' },
+  { name: 'Notarize / Proof', issue: 'Forces account creation for recipients. $25–75 per-transaction pricing. State law fragmentation kills scale.' },
+  { name: 'Local platforms', issue: 'Each solves one piece — doc gen OR e-sign OR notarization. No integrated pipeline. No audit trail.' },
+  { name: 'Generic builders', issue: 'Template UX with no precision formatting. AI content generation as the main value prop. No pipeline model.' },
+]
+
 const proFeatures = [
   'Unlimited documents',
   'Up to 10 team seats',
@@ -185,44 +199,38 @@ const entFeatures = [
   'Everything in Professional',
   'Unlimited team seats',
   '100+ curated + custom templates',
-  'Sequential + parallel + signature templates',
+  'Sequential + parallel signature flows',
   'Full pipeline incl. Sign + Archive',
-  'SSO / SAML integration',
-  'Audit logging + custom branding',
+  'SSO / SAML · Audit logging · Custom branding',
   'Full API read/write access',
   'Dedicated support · 1h response',
 ]
 
-/* ── Competitor positioning ── */
-const competitors = [
-  { name: 'DocuSign', issue: 'AI widget disrupting core signing workflow. Users actively leaving. Legacy architecture, pricing creep, bolted-on modules.' },
-  { name: 'PandaDoc', issue: 'Rigid step-by-step guided flow. Fights you on image formatting. Expensive tiers with capability fragmentation.' },
-  { name: 'SignWell', issue: 'No mobile app. Only 2 native integrations. Confusing multi-party routing. Free tier creates hard limits.' },
-  { name: 'Notarize / Proof', issue: 'Forces account creation for recipients. $25–75 per-transaction pricing. State law fragmentation.' },
-  { name: 'Local platforms', issue: 'Each solves one piece (doc gen OR e-sign OR notarization). No integrated pipeline. Basic web UX.' },
-  { name: 'Generic builders', issue: 'Template UX with no precision formatting. AI content generation as main value. No audit trail, no pipeline.' },
-]
-
-/* ─────────────────────────────────────────────────── */
-
+/* ─────────────────────────────────────
+   Page
+   ───────────────────────────────────── */
 export function LandingPage() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
 
       {/* ══ HEADER ══ */}
       <header className="lp-header">
-        <Link to="/" className="lp-header-brand">
+        <Link to="/" className="lp-header-brand" onClick={() => setMenuOpen(false)}>
           <div className="lp-header-logo">M</div>
           <span className="lp-header-name">MyTypist</span>
         </Link>
 
+        {/* Desktop nav */}
         <nav className="lp-header-nav">
-          {['Templates', 'Pricing', 'Blog', 'FAQ', 'Support'].map((item) => (
+          {navLinks.map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>
           ))}
         </nav>
 
-        <div className="lp-header-actions">
+        {/* Desktop CTAs */}
+        <div className="lp-header-ctas">
           <Link to="/auth" style={{ textDecoration: 'none' }}>
             <button className="btn btn--ghost btn--sm">Sign in</button>
           </Link>
@@ -230,11 +238,55 @@ export function LandingPage() {
             <button className="btn btn--primary btn--sm">Start free trial</button>
           </Link>
         </div>
+
+        {/* Mobile: sign-in + hamburger */}
+        <div className="lp-header-right">
+          <Link to="/auth" style={{ textDecoration: 'none' }}>
+            <button className="btn btn--ghost btn--sm" style={{ fontSize: 12 }}>Sign in</button>
+          </Link>
+          <button
+            className={`lp-hamburger${menuOpen ? ' lp-hamburger--open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            <span className="lp-hamburger-bar" />
+            <span className="lp-hamburger-bar" />
+            <span className="lp-hamburger-bar" />
+          </button>
+        </div>
       </header>
 
-      {/* ══ HERO — Split: copy left, document right ══ */}
+      {/* ══ MOBILE DRAWER ══ */}
+      {menuOpen && (
+        <nav className="lp-mobile-nav">
+          <div className="lp-mobile-nav-links">
+            {navLinks.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="lp-mobile-nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+          <div className="lp-mobile-nav-ctas">
+            <Link to="/studio" style={{ textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>
+              <button className="btn btn--primary" style={{ width: '100%', height: 40, fontSize: 14 }}>
+                Start free trial
+                <ArrowRight size={14} style={{ marginLeft: 6 }} />
+              </button>
+            </Link>
+            <button className="btn btn--secondary" style={{ width: '100%', height: 40, fontSize: 14 }}>
+              Request demo
+            </button>
+          </div>
+        </nav>
+      )}
+
+      {/* ══ HERO — left: copy · right: document preview ══ */}
       <section className="lp-hero">
-        {/* Left: copy */}
         <div className="lp-hero-copy">
           <div className="lp-hero-eyebrow">
             <div className="lp-hero-eyebrow-dot" />
@@ -243,24 +295,25 @@ export function LandingPage() {
 
           <h1 className="lp-hero-headline">
             The workspace where<br />
-            documents become <em>infrastructure</em>.
+            documents become{' '}
+            <em>infrastructure</em>.
           </h1>
 
           <p className="lp-hero-sub">
             Precision drafting with formatting fidelity guarantees.
-            Binding e-signatures with full audit trails.
-            Automated pipelines from first draft to archived record.
-            Built for teams that can't afford to get documents wrong.
+            Binding e-signatures with full audit trails. Automated
+            pipelines from first draft to archived record. Built
+            for teams that can't afford to get documents wrong.
           </p>
 
           <div className="lp-hero-actions">
             <Link to="/studio" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--primary" style={{ height: 36, padding: '0 18px', fontSize: 13 }}>
+              <button className="btn btn--primary" style={{ height: 36, padding: '0 20px', fontSize: 13 }}>
                 Start free trial
                 <ArrowRight size={13} style={{ marginLeft: 6 }} />
               </button>
             </Link>
-            <button className="btn btn--secondary" style={{ height: 36, padding: '0 18px', fontSize: 13 }}>
+            <button className="btn btn--secondary" style={{ height: 36, padding: '0 20px', fontSize: 13 }}>
               Request demo
             </button>
           </div>
@@ -269,7 +322,7 @@ export function LandingPage() {
             {[
               'No credit card required · 14-day full trial',
               'No account needed for document recipients',
-              'SOC 2 compliant · AES-256 encryption',
+              'SOC 2 compliant · AES-256 encryption at rest',
             ].map((item) => (
               <div key={item} className="lp-hero-trust-item">
                 <div className="lp-hero-trust-dot" />
@@ -279,174 +332,211 @@ export function LandingPage() {
           </div>
         </div>
 
-        {/* Right: live document preview mockup */}
         <div className="lp-hero-preview">
           <DocMockup />
         </div>
       </section>
 
-      {/* ══ PIPELINE STRIP ══ */}
-      <div className="lp-pipeline-strip">
-        <div className="lp-pipeline-inner">
-          {[
-            { num: '01', name: 'Draft', desc: 'Block-based editor with live preview. Precision formatting.' },
-            { num: '02', name: 'Fidelity Check', desc: 'Automated layout verification. 100% preview-to-output parity.' },
-            { num: '03', name: 'Approval', desc: 'Route to reviewers with role-based permissions.' },
-            { num: '04', name: 'Sign', desc: 'Drag-and-drop e-signature with binding audit trail.' },
-            { num: '05', name: 'Archive', desc: 'Versioned vault storage with full-text search.' },
-          ].map((stage, i) => (
-            <div key={stage.name} className={`lp-pipeline-stage${i === 1 ? ' lp-pipeline-stage--active' : ''}`}>
-              <div className="lp-pipeline-stage-top">
-                <span className="lp-pipeline-stage-num">{stage.num}</span>
-                <span className="lp-pipeline-stage-name">{stage.name}</span>
+      {/* ══ STATS — dark chapter break ══ */}
+      <div className="lp-stats">
+        <div className="lp-stats-inner">
+          {stats.map((s) => (
+            <div key={s.num} className="lp-stat-cell">
+              <div className="lp-stat-num">
+                {s.num}<span>{s.unit}</span>
               </div>
-              <div className="lp-pipeline-stage-desc">{stage.desc}</div>
+              <div className="lp-stat-label">{s.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* ══ FEATURES ══ */}
-      <section className="lp-section" id="features">
-        <div className="lp-section-eyebrow">Capabilities</div>
-        <h2 className="lp-section-heading">
-          Built for document operations,<br />not document creation.
-        </h2>
-
-        {features.map((f) => (
-          <div key={f.label} className="lp-features-row">
-            <div className="lp-features-label">{f.label}</div>
-            <div className="lp-features-desc">{f.desc}</div>
-            <div className="lp-features-proof">{f.proof}</div>
-          </div>
-        ))}
-      </section>
-
-      {/* ══ POSITIONING ══ */}
-      <section className="lp-pos-strip" id="comparison">
-        <div className="lp-section" style={{ paddingBottom: 0 }}>
-          <div className="lp-section-eyebrow">Why not the others</div>
-          <h2 className="lp-section-heading" style={{ marginBottom: 24 }}>
-            Every competitor solves one part.<br />We replaced the whole workflow.
-          </h2>
-        </div>
-        <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 40px 80px' }}>
-          <div className="lp-pos-grid">
-            {competitors.map((c) => (
-              <div key={c.name} className="lp-pos-cell">
-                <div className="lp-pos-cell-product">{c.name}</div>
-                <div className="lp-pos-cell-issue">{c.issue}</div>
+      {/* ══ PIPELINE — connected workflow ══ */}
+      <div className="lp-pipeline-strip" id="features">
+        <div className="lp-pipeline-scroll">
+          <div className="lp-pipeline-inner">
+            {pipeline.map((stage) => (
+              <div
+                key={stage.name}
+                className={`lp-pipeline-stage${stage.state === 'active' ? ' lp-pipeline-stage--active' : stage.state === 'done' ? ' lp-pipeline-stage--done' : ''}`}
+              >
+                <div className="lp-pipeline-top">
+                  <div
+                    className="lp-pipeline-dot"
+                    style={{
+                      background:
+                        stage.state === 'done' ? 'var(--color-status-complete)'
+                        : stage.state === 'active' ? 'var(--color-accent)'
+                        : 'var(--color-border)',
+                    }}
+                  />
+                  <span className="lp-pipeline-num">{stage.num}</span>
+                  <span className="lp-pipeline-name">{stage.name}</span>
+                </div>
+                <div className="lp-pipeline-desc">{stage.desc}</div>
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* ══ FEATURES — numbered editorial table ══ */}
+      <section className="lp-section" style={{ background: 'var(--color-surface)' }}>
+        <div className="lp-section-inner">
+          <div className="lp-section-eyebrow">Capabilities</div>
+          <h2 className="lp-section-heading">
+            Built for document operations,<br />
+            not document creation.
+          </h2>
+
+          <div className="lp-features-table">
+            {features.map((f) => (
+              <div key={f.num} className="lp-feature-row">
+                {/* Mobile: inline header. Desktop: left column */}
+                <div className="lp-feature-row-left">
+                  <div className="lp-feature-header">
+                    <span className="lp-feature-num">{f.num}</span>
+                    <span className="lp-feature-name">{f.name}</span>
+                  </div>
+                </div>
+                <div className="lp-feature-row-right">
+                  <p className="lp-feature-desc">{f.desc}</p>
+                  <div className="lp-feature-tag">{f.tag}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ POSITIONING — dark bg, competitor grid ══ */}
+      <section className="lp-pos lp-section" id="comparison">
+        <div className="lp-section-inner">
+          <div className="lp-section-eyebrow">Why not the others</div>
+          <h2 className="lp-section-heading">
+            Every competitor solves one part.<br />
+            We replaced the whole workflow.
+          </h2>
+
+          <div className="lp-pos-grid">
+            {competitors.map((c) => (
+              <div key={c.name} className="lp-pos-cell">
+                <div className="lp-pos-product">{c.name}</div>
+                <div className="lp-pos-issue">{c.issue}</div>
+              </div>
+            ))}
+          </div>
+
           <div className="lp-pos-mytypist">
             <div className="lp-pos-mytypist-label">MyTypist</div>
-            <div className="lp-pos-mytypist-text">
-              No AI gimmicks. No per-transaction fees. No account required for recipients.
+            <p className="lp-pos-mytypist-text">
+              No AI gimmicks. No per-transaction fees. No forced recipient accounts.
               A pipeline model where documents are managed as operational artifacts —
               from precision draft to archived, signed record. The same approach
-              Linear took to issue tracking. We're taking it to document operations.
-            </div>
+              Linear took to issue tracking, applied to document operations.
+            </p>
           </div>
         </div>
       </section>
 
       {/* ══ PRICING ══ */}
-      <section className="lp-section" id="pricing">
-        <div className="lp-section-eyebrow">Pricing</div>
-        <h2 className="lp-section-heading">
-          Subscription pricing. No per-document fees.<br />No surprise costs.
-        </h2>
+      <section className="lp-section" id="pricing" style={{ background: 'var(--color-bg)' }}>
+        <div className="lp-section-inner">
+          <div className="lp-section-eyebrow">Pricing</div>
+          <h2 className="lp-section-heading">
+            Flat subscription. No per-document fees.<br />
+            No usage traps.
+          </h2>
 
-        <div className="lp-pricing-grid">
-          {/* Professional */}
-          <div className="lp-plan">
-            <div className="lp-plan-tier">Professional</div>
-            <div className="lp-plan-price">
-              <span className="lp-plan-amount">$49</span>
-              <span className="lp-plan-per">/month</span>
+          <div className="lp-pricing-grid">
+            {/* Professional */}
+            <div className="lp-plan">
+              <div className="lp-plan-tier">Professional</div>
+              <div className="lp-plan-price">
+                <span className="lp-plan-amount">$49</span>
+                <span className="lp-plan-per">/month</span>
+              </div>
+              <div className="lp-plan-local">≈ ₦49,000 / month · billed monthly</div>
+              <div className="lp-plan-cta">
+                <Link to="/studio" style={{ textDecoration: 'none', display: 'block' }}>
+                  <button className="btn btn--secondary" style={{ width: '100%', height: 34, fontSize: 13 }}>
+                    Start 14-day trial
+                  </button>
+                </Link>
+              </div>
+              <div className="lp-plan-divider" />
+              <div className="lp-plan-features">
+                {proFeatures.map((f) => (
+                  <div key={f} className="lp-plan-feature">
+                    <Check size={12} className="lp-plan-check" style={{ color: 'var(--color-status-complete)', flexShrink: 0, marginTop: 2 }} />
+                    {f}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="lp-plan-local">or ₦49,000/month · billed monthly</div>
-            <div className="lp-plan-cta">
-              <Link to="/studio" style={{ textDecoration: 'none', display: 'block' }}>
-                <button className="btn btn--secondary" style={{ width: '100%', height: 34, fontSize: 13 }}>
-                  Start 14-day trial
+
+            {/* Enterprise */}
+            <div className="lp-plan lp-plan--enterprise">
+              <div className="lp-plan-tier">Enterprise</div>
+              <div className="lp-plan-price">
+                <span className="lp-plan-amount">$149</span>
+                <span className="lp-plan-per">/month</span>
+              </div>
+              <div className="lp-plan-local">≈ ₦149,000 / month · billed monthly</div>
+              <div className="lp-plan-cta">
+                <button className="btn btn--primary" style={{ width: '100%', height: 34, fontSize: 13 }}>
+                  Contact sales
                 </button>
-              </Link>
-            </div>
-            <div className="lp-plan-divider" />
-            <div className="lp-plan-features">
-              {proFeatures.map((f) => (
-                <div key={f} className="lp-plan-feature">
-                  <Check size={12} className="lp-plan-feature-check" style={{ color: 'var(--color-status-complete)' }} />
-                  {f}
-                </div>
-              ))}
+              </div>
+              <div className="lp-plan-divider" />
+              <div className="lp-plan-features">
+                {entFeatures.map((f) => (
+                  <div key={f} className="lp-plan-feature">
+                    <Check size={12} className="lp-plan-check" style={{ color: 'var(--color-accent)', flexShrink: 0, marginTop: 2 }} />
+                    {f}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Enterprise */}
-          <div className="lp-plan lp-plan--enterprise">
-            <div className="lp-plan-tier">Enterprise</div>
-            <div className="lp-plan-price">
-              <span className="lp-plan-amount">$149</span>
-              <span className="lp-plan-per">/month</span>
-            </div>
-            <div className="lp-plan-local">or ₦149,000/month · billed monthly</div>
-            <div className="lp-plan-cta">
-              <button
-                className="btn btn--primary"
-                style={{ width: '100%', height: 34, fontSize: 13 }}
-              >
-                Contact sales
-              </button>
-            </div>
-            <div className="lp-plan-divider" />
-            <div className="lp-plan-features">
-              {entFeatures.map((f) => (
-                <div key={f} className="lp-plan-feature">
-                  <Check size={12} className="lp-plan-feature-check" style={{ color: 'var(--color-accent)' }} />
-                  {f}
-                </div>
-              ))}
-            </div>
+          <div style={{
+            marginTop: 0,
+            padding: '14px 20px',
+            background: 'var(--color-surface)',
+            border: '1px solid var(--color-border)',
+            borderTop: 'none',
+            borderRadius: '0 0 2px 2px',
+            fontSize: 12,
+            color: 'var(--color-text-tertiary)',
+            lineHeight: 1.5,
+          }}>
+            Enterprise add-ons: dedicated infrastructure, custom integrations, on-premise hosting.
+            Annual billing available — contact sales for pricing.
           </div>
-        </div>
-
-        {/* Add-on note */}
-        <div style={{
-          marginTop: 16,
-          padding: '14px 20px',
-          background: 'var(--color-surface)',
-          border: '1px solid var(--color-border)',
-          borderTop: 'none',
-          borderRadius: '0 0 var(--radius-xs) var(--radius-xs)',
-          fontSize: 12,
-          color: 'var(--color-text-tertiary)',
-          lineHeight: 1.5,
-        }}>
-          Enterprise add-ons: dedicated infrastructure, custom integrations, on-premise hosting (regulated industries). Annual billing available — contact sales for pricing.
         </div>
       </section>
 
-      {/* ══ CTA STRIP ══ */}
-      <section className="lp-cta-strip">
+      {/* ══ CTA — near-black ══ */}
+      <section className="lp-cta">
         <h2 className="lp-cta-headline">
-          Documents are legal infrastructure.<br />Treat them like it.
+          Documents are legal infrastructure.<br />
+          Treat them like it.
         </h2>
         <p className="lp-cta-sub">
-          14-day trial, all features, no card required. Your first complete pipeline in under 2 minutes.
+          14-day trial, all features, no card required.
+          First complete pipeline in under 2 minutes.
         </p>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+        <div className="lp-cta-actions">
           <Link to="/studio" style={{ textDecoration: 'none' }}>
-            <button className="btn btn--primary" style={{ height: 36, padding: '0 20px', fontSize: 13 }}>
+            <button className="btn btn--primary" style={{ height: 38, padding: '0 22px', fontSize: 13 }}>
               Start free trial
               <ArrowRight size={13} style={{ marginLeft: 6 }} />
             </button>
           </Link>
           <button
             className="btn btn--ghost"
-            style={{ height: 36, padding: '0 20px', fontSize: 13, color: '#6b6b63', border: '1px solid rgba(255,255,255,0.1)' }}
+            style={{ height: 38, padding: '0 22px', fontSize: 13, color: '#5a5a53', border: '1px solid rgba(255,255,255,0.08)' }}
           >
             View demo
           </button>
@@ -454,10 +544,10 @@ export function LandingPage() {
       </section>
 
       {/* ══ FOOTER ══ */}
-      <footer className="lp-footer">
-        <div className="lp-footer-inner">
+      <footer className="lp-footer" id="support">
+        <div className="lp-footer-top">
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div className="lp-header-logo">M</div>
               <span className="lp-header-name">MyTypist</span>
             </div>
@@ -466,28 +556,18 @@ export function LandingPage() {
               Precision drafting. Binding signatures.<br />
               Automated pipelines.
             </p>
-            <div style={{ marginTop: 16, display: 'flex', gap: 10 }}>
-              {['SOC 2', 'GDPR', 'HIPAA-ready'].map((badge) => (
-                <div key={badge} style={{
-                  padding: '2px 8px',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-full)',
-                  fontSize: 10,
-                  fontWeight: 600,
-                  color: 'var(--color-text-tertiary)',
-                  letterSpacing: '0.3px',
-                }}>
-                  {badge}
-                </div>
+            <div className="lp-footer-badges">
+              {['SOC 2', 'GDPR', 'HIPAA-ready', 'ISO 27001'].map((b) => (
+                <span key={b} className="lp-footer-badge">{b}</span>
               ))}
             </div>
           </div>
 
           <div className="lp-footer-links">
             {[
-              { heading: 'Product', links: ['Studio', 'Templates', 'Pipeline', 'Signatures', 'Vault', 'Pricing'] },
-              { heading: 'Company', links: ['About', 'Blog', 'FAQ', 'Support', 'Become a Partner'] },
-              { heading: 'Legal', links: ['Terms of Service', 'Privacy Policy', 'Cookie Policy'] },
+              { heading: 'Product',    links: ['Studio', 'Templates', 'Pipeline', 'Signatures', 'Vault', 'Pricing'] },
+              { heading: 'Company',    links: ['About', 'Blog', 'FAQ', 'Careers', 'Become a Partner'] },
+              { heading: 'Legal',      links: ['Terms of Service', 'Privacy Policy', 'Cookie Policy', 'Security'] },
               { heading: 'Developers', links: ['API Docs', 'Webhooks', 'Status', 'Changelog'] },
             ].map((col) => (
               <div key={col.heading}>

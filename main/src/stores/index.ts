@@ -11,7 +11,7 @@ interface UIState {
 }
 
 export const useUIStore = create<UIState>((set) => ({
-  sidebarOpen: true,
+  sidebarOpen: typeof window !== 'undefined' ? window.innerWidth >= 768 : true,
   commandPaletteOpen: false,
   theme: 'light',
   toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),

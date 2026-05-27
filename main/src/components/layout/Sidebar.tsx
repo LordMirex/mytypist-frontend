@@ -28,10 +28,14 @@ const accountItems = [
 ]
 
 export function Sidebar() {
-  const toggle      = useUIStore((s) => s.toggleCommandPalette)
-  const sidebarOpen = useUIStore((s) => s.sidebarOpen)
+  const toggle        = useUIStore((s) => s.toggleCommandPalette)
+  const sidebarOpen   = useUIStore((s) => s.sidebarOpen)
   const toggleSidebar = useUIStore((s) => s.toggleSidebar)
-  const collapsed   = !sidebarOpen
+  const collapsed     = !sidebarOpen
+
+  function closeMobile() {
+    if (window.innerWidth < 768) toggleSidebar()
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -88,6 +92,7 @@ export function Sidebar() {
                   `sidebar-item${isActive ? ' sidebar-item--active' : ''}`
                 }
                 title={collapsed ? item.label : undefined}
+                onClick={closeMobile}
               >
                 <item.icon size={16} className="sidebar-item-icon" />
                 {!collapsed && (
@@ -122,6 +127,7 @@ export function Sidebar() {
                   `sidebar-item${isActive ? ' sidebar-item--active' : ''}`
                 }
                 title={collapsed ? item.label : undefined}
+                onClick={closeMobile}
               >
                 <item.icon size={16} className="sidebar-item-icon" />
                 {!collapsed && (

@@ -8,8 +8,9 @@ import {
   Archive,
   Settings,
   Shield,
-  ChevronDown,
-  Search,
+  ChevronRight,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from 'lucide-react'
 import { useUIStore } from '@/stores'
 
@@ -27,7 +28,10 @@ const accountItems = [
 ]
 
 export function Sidebar() {
-  const toggle = useUIStore((s) => s.toggleCommandPalette)
+  const toggle      = useUIStore((s) => s.toggleCommandPalette)
+  const sidebarOpen = useUIStore((s) => s.sidebarOpen)
+  const toggleSidebar = useUIStore((s) => s.toggleSidebar)
+  const collapsed   = !sidebarOpen
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -41,19 +45,30 @@ export function Sidebar() {
   }, [toggle])
 
   return (
-    <aside className="sidebar">
-      {/* ── Brand header ── */}
+    <aside className={`sidebar${collapsed ? ' sidebar--collapsed' : ''}`}>
+
+      {/* ── Brand / header ── */}
       <div className="sidebar-header">
-        <div className="sidebar-brand">
-          <div className="sidebar-brand-icon">M</div>
-          <div className="sidebar-brand-text">
-            <span className="sidebar-brand-name">MyTypist</span>
-            <span className="sidebar-brand-tag">Document OS</span>
+        {!collapsed && (
+          <div className="sidebar-brand">
+            <div className="sidebar-brand-icon">M</div>
+            <div className="sidebar-brand-text">
+              <span className="sidebar-brand-name">MyTypist</span>
+              <span className="sidebar-brand-sub">Document OS</span>
+            </div>
           </div>
-        </div>
-        <button className="sidebar-cmd-k" onClick={toggle} title="Open command palette (⌘K)">
-          <Search size={11} />
-          <span>⌘K</span>
+        )}
+        {collapsed && (
+          <div className="sidebar-brand-icon sidebar-brand-icon--solo">M</div>
+        )}
+        <button
+          className="sidebar-toggle"
+          onClick={toggleSidebar}
+          title={collapsed ? 'Expand sidebar (⌘B)' : 'Collapse sidebar (⌘B)'}
+        >
+          {collapsed
+            ? <PanelLeftOpen  size={15} />
+            : <PanelLeftClose size={15} />}
         </button>
       </div>
 
@@ -62,7 +77,7 @@ export function Sidebar() {
 
         {/* Workspace section */}
         <div className="sidebar-section">
-          <div className="sidebar-section-label">Workspace</div>
+          {!collapsed && <div className="sidebar-section-label">Workspace</div>}
           <nav className="sidebar-nav">
             {navItems.map((item) => (
               <NavLink
@@ -72,28 +87,32 @@ export function Sidebar() {
                 className={({ isActive }) =>
                   `sidebar-item${isActive ? ' sidebar-item--active' : ''}`
                 }
+                title={collapsed ? item.label : undefined}
               >
-                <item.icon size={15} className="sidebar-item-icon" />
-                <span className="sidebar-item-label">{item.label}</span>
-                {item.badge != null && (
-                  <span className={`sidebar-item-badge sidebar-item-badge--${item.badgeVariant}`}>
-                    {item.badge}
-                  </span>
-                )}
-                {item.count != null && !item.badge && (
-                  <span className="sidebar-item-count">{item.count}</span>
+                <item.icon size={16} className="sidebar-item-icon" />
+                {!collapsed && (
+                  <>
+                    <span className="sidebar-item-label">{item.label}</span>
+                    {item.badge != null && (
+                      <span className={`sidebar-item-badge sidebar-item-badge--${item.badgeVariant}`}>
+                        {item.badge}
+                      </span>
+                    )}
+                    {item.count != null && item.badge == null && (
+                      <span className="sidebar-item-count">{item.count}</span>
+                    )}
+                  </>
                 )}
               </NavLink>
             ))}
           </nav>
         </div>
 
-        {/* Push account section to bottom */}
         <div className="sidebar-spacer" />
 
         {/* Account section */}
         <div className="sidebar-section">
-          <div className="sidebar-section-label">Account</div>
+          {!collapsed && <div className="sidebar-section-label">Account</div>}
           <nav className="sidebar-nav">
             {accountItems.map((item) => (
               <NavLink
@@ -102,9 +121,12 @@ export function Sidebar() {
                 className={({ isActive }) =>
                   `sidebar-item${isActive ? ' sidebar-item--active' : ''}`
                 }
+                title={collapsed ? item.label : undefined}
               >
-                <item.icon size={15} className="sidebar-item-icon" />
-                <span className="sidebar-item-label">{item.label}</span>
+                <item.icon size={16} className="sidebar-item-icon" />
+                {!collapsed && (
+                  <span className="sidebar-item-label">{item.label}</span>
+                )}
               </NavLink>
             ))}
           </nav>
@@ -112,16 +134,17 @@ export function Sidebar() {
       </div>
 
       {/* ── User row ── */}
-      <div className="sidebar-user">
+      <div className="sidebar-user" title={collapsed ? 'My Workspace — Professional' : undefined}>
         <div className="sidebar-avatar">U</div>
-        <div className="sidebar-user-info">
-          <div className="sidebar-user-name">My Workspace</div>
-          <div className="sidebar-user-sub">
-            <span className="sidebar-plan-pill">Pro</span>
-            <span>Professional</span>
-          </div>
-        </div>
-        <ChevronDown size={13} className="sidebar-user-chevron" />
+        {!collapsed && (
+          <>
+            <div className="sidebar-user-info">
+              <div className="sidebar-user-name">My Workspace</div>
+              <div className="sidebar-user-plan">Professional</div>
+            </div>
+            <ChevronRight size={12} className="sidebar-user-chevron" />
+          </>
+        )}
       </div>
     </aside>
   )

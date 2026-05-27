@@ -81,7 +81,8 @@
 
   /* --- Sidebar --- */
   --sidebar-width: 256px;
-  --sidebar-bg: #F3F3F0;
+  --sidebar-collapsed-width: 48px;
+  --sidebar-bg: #161615;
   --toolbar-height: 48px;
 
   /* --- Document --- */

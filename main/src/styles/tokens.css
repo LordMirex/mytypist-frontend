@@ -23,10 +23,19 @@
 
   /* --- Status --- */
   --color-status-draft: #B8B8B0;
+  --color-status-draft-bg: rgba(184, 184, 176, 0.10);
   --color-status-pending: #F5A623;
+  --color-status-pending-bg: rgba(245, 166, 35, 0.10);
   --color-status-progress: #6C47FF;
+  --color-status-progress-bg: rgba(108, 71, 255, 0.10);
   --color-status-complete: #22C55E;
+  --color-status-complete-bg: rgba(34, 197, 94, 0.10);
   --color-status-failed: #EF4444;
+  --color-status-failed-bg: rgba(239, 68, 68, 0.10);
+
+  /* --- Interactive --- */
+  --color-hover: rgba(0, 0, 0, 0.04);
+  --color-active: rgba(0, 0, 0, 0.08);
 
   /* --- Radius --- */
   --radius-xs: 2px;

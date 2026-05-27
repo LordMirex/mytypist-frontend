@@ -33,12 +33,8 @@ export function Button({
     .join(' ')
 
   return (
-    <button
-      className={classes}
-      disabled={disabled || loading}
-      {...props}
-    >
-      {!loading && children}
+    <button className={classes} disabled={disabled || loading} {...props}>
+      <span className="btn-label">{children}</span>
     </button>
   )
 }

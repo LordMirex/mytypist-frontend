@@ -17,19 +17,19 @@ const statusLabels: Record<string, string> = {
 const statusClasses: Record<string, string> = {
   draft: 'draft',
   pending: 'pending',
-  'in-progress': 'progress',
-  in_progress: 'progress',
+  'in-progress': 'in-progress',
+  in_progress: 'in-progress',
   complete: 'complete',
   failed: 'failed',
 }
 
 export function Badge({ status, label }: BadgeProps) {
-  const dotClass = `status-dot status-dot--${statusClasses[status] || 'draft'}`
+  const cls = statusClasses[status] || 'draft'
   const displayLabel = label || statusLabels[status] || status
 
   return (
-    <span className="status-badge">
-      <span className={dotClass} />
+    <span className={`badge badge--${cls}`}>
+      <span className="badge-dot" />
       {displayLabel}
     </span>
   )

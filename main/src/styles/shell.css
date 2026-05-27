@@ -160,91 +160,137 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--font-ui-size);
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  font-size: 13px;
   font-weight: 400;
   border-radius: var(--radius-md);
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   cursor: pointer;
   border: 1px solid transparent;
   line-height: 1;
   text-decoration: none;
+  outline: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-accent);
 }
 
 .btn:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .btn--primary {
   background: var(--color-accent);
-  color: var(--color-accent-text);
+  color: #FFFFFF;
+  border-color: transparent;
 }
 
 .btn--primary:hover:not(:disabled) {
-  background: var(--color-accent-hover);
+  background: #5B36E8;
+}
+
+.btn--primary:active:not(:disabled) {
+  background: #4A2AD1;
 }
 
 .btn--secondary {
-  background: var(--color-bg-secondary);
+  background: var(--color-surface);
   color: var(--color-text-primary);
   border-color: var(--color-border);
 }
 
 .btn--secondary:hover:not(:disabled) {
-  background: var(--color-bg-tertiary);
+  background: var(--color-bg-secondary);
   border-color: var(--color-border-strong);
+}
+
+.btn--secondary:active:not(:disabled) {
+  background: var(--color-bg-tertiary);
 }
 
 .btn--ghost {
   background: transparent;
   color: var(--color-text-secondary);
+  border-color: transparent;
 }
 
 .btn--ghost:hover:not(:disabled) {
-  background: var(--color-bg-secondary);
+  background: var(--color-hover);
   color: var(--color-text-primary);
+}
+
+.btn--ghost:active:not(:disabled) {
+  background: var(--color-active);
 }
 
 .btn--danger {
   background: var(--color-status-failed);
   color: #FFFFFF;
+  border-color: transparent;
 }
 
 .btn--danger:hover:not(:disabled) {
   background: #DC2626;
 }
 
+.btn--danger:active:not(:disabled) {
+  background: #B91C1C;
+}
+
 .btn--sm {
-  padding: var(--space-1) var(--space-3);
+  height: 26px;
+  padding: 0 10px;
   font-size: 12px;
+  gap: 4px;
 }
 
 .btn--lg {
-  padding: var(--space-3) var(--space-6);
-  font-size: 15px;
+  height: 38px;
+  padding: 0 18px;
+  font-size: 14px;
 }
 
 .btn--icon {
-  padding: var(--space-2);
   width: 32px;
   height: 32px;
+  padding: 0;
+}
+
+.btn--icon.btn--sm {
+  width: 26px;
+  height: 26px;
 }
 
 .btn--loading {
   position: relative;
+  color: transparent;
 }
 
 .btn--loading::after {
   content: '';
+  position: absolute;
   width: 14px;
   height: 14px;
   border: 2px solid currentColor;
   border-right-color: transparent;
   border-radius: 50%;
   animation: btn-spin 400ms linear infinite;
+}
+
+.btn--primary.btn--loading::after {
+  border-color: rgba(255,255,255,0.7);
+  border-right-color: transparent;
+}
+
+.btn--loading .btn-label {
+  visibility: hidden;
 }
 
 @keyframes btn-spin {
@@ -256,26 +302,29 @@
 .input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 5px;
 }
 
 .input-label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-text-secondary);
+  letter-spacing: 0.01em;
 }
 
 .input {
-  height: 36px;
-  padding: 0 var(--space-3);
-  font-size: var(--font-ui-size);
+  height: 32px;
+  padding: 0 10px;
+  font-size: 13px;
   font-family: var(--font-sans);
+  font-weight: 400;
   color: var(--color-text-primary);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   outline: none;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
 }
 
 .input:focus {
@@ -298,12 +347,14 @@
 }
 
 .input--error:focus {
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+  border-color: var(--color-status-failed);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.12);
 }
 
 .input-error {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--color-status-failed);
+  letter-spacing: 0.01em;
 }
 
 /* --- Command Palette --- */
@@ -391,30 +442,56 @@
   gap: var(--space-2);
 }
 
-/* --- Status Badges --- */
+/* --- Badges --- */
 
-.status-badge {
+.badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 2px var(--space-2);
-  font-size: 12px;
+  gap: 5px;
+  height: 20px;
+  padding: 0 8px;
+  font-size: 11px;
   font-weight: 400;
   border-radius: var(--radius-full);
+  letter-spacing: 0.01em;
 }
 
-.status-dot {
-  width: 6px;
-  height: 6px;
+.badge-dot {
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-.status-dot--pending { background: var(--color-status-pending); }
-.status-dot--progress { background: var(--color-status-progress); }
-.status-dot--complete { background: var(--color-status-complete); }
-.status-dot--failed { background: var(--color-status-failed); }
-.status-dot--draft { background: var(--color-status-draft); }
+.badge--draft {
+  background: var(--color-status-draft-bg);
+  color: var(--color-status-draft);
+}
+.badge--draft .badge-dot { background: var(--color-status-draft); }
+
+.badge--pending {
+  background: var(--color-status-pending-bg);
+  color: var(--color-status-pending);
+}
+.badge--pending .badge-dot { background: var(--color-status-pending); }
+
+.badge--in-progress, .badge--in_progress {
+  background: var(--color-status-progress-bg);
+  color: var(--color-status-progress);
+}
+.badge--in-progress .badge-dot, .badge--in_progress .badge-dot { background: var(--color-status-progress); }
+
+.badge--complete {
+  background: var(--color-status-complete-bg);
+  color: var(--color-status-complete);
+}
+.badge--complete .badge-dot { background: var(--color-status-complete); }
+
+.badge--failed {
+  background: var(--color-status-failed-bg);
+  color: var(--color-status-failed);
+}
+.badge--failed .badge-dot { background: var(--color-status-failed); }
 
 /* --- Data Tables --- */
 

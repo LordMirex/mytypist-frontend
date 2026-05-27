@@ -1,28 +1,47 @@
-# Logic Extraction: Hooks & Shared State
+# Logic Extraction: High-Precision Operational State
 
-This document extracts the core functional logic from `v1` and `v2` to ensure state management and side effects are perfectly preserved in the `main` project.
+This document extracts core logic to ensure **Operational Continuity** in the MyTypist **Document Operating System**.
 
-## 1. Global State Management (v1 Mock Auth)
-*File: v1/src/components/Navigation.tsx*
-
+## 1. Contextual Toolbar Logic (Proposed)
+Real software reacts. Implement logic that discloses formatting tools based on active placeholder focus.
 ```typescript
-// Core logic for role-based navigation and persistence
-const useAuth = () => {
-  const [role, setRoleState] = useState<'guest' | 'user' | 'admin'>('guest');
+const useContextualToolbar = (focusedField: string) => {
+  const [activeTools, setActiveTools] = useState<Tool[]>([]);
   
   useEffect(() => {
-    const savedRole = localStorage.getItem('testRole') as 'guest' | 'user' | 'admin';
-    if (savedRole && ['guest', 'user', 'admin'].includes(savedRole)) {
-      setRoleState(savedRole);
-    }
-  }, []);
+    // Logic to disclose tools based on field type (Date, Text, Signature)
+    setActiveTools(getToolsForField(focusedField));
+  }, [focusedField]);
 
-  const setRole = (newRole: 'guest' | 'user' | 'admin') => {
-    setRoleState(newRole);
-    localStorage.setItem('testRole', newRole);
-  };
-  
-  return { role, setRole };
+  return activeTools;
+};
+```
+
+## 2. Micro-behavior: Interaction Smoothness
+Precision hover and transition timing (Pitch-inspired).
+```typescript
+const TRANSITION_PRESETS = {
+  spatial: { type: "spring", stiffness: 300, damping: 30 },
+  subtle: { duration: 0.15, ease: "easeOut" }
+};
+```
+
+## 3. Optimistic Pipeline Logic
+Ensure document status changes (Draft -> Approval) feel instantaneous.
+```typescript
+const useUpdateDocumentStatus = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateStatus,
+    onMutate: async (newStatus) => {
+      // Optimistically update the UI pipeline
+      await queryClient.cancelQueries({ queryKey: ['pipeline'] });
+      const previousPipeline = queryClient.getQueryData(['pipeline']);
+      queryClient.setQueryData(['pipeline'], old => updateOptimistically(old, newStatus));
+      return { previousPipeline };
+    },
+    // ... error handling and rollback
+  });
 };
 ```
 

@@ -1,73 +1,49 @@
-# Technical Implementation Specification
+# Technical Implementation Specification: The Precision Infrastructure
 
-This document provides the low-level technical details required to build the MyTypist frontend from scratch, including the directory structure, global state management, and critical utility logic.
+This document details the engineering requirements for building the MyTypist **Document Operating System**.
 
-## 1. Directory Structure (Proposed for `main`)
+## 1. Directory Structure: Spatial Organization
+The structure must support a **Persistent Workspace** logic (Linear/Figma style), where components are organized by their spatial role rather than just page-based routes.
 
 ```text
 main/
 ├── src/
-│   ├── assets/             # SVGs, Images, Favicons
 │   ├── components/
-│   │   ├── navigation/     # Shared Nav, MobileMenu, Logo
-│   │   ├── studio/         # Document Creator sub-components
-│   │   ├── ui/             # Shadcn base components
-│   │   └── shared/         # Layout, ErrorBoundary, SEO
-│   ├── hooks/              # useIsMobile, useToast, useAuth
-│   ├── lib/                # cn utility, api client (React Query)
-│   ├── pages/
-│   │   ├── admin/          # Admin suite pages
-│   │   ├── auth/           # Login, Signup, ForgotPassword
-│   │   ├── dashboard/      # User dashboard pages
-│   │   ├── document/       # Studio, Templates, Gallery
-│   │   └── marketing/      # Home, Pricing, About, etc.
-│   ├── styles/             # tailwind.css, globals.css
-│   ├── types/              # TypeScript interfaces/types
-│   ├── utils/              # Helper functions, data formatters
-│   ├── App.tsx             # Root Router
-│   └── main.tsx            # Entry Point
-├── public/                 # Static assets
-├── .env                    # Environment variables
-├── tailwind.config.ts      # Merged design system
-└── tsconfig.json           # TS configuration
+│   │   ├── workspace/      # Persistent layouts, Sidebars, Contextual Toolbars
+│   │   ├── studio/         # High-precision editing components
+│   │   ├── pipeline/       # Workflow visualization (Timelines, Grids)
+│   │   └── ui/             # Precision Editorial primitives (Monochrome, Restrained)
+│   ├── state/              # Centralized state (Zustand) with Optimistic Updates
+│   ├── services/           # Precision API clients (React Query)
+...
 ```
 
-## 2. Global State & Logic
+## 2. Engineering Standards: "The Linear Grade"
+Uniqueness comes from **Interaction Design**. Every technical implementation must adhere to these standards:
 
-### Authentication (Proposed)
-- **Library**: `zustand` (recommended over v1's local `useState` mock).
-- **State**: `user`, `role`, `isAuthenticated`.
-- **Logic**: Persistent login via `localStorage` or `cookies`.
+### Stateful Interfaces & Optimistic Updates
+- **Instant Feedback**: Every operational action (e.g., saving a draft, updating a status) must use **Optimistic State Updates** to feel instantaneous.
+- **Progressive Disclosure**: UI complexity must be hidden until relevant. Use contextual toolbars that react to user focus.
 
-### Document State (Studio)
-- **Object Schema**:
-  ```typescript
-  interface DocumentState {
-    templateId: string;
-    title: string;
-    content: string;
-    formData: Record<string, any>;
-    recipients: string[];
-    progress: number;
-  }
-  ```
-- **Live Sync**: Use a `useEffect` hook to calculate `progress` whenever `formData` or `content` changes.
+### Spatial Navigation
+- **Workspace Logic**: The app must feel like a single, persistent entity. Transitions between views (e.g., Dashboard -> Studio) should be spatial (using Framer Motion) to maintain context.
 
-## 3. Critical Utilities
+## 3. High-Density Logic
 
-### Class Merging (`cn`)
+### Centralized Operational State
+Use **Zustand** for high-performance, centralized state that manages the entire document pipeline.
 ```typescript
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+interface OperationalState {
+  activePipeline: string;
+  focusedDocument: Document | null;
+  optimisticActions: Map<string, any>;
+  fidelityScore: number;
 }
 ```
 
-### Date Formatting
-Standardized date formatting for Dashboard and Admin tables:
-- `toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })`
+### Precision Side-Effects
+- **Fidelity Monitoring**: Side-effects that monitor document structure and typography consistency in real-time.
+- **Workflow Continuity**: Persist the exact spatial state (scroll position, focused field) across sessions.
 
 ## 4. Dependencies to Install
 

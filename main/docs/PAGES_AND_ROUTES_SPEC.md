@@ -62,13 +62,15 @@ This document provides a master map of all routes across `v1` and `v2`, identify
 ### "Business Core" Route Restoration Strategy
 The final `main` application must restore all **25+ routes from v1** but re-skin them entirely using a **unique, professional business core UI/UX.** 
 
+**Spatial Navigation Mandate:** Move beyond "page-to-page" navigation. The application must feel like a **Persistent Workspace** (Figma, Linear). Routes should represent spatial shifts within a consistent environment rather than disconnected pages.
+
 **Warning:** v2 currently lacks ~70% of the required public and admin pages. The next AI must not just copy v2; it must use v1 as the functional blueprint for the entire platform scope while elevating every single page to a professional business standard.
 
-**Priority 1: Core Flow (Unified Design)**
-- Homepage -> Signup -> Studio -> Download.
-**Priority 2: Management (Professional UI)**
+**Priority 1: Core Flow (Persistent Environment)**
+- Homepage -> Signup -> Studio (High-Precision) -> Download.
+**Priority 2: Operational Management (Spatial Logic)**
 - Dashboard -> Profile -> Settings.
-**Priority 3: Admin & Growth (Complete Restoration)**
+**Priority 3: Infrastructure Oversight (High Density)**
 - Admin Suite -> Bonuses -> Analytics -> Blog -> Support/Legal pages.
 
 ---

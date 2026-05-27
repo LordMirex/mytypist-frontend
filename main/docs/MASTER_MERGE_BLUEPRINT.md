@@ -1,19 +1,24 @@
 # Master Merge Blueprint: MyTypist Final Frontend
 
-This document serves as the final, exhaustive roadmap for extracting, merging, and completing the MyTypist frontend within the `main` directory.
+This document serves as the final roadmap for building the **Document Operating System** within the `main` directory.
 
-## 🎯 The Vision
-Move away from "AI mockup" designs toward a unique, professional business core UI/UX. The final product must feel like a custom-built enterprise solution, not a generic template. The design for all current versions (v1 and v2) is considered "AI mockup quality" and must be completely overhauled into something professional and unique.
+## 🎯 The Vision: The Linear of Document Operations
+Move beyond "AI mockup" designs toward **Precision Enterprise Editorial**. The final product must feel like a high-precision operations tool (Linear, Figma, Pitch), not a generic SaaS template. 
+
+### Core Design Principles:
+- **Restrained Sophistication:** Monochrome-dominant palette, subtle serif pairings, and lots of whitespace.
+- **Operational Clarity:** High information density, workspace-based logic (not just CRUD forms), and spatial consistency.
+- **Formatting Fidelity:** Absolute preservation of document layouts and typography—the core differentiator.
 
 ## 1. Core Architecture & Design
 - **Language**: TypeScript (from v1) - [See TECHNICAL_IMPLEMENTATION_SPEC.md](./TECHNICAL_IMPLEMENTATION_SPEC.md)
 - **Framework**: React 18+ with Vite.
-- **Styling**: Tailwind CSS + Shadcn UI.
-- **Design Strategy**: Professional research-backed UI/UX. No random mockups. Every page must feel arranged, complete, and guided.
+- **Styling**: Tailwind CSS + Shadcn UI (used as primitives ONLY, not final appearance).
+- **Design Strategy**: **Precision Enterprise Editorial**. Focus on typography-first hierarchy, spacing rhythm, and document realism.
+- **Interaction Design**: 
+    - **Micro-behaviors**: Pitch-like animation timing and Linear-like interaction smoothness.
+    - **Stateful Interfaces**: Contextual toolbars, progressive disclosure, and inline editing.
 - **Design Tokens**: [See DESIGN_SYSTEM_AND_TOKENS.md](./DESIGN_SYSTEM_AND_TOKENS.md)
-  - **Fonts**: Inter (Sans) + Playfair Display (Serif/Accent).
-  - **Colors**: HSL-based (v1) with semantic naming extension (v2: `conversion`, `canvas`, `trust`).
-  - **Effects**: Extended shadows from v2 (`shadow-conversion`, `shadow-brand`).
 
 ## 2. Page & Route Strategy
 - **Master Map**: [See PAGES_AND_ROUTES_SPEC.md](./PAGES_AND_ROUTES_SPEC.md)

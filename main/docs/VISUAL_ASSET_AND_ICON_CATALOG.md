@@ -1,51 +1,24 @@
-# Visual Asset & Iconography Catalog
+# Visual Asset & Iconography Catalog: Precision Editorial
 
-This document catalogs every icon, image, and visual asset used across `v1` and `v2`, ensuring a consistent visual language for the `main` project.
+This document catalogs the assets for the MyTypist **Document Operating System**.
 
-## 1. Iconography System
+## 1. Iconography System: High-Fidelity
 - **Library**: `Lucide-React`.
-- **v2 Wrapper**: `AppIcon.jsx` uses a dynamic lookup for Lucide icons.
-- **Key Icons per Context**:
-  - **Auth**: `User`, `Mail`, `Lock`, `Shield`, `LogOut`.
-  - **Document Operations**: `Plus`, `FileText`, `PenTool`, `Download`, `Share2`, `Save`, `Eye`.
-  - **UI Interaction**: `ChevronDown`, `ChevronRight`, `Menu`, `X`, `Search`, `Filter`, `HelpCircle`, `Info`.
-  - **Status**: `CheckCircle`, `AlertCircle`, `Clock`, `TrendingUp`, `Zap`, `Brain`.
-  - **Admin**: `Shield`, `Users`, `Activity`, `Database`, `Settings`, `Upload`.
+- **Style**: Monochrome, thin strokes.
+- **Key Patterns**: Use icons for **Instruction & Clarification** ONLY. Avoid decorative icons that reduce information density.
 
-## 2. Image Assets
+## 2. Brand Primitives: Restrained Sophistication
+- **Surfaces**: Paper-like textures and flat grayscale surfaces. No glowing buttons.
+- **Dividers**: Hairline dividers (`1px`) for precision spatial separation.
+- **Gradients**: ELIMINATED. Use solid monochrome fills with high-contrast typography.
+- **Patterns**: `bg-grid-pattern` (Linear-style) for spatial layout consistency.
 
-### Public Assets (`v1/public`)
-- `favicon.ico`: Standard site icon.
-- `placeholder.svg`: Used for template previews when an image is missing.
-- `robots.txt`: Search engine instructions.
-- `_headers`: Vercel/Netlify security headers.
+## 3. Fidelity Assets
+- **Document Previews**: Every "Image" of a document must be a **live-rendered or high-fidelity SVG/PDF preview**, not a generic Unsplash photo.
+- **Fidelity Markers**: Visual indicators (e.g., specific checkmarks, structure nodes) that represent the structural integrity of a document.
 
-### Public Assets (`v2/public`)
-- `manifest.json`: PWA metadata.
-- `assets/images/no_image.png`: Fallback for broken image links.
-
-### External/CDN Images (v2 Mocks)
-- **Templates**:
-  - Business Letter: `https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=500&fit=crop`
-  - Proposal: `https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?w=400&h=500&fit=crop`
-  - Invoice: `https://images.pixabay.com/photo/2016/11/27/21/42/stock-1863880_1280.jpg?w=400&h=500&fit=crop`
-- **Dashboards**:
-  - Resume Thumbnail: `https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=300&fit=crop`
-  - Report Thumbnail: `https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?w=400&h=300&fit=crop`
-
-## 3. Brand Primitives (CSS)
-- **Gradients**:
-  - Primary: `from-primary to-brand-authority` (Blue to Dark Blue).
-  - Conversion: `from-orange-500 to-orange-600`.
-  - Muted: `from-muted/30 via-background to-muted/30`.
-- **Patterns**:
-  - `bg-grid-pattern`: A subtle dot/line grid used in v2 Hero sections.
-- **Radius**:
-  - Default: `0.5rem` (`rounded-lg`).
-  - Interactive: `0.75rem` (`rounded-xl`).
-  - Pours: `1rem` (`rounded-2xl`).
-
-## 4. Animation Styles
-- **Entrance**: `animate-fade-in` (0.15s), `animate-slide-in` (0.1s), `animate-scale-in`.
-- **Engagement**: `animate-bounce-gentle` (Search focus), `animate-pulse-slow` (Loading states).
-- **Hover**: `interactive` (Translate-Y -1px).
+## 4. Animation & Motion: Professional Restraint
+- **Purpose**: Motion must be used ONLY to communicate state changes or workflow continuity.
+- **Entrance**: `animate-fade-in` (Subtle 100ms).
+- **Transitions**: Pitch-like spatial transitions between workspace views.
+- **Hover**: Subtle border-color shifts or opacity changes. NO translation/bouncing.

@@ -1,57 +1,25 @@
-# Dashboard & User System Specification
+# Dashboard & User System Specification: The Operational Workspace
 
-This document details the architecture, features, and UI requirements for the final MyTypist user workspace, merging the logic of `v1` with the premium aesthetics of `v2`.
+This document details the architecture, features, and UI requirements for the MyTypist **Document Operating System**.
 
-## 1. User Dashboard (Overview)
-- **User Feedback**: v1 has the "worst lazy AI design". v2 is the superior iteration with modern features like the **Template Market**. The final dashboard must be robust, professional, and unique.
+## 1. The Operational Workspace (Dashboard)
+The dashboard is not just a landing page; it is a **spatial, persistent environment** designed for high-density document operations. 
 
-### Layout & Navigation
-- **Base Layout**: v2 Split layout with a left sidebar for desktop and a top tab bar for mobile.
-- **Header**: v2 `WelcomeHeader` with personalized stats (Documents Created, Time Saved).
+### Interaction & Layout
+- **Base Layout**: Figma/Linear-style spatial workspace. A persistent left sidebar for navigation and a high-density main area.
+- **Workflow Timelines**: Replace generic "Recent Activity" lists with professional workflow timelines that visualize document progression.
+- **Spatial Consistency**: Every element must have a fixed, predictable location to enhance operational speed.
 
 ### Key Modules
-1.  **Token/Plan Management (v2)**: Display remaining tokens and plan type clearly at the top.
-2.  **Quick Actions (v1)**: Large, high-visibility buttons for "Create Document", "Send for Signature", and "Browse Templates".
-3.  **Recent Activity (v1/v2)**: A list of documents with:
-    - Thumbnail preview (v2).
-    - Status badges (v1: Draft, Sent, Pending, Completed).
-    - Progress bars (v1).
-    - Quick actions (Download, Share, Edit).
-4.  **Achievements (v2)**: Gamified badges to encourage platform usage.
-5.  **Recommended Templates (v2)**: Personalized suggestions based on user role/history.
+1.  **Operation Monitor**: Real-time stats focused on **Precision & Throughput** (Fidelity Score, Documents Finalized).
+2.  **The Pipeline**: A sophisticated table/grid representing the document pipeline (Drafting -> Approval -> Finalized).
+3.  **Contextual Toolbars**: Toolbars that appear based on the selected document or task, reducing UI clutter.
 
-## 2. Profile & Account Management
+## 2. Profile & Account Management: Enterprise Grade
+- **Identity**: Move beyond "User Profile" to "Operational Identity." 
+- **Security**: Enterprise-grade security settings (Login history, 2FA, session management) presented with restrained sophistication.
+- **Billing**: Token-based "Metered Operations" dashboard.
 
-### Tabbed Interface (v1 Architecture)
-The profile/settings area should be unified into a single comprehensive tabbed view:
-
-- **Personal Info**: 
-  - Fields: First Name, Last Name, Email, Phone, Company, Job Title, Bio.
-  - Profile Image upload/display.
-- **Security**:
-  - Password change flow.
-  - 2FA toggle (v1 logic).
-  - Session timeout settings.
-  - Login history list.
-- **Billing & Subscription**:
-  - Current Plan card (v1 usage progress bar).
-  - Tier Comparison (v1 price cards).
-  - Payment method management.
-  - Invoice history.
-- **Notifications (v2 UI)**:
-  - Granular toggles for: Email Alerts, Document Sharing, System Updates, Marketing, Weekly Digest.
-- **Preferences**:
-  - Theme selector (Light, Dark, System).
-  - Language selector (EN, ES, FR, DE).
-  - Timezone selector.
-  - Auto-save toggle.
-
-## 3. Data & Lifecycle Management
-- **Drafts**: Dedicated section for incomplete documents with "Completion Percentage".
-- **Data Export**: Feature from v1 to allow users to download all their data in bulk.
-- **Danger Zone**: Account deletion flow with double confirmation.
-
-## 4. Design & Interaction Guidelines
-- **States**: Every page must handle `Loading` (v1 spinner), `Empty` (v2 illustrated state), and `Error` (v1 toggleable error state).
-- **Aesthetics**: Use v2 `backdrop-blur`, `shadow-subtle`, and `animate-fade-in` throughout.
-- **Typography**: Use **Playfair Display** for headings in headers and cards to maintain the premium feel.
+## 3. Interaction Design Mandate
+- **Micro-behaviors**: Linear-like interaction smoothness. Precision hover states and optimistic updates for all status changes.
+- **Fidelity Everywhere**: Every document thumbnail must be a **High-Fidelity Preview** that accurately reflects the final output.

@@ -8,13 +8,21 @@ This is the ultimate reference for rebuilding MyTypist from scratch using the in
 ... (UI/Logic/Content/Route definitions) ...
 
 ## 2. Professional "Business Core" Mandate
-Move away from "AI mockup" designs. The current versions (v1, v2) are ~30% complete and rely on generic templates. To reach "Business Core" status, the next AI must:
-1.  **Eliminate Mockup Aesthetic**: Avoid Shadcn/Tailwind default looks. Create a unique, professional business core site with a distinct brand identity.
-2.  **Guided UI/UX**: The Document Studio and Dashboard must be "well-guided," leading the user intuitively through complex tasks.
-3.  **Arranged Content**: Ensure all landing and public pages have content that is professionally arranged, removing the "unarranged and incomplete" feel of current mockups.
-4.  **Production Logic**: Every feature must have real production logic. No placeholder buttons. Previews must transition from frontend-only to backend-driven rendering.
+Move away from "AI mockup" designs. Position MyTypist as **"The Linear of document operations."**
+
+### Interaction Design: The Real Differentiator
+Uniqueness comes from **interaction design**, not branding statements.
+1.  **Stateful Interfaces**: Real software reacts intelligently. Implement progressive disclosure, contextual toolbars, keyboard-first UX, and inline editing.
+2.  **Micro-behaviors**: Precision in hover logic, Pitch-like animation timing, and Figma-like spatial workspace structure.
+3.  **Workspace Logic**: The app must feel spatial and persistent, not like page-based CRUD forms.
+
+### Formatting Fidelity + Operational Precision
+This is the core enterprise value. The final product must preserve layouts, typography, and structure better than any competitor.
 
 ## 3. Major Improvement Advice
+- **AI Positioning**: AI is "The Precision Engine" behind formatting fidelity, not just a content generator.
+- **Optimistic Updates**: Ensure every operational action feels instantaneous through optimistic state updates.
+- **Workflow Continuity**: Maintain context across different parts of the Document Operating System.
 
 ### A. AI Integration (The "Real" AutoType)
 - **Current State**: v1 is just a UI shell with hardcoded text.

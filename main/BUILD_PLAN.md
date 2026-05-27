@@ -1,5 +1,67 @@
 # MyTypist — Frontend Build Plan
 
+## ⚠️ AI PRE-FLIGHT CHECKLIST — READ OR BE REVERTED
+
+**Every AI agent entering this project MUST follow these rules. Previous AIs broke these and had to fix their mistakes. Do not repeat them.**
+
+### 1. BRANCH FIRST, CODE SECOND
+- **NEVER commit to `master`/`main` for code.** Create a `feature/` or `bugfix/` branch first.
+- `git checkout -b feature/my-thing` before any code change.
+- Only docs/metadata changes are allowed directly on master.
+
+### 2. PULL BEFORE EVERY ACTION
+- `git pull origin master` before reading, writing, or building anything.
+- Then `git log HEAD..origin/master --oneline` to see if remote has new commits.
+- Then `git diff HEAD..origin/master --stat` to see what changed.
+- If you skip this and overwrite remote work, the revert will be painful.
+
+### 3. PORT MUST BE IN OCI RANGE (3000–3010)
+- Default Vite port is 5173. **Change it.** Port 3001 is already set in `vite.config.ts`.
+- If you start a new dev server, use a port in 3000–3010. Port 3000 is taken by zenvault.
+- If you change the port, update AGENTS.md (rule #5).
+
+### 4. READ DOCS BEFORE WRITING A SINGLE LINE OF CODE
+Read in this exact order, **completely**:
+1. `BUILD_PLAN.md` — This file. The full build sequence.
+2. `README.md` — Project identity, design language, commands.
+3. `references/README.md` — All 15 reference files.
+4. `docs/PRODUCT_UI_SYSTEM.md` — Design authority. Every rule cites a reference file.
+5. `docs/COMPONENT_SPECIFICATIONS.md` — 26 component sections.
+6. `docs/WIREFRAME_BLUEPRINTS.md` — 14 wireframes.
+7. `docs/PAGES_AND_ROUTES_SPEC.md` — ~80 routes with priority tiers.
+8. `docs/PRODUCT_REQUIREMENTS_DOCUMENT.md` — PRD with elevated targets.
+
+### 5. UPDATE AGENTS.md AFTER EVERY SYSTEM CHANGE
+- New port? New service? New PM2 entry? **Update `~/AGENTS.md`.**
+- This file is at `/home/ubuntu/AGENTS.md`. It is the VPS single source of truth.
+- Previous AIs forgot this. Do not be them.
+
+### 6. UPDATE WORKSPACE ACTIVITY LOG AFTER EVERY TASK
+- Append a row to the activity log table in `/home/ubuntu/projects/mytypist-workspace/README.md`.
+- Use WAT/UTC+1 time: `$(date -u -d "+1 hour" +%H:%M)`.
+- Entry format: date, time, component, task, agent name, status.
+
+### 7. NEVER ASSUME DESIGN RULES — VERIFY AGAINST REFERENCES
+- The "zero radius" claim was **wrong**. The evidence in `references/linear/border-radius-and-elevation.md` shows Linear uses 2px/4px/6px/8px/12px graduated scale.
+- Every design rule in the codebase cites a reference file. If it doesn't, find the evidence before implementing.
+- Accent is `#6C47FF` (violet-indigo), NOT blue. If you type `#3B82F6` or `blue`, stop.
+
+### 8. NO COMMITTING UNLESS ASKED
+- Do not create commits unless the user explicitly says "commit" or "push".
+- If they do: `git add -A && git commit -m "<type>(<scope>): <description>"` then push.
+- Format: `feat|fix|docs|refactor|style|test|chore(<scope>): <message>`.
+
+### 9. BUILD MUST PASS BEFORE MERGE
+- Run `npm run build` after every batch of code changes.
+- If it fails, fix the errors. Do not merge a broken build.
+- Pre-merge order: build passes → push branch → create PR → merge.
+
+### 10. NO RESTARTING LIVE SERVICES WITHOUT CONFIRMATION
+- Never restart nginx, PostgreSQL, PM2, or zenvault unless the user explicitly says yes.
+- "Are you sure?" is not enough — wait for "yes, proceed".
+
+---
+
 > **Read this FIRST before writing any code.**  
 > Every agent that enters to "build the frontend" must read this file + README.md + the full `docs/` + `references/` first.
 

@@ -4,16 +4,21 @@
 
 **Every AI agent entering this project MUST follow these rules. Previous AIs broke these and had to fix their mistakes. Do not repeat them.**
 
-### 1. BRANCH FIRST, CODE SECOND
-- **NEVER commit to `master`/`main` for code.** Create a `feature/` or `bugfix/` branch first.
-- `git checkout -b feature/my-thing` before any code change.
-- Only docs/metadata changes are allowed directly on master.
+### 1. THE "LEAN GIT" RULE (MAX 2 BRANCHES)
+- **NEVER have more than two branches total (master + ONE active feature branch).**
+- **NEVER push feature branches to GitHub.** Remote GitHub is for `master` only.
+- **WORKFLOW:**
+  1. `git checkout -b feature/my-task` (Local only)
+  2. Complete the task.
+  3. `git checkout master`
+  4. `git merge feature/my-task`
+  5. `git push origin master`
+  6. `git branch -d feature/my-task` (Delete immediately)
+- If a feature branch already exists, you MUST merge or delete it before starting a new one.
 
 ### 2. PULL BEFORE EVERY ACTION
 - `git pull origin master` before reading, writing, or building anything.
-- Then `git log HEAD..origin/master --oneline` to see if remote has new commits.
-- Then `git diff HEAD..origin/master --stat` to see what changed.
-- If you skip this and overwrite remote work, the revert will be painful.
+- Always verify you are on `master` before starting a new feature branch.
 
 ### 3. PORT MUST BE IN OCI RANGE (3000–3010)
 - Default Vite port is 5173. **Change it.** Port 3001 is already set in `vite.config.ts`.

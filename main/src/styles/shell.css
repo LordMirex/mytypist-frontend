@@ -1020,6 +1020,130 @@
   background: var(--color-surface-secondary);
 }
 
+/* --- Studio Mobile Panel Tabs --- */
+
+.studio-mobile-tabs {
+  display: none; /* shown only on mobile */
+  flex-shrink: 0;
+  height: 56px;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  align-items: stretch;
+}
+
+.studio-mobile-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: color 80ms, background 80ms;
+}
+
+.studio-mobile-tab:hover {
+  background: var(--color-hover);
+  color: var(--color-text-secondary);
+}
+
+.studio-mobile-tab--active {
+  color: var(--color-accent);
+}
+
+.studio-panel--mobile-hidden {
+  /* on desktop this class does nothing */
+}
+
+/* Responsive studio toolbar helpers */
+.studio-breadcrumb-prefix {
+  /* shown on desktop, hidden on small mobile */
+}
+
+@media (max-width: 767px) {
+  /* Show tab bar */
+  .studio-mobile-tabs {
+    display: flex;
+  }
+
+  /* Stack body so active panel fills full height */
+  .studio-body {
+    position: relative;
+  }
+
+  /* All panels fill the whole studio-body */
+  .studio-panel--left,
+  .studio-panel--center,
+  .studio-panel--right {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100%;
+    border: none;
+  }
+
+  /* Hide inactive panels */
+  .studio-panel--mobile-hidden {
+    display: none !important;
+  }
+
+  /* Mobile: document canvas needs scroll */
+  .studio-panel--center {
+    overflow-y: auto;
+    padding: var(--space-4) var(--space-2);
+  }
+
+  /* Shrink doc-canvas padding on mobile */
+  .doc-canvas {
+    padding: 32px 20px !important;
+  }
+
+  /* Toolbar adjustments */
+  .studio-toolbar-btn--hide-xs {
+    display: none !important;
+  }
+
+  .studio-toolbar-label {
+    display: none;
+  }
+
+  .studio-breadcrumb-prefix {
+    display: none;
+  }
+
+  /* Adjust studio height to account for mobile tab bar */
+  .studio {
+    height: calc(100vh - var(--toolbar-height));
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .studio-toolbar-btn--hide-sm {
+    display: none !important;
+  }
+
+  .studio-toolbar-label {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Desktop: panel tabs invisible, panels normal */
+  .studio-mobile-tabs {
+    display: none !important;
+  }
+
+  .studio-panel--mobile-hidden {
+    display: flex !important;
+  }
+}
+
 /* --- Document Preview --- */
 
 .doc-canvas {

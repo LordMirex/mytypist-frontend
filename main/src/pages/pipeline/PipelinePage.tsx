@@ -118,11 +118,12 @@ export function PipelinePage() {
       </header>
 
       {/* ── Stage flow indicator ── */}
+      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' as any, marginBottom: 24 }}>
       <div style={{
         display: 'flex',
         alignItems: 'center',
         gap: 0,
-        marginBottom: 24,
+        minWidth: 480,
         background: 'var(--color-surface)',
         border: '1px solid var(--color-border)',
         borderRadius: 3,
@@ -153,6 +154,7 @@ export function PipelinePage() {
             )}
           </div>
         ))}
+      </div>
       </div>
 
       {/* ── Kanban board ── */}

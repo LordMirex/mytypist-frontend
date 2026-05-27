@@ -227,6 +227,12 @@
   margin-bottom: 32px;
 }
 
+.lp-hero-actions a,
+.lp-hero-actions button {
+  width: 100%;
+  justify-content: center;
+}
+
 .lp-hero-trust {
   display: flex;
   flex-direction: column;

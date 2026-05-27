@@ -76,7 +76,7 @@ export function SignPage() {
       </header>
 
       {/* Stats row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 28 }}>
+      <div className="sign-stats-grid" style={{ marginBottom: 28 }}>
         {[
           { label: 'Awaiting signature', value: '3', accent: '#6C47FF', bg: 'rgba(108,71,255,0.06)' },
           { label: 'Signed this month', value: '18', accent: '#059669', bg: 'rgba(5,150,105,0.06)' },
@@ -100,7 +100,7 @@ export function SignPage() {
       </div>
 
       {/* Tabs + Search */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, gap: 16 }}>
+      <div className="sign-filter-row" style={{ marginBottom: 16 }}>
         <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--color-border)', flex: 1 }}>
           {tabs.map(tab => (
             <button
@@ -131,14 +131,14 @@ export function SignPage() {
           ))}
         </div>
 
-        <div style={{ position: 'relative', flexShrink: 0 }}>
+        <div className="sign-search-wrap">
           <Search size={14} style={{
             position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)',
             color: 'var(--color-text-tertiary)', pointerEvents: 'none',
           }} />
           <input
             className="input"
-            style={{ height: 32, paddingLeft: 32, width: 220 }}
+            style={{ height: 32, paddingLeft: 32, width: '100%' }}
             placeholder="Search documents or recipients…"
             value={search}
             onChange={e => setSearch(e.target.value)}

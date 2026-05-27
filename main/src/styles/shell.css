@@ -2042,3 +2042,114 @@
   border-color: rgba(239, 68, 68, 0.2);
   background: rgba(239, 68, 68, 0.02);
 }
+
+/* ================================================================
+   GLOBAL MOBILE FIXES  ≤ 767px
+   ================================================================ */
+@media (max-width: 767px) {
+
+  /* ── Page header: allow wrapping so buttons don't clip ── */
+  .page > header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ── Tables: horizontal scroll so columns never clip ── */
+  .vault-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vault-table {
+    min-width: 560px;
+  }
+
+  /* ── Settings: sidebar becomes a horizontal scroll row ── */
+  .settings-layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .settings-sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 4px;
+    padding-bottom: 4px;
+  }
+
+  .settings-sidebar .templates-category-item {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* ── Templates: sidebar collapses to a horizontal strip ── */
+  .templates-layout {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .templates-sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    gap: 4px;
+    padding-bottom: 4px;
+  }
+
+  .templates-sidebar .templates-category-item {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  /* ── Pipeline: kanban columns scroll horizontally ── */
+  .pipeline-container {
+    padding-bottom: 16px;
+  }
+
+  .pipeline-col {
+    width: 280px;
+  }
+
+  /* ── Sign page: stats grid 2×2 on mobile ── */
+  .sign-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ── Sign page: filter row stacks on mobile ── */
+  .sign-filter-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sign-search-wrap {
+    width: 100%;
+  }
+}
+
+/* ── Sign stats grid — base (4 cols desktop) ── */
+.sign-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* ── Sign filter row — base (side-by-side desktop) ── */
+.sign-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ── Sign search wrap ── */
+.sign-search-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 220px;
+}

@@ -3,18 +3,21 @@
    Base styles = mobile. Scale up with min-width breakpoints.
    ================================================================ */
 
-/* ── Header ── */
+/* ── Header — frosted glass, always sharp ── */
 .lp-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  height: 48px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px) saturate(200%);
+  -webkit-backdrop-filter: blur(18px) saturate(200%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
 }
 
 .lp-header-brand {
@@ -231,6 +234,24 @@
 .lp-hero-actions button {
   width: 100%;
   justify-content: center;
+}
+
+/* ── Nav link hover animation ── */
+.lp-header-nav a {
+  position: relative;
+}
+.lp-header-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+  border-radius: 2px;
 }
 
 .lp-hero-trust {
@@ -948,7 +969,17 @@
     display: flex;
   }
 
+  .lp-header-nav a:hover::after {
+    transform: scaleX(1);
+  }
+
   .lp-header-ctas { display: flex; }
+
+  /* CTA buttons: revert to auto width on tablet+ */
+  .lp-hero-actions a,
+  .lp-hero-actions button {
+    width: auto;
+  }
 
   .lp-hero-copy {
     padding: 64px 40px 56px;

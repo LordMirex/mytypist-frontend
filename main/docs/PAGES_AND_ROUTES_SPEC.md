@@ -4,27 +4,37 @@ This document provides a master map of all routes across `v1` and `v2`, identify
 
 ## 1. Route Mapping Table
 
-| Route Path | v1 Status | v2 Status | Final Recommendation | Purpose |
+| Category | Feature | v1 Route | v2 Route | Final Recommendation |
 | :--- | :--- | :--- | :--- | :--- |
-| `/` | Exists (Index) | Exists (Homepage) | Merge (v2 Layout + v1 Trust) | Landing Page |
-| `/dashboard` | Exists | Partial (user-dashboard) | Upgrade v1 with v2 Aesthetics | User main workspace |
-| `/login` | Exists | Missing | Port from v1 + v2 Theme | Authentication |
-| `/signup` | Exists | Missing | Port from v1 + v2 Theme | User Onboarding |
-| `/pricing` | Exists | Exists (pricing-upgrade) | Use v2 Page + v1 Naira prices | Monetization |
-| `/template-gallery` | (Templates) | Exists | Use v2 Gallery | Template discovery |
-| `/create-document` | Exists | (document-creator-studio) | Use v2 Studio + v1 features | Core Document creation |
-| `/profile` | Exists | Missing | Port from v1 | User account management |
-| `/settings` | Exists | Missing | Port from v1 | User preferences |
-| `/admin/*` | 6 pages exist | Missing | Port from v1 (Update UI) | Platform management |
-| `/autosign` | Exists | Missing | Port from v1 | E-Signature feature |
-| `/autotype` | Exists | Missing | Port from v1 | AI Typing feature |
-| `/bonuses` | Exists | Missing | Port from v1 | Reward system |
-| `/analytics` | Exists | Missing | Port from v1 | User performance data |
-| `/blog` | Exists | Missing | Port from v1 | Content marketing |
-| `/faq` | Exists | Missing | Port from v1 | User support |
-| `/about` | Exists | Missing | Port from v1 | Company info |
-| `/contact` | Exists | Missing | Port from v1 | Customer support |
-| `/legals` | Exists | Missing | Port from v1 | Terms & Privacy |
+| **Landing** | Home | `/` | `/` or `/homepage` | v2 Logic + Professional Design |
+| **Core App** | Dashboard | `/dashboard` | `/user-dashboard` | v2 Base + Market Features |
+| **Tools** | Document Creator | `/create-document` | `/document-creator-studio`| v2 Studio + v1 Sign/Recipients |
+| **Tools** | Gallery/Templates | `/templates` | `/template-gallery` | v1 Filtering + v2 Layout |
+| **Tools** | Template Detail | N/A | `/template-detail-pages` | v2 logic + v1 features |
+| **Tools** | AutoSign | `/autosign` | Not implemented | Port v1 logic to v2 UI |
+| **Tools** | AutoType | `/autotype` | Not implemented | Port v1 logic to v2 UI |
+| **Pricing** | Pricing/Upgrade | `/pricing` | `/pricing-upgrade` | v2 UI + v1 localized logic |
+| **Admin** | Admin Dashboard | `/admin` | Not implemented | Port v1 logic (Redesign) |
+| **Admin** | Admin Users | `/admin/users` | Not implemented | Port v1 logic (Redesign) |
+| **Admin** | Admin Health | `/admin/health` | Not implemented | Port v1 logic (Redesign) |
+| **Admin** | Admin Bonuses | `/admin/bonuses` | Not implemented | Port v1 logic (Redesign) |
+| **Admin** | Admin Preview | `/admin/preview` | Not implemented | Port v1 logic (Redesign) |
+| **Admin** | Admin Upload | `/admin/upload-template`| Not implemented | Port v1 logic (Redesign) |
+| **Auth** | Login | `/login` | Not implemented | Port v1 + v2 Theme |
+| **Auth** | Signup | `/signup` | Not implemented | Port v1 + v2 Theme |
+| **Auth** | Forgot Password | `/forgot-password` | Not implemented | Port v1 + v2 Theme |
+| **Info** | About | `/about` | Not implemented | Redesign v1 copy |
+| **Info** | Contact | `/contact` | Not implemented | Redesign v1 copy |
+| **Info** | How To Use | `/how-to-use` | Not implemented | Redesign v1 copy |
+| **Info** | Blog | `/blog` | Not implemented | Redesign v1 copy |
+| **Info** | FAQ | `/faq` | Not implemented | Redesign v1 copy |
+| **Info** | Become Partner | `/become-partner` | Not implemented | Redesign v1 copy |
+| **Info** | Legals | `/legals` | Not implemented | Redesign v1 copy |
+| **Info** | Support | `/support` | Not implemented | Redesign v1 copy |
+| **Info** | Settings | `/settings` | Not implemented | Redesign v1 copy |
+| **Info** | Bonuses | `/bonuses` | Not implemented | Redesign v1 copy |
+| **Info** | Analytics | `/analytics` | Not implemented | Redesign v1 copy |
+
 
 ## 2. Feature Completion Gap Analysis
 
@@ -47,20 +57,19 @@ This document provides a master map of all routes across `v1` and `v2`, identify
 ## 3. The "Main" Evolution Plan
 
 ### Architecture Recovery
-To build the project without v1/v2 code, the documentation must provide:
-1.  **State Logic**: How v1 handles multi-step forms and recipient arrays.
-2.  **API Integration**: How v1 uses React Query for templates and user data.
-3.  **UI Schematics**: Precise measurements for v2's 50/50 studio split and card shadows.
+... (State Logic/API Integration/UI Schematics) ...
 
-### Route Restoration Strategy
-The final `main` application will restore all 25+ routes from v1 but re-skin them entirely using the v2 Design System.
+### "Business Core" Route Restoration Strategy
+The final `main` application must restore all **25+ routes from v1** but re-skin them entirely using a **unique, professional business core UI/UX.** 
 
-**Priority 1: Core Flow**
+**Warning:** v2 currently lacks ~70% of the required public and admin pages. The next AI must not just copy v2; it must use v1 as the functional blueprint for the entire platform scope while elevating every single page to a professional business standard.
+
+**Priority 1: Core Flow (Unified Design)**
 - Homepage -> Signup -> Studio -> Download.
-**Priority 2: Management**
+**Priority 2: Management (Professional UI)**
 - Dashboard -> Profile -> Settings.
-**Priority 3: Admin & Growth**
-- Admin Suite -> Bonuses -> Analytics -> Blog.
+**Priority 3: Admin & Growth (Complete Restoration)**
+- Admin Suite -> Bonuses -> Analytics -> Blog -> Support/Legal pages.
 
 ---
 

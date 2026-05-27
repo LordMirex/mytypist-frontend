@@ -113,9 +113,18 @@ This document contains the exact text, labels, and content structure extracted f
 - **User**: Dashboard, Templates, Create Document, Profile, Bonuses.
 - **Admin**: User Management, System Health, Bonus Campaigns, Template Upload.
 
+## 5. "Business Core" Content Mandate
+All content extracted above from v1 and v2 is considered "Skeleton/Mockup Quality." The final `main` application must replace these with professional, unique business copy:
+
+### Copywriting Requirements:
+1.  **Unique Value Prop**: Move beyond "The Future of Document Automation." Focus on specific business outcomes (e.g., "Automate your Legal & HR Workflows with Enterprise-Grade Precision").
+2.  **No Generic Placeholders**: Every FAQ, Blog post, and Case Study must be high-quality and relevant to a professional audience.
+3.  **Detailed Service Descriptions**: AutoSign and AutoType must have deeply technical and benefit-driven copy that builds trust with enterprise users.
+4.  **Guided Success Content**: Every input field in the Document Studio must have "Help Text" that provides a professional example of what to enter.
+
 ---
 
-## 5. Mock Data Schemas
+## 6. Mock Data Schemas
 
 ### Templates
 - **Fields**: ID, Name, Description, Category, Industry, Formality, Length, Rating, Download Count, Tags, Features List.

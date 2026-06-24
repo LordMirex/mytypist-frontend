@@ -341,7 +341,7 @@ export function VaultPage() {
 
                   {/* Actions */}
                   <td>
-                    <div style={{ display: 'flex', gap: 2, opacity: isHovered ? 1 : 0, transition: 'opacity 100ms' }}>
+                    <div style={{ display: 'flex', gap: 2 }}>
                       {[
                         { icon: Eye, title: 'Preview' },
                         { icon: Download, title: 'Download' },

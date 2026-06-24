@@ -57,7 +57,7 @@ export function Sidebar() {
             <div className="sidebar-brand-icon">M</div>
             <div className="sidebar-brand-text">
               <span className="sidebar-brand-name">MyTypist</span>
-              <span className="sidebar-brand-sub">Document OS</span>
+              <span className="sidebar-brand-sub">Document Engine</span>
             </div>
           </div>
         )}

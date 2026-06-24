@@ -342,7 +342,7 @@ export function SettingsPage() {
                   { label: 'Signature expired', desc: 'When a signature request expires without action', on: true },
                   { label: 'Pipeline stage change', desc: 'When a document moves to the next stage', on: false },
                   { label: 'Team member invited', desc: 'When someone accepts your workspace invite', on: true },
-                  { label: 'Fidelity check failed', desc: 'When a document fails automated layout validation', on: true },
+                  { label: 'Fidelity check failed', desc: 'When a document fails the layout fidelity check before advancing', on: true },
                   { label: 'Weekly digest', desc: 'Summary of pipeline activity every Monday', on: false },
                 ].map((item, i, arr) => (
                   <div key={item.label}>

@@ -122,12 +122,12 @@ export function PipelinePage() {
       </header>
 
       {/* ── Stage flow indicator ── */}
-      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' as any, marginBottom: 24 }}>
+      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' as any, marginBottom: 24, borderRadius: 3 }}>
       <div style={{
         display: 'flex',
         alignItems: 'center',
         gap: 0,
-        minWidth: 480,
+        minWidth: 600,
         background: 'var(--color-surface)',
         border: '1px solid var(--color-border)',
         borderRadius: 3,

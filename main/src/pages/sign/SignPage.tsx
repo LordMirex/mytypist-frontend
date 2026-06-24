@@ -155,7 +155,7 @@ export function SignPage() {
               <th>Recipient</th>
               <th>Status</th>
               <th>Sent</th>
-              <th>Expires / Signed</th>
+              <th>Deadline / Status</th>
               <th style={{ width: 36 }}></th>
             </tr>
           </thead>

@@ -44,12 +44,12 @@ const statusMap: Record<UserStatus, 'complete' | 'pending' | 'draft'> = {
 }
 
 const auditLog = [
-  { id: '1', action: 'Document exported', user: 'Sarah Mitchell', target: 'Mutual NDA — Acme Corp', time: '12m ago', type: 'info' },
-  { id: '2', action: 'Signature request sent', user: 'Admin User', target: 'Board Resolution — May 2026', time: '2h ago', type: 'info' },
-  { id: '3', action: 'User invited', user: 'Admin User', target: 'Mark Johnson', time: '5h ago', type: 'info' },
-  { id: '4', action: 'Failed login attempt', user: 'Unknown', target: 'admin@mytypist.com', time: '1d ago', type: 'warn' },
-  { id: '5', action: 'Document deleted', user: 'David Chen', target: 'Draft — Untitled', time: '2d ago', type: 'info' },
-  { id: '6', action: 'API key generated', user: 'Admin User', target: 'Production key', time: '1w ago', type: 'info' },
+  { id: '1', action: 'Document exported',         user: 'Sarah Mitchell', target: 'Mutual NDA — Acme Corp',         time: '12m ago', type: 'info' },
+  { id: '2', action: 'Signature request sent',    user: 'Admin User',     target: 'Board Resolution — June 2026',  time: '2h ago',  type: 'info' },
+  { id: '3', action: 'Document advanced to Sign', user: 'Admin User',     target: 'Vendor Master Agreement',       time: '4h ago',  type: 'info' },
+  { id: '4', action: 'User invited',              user: 'Admin User',     target: 'Mark Johnson',                  time: '5h ago',  type: 'info' },
+  { id: '5', action: 'Fidelity check passed',     user: 'System',         target: 'Q4 Budget Proposal',            time: '1d ago',  type: 'info' },
+  { id: '6', action: 'Document archived',         user: 'Sarah Mitchell', target: 'Employment Agreement — J. Doe', time: '2d ago',  type: 'info' },
 ]
 
 const navSections = [
@@ -133,7 +133,7 @@ export function AdminPage() {
                   { label: 'Total users', value: '6', icon: Users, color: '#6C47FF', bg: 'rgba(108,71,255,0.06)' },
                   { label: 'Docs generated', value: '4,218', icon: TrendingUp, color: '#059669', bg: 'rgba(5,150,105,0.06)' },
                   { label: 'Pending invites', value: '1', icon: Clock, color: '#D97706', bg: 'rgba(217,119,6,0.06)' },
-                  { label: 'Security alerts', value: '1', icon: AlertTriangle, color: '#DC2626', bg: 'rgba(220,38,38,0.06)' },
+                  { label: 'Security alerts', value: '0', icon: AlertTriangle, color: '#059669', bg: 'rgba(5,150,105,0.06)' },
                 ].map(stat => (
                   <div key={stat.label} style={{
                     background: stat.bg,
@@ -401,20 +401,18 @@ export function AdminPage() {
                 </table>
               </div>
 
-              {auditLog.some(e => e.type === 'warn') && (
-                <div style={{
-                  display: 'flex', alignItems: 'center', gap: 10,
-                  padding: '12px 16px',
-                  background: 'rgba(220,38,38,0.04)',
-                  border: '1px solid rgba(220,38,38,0.2)',
-                  borderRadius: 6,
-                }}>
-                  <AlertTriangle size={14} color="var(--color-status-failed)" style={{ flexShrink: 0 }} />
-                  <p style={{ margin: 0, fontSize: 13, color: 'var(--color-status-failed)' }}>
-                    <strong>1 security alert</strong> detected in the last 24 hours. Review failed login attempts above.
-                  </p>
-                </div>
-              )}
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '12px 16px',
+                background: 'rgba(5,150,105,0.04)',
+                border: '1px solid rgba(5,150,105,0.15)',
+                borderRadius: 6,
+              }}>
+                <CheckCircle size={14} color="var(--color-status-complete)" style={{ flexShrink: 0 }} />
+                <p style={{ margin: 0, fontSize: 13, color: 'var(--color-status-complete)' }}>
+                  No security alerts in the last 30 days. Audit log is complete and tamper-evident.
+                </p>
+              </div>
             </div>
           )}
 

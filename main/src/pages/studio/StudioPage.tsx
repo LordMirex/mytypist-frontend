@@ -24,16 +24,16 @@ const blocks = [
   { id: 'b2', type: 'title',     label: 'Document Title',   icon: Type,      depth: 0, active: false },
   { id: 'b3', type: 'meta',      label: 'Reference / Date', icon: Minus,     depth: 1, active: false },
   { id: 'b4', type: 'paragraph', label: 'Opening Para',     icon: AlignLeft, depth: 0, active: false },
-  { id: 'b5', type: 'paragraph', label: 'Body — Details',   icon: AlignLeft, depth: 0, active: true  },
+  { id: 'b5', type: 'paragraph', label: 'Terms — Details',  icon: AlignLeft, depth: 0, active: true  },
   { id: 'b6', type: 'paragraph', label: 'Closing Para',     icon: AlignLeft, depth: 0, active: false },
   { id: 'b7', type: 'divider',   label: 'Rule',             icon: Minus,     depth: 0, active: false },
   { id: 'b8', type: 'signature', label: 'Signature Block',  icon: PenSquare, depth: 0, active: false },
 ]
 
 const selectedPlaceholder = {
-  name: 'Student Name',
+  name: 'Employee Name',
   type: 'Text',
-  value: 'John Adeyemi Okafor',
+  value: 'Sarah Mitchell',
   pattern: '',
   required: true,
   maxLength: 120,
@@ -53,7 +53,7 @@ export function StudioPage() {
           <div className="toolbar-breadcrumb" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', minWidth: 0 }}>
             <span className="studio-breadcrumb-prefix">Documents</span>
             <ChevronRight size={12} style={{ display: 'inline', verticalAlign: 'middle', margin: '0 2px' }} />
-            <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Acceptance Letter</strong>
+            <strong style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>Employment Agreement</strong>
           </div>
           <Badge status="draft" label="Draft" />
         </div>
@@ -78,7 +78,7 @@ export function StudioPage() {
           </Button>
           <Button variant="primary" size="sm">
             <PenSquare size={14} />
-            <span className="studio-toolbar-label">Sign</span>
+            <span className="studio-toolbar-label">Send for signing</span>
           </Button>
         </div>
       </div>
@@ -123,7 +123,7 @@ export function StudioPage() {
             borderTop: '1px solid var(--color-border)',
             display: 'flex', gap: 16,
           }}>
-            {[['Blocks', '8'], ['Fields', '6'], ['Pages', '2']].map(([label, val]) => (
+            {[['Blocks', '8'], ['Fields', '7'], ['Pages', '3']].map(([label, val]) => (
               <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <span style={{ fontSize: 16, fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1, fontFamily: 'var(--font-mono)' }}>{val}</span>
                 <span style={{ fontSize: 9.5, color: 'var(--color-text-quaternary)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</span>
@@ -141,58 +141,62 @@ export function StudioPage() {
               <div>
                 <div style={{ width: 3, height: 32, background: 'var(--color-accent)', borderRadius: 2, marginBottom: 8 }} />
                 <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.5px', color: 'var(--color-text-primary)', fontFamily: "'Instrument Serif', serif" }}>
-                  University of Lagos
+                  Meridian Group Ltd.
                 </div>
-                <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>Academic Affairs Division</div>
+                <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>Human Resources · Employment Division</div>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: 11, color: 'var(--color-text-quaternary)', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>REF · 2026/ACC/0047</div>
-                <div style={{ fontSize: 11, color: 'var(--color-text-quaternary)', fontFamily: 'var(--font-mono)', marginTop: 3 }}>27 May 2026 · CONFIDENTIAL</div>
+                <div style={{ fontSize: 11, color: 'var(--color-text-quaternary)', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>REF · HR/2026/00183</div>
+                <div style={{ fontSize: 11, color: 'var(--color-text-quaternary)', fontFamily: 'var(--font-mono)', marginTop: 3 }}>June 24, 2026 · CONFIDENTIAL</div>
               </div>
             </div>
 
             {/* Document title */}
             <div style={{ marginBottom: 28 }}>
               <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.6px', textTransform: 'uppercase', color: 'var(--color-text-tertiary)', marginBottom: 8 }}>
-                LETTER OF ADMISSION
+                Employment Contract
               </div>
               <h1 style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.6px', color: 'var(--color-text-primary)', fontFamily: "'Instrument Serif', serif", lineHeight: 1.15 }}>
-                Acceptance Letter
+                Employment Agreement
               </h1>
             </div>
 
             {/* Body */}
             <div style={{ fontSize: 15, lineHeight: 1.75, color: 'var(--color-text-primary)', display: 'flex', flexDirection: 'column', gap: 16 }}>
               <p>
-                Dear <span className="doc-placeholder doc-placeholder--filled">Student Name</span>,
+                This Employment Agreement ("Agreement") is entered into as of{' '}
+                <span className="doc-placeholder doc-placeholder--filled">Start Date</span>{' '}
+                between Meridian Group Ltd. ("Employer") and{' '}
+                <span className="doc-placeholder doc-placeholder--filled">Employee Name</span>{' '}
+                ("Employee").
               </p>
               <p>
-                We are pleased to inform you that your application to the{' '}
-                <span className="doc-placeholder doc-placeholder--filled">Department</span>{' '}
-                programme at the University of Lagos has been reviewed and formally accepted for
-                the <span className="doc-placeholder doc-placeholder--filled">Academic Year</span> session.
+                The Employee is engaged in the role of{' '}
+                <span className="doc-placeholder doc-placeholder--selected">Job Title</span>{' '}
+                within the <span className="doc-placeholder doc-placeholder--filled">Department</span> team,
+                reporting to the <span className="doc-placeholder">Reporting Manager</span>.
+                This is a <span className="doc-placeholder doc-placeholder--filled">Employment Type</span> position
+                based at <span className="doc-placeholder">Work Location</span>.
               </p>
               <p>
-                Your student identification number is{' '}
-                <span className="doc-placeholder doc-placeholder--selected">Student ID</span>.
-                Please report to the Academic Affairs office no later than{' '}
-                <span className="doc-placeholder">Deadline Date</span>{' '}
-                to complete registration formalities.
+                Compensation is set at{' '}
+                <span className="doc-placeholder">Annual Salary</span>{' '}
+                per annum, payable monthly in arrears. The Employee's probation period is{' '}
+                <span className="doc-placeholder doc-placeholder--filled">Probation Period</span>{' '}
+                from the commencement date. Either party may terminate this agreement during the probation period
+                with <span className="doc-placeholder">Notice Period</span> written notice.
               </p>
-              <p>
-                This offer is conditional upon the verification of all submitted credentials. Your
-                acceptance is subject to the payment of the <span className="doc-placeholder">Tuition Amount</span>{' '}
-                acceptance fee by <span className="doc-placeholder">Payment Deadline</span>.
-              </p>
-              <p style={{ marginTop: 8, color: 'var(--color-text-secondary)' }}>
-                Congratulations and welcome to the University of Lagos community.
+              <p style={{ color: 'var(--color-text-secondary)' }}>
+                This Agreement, together with any annexed schedules, constitutes the entire agreement between the
+                parties and supersedes all prior representations and understandings. Any amendments must be made
+                in writing and signed by both parties.
               </p>
 
               {/* Signature block */}
               <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
                 {[
-                  { label: 'Authorized Signatory', name: 'Prof. A.O. Animashaun', title: 'Dean, Academic Affairs' },
-                  { label: 'Date of Issue', name: '27 May 2026', title: '' },
+                  { label: 'For and on behalf of Employer', name: 'Director, Human Resources', title: 'Meridian Group Ltd.' },
+                  { label: 'Employee Signature', name: 'Sarah Mitchell', title: 'Awaiting signature' },
                 ].map((sig) => (
                   <div key={sig.label}>
                     <div style={{ height: 36, borderBottom: '1px solid var(--color-border)', marginBottom: 8 }} />
@@ -212,7 +216,7 @@ export function StudioPage() {
                 display: 'flex', alignItems: 'center', gap: 8,
               }}>
                 <FileText size={12} />
-                <span>Official seal and stamp — applied on final export</span>
+                <span>Company seal applied on final export · Page 1 of 3</span>
               </div>
             </div>
           </div>
@@ -275,12 +279,12 @@ export function StudioPage() {
 
             <div className="inspector-field">
               <div className="inspector-field-label">Document Name</div>
-              <input className="input" style={{ height: 28, fontSize: 12 }} defaultValue="Acceptance Letter" />
+              <input className="input" style={{ height: 28, fontSize: 12 }} defaultValue="Employment Agreement" />
             </div>
             <div className="inspector-field">
               <div className="inspector-field-label">Document Type</div>
               <select className="input" style={{ width: '100%', height: 28, fontSize: 12 }}>
-                <option>Academic Letter</option><option>Contract</option>
+                <option>HR Contract</option><option>Legal Agreement</option>
                 <option>Invoice</option><option>Proposal</option>
               </select>
             </div>
@@ -288,7 +292,7 @@ export function StudioPage() {
             <div className="inspector-divider" />
 
             <div style={{ display: 'flex', gap: 12, marginTop: 4 }}>
-              {[['6', 'Fields'], ['2', 'Filled'], ['4', 'Pending']].map(([n, l]) => (
+              {[['7', 'Fields'], ['4', 'Filled'], ['3', 'Pending']].map(([n, l]) => (
                 <div key={l} style={{ flex: 1, padding: '8px 0', textAlign: 'center', background: 'var(--color-bg)', borderRadius: 3, border: '1px solid var(--color-border)' }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-primary)', fontFamily: 'var(--font-mono)' }}>{n}</div>
                   <div style={{ fontSize: 9, color: 'var(--color-text-quaternary)', textTransform: 'uppercase', letterSpacing: '0.4px', marginTop: 2 }}>{l}</div>

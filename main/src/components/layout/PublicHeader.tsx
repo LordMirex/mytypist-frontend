@@ -31,8 +31,19 @@ export function PublicHeader() {
     <>
       <header className="lp-header">
         <Link to="/" className="lp-header-brand">
-          <div className="lp-header-logo">M</div>
-          <span className="lp-header-name">MyTypist</span>
+          <div className="lp-header-logo">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="2" y="1" width="9" height="11" rx="1.5" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.4)" strokeWidth="0.75"/>
+              <rect x="4" y="3.5" width="5" height="1" rx="0.5" fill="white"/>
+              <rect x="4" y="5.5" width="4" height="1" rx="0.5" fill="rgba(255,255,255,0.6)"/>
+              <rect x="4" y="7.5" width="3" height="1" rx="0.5" fill="rgba(255,255,255,0.4)"/>
+              <rect x="10" y="8" width="4" height="6" rx="1" fill="white" fillOpacity="0.95"/>
+              <rect x="11.5" y="9.5" width="1" height="3" rx="0.5" fill="#6C47FF"/>
+            </svg>
+          </div>
+          <span className="lp-header-name">
+            <span className="lp-header-name-my">My</span><span className="lp-header-name-typist">Typist</span>
+          </span>
         </Link>
 
         <nav className="lp-header-nav">

@@ -60,25 +60,37 @@
 }
 
 .lp-header-logo {
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(135deg, #6C47FF 0%, #9B72FF 100%);
-  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(145deg, #6C47FF 0%, #9B72FF 100%);
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-weight: 800;
-  font-size: 12px;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(108,71,255,0.35);
+  box-shadow: 0 2px 8px rgba(108,71,255,0.4), 0 0 0 1px rgba(108,71,255,0.2);
 }
 
 .lp-header-name {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.4px;
   color: var(--color-text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.lp-header-name-my {
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  letter-spacing: -0.2px;
+}
+
+.lp-header-name-typist {
+  font-weight: 800;
+  color: var(--color-text-primary);
+  letter-spacing: -0.5px;
 }
 
 /* Desktop nav — hidden on mobile */
@@ -226,10 +238,47 @@
   padding: 52px 20px 44px;
   background-color: var(--color-bg);
   background-image:
-    radial-gradient(ellipse 80% 50% at 20% 60%, rgba(108,71,255,0.05) 0%, transparent 60%),
-    radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0);
-  background-size: 100% 100%, 20px 20px;
+    radial-gradient(ellipse 90% 60% at 10% 80%, rgba(108,71,255,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(168,127,255,0.07) 0%, transparent 50%),
+    radial-gradient(circle at 1px 1px, rgba(108,71,255,0.055) 1px, transparent 0);
+  background-size: 100% 100%, 100% 100%, 22px 22px;
+  position: relative;
   order: 1;
+}
+
+/* Decorative blurred orbs behind hero content */
+.lp-hero-copy::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -80px;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,71,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+.lp-hero-copy::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,127,255,0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(32px);
+}
+
+/* Make all direct children sit above the pseudo-elements */
+.lp-hero-copy > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Eyebrow — pill badge */
@@ -299,8 +348,18 @@
 /* Trust chips */
 .lp-hero-trust {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  margin-bottom: -4px;
+}
+
+.lp-hero-trust::-webkit-scrollbar {
+  display: none;
 }
 
 .lp-hero-trust-item {
@@ -314,7 +373,8 @@
   border: 1px solid var(--color-border);
   padding: 5px 11px;
   border-radius: var(--radius-full);
-  width: fit-content;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .lp-hero-trust-check {

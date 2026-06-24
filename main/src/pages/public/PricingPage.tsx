@@ -23,7 +23,7 @@ const plans = {
       '14-day full-access trial · no card required',
     ],
     cta: 'Start 14-day trial',
-    ctaTo: '/studio',
+    ctaTo: '/auth',
     variant: 'secondary' as const,
   },
   enterprise: {
@@ -418,7 +418,7 @@ export function PricingPage() {
           <h2 className="lp-cta-headline">Start your free 14-day trial today.</h2>
           <p className="lp-cta-sub">No card required. Full feature access. Cancel anytime.</p>
           <div className="lp-cta-actions">
-            <Link to="/studio">
+            <Link to="/auth">
               <button className="btn btn--primary" style={{ height: 46, padding: '0 28px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
                 Start free trial
                 <ArrowRight size={15} />

@@ -440,10 +440,10 @@ export function AdminPage() {
                     <span style={{ fontSize: 13, color: 'var(--color-text-secondary)' }}>Active plan</span>
                   </div>
                   <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.4px' }}>
-                    $299 / month
+                    $149 / month
                   </div>
                   <div style={{ fontSize: 13, color: 'var(--color-text-secondary)', marginTop: 4 }}>
-                    Next billing: June 1, 2026 · 6 seats included
+                    Next billing: July 1, 2026 · Unlimited seats
                   </div>
                 </div>
                 <Button variant="secondary" size="sm">

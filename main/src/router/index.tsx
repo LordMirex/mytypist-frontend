@@ -15,6 +15,8 @@ import { PricingPage }          from '@/pages/public/PricingPage'
 import { PublicTemplatesPage }  from '@/pages/public/PublicTemplatesPage'
 import { AboutPage }            from '@/pages/public/AboutPage'
 import { SupportPage }          from '@/pages/public/SupportPage'
+import { TermsPage }            from '@/pages/public/TermsPage'
+import { PrivacyPage }          from '@/pages/public/PrivacyPage'
 import { NotFoundPage }         from '@/pages/public/NotFoundPage'
 
 export const router = createBrowserRouter([
@@ -25,19 +27,8 @@ export const router = createBrowserRouter([
   { path: '/templates', element: <PublicTemplatesPage /> },
   { path: '/about',     element: <AboutPage /> },
   { path: '/support',   element: <SupportPage /> },
-
-  /* Stub routes — render 404 with helpful context */
-  { path: '/blog',      element: <NotFoundPage /> },
-  { path: '/careers',   element: <NotFoundPage /> },
-  { path: '/partner',   element: <NotFoundPage /> },
-  { path: '/press',     element: <NotFoundPage /> },
-  { path: '/terms',     element: <NotFoundPage /> },
-  { path: '/privacy',   element: <NotFoundPage /> },
-  { path: '/cookies',   element: <NotFoundPage /> },
-  { path: '/security',  element: <NotFoundPage /> },
-  { path: '/api',       element: <NotFoundPage /> },
-  { path: '/status',    element: <NotFoundPage /> },
-  { path: '/changelog', element: <NotFoundPage /> },
+  { path: '/terms',     element: <TermsPage /> },
+  { path: '/privacy',   element: <PrivacyPage /> },
 
   /* ── App Shell ── */
   {

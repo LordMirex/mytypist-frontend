@@ -247,7 +247,7 @@ export function PublicTemplatesPage() {
             Or build your own in Studio — it takes under 10 minutes.
           </p>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/studio">
+            <Link to="/auth">
               <button className="btn btn--primary" style={{ height: 42, padding: '0 22px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
                 Build in Studio
                 <ArrowRight size={14} />

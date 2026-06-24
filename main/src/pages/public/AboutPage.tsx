@@ -188,7 +188,7 @@ export function AboutPage() {
             14-day full-feature trial. No card. No usage limits.
           </p>
           <div className="lp-cta-actions">
-            <Link to="/studio">
+            <Link to="/auth">
               <button className="btn btn--primary" style={{ height: 46, padding: '0 28px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
                 Start free trial
                 <ArrowRight size={15} />

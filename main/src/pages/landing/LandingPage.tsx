@@ -110,7 +110,7 @@ const stats = [
 
 const pipeline = [
   { num: '01', name: 'Draft', desc: 'Block editor with live PDF preview. What you build is exactly what prints — guaranteed.', state: 'done' },
-  { num: '02', name: 'Fidelity Check', desc: 'Automated validation catches margin breaks, overflow, and field errors before anyone sees the document.', state: 'active' },
+  { num: '02', name: 'Fidelity Check', desc: 'The system validates margins, overflow, and field errors before any reviewer sees the document. Nothing advances with unresolved errors.', state: 'active' },
   { num: '03', name: 'Approval', desc: 'Route to reviewers with role-gated access. No email threads. No PDF attachments in inboxes.', state: '' },
   { num: '04', name: 'Sign', desc: 'Recipients sign without creating an account. Sequential and parallel flows. Cryptographically timestamped.', state: '' },
   { num: '05', name: 'Archive', desc: 'Permanent, versioned, full-text searchable. Complete diff history. Tamper-evident audit log on every event.', state: '' },
@@ -118,7 +118,7 @@ const pipeline = [
 
 const features = [
   { num: '01', name: 'Creator Studio', desc: 'Structured field input left. Pixel-perfect live preview center. Field inspector right. No layout surprises at print time, ever.', tag: 'Figma-level structure · zero formatting drift' },
-  { num: '02', name: 'Automated Pipeline', desc: 'Draft → Fidelity → Approve → Sign → Archive. Stage transitions require clearance. Nothing moves with unresolved errors.', tag: 'Linear-style workflow · applied to documents' },
+  { num: '02', name: 'Document Pipeline', desc: 'Draft → Fidelity → Approval → Sign → Archive. Every stage requires explicit clearance. Nothing skips. Nothing gets lost.', tag: 'Five-stage workflow · built for documents' },
   { num: '03', name: 'Binding E-Signatures', desc: 'Recipients sign from a secure link — no account, no friction. Sequential and parallel flows. Every event cryptographically sealed.', tag: 'No forced recipient accounts · full chain of custody' },
   { num: '04', name: 'Versioned Vault', desc: 'Every save creates a version. Compare any two states side by side. Full-text search across all field values. 100+ templates.', tag: 'Git-style versioning · full-text indexed' },
   { num: '05', name: 'Operations Console', desc: 'Pipeline throughput, fidelity pass rates, team capacity, role assignments, and compliance audit logs in a single view.', tag: 'Operational intelligence · not analytics theater' },
@@ -185,15 +185,17 @@ export function LandingPage() {
             Formatting guarantees. Binding signatures with no per-transaction fees. Full audit trail.
           </p>
           <div className="lp-hero-actions">
-            <Link to="/studio" style={{ textDecoration: 'none' }}>
+            <Link to="/auth" style={{ textDecoration: 'none' }}>
               <button className="btn btn--primary" style={{ height: 44, padding: '0 24px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
                 Start free — 14 days
                 <ArrowRight size={14} />
               </button>
             </Link>
-            <button className="btn btn--secondary" style={{ height: 44, padding: '0 24px', fontSize: 14 }}>
-              Request a demo
-            </button>
+            <Link to="/support" style={{ textDecoration: 'none' }}>
+              <button className="btn btn--secondary" style={{ height: 44, padding: '0 24px', fontSize: 14 }}>
+                Request a demo
+              </button>
+            </Link>
           </div>
           <div className="lp-hero-trust">
             {trustItems.map(item => (
@@ -301,7 +303,7 @@ export function LandingPage() {
               </div>
               <div className="lp-plan-local">≈ ₦75,000 / month · billed monthly</div>
               <div className="lp-plan-cta">
-                <Link to="/studio" style={{ textDecoration: 'none', display: 'block' }}>
+                <Link to="/auth" style={{ textDecoration: 'none', display: 'block' }}>
                   <button className="btn btn--secondary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 500 }}>Start 14-day trial</button>
                 </Link>
               </div>
@@ -353,7 +355,7 @@ export function LandingPage() {
           <h2 className="lp-cta-headline lp-reveal">Your pipeline is already broken.<br />Fix it in 14 days.</h2>
           <p className="lp-cta-sub lp-reveal">Full feature access. No card required. No usage limits during trial.</p>
           <div className="lp-cta-actions lp-reveal">
-            <Link to="/studio" style={{ textDecoration: 'none' }}>
+            <Link to="/auth" style={{ textDecoration: 'none' }}>
               <button className="btn btn--primary" style={{ height: 46, padding: '0 28px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
                 Start free trial
                 <ArrowRight size={15} />

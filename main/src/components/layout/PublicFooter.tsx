@@ -4,40 +4,23 @@ const footerCols = [
   {
     heading: 'Product',
     links: [
-      { label: 'Studio',     to: '/studio'          },
-      { label: 'Templates',  to: '/templates'        },
-      { label: 'Pipeline',   to: '/studio/pipeline'  },
-      { label: 'Signatures', to: '/studio/sign'      },
-      { label: 'Vault',      to: '/studio/vault'     },
-      { label: 'Pricing',    to: '/pricing'          },
+      { label: 'Studio',     to: '/studio'    },
+      { label: 'Templates',  to: '/templates' },
+      { label: 'Pricing',    to: '/pricing'   },
     ],
   },
   {
     heading: 'Company',
     links: [
-      { label: 'About',            to: '/about'   },
-      { label: 'Blog',             to: '/blog'    },
-      { label: 'Careers',          to: '/careers' },
-      { label: 'Become a Partner', to: '/partner' },
-      { label: 'Press',            to: '/press'   },
+      { label: 'About',   to: '/about'   },
+      { label: 'Support', to: '/support' },
     ],
   },
   {
     heading: 'Legal',
     links: [
-      { label: 'Terms of Service', to: '/terms'    },
-      { label: 'Privacy Policy',   to: '/privacy'  },
-      { label: 'Cookie Policy',    to: '/cookies'  },
-      { label: 'Security',         to: '/security' },
-    ],
-  },
-  {
-    heading: 'Developers',
-    links: [
-      { label: 'API Reference', to: '/api'       },
-      { label: 'Webhooks',      to: '/api#hooks' },
-      { label: 'Status Page',   to: '/status'    },
-      { label: 'Changelog',     to: '/changelog' },
+      { label: 'Terms of Service', to: '/terms'   },
+      { label: 'Privacy Policy',   to: '/privacy' },
     ],
   },
 ]

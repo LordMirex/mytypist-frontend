@@ -823,6 +823,7 @@
 
 .command-palette {
   width: 540px;
+  max-width: calc(100vw - 32px);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -2112,15 +2113,37 @@
   background: rgba(239, 68, 68, 0.02);
 }
 
+/* ── Admin stats grid: 4-col desktop → 2-col mobile ── */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
 /* ================================================================
    GLOBAL MOBILE FIXES  ≤ 767px
    ================================================================ */
 @media (max-width: 767px) {
 
+  /* ── shell-main: reduce side padding on small screens ── */
+  .shell-main {
+    padding: 16px;
+  }
+
+  /* ── Studio: re-sync negative margin to match new shell-main padding ── */
+  .studio {
+    margin: -16px;
+  }
+
   /* ── Page header: allow wrapping so buttons don't clip ── */
   .page > header {
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  /* ── Admin stats: 2×2 grid on mobile ── */
+  .admin-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /* ── Tables: horizontal scroll so columns never clip ── */

@@ -128,7 +128,7 @@ export function AdminPage() {
           {activeSection === 'overview' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               {/* Stats grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+              <div className="admin-stats-grid">
                 {[
                   { label: 'Total users', value: '6', icon: Users, color: '#6C47FF', bg: 'rgba(108,71,255,0.06)' },
                   { label: 'Docs generated', value: '4,218', icon: TrendingUp, color: '#059669', bg: 'rgba(5,150,105,0.06)' },

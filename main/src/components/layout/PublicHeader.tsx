@@ -3,19 +3,26 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 const navItems = [
-  { label: 'Product',    to: '/#product',    external: false },
-  { label: 'Pricing',    to: '/pricing',     external: false },
-  { label: 'Templates',  to: '/templates',   external: false },
-  { label: 'Enterprise', to: '/#enterprise', external: false },
-  { label: 'Support',    to: '/support',     external: false },
+  { label: 'Product',    to: '/#product',    anchor: true  },
+  { label: 'Pricing',    to: '/pricing',     anchor: false },
+  { label: 'Templates',  to: '/templates',   anchor: false },
+  { label: 'Enterprise', to: '/#enterprise', anchor: true  },
+  { label: 'Support',    to: '/support',     anchor: false },
 ]
 
 export function PublicHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
 
-  function NavItem({ label, to }: { label: string; to: string }) {
-    if (to.startsWith('/#')) {
-      return <a href={to} onClick={() => setMenuOpen(false)}>{label}</a>
+  function NavItem({ label, to, anchor }: { label: string; to: string; anchor: boolean }) {
+    if (anchor) {
+      return (
+        <a
+          href={to}
+          onClick={() => setMenuOpen(false)}
+        >
+          {label}
+        </a>
+      )
     }
     return <Link to={to} onClick={() => setMenuOpen(false)}>{label}</Link>
   }
@@ -30,7 +37,7 @@ export function PublicHeader() {
 
         <nav className="lp-header-nav">
           {navItems.map(item => (
-            <NavItem key={item.label} label={item.label} to={item.to} />
+            <NavItem key={item.label} label={item.label} to={item.to} anchor={item.anchor} />
           ))}
         </nav>
 
@@ -43,10 +50,8 @@ export function PublicHeader() {
           </Link>
         </div>
 
+        {/* Mobile: hamburger only — no duplicate sign-in */}
         <div className="lp-header-right">
-          <Link to="/auth">
-            <button className="btn btn--ghost btn--sm" style={{ fontSize: 12 }}>Sign in</button>
-          </Link>
           <button
             className={`lp-hamburger${menuOpen ? ' lp-hamburger--open' : ''}`}
             onClick={() => setMenuOpen(v => !v)}
@@ -63,7 +68,7 @@ export function PublicHeader() {
         <nav className="lp-mobile-nav">
           <div className="lp-mobile-nav-links">
             {navItems.map(item => (
-              item.to.startsWith('/#')
+              item.anchor
                 ? <a key={item.label} href={item.to} className="lp-mobile-nav-link" onClick={() => setMenuOpen(false)}>{item.label}</a>
                 : <Link key={item.label} to={item.to} className="lp-mobile-nav-link" onClick={() => setMenuOpen(false)}>{item.label}</Link>
             ))}

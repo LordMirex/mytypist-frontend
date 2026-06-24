@@ -30,7 +30,7 @@ function DocMockup() {
           <div className="lp-mockup-dot" style={{ background: '#febc2e' }} />
           <div className="lp-mockup-dot" style={{ background: '#28c840' }} />
         </div>
-        <span className="lp-mockup-chrome-label">MyTypist · Studio — Acceptance Letter</span>
+        <span className="lp-mockup-chrome-label">MyTypist · Studio — Employment Agreement</span>
       </div>
       <div className="lp-mockup-body">
         <div className="lp-mockup-sidebar">
@@ -45,34 +45,34 @@ function DocMockup() {
                 <div style={{ width: 3, height: 18, background: 'var(--color-accent)', borderRadius: 2 }} />
                 <div style={{ width: 52, height: 6, borderRadius: 1, background: '#1a1a17' }} />
               </div>
-              <div className="lp-mockup-doc-title">Acceptance Letter</div>
-              <div className="lp-mockup-doc-meta">REF · 2026/ACC/001 · CONFIDENTIAL</div>
+              <div className="lp-mockup-doc-title">Employment Agreement</div>
+              <div className="lp-mockup-doc-meta">REF · HR/2026/00183 · CONFIDENTIAL</div>
             </div>
             <div className="lp-mockup-doc-body">
               <div className="lp-mockup-doc-line">
-                Dear <span className="lp-mockup-field lp-mockup-field--filled">Student Name</span>,
+                This Agreement is entered into between <span className="lp-mockup-field lp-mockup-field--filled">Employer</span>
               </div>
               <div className="lp-mockup-doc-line">
-                Application to <span className="lp-mockup-field">Department</span> at <span className="lp-mockup-field">Institution</span> has been accepted.
+                and <span className="lp-mockup-field lp-mockup-field--filled">Employee Name</span>, role: <span className="lp-mockup-field">Job Title</span>
               </div>
               <div className="lp-mockup-doc-line">
-                Student ID: <span className="lp-mockup-field">Student ID</span> · Start: <span className="lp-mockup-field">Start Date</span>
+                Start: <span className="lp-mockup-field">Start Date</span> · Salary: <span className="lp-mockup-field">Annual Salary</span>
               </div>
               <div className="lp-mockup-sig-block">
                 <div className="lp-mockup-sig-line">
                   <div style={{ height: 14 }} />
                   <div className="lp-mockup-sig-rule" />
-                  <div className="lp-mockup-sig-label">Authorized Officer</div>
+                  <div className="lp-mockup-sig-label">Director, HR</div>
                 </div>
                 <div className="lp-mockup-sig-line">
                   <div style={{ height: 14 }} />
                   <div className="lp-mockup-sig-rule" />
-                  <div className="lp-mockup-sig-label">Date</div>
+                  <div className="lp-mockup-sig-label">Employee</div>
                 </div>
               </div>
               <div className="lp-mockup-inspector">
-                <div className="lp-mockup-inspector-label">Inspector · Student Name</div>
-                {[['Value', 'John Adeyemi Okafor'], ['Type', 'Text · Required'], ['Status', '✓ Filled']].map(([k, v]) => (
+                <div className="lp-mockup-inspector-label">Inspector · Employee Name</div>
+                {[['Value', 'Sarah Mitchell'], ['Type', 'Text · Required'], ['Status', '✓ Filled']].map(([k, v]) => (
                   <div key={k} className="lp-mockup-inspector-row">
                     <span style={{ color: '#9e9e94' }}>{k}</span>
                     <span style={{ color: k === 'Status' ? '#059669' : '#3a3a35' }}>{v}</span>

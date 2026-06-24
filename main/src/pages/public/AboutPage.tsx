@@ -27,8 +27,8 @@ const principles = [
 ]
 
 const timeline = [
-  { year: '2023', event: 'Founded in Lagos after watching an academic institution lose three months of letters to formatting errors and lost email attachments.' },
-  { year: '2024 Q1', event: 'First production version: a two-stage draft-and-sign tool used internally by partner institutions.' },
+  { year: '2023', event: 'Founded after watching an HR team lose six weeks of onboarding contracts to formatting errors, broken email chains, and a shared drive that nobody fully trusted.' },
+  { year: '2024 Q1', event: 'First production version: a two-stage draft-and-sign tool used internally by three enterprise beta customers.' },
   { year: '2024 Q3', event: 'Expanded to full 5-stage pipeline. First external enterprise customers onboarded. SOC 2 audit initiated.' },
   { year: '2025', event: 'SOC 2 Type II certified. 100+ templates library. Vault and versioned document archive launched.' },
   { year: '2026', event: 'Parallel signature flows, REST API, on-premise deployment option, and full GDPR compliance.' },
@@ -69,14 +69,14 @@ export function AboutPage() {
           <div>
             <div className="lp-section-eyebrow">Why we built this</div>
             <h2 style={{ fontSize: 'clamp(22px, 4vw, 30px)', fontWeight: 800, letterSpacing: -0.8, color: 'var(--color-text-primary)', lineHeight: 1.2, marginTop: 10, marginBottom: 20 }}>
-              We watched a university lose three months of student letters to a formatting error.
+              We watched an HR team lose six weeks of onboarding contracts to a formatting error.
             </h2>
           </div>
           {[
-            'A student acceptance letter, printed at scale, had the wrong margin applied to the letterhead. 800 letters reprinted. Three staff members on overtime. No audit trail. No way to know which letters had gone out wrong.',
+            'An employment contract batch had the wrong clause applied to the compensation section. Forty contracts reprinted, re-reviewed, re-sent. No audit trail. No version history. No way to know which copies had already reached candidates.',
             'The tools weren\'t wrong — Word is fine for writing. Email is fine for communication. But none of them were designed to be infrastructure. Stringing them together creates invisible failure points. When something breaks, nobody knows where, when, or by how much.',
             'MyTypist is what we wished existed then. A system that treats document creation the same way engineering teams treat code — with structure, validation, versioning, and an explicit pipeline from first input to final archived record.',
-            'We\'re based in Lagos and building for every organization that creates documents under operational pressure — universities, law firms, HR teams, financial institutions. The ones who can\'t afford formatting errors. The ones who need every signature to be traceable.',
+            'We build for every organization that creates documents under operational pressure — law firms, HR teams, financial institutions, operations teams. The ones who can\'t afford formatting errors. The ones who need every signature to be traceable.',
           ].map((para, i) => (
             <p key={i} style={{ fontSize: 15, lineHeight: 1.78, color: 'var(--color-text-secondary)' }}>{para}</p>
           ))}

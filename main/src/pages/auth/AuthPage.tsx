@@ -1,12 +1,30 @@
 import { useState } from 'react'
-import { Mail, Lock, ArrowRight, Eye, EyeOff, CheckCircle2, FileText, GitBranch, Archive } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import {
+  Mail, Lock, ArrowRight, Eye, EyeOff,
+  Check, Shield, Zap, GitBranch,
+} from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
-const brandFeatures = [
-  { icon: FileText,  text: 'Draft with pixel-perfect layout guarantees' },
-  { icon: GitBranch, text: 'Route, approve, and sign in one pipeline' },
-  { icon: Archive,   text: 'Archive with full tamper-evident audit trail' },
+const pipeline = [
+  { label: 'Draft',    done: true  },
+  { label: 'Fidelity', done: true  },
+  { label: 'Approve',  done: true  },
+  { label: 'Sign',     active: true },
+  { label: 'Archive',  done: false },
 ]
+
+const metrics = [
+  { value: '< 90s', label: 'Template → signed PDF' },
+  { value: '12k+',  label: 'Documents / month'     },
+  { value: '$0',    label: 'Per-transaction fee'   },
+]
+
+const testimonial = {
+  quote: '"We replaced Word, DocuSign, and SharePoint with one tool. The audit trail alone saved us an external audit last quarter."',
+  author: 'Director of Operations',
+  org: 'West African University Consortium',
+}
 
 export function AuthPage() {
   const [mode, setMode]               = useState<'signin' | 'signup'>('signin')
@@ -24,40 +42,131 @@ export function AuthPage() {
   return (
     <div className="auth-shell">
 
-      {/* ── Left brand panel (desktop only) ── */}
+      {/* ── Left brand panel ── */}
       <div className="auth-brand">
         <div className="auth-brand-inner">
+
           {/* Logo */}
-          <a href="/" className="auth-brand-logo-row">
+          <Link to="/" className="auth-brand-logo-row" style={{ textDecoration: 'none' }}>
             <div className="auth-brand-icon">M</div>
             <span className="auth-brand-name">MyTypist</span>
-          </a>
+          </Link>
 
+          {/* Headline */}
           <div className="auth-brand-body">
             <p className="auth-brand-tagline">
-              One pipeline.<br />
-              Zero document errors.
+              One pipeline.<br />Zero document errors.
             </p>
             <p className="auth-brand-sub">
               From first draft to archived signed record — without stitching five tools together.
             </p>
 
-            <div className="auth-brand-features">
-              {brandFeatures.map(({ icon: Icon, text }) => (
-                <div key={text} className="auth-brand-feature">
-                  <div className="auth-brand-feature-icon">
-                    <Icon size={13} />
+            {/* Mini pipeline visualization */}
+            <div style={{
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 10,
+              padding: '14px 16px',
+              marginTop: 24,
+            }}>
+              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 0.8, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', marginBottom: 12 }}>
+                Document Pipeline
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                {pipeline.map((stage, i) => (
+                  <div key={stage.label} style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+                    <div style={{
+                      flex: 1,
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5,
+                    }}>
+                      <div style={{
+                        width: 24, height: 24, borderRadius: 6,
+                        background: stage.active
+                          ? 'rgba(108,71,255,0.5)'
+                          : stage.done
+                          ? 'rgba(5,150,105,0.25)'
+                          : 'rgba(255,255,255,0.06)',
+                        border: stage.active
+                          ? '1.5px solid rgba(108,71,255,0.8)'
+                          : stage.done
+                          ? '1.5px solid rgba(5,150,105,0.4)'
+                          : '1.5px solid rgba(255,255,255,0.1)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      }}>
+                        {stage.done
+                          ? <Check size={11} color="#059669" />
+                          : stage.active
+                          ? <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#9B72FF' }} />
+                          : <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }} />
+                        }
+                      </div>
+                      <span style={{
+                        fontSize: 9, fontWeight: 600,
+                        color: stage.active ? '#9B72FF' : stage.done ? 'rgba(5,150,105,0.8)' : 'rgba(255,255,255,0.2)',
+                        letterSpacing: 0.2, textAlign: 'center',
+                      }}>
+                        {stage.label}
+                      </span>
+                    </div>
+                    {i < pipeline.length - 1 && (
+                      <div style={{ width: 14, height: 1, background: stage.done ? 'rgba(5,150,105,0.3)' : 'rgba(255,255,255,0.07)', flexShrink: 0, marginBottom: 14 }} />
+                    )}
                   </div>
-                  <span>{text}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Metrics */}
+            <div style={{
+              display: 'flex', gap: 0,
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.07)',
+              borderRadius: 8,
+              overflow: 'hidden',
+              marginTop: 12,
+            }}>
+              {metrics.map((m, i) => (
+                <div key={m.label} style={{
+                  flex: 1, padding: '12px 10px',
+                  borderRight: i < metrics.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                  textAlign: 'center',
+                }}>
+                  <div style={{ fontSize: 17, fontWeight: 800, letterSpacing: -0.5, color: '#fff', lineHeight: 1 }}>{m.value}</div>
+                  <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.35)', marginTop: 4, lineHeight: 1.4 }}>{m.label}</div>
                 </div>
               ))}
             </div>
+
+            {/* Testimonial */}
+            <div style={{
+              marginTop: 16,
+              padding: '14px 16px',
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(255,255,255,0.06)',
+              borderRadius: 8,
+              borderLeft: '2px solid rgba(108,71,255,0.5)',
+            }}>
+              <p style={{ fontSize: 11, lineHeight: 1.65, color: 'rgba(255,255,255,0.5)', margin: 0, fontStyle: 'italic' }}>
+                {testimonial.quote}
+              </p>
+              <div style={{ marginTop: 10, fontSize: 10, color: 'rgba(255,255,255,0.25)', fontWeight: 600 }}>
+                {testimonial.author} · {testimonial.org}
+              </div>
+            </div>
           </div>
 
+          {/* Footer badges */}
           <div className="auth-brand-footer">
             <div className="auth-brand-badges">
-              {['SOC 2 Type II', 'GDPR', 'AES-256'].map((b) => (
-                <span key={b} className="auth-brand-badge">{b}</span>
+              {[
+                { icon: Shield, label: 'SOC 2 Type II' },
+                { icon: GitBranch, label: 'GDPR' },
+                { icon: Zap, label: 'AES-256' },
+              ].map(({ icon: Icon, label }) => (
+                <span key={label} className="auth-brand-badge" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <Icon size={9} />
+                  {label}
+                </span>
               ))}
             </div>
           </div>
@@ -68,11 +177,11 @@ export function AuthPage() {
       <div className="auth-form-panel">
         <div className="auth-form-inner">
 
-          {/* Mobile logo (hidden on desktop) */}
-          <a href="/" className="auth-mobile-logo">
+          {/* Mobile logo */}
+          <Link to="/" className="auth-mobile-logo" style={{ textDecoration: 'none' }}>
             <div className="auth-brand-icon" style={{ width: 32, height: 32, fontSize: 15, borderRadius: 7 }}>M</div>
             <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.3px' }}>MyTypist</span>
-          </a>
+          </Link>
 
           {/* Heading */}
           <div className="auth-form-heading">
@@ -93,7 +202,7 @@ export function AuthPage() {
                 <label className="input-label">Full Name</label>
                 <input
                   className="input"
-                  style={{ height: 40, fontSize: 14 }}
+                  style={{ height: 42, fontSize: 14 }}
                   type="text"
                   placeholder="Jane Smith"
                   autoComplete="name"
@@ -104,13 +213,10 @@ export function AuthPage() {
             <div className="input-wrapper">
               <label className="input-label">Email Address</label>
               <div style={{ position: 'relative' }}>
-                <Mail size={14} style={{
-                  position: 'absolute', left: 11, top: '50%', transform: 'translateY(-50%)',
-                  color: 'var(--color-text-tertiary)', pointerEvents: 'none',
-                }} />
+                <Mail size={14} style={{ position: 'absolute', left: 11, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-tertiary)', pointerEvents: 'none' }} />
                 <input
                   className="input"
-                  style={{ height: 40, fontSize: 14, paddingLeft: 34, width: '100%', boxSizing: 'border-box' }}
+                  style={{ height: 42, fontSize: 14, paddingLeft: 34, width: '100%', boxSizing: 'border-box' }}
                   type="email"
                   placeholder="you@company.com"
                   value={email}
@@ -125,19 +231,14 @@ export function AuthPage() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 5 }}>
                 <label className="input-label" style={{ marginBottom: 0 }}>Password</label>
                 {mode === 'signin' && (
-                  <button type="button" className="auth-forgot">
-                    Forgot password?
-                  </button>
+                  <button type="button" className="auth-forgot">Forgot password?</button>
                 )}
               </div>
               <div style={{ position: 'relative' }}>
-                <Lock size={14} style={{
-                  position: 'absolute', left: 11, top: '50%', transform: 'translateY(-50%)',
-                  color: 'var(--color-text-tertiary)', pointerEvents: 'none',
-                }} />
+                <Lock size={14} style={{ position: 'absolute', left: 11, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-tertiary)', pointerEvents: 'none' }} />
                 <input
                   className="input"
-                  style={{ height: 40, fontSize: 14, paddingLeft: 34, paddingRight: 38, width: '100%', boxSizing: 'border-box' }}
+                  style={{ height: 42, fontSize: 14, paddingLeft: 34, paddingRight: 40, width: '100%', boxSizing: 'border-box' }}
                   type={showPassword ? 'text' : 'password'}
                   placeholder={mode === 'signup' ? 'Min. 8 characters' : '••••••••'}
                   value={password}
@@ -148,21 +249,26 @@ export function AuthPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(v => !v)}
-                  style={{
-                    position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
-                    background: 'none', border: 'none', cursor: 'pointer',
-                    color: 'var(--color-text-tertiary)', display: 'flex', padding: 2,
-                  }}
+                  style={{ position: 'absolute', right: 11, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-text-tertiary)', display: 'flex', padding: 2 }}
                 >
                   {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
                 </button>
               </div>
             </div>
 
+            {mode === 'signup' && (
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '10px 12px', background: 'rgba(108,71,255,0.05)', border: '1px solid rgba(108,71,255,0.12)', borderRadius: 6 }}>
+                <Check size={13} color="var(--color-accent)" style={{ flexShrink: 0, marginTop: 1 }} />
+                <p style={{ fontSize: 12, color: 'var(--color-text-secondary)', margin: 0, lineHeight: 1.5 }}>
+                  14-day full-feature trial. No credit card. No usage limits.
+                </p>
+              </div>
+            )}
+
             <Button
               type="submit"
               loading={loading}
-              style={{ height: 42, fontSize: 14, fontWeight: 600, marginTop: 8, width: '100%' }}
+              style={{ height: 44, fontSize: 14, fontWeight: 600, marginTop: 8, width: '100%' }}
             >
               <span>{mode === 'signin' ? 'Sign in' : 'Create account'}</span>
               {!loading && <ArrowRight size={15} />}
@@ -178,7 +284,7 @@ export function AuthPage() {
 
           {/* SSO */}
           <div className="auth-sso-row">
-            {['Google', 'Microsoft'].map(provider => (
+            {(['Google', 'Microsoft'] as const).map(provider => (
               <button key={provider} className="auth-sso-btn">
                 {provider === 'Google' ? (
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
@@ -200,14 +306,10 @@ export function AuthPage() {
             ))}
           </div>
 
-          {/* Toggle mode */}
+          {/* Toggle */}
           <p className="auth-toggle-text">
             {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}
-            <button
-              type="button"
-              onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
-              className="auth-toggle-btn"
-            >
+            <button type="button" onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')} className="auth-toggle-btn">
               {mode === 'signin' ? 'Start free trial' : 'Sign in'}
             </button>
           </p>
@@ -215,9 +317,9 @@ export function AuthPage() {
           {/* Terms */}
           <p className="auth-terms">
             By continuing, you agree to our{' '}
-            <span className="auth-terms-link">Terms of Service</span>
+            <Link to="/terms" className="auth-terms-link">Terms of Service</Link>
             {' '}and{' '}
-            <span className="auth-terms-link">Privacy Policy</span>.
+            <Link to="/privacy" className="auth-terms-link">Privacy Policy</Link>.
           </p>
         </div>
       </div>

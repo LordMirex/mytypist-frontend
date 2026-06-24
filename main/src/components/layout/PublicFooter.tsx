@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { LogoMark } from '@/components/brand/LogoMark'
 
 const footerCols = [
   {
@@ -35,9 +36,11 @@ export function PublicFooter() {
     <footer className="lp-footer">
       <div className="lp-footer-top">
         <div>
-          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
-            <div className="lp-header-logo">M</div>
-            <span className="lp-header-name">MyTypist</span>
+          <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
+            <LogoMark size={26} variant="purple" />
+            <span className="lp-header-name">
+              <span className="lp-header-name-my">My</span><span className="lp-header-name-typist">Typist</span>
+            </span>
           </Link>
           <p className="lp-footer-brand-desc">
             Enterprise document infrastructure.<br />

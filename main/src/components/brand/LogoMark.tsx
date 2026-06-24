@@ -1,0 +1,30 @@
+interface LogoMarkProps {
+  size?: number
+  variant?: 'tonal' | 'white' | 'purple'
+}
+
+export function LogoMark({ size = 28, variant = 'tonal' }: LogoMarkProps) {
+  const fills = variant === 'white'
+    ? { a: '#FFFFFF', b: '#FFFFFF', c: '#FFFFFF', d: '#FFFFFF', e: '#FFFFFF' }
+    : variant === 'purple'
+    ? { a: '#8B6FFD', b: '#6D4AEB', c: '#5634C9', d: '#A893FF', e: '#A893FF' }
+    : { a: '#8B6FFD', b: '#6D4AEB', c: '#5634C9', d: '#A893FF', e: '#A893FF' }
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="MyTypist"
+      role="img"
+      style={{ flexShrink: 0, display: 'block' }}
+    >
+      <path d="M 51.91 48.24 L 59.71 41.04 Q 61.62 39.28, 64.20 39.60 L 85.76 42.27 Q 88.34 42.59, 86.47 44.39 L 74.20 56.17 Q 72.33 57.97, 69.88 57.10 L 52.45 50.87 Q 50.00 50.00, 51.91 48.24 Z" fill={fills.a} />
+      <path d="M 51.76 51.91 L 58.96 59.71 Q 60.72 61.62, 60.40 64.20 L 57.73 85.76 Q 57.41 88.34, 55.61 86.47 L 43.83 74.20 Q 42.03 72.33, 42.90 69.88 L 49.13 52.45 Q 50.00 50.00, 51.76 51.91 Z" fill={fills.b} />
+      <path d="M 48.09 51.76 L 40.29 58.96 Q 38.38 60.72, 35.80 60.40 L 14.24 57.73 Q 11.66 57.41, 13.53 55.61 L 25.80 43.83 Q 27.67 42.03, 30.12 42.90 L 47.55 49.13 Q 50.00 50.00, 48.09 51.76 Z" fill={fills.c} />
+      <path d="M 41.91 42.05 L 55.58 40.13 Q 58.15 39.77, 57.79 37.20 L 55.80 23.03 Q 55.44 20.46, 53.36 18.89 L 49.05 15.64 Q 46.97 14.07, 44.40 14.43 L 38.15 15.31 Q 35.58 15.67, 35.94 18.24 L 38.98 39.84 Q 39.34 42.41, 41.91 42.05 Z" fill={fills.d} />
+      <path d="M 55.44 20.46 L 46.97 14.07 L 54.40 13.03 Z" fill={fills.e} fillOpacity={variant === 'white' ? 0.4 : 0.5} />
+    </svg>
+  )
+}

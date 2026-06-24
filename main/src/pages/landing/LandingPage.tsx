@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight, Check, CheckCircle2 } from 'lucide-react'
 
 /* ─────────────────────────────────────
    Scroll reveal hook
@@ -15,7 +15,7 @@ function useScrollReveal() {
           }
         })
       },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
     )
     document.querySelectorAll('.lp-reveal').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
@@ -223,6 +223,12 @@ const entFeatures = [
   'On-premise deployment option',
 ]
 
+const trustItems = [
+  'No credit card · full feature access for 14 days',
+  'Recipients sign without creating an account',
+  'SOC 2 Type II · AES-256 · GDPR ready',
+]
+
 /* ─────────────────────────────────────
    Page
    ───────────────────────────────────── */
@@ -288,12 +294,12 @@ export function LandingPage() {
           </div>
           <div className="lp-mobile-nav-ctas">
             <Link to="/studio" style={{ textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>
-              <button className="btn btn--primary" style={{ width: '100%', height: 40, fontSize: 14 }}>
+              <button className="btn btn--primary" style={{ width: '100%', height: 44, fontSize: 14, fontWeight: 600 }}>
                 Start free trial
                 <ArrowRight size={14} style={{ marginLeft: 6 }} />
               </button>
             </Link>
-            <button className="btn btn--secondary" style={{ width: '100%', height: 40, fontSize: 14 }}>
+            <button className="btn btn--secondary" style={{ width: '100%', height: 44, fontSize: 14 }}>
               Request demo
             </button>
           </div>
@@ -310,38 +316,33 @@ export function LandingPage() {
 
           <h1 className="lp-hero-headline">
             Stop patching your<br />
-            document process with<br />
-            <em>five different tools.</em>
+            document workflow<br />
+            with <em>five different tools.</em>
           </h1>
 
           <p className="lp-hero-sub">
             MyTypist is one structured pipeline from first draft to
             archived signed record. Formatting guarantees on every
             output. Binding signatures with no per-transaction fees.
-            Audit trail on every event. Built for operations teams
-            that cannot afford document errors.
+            Audit trail on every event.
           </p>
 
           <div className="lp-hero-actions">
             <Link to="/studio" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--primary" style={{ height: 40, padding: '0 22px', fontSize: 14 }}>
+              <button className="btn btn--primary" style={{ height: 44, padding: '0 24px', fontSize: 14, fontWeight: 600 }}>
                 Start free — 14 days
                 <ArrowRight size={14} style={{ marginLeft: 6 }} />
               </button>
             </Link>
-            <button className="btn btn--secondary" style={{ height: 40, padding: '0 22px', fontSize: 14 }}>
+            <button className="btn btn--secondary" style={{ height: 44, padding: '0 24px', fontSize: 14 }}>
               Request a demo
             </button>
           </div>
 
           <div className="lp-hero-trust">
-            {[
-              'No credit card · full feature access for 14 days',
-              'Recipients sign without creating an account',
-              'SOC 2 Type II · AES-256 at rest · GDPR ready',
-            ].map((item) => (
+            {trustItems.map((item) => (
               <div key={item} className="lp-hero-trust-item">
-                <div className="lp-hero-trust-dot" />
+                <CheckCircle2 size={12} className="lp-hero-trust-check" />
                 {item}
               </div>
             ))}
@@ -475,7 +476,7 @@ export function LandingPage() {
               <div className="lp-plan-local">≈ ₦75,000 / month · billed monthly</div>
               <div className="lp-plan-cta">
                 <Link to="/studio" style={{ textDecoration: 'none', display: 'block' }}>
-                  <button className="btn btn--secondary" style={{ width: '100%', height: 36, fontSize: 13 }}>
+                  <button className="btn btn--secondary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 500 }}>
                     Start 14-day trial
                   </button>
                 </Link>
@@ -484,7 +485,7 @@ export function LandingPage() {
               <div className="lp-plan-features">
                 {proFeatures.map((f) => (
                   <div key={f} className="lp-plan-feature">
-                    <Check size={12} className="lp-plan-check" style={{ color: 'var(--color-status-complete)', flexShrink: 0, marginTop: 2 }} />
+                    <Check size={13} className="lp-plan-check" style={{ color: 'var(--color-status-complete)', flexShrink: 0, marginTop: 1 }} />
                     {f}
                   </div>
                 ))}
@@ -499,7 +500,7 @@ export function LandingPage() {
               </div>
               <div className="lp-plan-local">≈ ₦230,000 / month · billed monthly</div>
               <div className="lp-plan-cta">
-                <button className="btn btn--primary" style={{ width: '100%', height: 36, fontSize: 13 }}>
+                <button className="btn btn--primary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 600 }}>
                   Contact sales
                 </button>
               </div>
@@ -507,7 +508,7 @@ export function LandingPage() {
               <div className="lp-plan-features">
                 {entFeatures.map((f) => (
                   <div key={f} className="lp-plan-feature">
-                    <Check size={12} className="lp-plan-check" style={{ color: 'var(--color-accent)', flexShrink: 0, marginTop: 2 }} />
+                    <Check size={13} className="lp-plan-check" style={{ color: 'var(--color-accent)', flexShrink: 0, marginTop: 1 }} />
                     {f}
                   </div>
                 ))}
@@ -518,15 +519,14 @@ export function LandingPage() {
           <div className="lp-reveal" style={{
             marginTop: 0,
             padding: '14px 20px',
-            background: 'var(--color-surface)',
+            background: 'var(--color-bg-secondary)',
             border: '1px solid var(--color-border)',
             borderTop: 'none',
-            borderRadius: '0 0 2px 2px',
+            borderRadius: '0 0 var(--radius-lg) var(--radius-lg)',
             fontSize: 12,
             color: 'var(--color-text-tertiary)',
-            lineHeight: 1.5,
           }}>
-            Annual billing available at 20% off. Enterprise add-ons: dedicated infrastructure,
+            Both plans include a 14-day full-feature trial. Enterprise also supports custom volumes,
             custom integrations, on-premise hosting, compliance packages. Contact sales for scoped pricing.
           </div>
         </div>
@@ -534,27 +534,35 @@ export function LandingPage() {
 
       {/* ══ CTA ══ */}
       <section className="lp-cta">
-        <h2 className="lp-cta-headline lp-reveal">
-          Your pipeline is already broken.<br />
-          Fix it in 14 days.
-        </h2>
-        <p className="lp-cta-sub lp-reveal">
-          Full feature access. No card required. No usage limits during trial.
-          First complete document pipeline takes under 3 minutes to set up.
-        </p>
-        <div className="lp-cta-actions lp-reveal">
-          <Link to="/studio" style={{ textDecoration: 'none' }}>
-            <button className="btn btn--primary" style={{ height: 42, padding: '0 24px', fontSize: 14 }}>
-              Start free trial
-              <ArrowRight size={14} style={{ marginLeft: 6 }} />
+        <div className="lp-cta-inner">
+          <h2 className="lp-cta-headline lp-reveal">
+            Your pipeline is already broken.<br />
+            Fix it in 14 days.
+          </h2>
+          <p className="lp-cta-sub lp-reveal">
+            Full feature access. No card required. No usage limits during trial.
+            First complete document pipeline takes under 3 minutes to set up.
+          </p>
+          <div className="lp-cta-actions lp-reveal">
+            <Link to="/studio" style={{ textDecoration: 'none' }}>
+              <button className="btn btn--primary" style={{ height: 46, padding: '0 28px', fontSize: 14, fontWeight: 600 }}>
+                Start free trial
+                <ArrowRight size={15} style={{ marginLeft: 6 }} />
+              </button>
+            </Link>
+            <button
+              className="btn"
+              style={{
+                height: 46, padding: '0 28px', fontSize: 14, fontWeight: 500,
+                color: 'rgba(255,255,255,0.5)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                background: 'rgba(255,255,255,0.05)',
+                borderRadius: 'var(--radius-md)',
+              }}
+            >
+              Talk to sales
             </button>
-          </Link>
-          <button
-            className="btn btn--ghost"
-            style={{ height: 42, padding: '0 24px', fontSize: 14, color: '#5a5a53', border: '1px solid rgba(255,255,255,0.08)' }}
-          >
-            Talk to sales
-          </button>
+          </div>
         </div>
       </section>
 

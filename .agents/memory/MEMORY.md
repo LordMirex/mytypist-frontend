@@ -1,2 +1,4 @@
 - [Mobile-first CSS rule](mobile-first.md) — All CSS base styles target mobile; scale UP with min-width queries. Never max-width overrides. User confirmed this is required.
 - [Landing page architecture](landing-arch.md) — Split hero (copy left, doc mockup right), dark stats strip, pipeline strip, numbered feature table, competitor grid, dark CTA. Each section must have a distinct visual identity.
+- [Auth page layout](auth-layout.md) — Split panel: dark purple brand panel left (420px, hidden mobile), light form panel right. Auth CSS lives at end of shell.css. Breakpoint: min-width 900px shows brand panel.
+- [Shell CSS duplicate sidebar](shell-duplicate.md) — shell.css has two .sidebar definitions (~line 29 dark hardcoded, ~line 1332 CSS-vars). Studio sidebar renders correctly; do not attempt to merge — risk of breakage outweighs benefit.

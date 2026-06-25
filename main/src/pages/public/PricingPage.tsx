@@ -5,6 +5,23 @@ import { PublicHeader } from '@/components/layout/PublicHeader'
 import { PublicFooter } from '@/components/layout/PublicFooter'
 
 const plans = {
+  free: {
+    name: 'Free',
+    monthlyPrice: 0,
+    yearlyPrice: 0,
+    local: { monthly: '₦0', yearly: '₦0' },
+    description: 'Try MyTypist at no cost. No card required.',
+    features: [
+      '5 documents / month',
+      '2 e-signatures / month',
+      'Basic template library access',
+      'Live preview in Studio',
+      'PDF export',
+    ],
+    cta: 'Get started free',
+    ctaTo: '/auth',
+    variant: 'secondary' as const,
+  },
   pro: {
     name: 'Professional',
     monthlyPrice: 49,
@@ -51,71 +68,71 @@ const plans = {
   },
 }
 
-type Feature = { label: string; pro: boolean | string; ent: boolean | string }
+type Feature = { label: string; free: boolean | string; pro: boolean | string; ent: boolean | string }
 const comparisonRows: { category: string; features: Feature[] }[] = [
   {
     category: 'Documents',
     features: [
-      { label: 'Document generation', pro: 'Unlimited', ent: 'Unlimited' },
-      { label: 'PDF fidelity guarantee', pro: true, ent: true },
-      { label: 'Live preview in Studio', pro: true, ent: true },
-      { label: 'Field inspector & validator', pro: true, ent: true },
-      { label: 'Document versioning', pro: true, ent: true },
+      { label: 'Document generation',    free: '5 / month',  pro: 'Unlimited',  ent: 'Unlimited'  },
+      { label: 'PDF fidelity guarantee', free: true,         pro: true,          ent: true          },
+      { label: 'Live preview in Studio', free: true,         pro: true,          ent: true          },
+      { label: 'Field inspector & validator', free: false,   pro: true,          ent: true          },
+      { label: 'Document versioning',    free: false,        pro: true,          ent: true          },
     ],
   },
   {
     category: 'Templates',
     features: [
-      { label: 'Curated template library', pro: '50 templates', ent: '100+ templates' },
-      { label: 'Custom templates', pro: true, ent: true },
-      { label: 'Template import (DOCX)', pro: true, ent: true },
+      { label: 'Curated template library', free: 'Basic',   pro: '50 templates', ent: '100+ templates' },
+      { label: 'Custom templates',          free: false,     pro: true,            ent: true             },
+      { label: 'Template import (DOCX)',    free: false,     pro: true,            ent: true             },
     ],
   },
   {
     category: 'Signatures',
     features: [
-      { label: 'Recipient e-signature (no account)', pro: true, ent: true },
-      { label: 'Sequential signature flows', pro: true, ent: true },
-      { label: 'Parallel signature flows', pro: false, ent: true },
-      { label: 'Cryptographic audit trail', pro: true, ent: true },
-      { label: 'Signature expiry & reminders', pro: true, ent: true },
+      { label: 'Recipient e-signature (no account)', free: '2 / month', pro: true,  ent: true  },
+      { label: 'Sequential signature flows',          free: false,       pro: true,  ent: true  },
+      { label: 'Parallel signature flows',            free: false,       pro: false, ent: true  },
+      { label: 'Cryptographic audit trail',           free: false,       pro: true,  ent: true  },
+      { label: 'Signature expiry & reminders',        free: false,       pro: true,  ent: true  },
     ],
   },
   {
     category: 'Pipeline & Collaboration',
     features: [
-      { label: 'Team members', pro: 'Up to 10', ent: 'Unlimited' },
-      { label: '5-stage pipeline (Draft→Archive)', pro: true, ent: true },
-      { label: 'Role-gated stage approvals', pro: true, ent: true },
-      { label: 'SSO / SAML', pro: false, ent: true },
-      { label: 'Custom branding', pro: false, ent: true },
+      { label: 'Team members',                   free: '1 (solo)', pro: 'Up to 10', ent: 'Unlimited' },
+      { label: '5-stage pipeline (Draft→Archive)',free: false,     pro: true,       ent: true         },
+      { label: 'Role-gated stage approvals',     free: false,     pro: true,       ent: true         },
+      { label: 'SSO / SAML',                     free: false,     pro: false,      ent: true         },
+      { label: 'Custom branding',                free: false,     pro: false,      ent: true         },
     ],
   },
   {
     category: 'Security & Compliance',
     features: [
-      { label: 'AES-256 encryption', pro: true, ent: true },
-      { label: 'SOC 2 Type II', pro: true, ent: true },
-      { label: 'GDPR compliance', pro: true, ent: true },
-      { label: 'HIPAA / ISO 27001 package', pro: false, ent: true },
-      { label: 'On-premise deployment', pro: false, ent: true },
+      { label: 'AES-256 encryption',         free: true,  pro: true,  ent: true  },
+      { label: 'SOC 2 Type II',              free: true,  pro: true,  ent: true  },
+      { label: 'GDPR compliance',            free: true,  pro: true,  ent: true  },
+      { label: 'HIPAA / ISO 27001 package',  free: false, pro: false, ent: true  },
+      { label: 'On-premise deployment',      free: false, pro: false, ent: true  },
     ],
   },
   {
     category: 'Developer & API',
     features: [
-      { label: 'REST API access', pro: false, ent: true },
-      { label: 'Webhook delivery', pro: false, ent: true },
-      { label: 'API rate limit', pro: '—', ent: '50,000 calls/mo' },
+      { label: 'REST API access',   free: false, pro: false, ent: true             },
+      { label: 'Webhook delivery',  free: false, pro: false, ent: true             },
+      { label: 'API rate limit',    free: '—',   pro: '—',   ent: '50,000 calls/mo'},
     ],
   },
   {
     category: 'Support',
     features: [
-      { label: 'Email support', pro: '4-hour SLA', ent: '1-hour SLA' },
-      { label: 'Dedicated account manager', pro: false, ent: true },
-      { label: 'Custom onboarding', pro: false, ent: true },
-      { label: 'Custom SLA / contracts', pro: false, ent: true },
+      { label: 'Email support',              free: 'Community', pro: '4-hour SLA', ent: '1-hour SLA' },
+      { label: 'Dedicated account manager',  free: false,       pro: false,         ent: true          },
+      { label: 'Custom onboarding',          free: false,       pro: false,         ent: true          },
+      { label: 'Custom SLA / contracts',     free: false,       pro: false,         ent: true          },
     ],
   },
 ]
@@ -123,7 +140,11 @@ const comparisonRows: { category: string; features: Feature[] }[] = [
 const faqs = [
   {
     q: 'Is there really no per-document fee?',
-    a: 'Yes. Both plans are flat monthly subscriptions. You can generate as many documents as you need. No usage traps, no overage charges.',
+    a: 'Yes. All paid plans are flat monthly subscriptions. You can generate as many documents as you need. No usage traps, no overage charges.',
+  },
+  {
+    q: 'What does the Free plan include?',
+    a: 'The Free plan gives you 5 documents and 2 e-signatures per month, forever. No credit card required. It\'s designed to let you explore MyTypist at your own pace before upgrading to Professional.',
   },
   {
     q: 'Do recipients need a MyTypist account to sign?',
@@ -181,8 +202,7 @@ export function PricingPage() {
             Flat subscription.<br />No per-document fees.
           </h1>
           <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--color-text-secondary)', marginBottom: 32 }}>
-            Generate as many documents as you need. No usage traps.
-            No overage charges. No surprises on your invoice.
+            Start free. Scale when you're ready. No usage traps, no overage charges, no surprises.
           </p>
 
           {/* Billing toggle */}
@@ -218,85 +238,117 @@ export function PricingPage() {
       </section>
 
       {/* ── Plan cards ── */}
-      <section style={{ padding: '0 20px', maxWidth: 900, margin: '0 auto', width: '100%' }}>
+      <section style={{ padding: '0 20px', maxWidth: 1100, margin: '0 auto', width: '100%' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           border: '1px solid var(--color-border)',
           borderTop: 'none',
           borderRadius: '0 0 12px 12px',
           overflow: 'hidden',
           boxShadow: 'var(--shadow-floating)',
         }}>
-          {Object.entries(plans).map(([key, plan]) => (
-            <div
-              key={key}
-              style={{
-                padding: '36px 32px',
-                background: key === 'enterprise'
-                  ? 'linear-gradient(135deg, rgba(108,71,255,0.04) 0%, rgba(108,71,255,0.01) 100%)'
-                  : 'var(--color-surface)',
-                borderRight: key === 'pro' ? '1px solid var(--color-border)' : 'none',
-                position: 'relative',
-              }}
-            >
-              {'badge' in plan && (
-                <div style={{
-                  position: 'absolute', top: 20, right: 20,
-                  background: 'linear-gradient(135deg, #6C47FF, #9B72FF)',
-                  color: '#fff', fontSize: 9, fontWeight: 700,
-                  letterSpacing: 0.4, textTransform: 'uppercase',
-                  padding: '3px 9px', borderRadius: 9999,
-                }}>
-                  {plan.badge}
-                </div>
-              )}
-
-              <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.7, color: key === 'enterprise' ? 'var(--color-accent)' : 'var(--color-text-tertiary)', marginBottom: 16 }}>
-                {plan.name}
-              </div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
-                <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1, color: 'var(--color-text-primary)' }}>
-                  ${yearly ? plan.yearlyPrice : plan.monthlyPrice}
-                </span>
-                <span style={{ fontSize: 14, color: 'var(--color-text-tertiary)' }}>/month</span>
-              </div>
-              <div style={{ fontSize: 12, color: 'var(--color-text-quaternary)', marginBottom: 6 }}>
-                ≈ {yearly ? plan.local.yearly : plan.local.monthly} · billed {yearly ? 'yearly' : 'monthly'}
-              </div>
-              <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 24 }}>{plan.description}</p>
-
-              <Link to={plan.ctaTo} style={{ display: 'block', marginBottom: 24 }}>
-                <button
-                  className={`btn btn--${plan.variant}`}
-                  style={{ width: '100%', height: 42, fontSize: 13, fontWeight: 600 }}
-                >
-                  {plan.cta}
-                </button>
-              </Link>
-
-              <div style={{ height: 1, background: 'var(--color-border)', marginBottom: 20 }} />
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {plan.features.map(f => (
-                  <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 9, fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.45 }}>
-                    <Check size={13} style={{ color: key === 'enterprise' ? 'var(--color-accent)' : 'var(--color-status-complete)', flexShrink: 0, marginTop: 2 }} />
-                    {f}
-                  </div>
-                ))}
-              </div>
+          {/* Free */}
+          <div style={{ padding: '32px 28px', background: 'var(--color-surface)', borderRight: '1px solid var(--color-border)' }}>
+            <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.7, color: 'var(--color-text-tertiary)', marginBottom: 16 }}>
+              {plans.free.name}
             </div>
-          ))}
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
+              <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1, color: 'var(--color-text-primary)' }}>$0</span>
+              <span style={{ fontSize: 14, color: 'var(--color-text-tertiary)' }}>/month</span>
+            </div>
+            <div style={{ fontSize: 12, color: 'var(--color-text-quaternary)', marginBottom: 6 }}>Always free · no card required</div>
+            <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 24 }}>{plans.free.description}</p>
+            <Link to={plans.free.ctaTo} style={{ display: 'block', marginBottom: 24 }}>
+              <button className="btn btn--secondary" style={{ width: '100%', height: 42, fontSize: 13, fontWeight: 600 }}>
+                {plans.free.cta}
+              </button>
+            </Link>
+            <div style={{ height: 1, background: 'var(--color-border)', marginBottom: 20 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {plans.free.features.map(f => (
+                <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 9, fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.45 }}>
+                  <Check size={13} style={{ color: 'var(--color-status-complete)', flexShrink: 0, marginTop: 2 }} />
+                  {f}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pro */}
+          <div style={{ padding: '32px 28px', background: 'var(--color-surface)', borderRight: '1px solid var(--color-border)' }}>
+            <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.7, color: 'var(--color-text-tertiary)', marginBottom: 16 }}>
+              {plans.pro.name}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
+              <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1, color: 'var(--color-text-primary)' }}>
+                ${yearly ? plans.pro.yearlyPrice : plans.pro.monthlyPrice}
+              </span>
+              <span style={{ fontSize: 14, color: 'var(--color-text-tertiary)' }}>/month</span>
+            </div>
+            <div style={{ fontSize: 12, color: 'var(--color-text-quaternary)', marginBottom: 6 }}>
+              ≈ {yearly ? plans.pro.local.yearly : plans.pro.local.monthly} · billed {yearly ? 'yearly' : 'monthly'}
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 24 }}>{plans.pro.description}</p>
+            <Link to={plans.pro.ctaTo} style={{ display: 'block', marginBottom: 24 }}>
+              <button className="btn btn--secondary" style={{ width: '100%', height: 42, fontSize: 13, fontWeight: 600 }}>
+                {plans.pro.cta}
+              </button>
+            </Link>
+            <div style={{ height: 1, background: 'var(--color-border)', marginBottom: 20 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {plans.pro.features.map(f => (
+                <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 9, fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.45 }}>
+                  <Check size={13} style={{ color: 'var(--color-status-complete)', flexShrink: 0, marginTop: 2 }} />
+                  {f}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Enterprise */}
+          <div style={{ padding: '32px 28px', background: 'linear-gradient(135deg, rgba(108,71,255,0.04) 0%, rgba(108,71,255,0.01) 100%)', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: 20, right: 20, background: 'linear-gradient(135deg, #6C47FF, #9B72FF)', color: '#fff', fontSize: 9, fontWeight: 700, letterSpacing: 0.4, textTransform: 'uppercase', padding: '3px 9px', borderRadius: 9999 }}>
+              Most Popular
+            </div>
+            <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.7, color: 'var(--color-accent)', marginBottom: 16 }}>
+              {plans.enterprise.name}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
+              <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1, color: 'var(--color-text-primary)' }}>
+                ${yearly ? plans.enterprise.yearlyPrice : plans.enterprise.monthlyPrice}
+              </span>
+              <span style={{ fontSize: 14, color: 'var(--color-text-tertiary)' }}>/month</span>
+            </div>
+            <div style={{ fontSize: 12, color: 'var(--color-text-quaternary)', marginBottom: 6 }}>
+              ≈ {yearly ? plans.enterprise.local.yearly : plans.enterprise.local.monthly} · billed {yearly ? 'yearly' : 'monthly'}
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 24 }}>{plans.enterprise.description}</p>
+            <Link to={plans.enterprise.ctaTo} style={{ display: 'block', marginBottom: 24 }}>
+              <button className="btn btn--primary" style={{ width: '100%', height: 42, fontSize: 13, fontWeight: 600 }}>
+                {plans.enterprise.cta}
+              </button>
+            </Link>
+            <div style={{ height: 1, background: 'var(--color-border)', marginBottom: 20 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {plans.enterprise.features.map(f => (
+                <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 9, fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.45 }}>
+                  <Check size={13} style={{ color: 'var(--color-accent)', flexShrink: 0, marginTop: 2 }} />
+                  {f}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--color-text-quaternary)', margin: '16px 0 0', padding: '0 0 64px' }}>
-          Both plans include a 14-day full-feature trial. Enterprise supports custom volumes, custom integrations, and on-premise deployment.
+          Professional and Enterprise include a 14-day full-feature trial. Enterprise supports custom volumes, custom integrations, and on-premise deployment.
         </p>
       </section>
 
       {/* ── Feature comparison ── */}
       <section style={{ padding: '72px 20px', background: 'var(--color-surface)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div className="lp-section-eyebrow" style={{ marginBottom: 10 }}>Full comparison</div>
           <h2 style={{ fontSize: 'clamp(22px, 3.5vw, 28px)', fontWeight: 800, letterSpacing: -0.8, color: 'var(--color-text-primary)', marginBottom: 36 }}>
             Everything, side by side.
@@ -304,13 +356,14 @@ export function PricingPage() {
 
           {/* Table header */}
           <div style={{
-            display: 'grid', gridTemplateColumns: '1fr 120px 120px',
+            display: 'grid', gridTemplateColumns: '1fr 110px 110px 120px',
             padding: '10px 16px', borderRadius: '8px 8px 0 0',
             background: 'var(--color-bg-secondary)',
             border: '1px solid var(--color-border)',
             borderBottom: 'none',
           }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Feature</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Free</div>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Pro</div>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-accent)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Enterprise</div>
           </div>
@@ -331,7 +384,7 @@ export function PricingPage() {
                   <div
                     key={feat.label}
                     style={{
-                      display: 'grid', gridTemplateColumns: '1fr 120px 120px',
+                      display: 'grid', gridTemplateColumns: '1fr 110px 110px 120px',
                       padding: '11px 16px',
                       borderTop: '1px solid var(--color-border-subtle)',
                       background: fi % 2 === 0 ? 'var(--color-surface)' : 'rgba(0,0,0,0.01)',
@@ -339,6 +392,9 @@ export function PricingPage() {
                     }}
                   >
                     <div style={{ fontSize: 13, color: 'var(--color-text-secondary)' }}>{feat.label}</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <CellValue value={feat.free} />
+                    </div>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                       <CellValue value={feat.pro} />
                     </div>
@@ -390,11 +446,7 @@ export function PricingPage() {
       </section>
 
       {/* ── Enterprise CTA ── */}
-      <section style={{
-        padding: '56px 20px',
-        background: 'var(--color-surface)',
-        borderBottom: '1px solid var(--color-border)',
-      }}>
+      <section style={{ padding: '56px 20px', background: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
         <div style={{ maxWidth: 680, margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 16 }}>
           <h2 style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5, color: 'var(--color-text-primary)' }}>
             Need a custom contract, volume pricing, or on-premise?
@@ -415,7 +467,7 @@ export function PricingPage() {
       {/* ── Bottom CTA ── */}
       <section className="lp-cta">
         <div className="lp-cta-inner">
-          <h2 className="lp-cta-headline">Start your free 14-day trial today.</h2>
+          <h2 className="lp-cta-headline">Start your free trial today.</h2>
           <p className="lp-cta-sub">No card required. Full feature access. Cancel anytime.</p>
           <div className="lp-cta-actions">
             <Link to="/auth">

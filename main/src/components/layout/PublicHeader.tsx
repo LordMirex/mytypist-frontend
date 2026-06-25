@@ -4,26 +4,15 @@ import { ArrowRight } from 'lucide-react'
 import { LogoMark } from '@/components/brand/LogoMark'
 
 const navItems = [
-  { label: 'Product',    to: '/#product',    anchor: true  },
-  { label: 'Pricing',    to: '/pricing',     anchor: false },
-  { label: 'Templates',  to: '/templates',   anchor: false },
-  { label: 'Enterprise', to: '/#enterprise', anchor: true  },
-  { label: 'Support',    to: '/support',     anchor: false },
+  { label: 'Product',    to: '/product'   },
+  { label: 'Pricing',    to: '/pricing'   },
+  { label: 'Templates',  to: '/templates' },
+  { label: 'Enterprise', to: '/pricing'   },
+  { label: 'Support',    to: '/support'   },
 ]
 
 export function PublicHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
-
-  function NavItem({ label, to, anchor }: { label: string; to: string; anchor: boolean }) {
-    if (anchor) {
-      return (
-        <a href={to} onClick={() => setMenuOpen(false)}>
-          {label}
-        </a>
-      )
-    }
-    return <Link to={to} onClick={() => setMenuOpen(false)}>{label}</Link>
-  }
 
   return (
     <>
@@ -37,7 +26,7 @@ export function PublicHeader() {
 
         <nav className="lp-header-nav">
           {navItems.map(item => (
-            <NavItem key={item.label} label={item.label} to={item.to} anchor={item.anchor} />
+            <Link key={item.label} to={item.to}>{item.label}</Link>
           ))}
         </nav>
 
@@ -67,9 +56,9 @@ export function PublicHeader() {
         <nav className="lp-mobile-nav">
           <div className="lp-mobile-nav-links">
             {navItems.map(item => (
-              item.anchor
-                ? <a key={item.label} href={item.to} className="lp-mobile-nav-link" onClick={() => setMenuOpen(false)}>{item.label}</a>
-                : <Link key={item.label} to={item.to} className="lp-mobile-nav-link" onClick={() => setMenuOpen(false)}>{item.label}</Link>
+              <Link key={item.label} to={item.to} className="lp-mobile-nav-link" onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </Link>
             ))}
           </div>
           <div className="lp-mobile-nav-ctas">

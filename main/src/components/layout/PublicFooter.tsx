@@ -5,11 +5,10 @@ const footerCols = [
   {
     heading: 'Product',
     links: [
-      { label: 'Features',   to: '/#product'  },
-      { label: 'Templates',  to: '/templates' },
-      { label: 'Pricing',    to: '/pricing'   },
+      { label: 'Product Overview', to: '/product'   },
+      { label: 'Templates',        to: '/templates' },
+      { label: 'Pricing',          to: '/pricing'   },
     ],
-    hasAnchor: true,
   },
   {
     heading: 'Company',
@@ -17,7 +16,6 @@ const footerCols = [
       { label: 'About',   to: '/about'   },
       { label: 'Support', to: '/support' },
     ],
-    hasAnchor: false,
   },
   {
     heading: 'Legal',
@@ -25,7 +23,6 @@ const footerCols = [
       { label: 'Terms of Service', to: '/terms'   },
       { label: 'Privacy Policy',   to: '/privacy' },
     ],
-    hasAnchor: false,
   },
 ]
 
@@ -57,11 +54,9 @@ export function PublicFooter() {
             <div key={col.heading}>
               <div className="lp-footer-col-heading">{col.heading}</div>
               <div className="lp-footer-col-links">
-                {col.links.map(link =>
-                  link.to.startsWith('/#')
-                    ? <a key={link.label} href={link.to} className="lp-footer-link">{link.label}</a>
-                    : <Link key={link.label} to={link.to} className="lp-footer-link">{link.label}</Link>
-                )}
+                {col.links.map(link => (
+                  <Link key={link.label} to={link.to} className="lp-footer-link">{link.label}</Link>
+                ))}
               </div>
             </div>
           ))}

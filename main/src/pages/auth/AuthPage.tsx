@@ -5,6 +5,7 @@ import {
   Check, Shield, Zap, GitBranch,
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { LogoMark } from '@/components/brand/LogoMark'
 
 const pipeline = [
   { label: 'Draft',    done: true  },
@@ -48,7 +49,7 @@ export function AuthPage() {
 
           {/* Logo */}
           <Link to="/" className="auth-brand-logo-row" style={{ textDecoration: 'none' }}>
-            <div className="auth-brand-icon">M</div>
+            <LogoMark size={28} variant="white" />
             <span className="auth-brand-name">MyTypist</span>
           </Link>
 
@@ -179,7 +180,7 @@ export function AuthPage() {
 
           {/* Mobile logo */}
           <Link to="/" className="auth-mobile-logo" style={{ textDecoration: 'none' }}>
-            <div className="auth-brand-icon" style={{ width: 32, height: 32, fontSize: 15, borderRadius: 7 }}>M</div>
+            <LogoMark size={28} variant="tonal" />
             <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.3px' }}>MyTypist</span>
           </Link>
 

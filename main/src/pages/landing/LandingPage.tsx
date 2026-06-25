@@ -187,7 +187,7 @@ export function LandingPage() {
         <div className="lp-hero-copy">
           <div className="lp-hero-eyebrow">
             <div className="lp-hero-eyebrow-dot" />
-            Enterprise Document Infrastructure
+            Document tools built for students &amp; professionals
           </div>
           <h1 className="lp-hero-headline">
             Stop patching your<br />
@@ -306,7 +306,7 @@ export function LandingPage() {
             <div className="lp-plan">
               <div className="lp-plan-tier">Free</div>
               <div className="lp-plan-price">
-                <span className="lp-plan-amount">$0</span>
+                <span className="lp-plan-amount">₦0</span>
                 <span className="lp-plan-per">/month</span>
               </div>
               <div className="lp-plan-local">Always free · no card required</div>
@@ -330,10 +330,10 @@ export function LandingPage() {
             <div className="lp-plan">
               <div className="lp-plan-tier">Professional</div>
               <div className="lp-plan-price">
-                <span className="lp-plan-amount">$49</span>
+                <span className="lp-plan-amount">₦75,000</span>
                 <span className="lp-plan-per">/month</span>
               </div>
-              <div className="lp-plan-local">≈ ₦75,000 / month · billed monthly</div>
+              <div className="lp-plan-local">Billed monthly · cancel anytime</div>
               <div className="lp-plan-cta">
                 <Link to="/auth" style={{ textDecoration: 'none', display: 'block' }}>
                   <button className="btn btn--secondary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 500 }}>Start 14-day trial</button>
@@ -354,10 +354,10 @@ export function LandingPage() {
             <div className="lp-plan lp-plan--enterprise">
               <div className="lp-plan-tier">Enterprise</div>
               <div className="lp-plan-price">
-                <span className="lp-plan-amount">$149</span>
+                <span className="lp-plan-amount">₦230,000</span>
                 <span className="lp-plan-per">/month</span>
               </div>
-              <div className="lp-plan-local">≈ ₦230,000 / month · billed monthly</div>
+              <div className="lp-plan-local">Billed monthly · custom contracts available</div>
               <div className="lp-plan-cta">
                 <Link to="/support" style={{ textDecoration: 'none', display: 'block' }}>
                   <button className="btn btn--primary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 600 }}>Contact sales</button>

@@ -71,21 +71,12 @@ const plans = {
 type Feature = { label: string; free: boolean | string; pro: boolean | string; ent: boolean | string }
 const comparisonRows: { category: string; features: Feature[] }[] = [
   {
-    category: 'Documents',
+    category: 'Documents & Templates',
     features: [
-      { label: 'Document generation',    free: '5 / month',  pro: 'Unlimited',  ent: 'Unlimited'  },
-      { label: 'PDF fidelity guarantee', free: true,         pro: true,          ent: true          },
-      { label: 'Live preview in Studio', free: true,         pro: true,          ent: true          },
-      { label: 'Field inspector & validator', free: false,   pro: true,          ent: true          },
-      { label: 'Document versioning',    free: false,        pro: true,          ent: true          },
-    ],
-  },
-  {
-    category: 'Templates',
-    features: [
-      { label: 'Curated template library', free: 'Basic',   pro: '50 templates', ent: '100+ templates' },
-      { label: 'Custom templates',          free: false,     pro: true,            ent: true             },
-      { label: 'Template import (DOCX)',    free: false,     pro: true,            ent: true             },
+      { label: 'Document generation',      free: '5 / month', pro: 'Unlimited',     ent: 'Unlimited'      },
+      { label: 'PDF fidelity guarantee',   free: true,        pro: true,             ent: true              },
+      { label: 'Template library',         free: 'Basic',     pro: '50 templates',   ent: '100+ templates'  },
+      { label: 'Document versioning',      free: false,       pro: true,             ent: true              },
     ],
   },
   {
@@ -95,35 +86,15 @@ const comparisonRows: { category: string; features: Feature[] }[] = [
       { label: 'Sequential signature flows',          free: false,       pro: true,  ent: true  },
       { label: 'Parallel signature flows',            free: false,       pro: false, ent: true  },
       { label: 'Cryptographic audit trail',           free: false,       pro: true,  ent: true  },
-      { label: 'Signature expiry & reminders',        free: false,       pro: true,  ent: true  },
     ],
   },
   {
-    category: 'Pipeline & Collaboration',
+    category: 'Pipeline & Team',
     features: [
-      { label: 'Team members',                   free: '1 (solo)', pro: 'Up to 10', ent: 'Unlimited' },
-      { label: '5-stage pipeline (Draft→Archive)',free: false,     pro: true,       ent: true         },
-      { label: 'Role-gated stage approvals',     free: false,     pro: true,       ent: true         },
-      { label: 'SSO / SAML',                     free: false,     pro: false,      ent: true         },
-      { label: 'Custom branding',                free: false,     pro: false,      ent: true         },
-    ],
-  },
-  {
-    category: 'Security & Compliance',
-    features: [
-      { label: 'AES-256 encryption',         free: true,  pro: true,  ent: true  },
-      { label: 'SOC 2 Type II',              free: true,  pro: true,  ent: true  },
-      { label: 'GDPR compliance',            free: true,  pro: true,  ent: true  },
-      { label: 'HIPAA / ISO 27001 package',  free: false, pro: false, ent: true  },
-      { label: 'On-premise deployment',      free: false, pro: false, ent: true  },
-    ],
-  },
-  {
-    category: 'Developer & API',
-    features: [
-      { label: 'REST API access',   free: false, pro: false, ent: true             },
-      { label: 'Webhook delivery',  free: false, pro: false, ent: true             },
-      { label: 'API rate limit',    free: '—',   pro: '—',   ent: '50,000 calls/mo'},
+      { label: 'Team members',              free: '1 (solo)', pro: 'Up to 10', ent: 'Unlimited' },
+      { label: '5-stage document pipeline', free: false,      pro: true,       ent: true         },
+      { label: 'SSO / SAML',               free: false,      pro: false,      ent: true         },
+      { label: 'Custom branding',          free: false,      pro: false,      ent: true         },
     ],
   },
   {
@@ -205,15 +176,27 @@ export function PricingPage() {
             Start free. Scale when you're ready. No usage traps, no overage charges, no surprises.
           </p>
 
-          {/* Billing toggle */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '4px', borderRadius: 9999 }}>
+          {/* Billing toggle — sliding pill */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '4px', borderRadius: 9999, position: 'relative' }}>
+            {/* Sliding pill background */}
+            <div style={{
+              position: 'absolute',
+              top: 4, bottom: 4,
+              left: yearly ? 'calc(50% - 2px)' : '4px',
+              right: yearly ? '4px' : 'calc(50% - 2px)',
+              background: 'var(--color-accent)',
+              borderRadius: 9999,
+              transition: 'left 220ms cubic-bezier(.4,0,.2,1), right 220ms cubic-bezier(.4,0,.2,1)',
+              pointerEvents: 'none',
+            }} />
             <button
               onClick={() => setYearly(false)}
               style={{
-                padding: '6px 16px', borderRadius: 9999, fontSize: 13, fontWeight: 600,
-                background: !yearly ? 'var(--color-accent)' : 'none',
+                position: 'relative', zIndex: 1,
+                padding: '6px 20px', borderRadius: 9999, fontSize: 13, fontWeight: 600,
                 color: !yearly ? '#fff' : 'var(--color-text-secondary)',
-                border: 'none', cursor: 'pointer', transition: 'all 120ms',
+                border: 'none', cursor: 'pointer', background: 'none',
+                transition: 'color 180ms',
               }}
             >
               Monthly
@@ -221,15 +204,22 @@ export function PricingPage() {
             <button
               onClick={() => setYearly(true)}
               style={{
-                padding: '6px 16px', borderRadius: 9999, fontSize: 13, fontWeight: 600,
-                background: yearly ? 'var(--color-accent)' : 'none',
+                position: 'relative', zIndex: 1,
+                padding: '6px 20px', borderRadius: 9999, fontSize: 13, fontWeight: 600,
                 color: yearly ? '#fff' : 'var(--color-text-secondary)',
-                border: 'none', cursor: 'pointer', transition: 'all 120ms',
+                border: 'none', cursor: 'pointer', background: 'none',
+                transition: 'color 180ms',
                 display: 'flex', alignItems: 'center', gap: 6,
               }}
             >
               Yearly
-              <span style={{ padding: '2px 7px', background: yearly ? 'rgba(255,255,255,0.2)' : 'rgba(5,150,105,0.1)', color: yearly ? '#fff' : '#059669', borderRadius: 9999, fontSize: 10, fontWeight: 700 }}>
+              <span style={{
+                padding: '2px 7px',
+                background: yearly ? 'rgba(255,255,255,0.25)' : 'rgba(5,150,105,0.12)',
+                color: yearly ? '#fff' : '#059669',
+                borderRadius: 9999, fontSize: 10, fontWeight: 700,
+                transition: 'background 180ms, color 180ms',
+              }}>
                 Save 20%
               </span>
             </button>

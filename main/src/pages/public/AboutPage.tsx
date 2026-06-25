@@ -29,9 +29,9 @@ const principles = [
 const timeline = [
   { year: '2023', event: 'Founded after watching an HR team lose six weeks of onboarding contracts to formatting errors, broken email chains, and a shared drive that nobody fully trusted.' },
   { year: '2024 Q1', event: 'First production version: a two-stage draft-and-sign tool used internally by three enterprise beta customers.' },
-  { year: '2024 Q3', event: 'Expanded to full 5-stage pipeline. First external enterprise customers onboarded. SOC 2 audit initiated.' },
-  { year: '2025', event: 'SOC 2 Type II certified. 100+ templates library. Vault and versioned document archive launched.' },
-  { year: '2026', event: 'Parallel signature flows, REST API, on-premise deployment option, and full GDPR compliance.' },
+  { year: '2024 Q3', event: 'Expanded to full 5-stage pipeline. First business customers onboarded.' },
+  { year: '2025', event: '100+ template library. Vault and versioned document archive launched.' },
+  { year: '2026', event: 'Parallel signature flows, REST API, and encrypted audit trails.' },
 ]
 
 export function AboutPage() {
@@ -43,7 +43,7 @@ export function AboutPage() {
       <section style={{
         padding: '88px 20px 72px',
         background: 'var(--color-bg)',
-        backgroundImage: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(108,71,255,0.06) 0%, transparent 70%)',
+        backgroundImage: 'transparent',
         textAlign: 'center',
         borderBottom: '1px solid var(--color-border)',
       }}>
@@ -54,10 +54,10 @@ export function AboutPage() {
           </div>
           <h1 style={{ fontSize: 'clamp(32px, 6vw, 52px)', fontWeight: 800, letterSpacing: -2, lineHeight: 1.08, color: 'var(--color-text-primary)', marginBottom: 20 }}>
             Every organization runs on documents.<br />
-            Most of them run <em style={{ fontStyle: 'normal', background: 'linear-gradient(135deg, #6C47FF, #A87FFF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>badly.</em>
+            Most of them run <em style={{ fontStyle: 'normal', color: 'var(--color-accent)' }}>badly.</em>
           </h1>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--color-text-secondary)', maxWidth: 560, margin: '0 auto' }}>
-            MyTypist was built to end the five-tool document workflow — Word, email, DocuSign,
+            MyTypist was built to end the five-tool document workflow · Word, email, DocuSign,
             shared drive, prayer. One pipeline. One source of truth. One audit trail.
           </p>
         </div>
@@ -74,9 +74,9 @@ export function AboutPage() {
           </div>
           {[
             'An employment contract batch had the wrong clause applied to the compensation section. Forty contracts reprinted, re-reviewed, re-sent. No audit trail. No version history. No way to know which copies had already reached candidates.',
-            'The tools weren\'t wrong — Word is fine for writing. Email is fine for communication. But none of them were designed to be infrastructure. Stringing them together creates invisible failure points. When something breaks, nobody knows where, when, or by how much.',
-            'MyTypist is what we wished existed then. A system that treats document creation the same way engineering teams treat code — with structure, validation, versioning, and an explicit pipeline from first input to final archived record.',
-            'We build for every organization that creates documents under operational pressure — law firms, HR teams, financial institutions, operations teams. The ones who can\'t afford formatting errors. The ones who need every signature to be traceable.',
+            'The tools weren\'t wrong · Word is fine for writing. Email is fine for communication. But none of them were designed to be infrastructure. Stringing them together creates invisible failure points. When something breaks, nobody knows where, when, or by how much.',
+            'MyTypist is what we wished existed then. A system that treats document creation the same way engineering teams treat code · with structure, validation, versioning, and an explicit pipeline from first input to final archived record.',
+            'We build for every organization that creates documents under operational pressure · law firms, HR teams, financial institutions, operations teams. The ones who can\'t afford formatting errors. The ones who need every signature to be traceable.',
           ].map((para, i) => (
             <p key={i} style={{ fontSize: 15, lineHeight: 1.78, color: 'var(--color-text-secondary)' }}>{para}</p>
           ))}

@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import {
+  Home,
   FileText,
   LayoutTemplate,
   GitBranch,
   PenSquare,
   Archive,
+  Bell,
   Settings,
-  Shield,
   ChevronRight,
   PanelLeftClose,
   PanelLeftOpen,
@@ -15,7 +16,8 @@ import {
 import { useUIStore } from '@/stores'
 
 const navItems = [
-  { to: '/studio',           icon: FileText,       label: 'Studio',    end: true  },
+  { to: '/studio',           icon: Home,            label: 'Home',      end: true  },
+  { to: '/studio/new',       icon: FileText,        label: 'Studio',    end: true  },
   { to: '/studio/templates', icon: LayoutTemplate,  label: 'Templates', count: 24  },
   { to: '/studio/pipeline',  icon: GitBranch,       label: 'Pipeline',  badge: 2, badgeVariant: 'pending'  },
   { to: '/studio/sign',      icon: PenSquare,       label: 'Sign',      badge: 4, badgeVariant: 'progress' },
@@ -23,7 +25,8 @@ const navItems = [
 ]
 
 const settingsItems = [
-  { to: '/studio/settings', icon: Settings, label: 'Settings' },
+  { to: '/studio/notifications', icon: Bell,     label: 'Notifications', badge: 2, badgeVariant: 'progress' },
+  { to: '/studio/settings',      icon: Settings, label: 'Settings'       },
 ]
 
 export function Sidebar() {
@@ -94,6 +97,13 @@ export function Sidebar() {
                 onClick={closeMobile}
               >
                 <item.icon size={16} className="sidebar-item-icon" />
+                {collapsed && item.badge != null && (
+                  <div style={{
+                    position: 'absolute', top: 4, right: 4,
+                    width: 6, height: 6, borderRadius: '50%',
+                    background: 'var(--color-accent)',
+                  }} />
+                )}
                 {!collapsed && (
                   <>
                     <span className="sidebar-item-label">{item.label}</span>
@@ -129,37 +139,32 @@ export function Sidebar() {
                 onClick={closeMobile}
               >
                 <item.icon size={16} className="sidebar-item-icon" />
+                {collapsed && item.badge != null && (
+                  <div style={{
+                    position: 'absolute', top: 4, right: 4,
+                    width: 6, height: 6, borderRadius: '50%',
+                    background: 'var(--color-accent)',
+                  }} />
+                )}
                 {!collapsed && (
-                  <span className="sidebar-item-label">{item.label}</span>
+                  <>
+                    <span className="sidebar-item-label">{item.label}</span>
+                    {item.badge != null && (
+                      <span className={`sidebar-item-badge sidebar-item-badge--${item.badgeVariant}`}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </>
                 )}
               </NavLink>
             ))}
           </nav>
         </div>
 
-        {/* Admin — visually distinct elevated access */}
-        <div className="sidebar-admin-block">
-          <NavLink
-            to="/studio/admin"
-            className={({ isActive }) =>
-              `sidebar-item sidebar-item--admin${isActive ? ' sidebar-item--admin-active' : ''}`
-            }
-            title={collapsed ? 'Admin Console' : undefined}
-            onClick={closeMobile}
-          >
-            <Shield size={15} className="sidebar-item-icon" />
-            {!collapsed && (
-              <>
-                <span className="sidebar-item-label">Admin Console</span>
-                <span className="sidebar-admin-badge">Admin</span>
-              </>
-            )}
-          </NavLink>
-        </div>
       </div>
 
       {/* ── User row ── */}
-      <div className="sidebar-user" title={collapsed ? 'My Workspace — Professional' : undefined}>
+      <div className="sidebar-user" title={collapsed ? 'My Workspace · Professional' : undefined}>
         <div className="sidebar-avatar">U</div>
         {!collapsed && (
           <>

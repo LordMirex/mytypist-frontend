@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {
   Users, Shield, Activity, Database, MoreHorizontal,
   TrendingUp, AlertTriangle, CheckCircle, Clock,
-  UserPlus, Download, Search, Settings, ChevronDown,
+  UserPlus, Download, Search, Settings,
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
@@ -24,11 +24,11 @@ type OrgUser = {
 
 const users: OrgUser[] = [
   { id: '1', name: 'Admin User', email: 'admin@mytypist.com', initials: 'AU', role: 'Admin', status: 'active', joined: 'Jan 2026', docs: 142, lastActive: 'now' },
-  { id: '2', name: 'Sarah Mitchell', email: 'sarah@company.com', initials: 'SM', role: 'Editor', status: 'active', joined: 'Feb 2026', docs: 58, lastActive: '2h ago' },
-  { id: '3', name: 'David Chen', email: 'd.chen@company.com', initials: 'DC', role: 'Editor', status: 'active', joined: 'Mar 2026', docs: 34, lastActive: '1d ago' },
-  { id: '4', name: 'Priya Sharma', email: 'priya@company.com', initials: 'PS', role: 'Viewer', status: 'active', joined: 'Mar 2026', docs: 12, lastActive: '3d ago' },
-  { id: '5', name: 'Mark Johnson', email: 'm.johnson@company.com', initials: 'MJ', role: 'Editor', status: 'pending', joined: '—', docs: 0, lastActive: 'Invite sent' },
-  { id: '6', name: 'Emma Rodriguez', email: 'e.rodriguez@company.com', initials: 'ER', role: 'Viewer', status: 'inactive', joined: 'Dec 2025', docs: 7, lastActive: '2w ago' },
+  { id: '2', name: 'Adaeze Okonkwo', email: 'adaeze@company.com', initials: 'AO', role: 'Editor', status: 'active', joined: 'Feb 2026', docs: 58, lastActive: '2h ago' },
+  { id: '3', name: 'Chinedu Eze', email: 'chinedu.eze@company.com', initials: 'CE', role: 'Editor', status: 'active', joined: 'Mar 2026', docs: 34, lastActive: '1d ago' },
+  { id: '4', name: 'Funke Adebayo', email: 'funke.adebayo@company.com', initials: 'FA', role: 'Viewer', status: 'active', joined: 'Mar 2026', docs: 12, lastActive: '3d ago' },
+  { id: '5', name: 'Tunde Bakare', email: 'tunde.bakare@company.com', initials: 'TB', role: 'Editor', status: 'pending', joined: '·', docs: 0, lastActive: 'Invite sent' },
+  { id: '6', name: 'Ngozi Adeyemi', email: 'ngozi.adeyemi@company.com', initials: 'NA', role: 'Viewer', status: 'inactive', joined: 'Dec 2025', docs: 7, lastActive: '2w ago' },
 ]
 
 const roleColors: Record<UserRole, { color: string; bg: string }> = {
@@ -44,12 +44,12 @@ const statusMap: Record<UserStatus, 'complete' | 'pending' | 'draft'> = {
 }
 
 const auditLog = [
-  { id: '1', action: 'Document exported',         user: 'Sarah Mitchell', target: 'Mutual NDA — Acme Corp',         time: '12m ago', type: 'info' },
-  { id: '2', action: 'Signature request sent',    user: 'Admin User',     target: 'Board Resolution — June 2026',  time: '2h ago',  type: 'info' },
+  { id: '1', action: 'Document exported',         user: 'Adaeze Okonkwo', target: 'Mutual NDA · Eko Provisions',         time: '12m ago', type: 'info' },
+  { id: '2', action: 'Signature request sent',    user: 'Admin User',     target: 'Board Resolution · June 2026',  time: '2h ago',  type: 'info' },
   { id: '3', action: 'Document advanced to Sign', user: 'Admin User',     target: 'Vendor Master Agreement',       time: '4h ago',  type: 'info' },
-  { id: '4', action: 'User invited',              user: 'Admin User',     target: 'Mark Johnson',                  time: '5h ago',  type: 'info' },
+  { id: '4', action: 'User invited',              user: 'Admin User',     target: 'Tunde Bakare',                  time: '5h ago',  type: 'info' },
   { id: '5', action: 'Fidelity check passed',     user: 'System',         target: 'Q4 Budget Proposal',            time: '1d ago',  type: 'info' },
-  { id: '6', action: 'Document archived',         user: 'Sarah Mitchell', target: 'Employment Agreement — J. Doe', time: '2d ago',  type: 'info' },
+  { id: '6', action: 'Document archived',         user: 'Adaeze Okonkwo', target: 'Employment Agreement · I. Bello', time: '2d ago',  type: 'info' },
 ]
 
 const navSections = [
@@ -370,7 +370,7 @@ export function AdminPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {auditLog.map((entry, i) => (
+                    {auditLog.map((entry) => (
                       <tr key={entry.id}>
                         <td style={{ textAlign: 'center' }}>
                           {entry.type === 'warn'
@@ -386,7 +386,7 @@ export function AdminPage() {
                               background: 'var(--color-bg-tertiary)',
                               display: 'flex', alignItems: 'center', justifyContent: 'center',
                             }}>
-                              <User size={11} color="var(--color-text-tertiary)" />
+                              <Users size={11} color="var(--color-text-tertiary)" />
                             </div>
                             <span style={{ fontSize: 13, color: 'var(--color-text-secondary)' }}>{entry.user}</span>
                           </div>
@@ -421,7 +421,7 @@ export function AdminPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               {/* Plan card */}
               <div style={{
-                background: 'linear-gradient(135deg, rgba(108,71,255,0.08) 0%, rgba(108,71,255,0.03) 100%)',
+                background: 'var(--color-accent-muted)',
                 border: '1px solid var(--color-accent-border)',
                 borderRadius: 8, padding: '20px 24px',
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -438,7 +438,7 @@ export function AdminPage() {
                     <span style={{ fontSize: 13, color: 'var(--color-text-secondary)' }}>Active plan</span>
                   </div>
                   <div style={{ fontSize: 22, fontWeight: 700, color: 'var(--color-text-primary)', letterSpacing: '-0.4px' }}>
-                    $149 / month
+                    ₦230,000 / month
                   </div>
                   <div style={{ fontSize: 13, color: 'var(--color-text-secondary)', marginTop: 4 }}>
                     Next billing: July 1, 2026 · Unlimited seats

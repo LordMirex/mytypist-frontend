@@ -24,7 +24,7 @@ const blocks = [
   { id: 'b2', type: 'title',     label: 'Document Title',   icon: Type,      depth: 0, active: false },
   { id: 'b3', type: 'meta',      label: 'Reference / Date', icon: Minus,     depth: 1, active: false },
   { id: 'b4', type: 'paragraph', label: 'Opening Para',     icon: AlignLeft, depth: 0, active: false },
-  { id: 'b5', type: 'paragraph', label: 'Terms — Details',  icon: AlignLeft, depth: 0, active: true  },
+  { id: 'b5', type: 'paragraph', label: 'Terms · Details',  icon: AlignLeft, depth: 0, active: true  },
   { id: 'b6', type: 'paragraph', label: 'Closing Para',     icon: AlignLeft, depth: 0, active: false },
   { id: 'b7', type: 'divider',   label: 'Rule',             icon: Minus,     depth: 0, active: false },
   { id: 'b8', type: 'signature', label: 'Signature Block',  icon: PenSquare, depth: 0, active: false },
@@ -33,7 +33,7 @@ const blocks = [
 const selectedPlaceholder = {
   name: 'Employee Name',
   type: 'Text',
-  value: 'Sarah Mitchell',
+  value: 'Adaeze Okonkwo',
   pattern: '',
   required: true,
   maxLength: 120,
@@ -134,7 +134,7 @@ export function StudioPage() {
 
         {/* ── Center: Document canvas ── */}
         <main className={`studio-panel studio-panel--center${mobilePanel !== 'document' ? ' studio-panel--mobile-hidden' : ''}`}>
-          <div className="doc-canvas" style={{ padding: '72px 80px', fontFamily: "'Inter', sans-serif" }}>
+          <div className="doc-canvas" style={{ padding: '72px 80px', fontFamily: "Georgia, 'Times New Roman', serif" }}>
 
             {/* Letterhead */}
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 40, paddingBottom: 24, borderBottom: '2px solid var(--color-border)' }}>
@@ -196,7 +196,7 @@ export function StudioPage() {
               <div style={{ marginTop: 40, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
                 {[
                   { label: 'For and on behalf of Employer', name: 'Director, Human Resources', title: 'Meridian Group Ltd.' },
-                  { label: 'Employee Signature', name: 'Sarah Mitchell', title: 'Awaiting signature' },
+                  { label: 'Employee Signature', name: 'Adaeze Okonkwo', title: 'Awaiting signature' },
                 ].map((sig) => (
                   <div key={sig.label}>
                     <div style={{ height: 36, borderBottom: '1px solid var(--color-border)', marginBottom: 8 }} />

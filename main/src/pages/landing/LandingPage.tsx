@@ -33,7 +33,7 @@ function useScrollReveal() {
 const trustItems = [
   'No credit card · full feature access for 14 days',
   'Recipients sign without creating an account',
-  'SOC 2 Type II · AES-256 · GDPR ready',
+  'Encrypted storage · full audit trail on every document',
   'Flat subscription · zero per-document fees',
   '< 90s from template to signed PDF',
 ]
@@ -78,8 +78,8 @@ const STAGE_COLORS: Record<string, string> = {
 }
 
 const SIDE_FIELDS = [
-  { label: 'Employer',  value: 'Acme Corp Ltd',    showAt: 1 },
-  { label: 'Employee',  value: 'Sarah Mitchell',   showAt: 1 },
+  { label: 'Employer',  value: 'Eko Provisions Ltd', showAt: 1 },
+  { label: 'Employee',  value: 'Adaeze Okonkwo',     showAt: 1 },
   { label: 'Job Title', value: 'Product Designer', showAt: 2 },
   { label: 'Salary',    value: '₦4,200,000 / yr',  showAt: 2 },
   { label: 'Location',  value: 'Lagos, Nigeria',   showAt: 2 },
@@ -104,8 +104,8 @@ function AnimatedDocMockup() {
   }, [phase])
 
   const docTerms = [
-    { k: 'Employer',      v: phase >= 1 ? 'Acme Corp Ltd'    : null },
-    { k: 'Employee',      v: phase >= 1 ? 'Sarah Mitchell'   : null },
+    { k: 'Employer',      v: phase >= 1 ? 'Eko Provisions Ltd' : null },
+    { k: 'Employee',      v: phase >= 1 ? 'Adaeze Okonkwo'     : null },
     { k: 'Job Title',     v: phase >= 2 ? 'Product Designer' : null },
     { k: 'Annual Salary', v: phase >= 2 ? '₦4,200,000/yr'   : null },
     { k: 'Start Date',    v: 'January 15, 2026' },
@@ -120,7 +120,7 @@ function AnimatedDocMockup() {
           <div className="lp-mockup-dot" style={{ background: '#febc2e' }} />
           <div className="lp-mockup-dot" style={{ background: '#28c840' }} />
         </div>
-        <span className="lp-mockup-chrome-label">MyTypist · Studio — Employment Agreement</span>
+        <span className="lp-mockup-chrome-label">MyTypist · Studio · Employment Agreement</span>
       </div>
 
       <div className="lp-mockup-body">
@@ -194,9 +194,9 @@ function AnimatedDocMockup() {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 2 }}>
                   <div style={{ width: 3, height: 13, background: '#6C47FF', borderRadius: 1 }} />
-                  <span style={{ fontSize: 9.5, fontWeight: 800, color: '#1a1a17', letterSpacing: -0.2 }}>ACME CORP LTD</span>
+                  <span style={{ fontSize: 9.5, fontWeight: 800, color: '#1a1a17', letterSpacing: -0.2 }}>EKO PROVISIONS LTD</span>
                 </div>
-                <div style={{ fontSize: 6.5, color: '#9e9e94' }}>123 Business Avenue, Lagos, Nigeria</div>
+                <div style={{ fontSize: 6.5, color: '#9e9e94' }}>23 Adeola Odeku St, Victoria Island, Lagos</div>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: 7, fontWeight: 600, color: '#6C47FF' }}>EMPLOYMENT AGREEMENT</div>
@@ -224,7 +224,7 @@ function AnimatedDocMockup() {
                         </motion.span>
                       ) : (
                         <motion.span key="ph" style={{ fontSize: 7, fontStyle: 'italic', color: '#c0b4f0' }}>
-                          —
+                          ...
                         </motion.span>
                       )}
                     </AnimatePresence>
@@ -263,7 +263,7 @@ function AnimatedDocMockup() {
                         transition={{ duration: 0.5, delay: 0.25, ease: 'easeOut' }}
                         style={{ fontSize: 11, fontFamily: 'Georgia, serif', color: '#6C47FF', fontStyle: 'italic', lineHeight: 1 }}
                       >
-                        S. Mitchell
+                        A. Okonkwo
                       </motion.span>
                     )}
                   </AnimatePresence>
@@ -274,7 +274,7 @@ function AnimatedDocMockup() {
                   transition={{ duration: 0.4 }}
                   style={{ fontSize: 6.5, textTransform: 'uppercase', letterSpacing: 0.3 }}
                 >
-                  {phase >= 3 ? 'Employee — Signed ✓' : 'Awaiting Employee…'}
+                  {phase >= 3 ? 'Employee · Signed ✓' : 'Awaiting Employee…'}
                 </motion.div>
               </div>
             </div>
@@ -316,14 +316,14 @@ function AnimatedDocMockup() {
 
 /* ── Data ── */
 const stats = [
-  { num: '12k', unit: '+', label: 'Documents processed monthly' },
-  { num: '< 90', unit: 's', label: 'Template to signed PDF' },
-  { num: '99.97', unit: '%', label: 'Formatting fidelity rate' },
-  { num: '₦0', unit: '', label: 'Per-transaction fees. Ever.' },
+  { num: '90', unit: 's', label: 'From template to signed PDF' },
+  { num: '1:1', unit: '', label: 'Preview matches the printed PDF' },
+  { num: '₦0', unit: '', label: 'Per-document fees. Ever.' },
+  { num: '100', unit: '+', label: 'Ready-to-use templates' },
 ]
 
 const pipeline = [
-  { num: '01', name: 'Draft', desc: 'Block editor with live PDF preview. What you build is exactly what prints — guaranteed.', state: 'done' },
+  { num: '01', name: 'Draft', desc: 'Block editor with live PDF preview. What you build is exactly what prints. Guaranteed.', state: 'done' },
   { num: '02', name: 'Fidelity Check', desc: 'The system validates margins, overflow, and field errors before any reviewer sees the document. Nothing advances with unresolved errors.', state: 'active' },
   { num: '03', name: 'Approval', desc: 'Route to reviewers with role-gated access. No email threads. No PDF attachments in inboxes.', state: 'approval' },
   { num: '04', name: 'Sign', desc: 'Recipients sign without creating an account. Sequential and parallel flows. Cryptographically timestamped.', state: 'sign' },
@@ -341,7 +341,7 @@ const pipelineColors: Record<string, string> = {
 const features = [
   { icon: FileText,   num: '01', name: 'Creator Studio',       desc: 'Structured field input left. Pixel-perfect live preview center. Field inspector right. No layout surprises at print time.', tag: 'Figma-level structure' },
   { icon: GitBranch,  num: '02', name: 'Document Pipeline',    desc: 'Draft → Fidelity → Approval → Sign → Archive. Every stage requires explicit clearance. Nothing skips or gets lost.', tag: 'Five-stage workflow' },
-  { icon: PenSquare,  num: '03', name: 'Binding E-Signatures', desc: 'Recipients sign from a secure link — no account, no friction. Sequential and parallel flows. Cryptographically sealed.', tag: 'No recipient accounts' },
+  { icon: PenSquare,  num: '03', name: 'Binding E-Signatures', desc: 'Recipients sign from a secure link. No account, no friction. Sequential and parallel flows. Cryptographically sealed.', tag: 'No recipient accounts' },
   { icon: Archive,    num: '04', name: 'Versioned Vault',      desc: 'Every save creates a version. Compare states side by side. Full-text search across all field values. 100+ templates.', tag: 'Git-style versioning' },
   { icon: BarChart3,  num: '05', name: 'Operations Console',   desc: 'Pipeline throughput, fidelity pass rates, team capacity, and compliance audit logs in a single view.', tag: 'Operational intelligence' },
 ]
@@ -352,8 +352,35 @@ const competitors = [
   { name: 'Fragmented toolchain', desc: 'Word → Email → DocuSign → SharePoint. Four tools. Four handoff points. Breakage is invisible until it matters.' },
 ]
 
+const testimonials = [
+  {
+    quote: "We used to spend two days on every employment contract. With MyTypist it takes under an hour, including signatures.",
+    name: "Funke Adebayo",
+    role: "Head of People, Meridian Logistics",
+    initials: "FA",
+  },
+  {
+    quote: "The fidelity check caught a salary field overflow before the document reached our HR team. That one catch paid for the subscription.",
+    name: "Chinedu Eze",
+    role: "Legal Officer, Coastal Energy Services",
+    initials: "CE",
+  },
+  {
+    quote: "Our clients sign from their phones without creating an account. Nothing we tried before was this straightforward.",
+    name: "Tunde Bakare",
+    role: "Managing Partner, Bakare & Associates",
+    initials: "TB",
+  },
+]
+
 export function LandingPage() {
   useScrollReveal()
+
+  const [annual, setAnnual] = useState(false)
+  const proPrice = annual ? '₦60,000' : '₦75,000'
+  const proNote  = annual ? 'Billed ₦720,000/yr · saves ₦180,000' : 'Billed monthly · cancel anytime'
+  const entPrice = annual ? '₦184,000' : '₦230,000'
+  const entNote  = annual ? 'Billed ₦2,208,000/yr · saves ₦552,000' : 'Billed monthly · custom contracts available'
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
@@ -362,8 +389,9 @@ export function LandingPage() {
       {/* ══ HERO ══ */}
       <section className="lp-hero" id="product">
         <div className="lp-hero-copy">
-          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 20, fontFamily: 'var(--font-mono)' }}>
-            Document Operating System · Nigeria
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, fontSize: 13, fontWeight: 500, color: 'var(--color-text-secondary)' }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-status-complete)' }} />
+            Document workflow for Nigerian teams
           </div>
           <h1 className="lp-hero-headline">
             From blank page<br />
@@ -372,8 +400,8 @@ export function LandingPage() {
           </h1>
           <p className="lp-hero-sub">
             Pick a template, fill your details, get a perfectly formatted PDF.
-            Route for approval and collect legally binding signatures —
-            all in one place, zero per-transaction fees.
+            Route for approval and collect legally binding signatures,
+            all in one place, no per-document fees.
           </p>
           <div className="lp-hero-actions">
             <Link to="/templates" style={{ textDecoration: 'none' }}>
@@ -439,7 +467,28 @@ export function LandingPage() {
         </div>
       </div>
 
-      {/* ══ FEATURES — Numbered table rows ══ */}
+      {/* ══ SOCIAL PROOF ══ */}
+      <section className="lp-section lp-social" style={{ background: 'var(--color-bg)' }}>
+        <div className="lp-section-inner">
+          <h2 className="lp-section-heading lp-reveal">What teams say.</h2>
+          <div className="lp-testimonials-grid">
+            {testimonials.map((t, i) => (
+              <div key={t.name} className={`lp-testimonial lp-reveal lp-reveal--delay-${i}`}>
+                <p className="lp-testimonial-quote">{t.quote}</p>
+                <div className="lp-testimonial-author">
+                  <div className="lp-testimonial-avatar">{t.initials}</div>
+                  <div>
+                    <div className="lp-testimonial-name">{t.name}</div>
+                    <div className="lp-testimonial-role">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ FEATURES · Numbered table rows ══ */}
       <section className="lp-section" style={{ background: 'var(--color-surface)' }}>
         <div className="lp-section-inner">
           <h2 className="lp-section-heading lp-reveal">Five capabilities.<br />One coherent system.</h2>
@@ -489,6 +538,21 @@ export function LandingPage() {
       <section className="lp-section" id="pricing" style={{ background: 'var(--color-bg)' }}>
         <div className="lp-section-inner">
           <h2 className="lp-section-heading lp-reveal">Flat subscription. No surprises.</h2>
+          <div className="lp-pricing-toggle lp-reveal">
+            <button
+              className={`lp-toggle-btn${!annual ? ' lp-toggle-btn--active' : ''}`}
+              onClick={() => setAnnual(false)}
+            >Monthly</button>
+            <button
+              className={`lp-toggle-btn${annual ? ' lp-toggle-btn--active' : ''}`}
+              onClick={() => setAnnual(true)}
+            >
+              Annual
+              {annual
+                ? <span className="lp-toggle-save">20% off</span>
+                : <span className="lp-toggle-hint">Save 20%</span>}
+            </button>
+          </div>
           <div className="lp-pricing-grid lp-reveal">
 
             {/* Free */}
@@ -516,14 +580,14 @@ export function LandingPage() {
             </div>
 
             {/* Pro */}
-            <div className="lp-plan" style={{ borderTop: '3px solid var(--color-accent)', position: 'relative' }}>
+            <div className="lp-plan lp-plan--pro" style={{ position: 'relative' }}>
               <div style={{ position: 'absolute', top: 14, right: 20, fontSize: 9, fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.6px', fontFamily: 'var(--font-mono)' }}>Most used</div>
               <div className="lp-plan-tier">Professional</div>
               <div className="lp-plan-price">
-                <span className="lp-plan-amount">₦75,000</span>
+                <span className="lp-plan-amount">{proPrice}</span>
                 <span className="lp-plan-per">/month</span>
               </div>
-              <div className="lp-plan-local">Billed monthly · cancel anytime</div>
+              <div className="lp-plan-local">{proNote}</div>
               <div className="lp-plan-cta">
                 <Link to="/auth" style={{ textDecoration: 'none', display: 'block' }}>
                   <button className="btn btn--secondary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 500 }}>Start 14-day trial</button>
@@ -544,10 +608,10 @@ export function LandingPage() {
             <div className="lp-plan lp-plan--enterprise">
               <div className="lp-plan-tier">Enterprise</div>
               <div className="lp-plan-price">
-                <span className="lp-plan-amount">₦230,000</span>
+                <span className="lp-plan-amount">{entPrice}</span>
                 <span className="lp-plan-per">/month</span>
               </div>
-              <div className="lp-plan-local">Billed monthly · custom contracts available</div>
+              <div className="lp-plan-local">{entNote}</div>
               <div className="lp-plan-cta">
                 <Link to="/support" style={{ textDecoration: 'none', display: 'block' }}>
                   <button className="btn btn--primary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 600 }}>Contact sales</button>
@@ -579,6 +643,19 @@ export function LandingPage() {
         <div className="lp-cta-inner">
           <h2 className="lp-cta-headline lp-reveal">Your pipeline is already broken.<br />Fix it in 14 days.</h2>
           <p className="lp-cta-sub lp-reveal">Full feature access. No card required. No usage limits during trial.</p>
+          <div className="lp-cta-proof lp-reveal">
+            {[
+              'Draft any document with pixel-perfect PDF output',
+              'Run the full approval and signature pipeline',
+              'Recipients sign without creating an account',
+              'Unlimited documents for 14 days. No card.',
+            ].map(item => (
+              <div key={item} className="lp-cta-proof-item">
+                <span className="lp-cta-proof-check">✓</span>
+                {item}
+              </div>
+            ))}
+          </div>
           <div className="lp-cta-actions lp-reveal">
             <Link to="/auth" style={{ textDecoration: 'none' }}>
               <button className="btn btn--primary" style={{ height: 46, padding: '0 28px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>

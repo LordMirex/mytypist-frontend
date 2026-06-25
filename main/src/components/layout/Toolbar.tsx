@@ -3,13 +3,14 @@ import { Moon, Sun, ChevronRight, Menu } from 'lucide-react'
 import { useUIStore } from '@/stores'
 
 const routeLabels: Record<string, string> = {
-  '/studio':           'Studio',
+  '/studio':           'Home',
+  '/studio/new':       'Studio',
   '/studio/templates': 'Templates',
   '/studio/pipeline':  'Pipeline',
   '/studio/sign':      'Sign',
   '/studio/vault':     'Vault',
-  '/studio/settings':  'Settings',
-  '/studio/admin':     'Admin',
+  '/studio/settings':      'Settings',
+  '/studio/notifications': 'Notifications',
 }
 
 export function Toolbar() {
@@ -23,7 +24,7 @@ export function Toolbar() {
   return (
     <header className="toolbar">
       <div className="toolbar-left">
-        {/* Mobile hamburger — hidden on desktop via CSS */}
+        {/* Mobile hamburger · hidden on desktop via CSS */}
         <button
           className="toolbar-hamburger"
           onClick={toggleSidebar}

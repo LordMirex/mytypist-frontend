@@ -28,7 +28,7 @@ export function NotFoundPage() {
             padding: '4px 12px', borderRadius: 9999,
             marginBottom: 20,
           }}>
-            404 — Page not found
+            404 · Page not found
           </div>
 
           <h1 style={{

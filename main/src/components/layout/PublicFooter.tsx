@@ -5,28 +5,35 @@ const footerCols = [
   {
     heading: 'Product',
     links: [
-      { label: 'Product Overview', to: '/product'   },
-      { label: 'Templates',        to: '/templates' },
-      { label: 'Pricing',          to: '/pricing'   },
+      { label: 'Product overview', to: '/product'    },
+      { label: 'Templates',        to: '/templates'  },
+      { label: 'Pricing',          to: '/pricing'    },
+      { label: 'Changelog',        to: '/changelog'  },
+    ],
+  },
+  {
+    heading: 'Resources',
+    links: [
+      { label: 'Blog',     to: '/blog'    },
+      { label: 'FAQ',      to: '/faq'     },
+      { label: 'Support',  to: '/support' },
+      { label: 'Security', to: '/security'},
+      { label: 'Status',   to: '/status'  },
+      { label: 'Contact',  to: '/contact' },
     ],
   },
   {
     heading: 'Company',
     links: [
-      { label: 'About',   to: '/about'   },
-      { label: 'Support', to: '/support' },
-    ],
-  },
-  {
-    heading: 'Legal',
-    links: [
-      { label: 'Terms of Service', to: '/terms'   },
-      { label: 'Privacy Policy',   to: '/privacy' },
+      { label: 'About',          to: '/about'   },
+      { label: 'Careers',        to: '/careers' },
+      { label: 'Terms of service', to: '/terms' },
+      { label: 'Privacy policy', to: '/privacy' },
     ],
   },
 ]
 
-const badges = ['SOC 2 Type II', 'GDPR', 'HIPAA-ready', 'ISO 27001']
+const badges = ['AES-256 encrypted', 'Full audit trail', 'No per-document fees']
 
 export function PublicFooter() {
   return (
@@ -40,7 +47,7 @@ export function PublicFooter() {
             </span>
           </Link>
           <p className="lp-footer-brand-desc">
-            Enterprise document infrastructure.<br />
+            Document workflow for Nigerian teams.<br />
             Draft. Approve. Sign. Archive.<br />
             One system. Zero gaps.
           </p>

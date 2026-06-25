@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Plus,
   Search,
@@ -8,7 +9,6 @@ import {
   Briefcase,
   GraduationCap,
   Clock,
-  ArrowUpRight,
   SlidersHorizontal,
   Upload,
 } from 'lucide-react'
@@ -250,26 +250,29 @@ export function TemplatesPage() {
 
           <main className="templates-grid">
             {filtered.map((template) => (
-              <div key={template.id} className="template-card">
-                <div className="template-card-preview">
-                  <TemplateThumbnail template={template} />
-                </div>
-                <div className="template-card-content">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+              <Link key={template.id} to="/studio/new" style={{ textDecoration: 'none' }}>
+                <div className="template-card">
+                  <div className="template-card-preview">
+                    <TemplateThumbnail template={template} />
+                  </div>
+                  <div className="template-card-content">
                     <h3 className="template-card-title">{template.title}</h3>
-                    <ArrowUpRight size={13} color="var(--color-text-quaternary)" style={{ flexShrink: 0, marginTop: 2 }} />
+                    <p className="template-card-description">{template.description}</p>
                   </div>
-                  <p className="template-card-description">{template.description}</p>
-                </div>
-                <div className="template-card-footer">
-                  <CategoryBadge category={template.category} accent={template.accent} />
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 11, color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-mono)' }}>
-                    <span>{template.fields} fields</span>
-                    <span>{template.pages}p</span>
-                    <span>{template.lastUsed}</span>
+                  <div className="template-card-footer">
+                    <CategoryBadge category={template.category} accent={template.accent} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 11, color: 'var(--color-text-tertiary)', fontFamily: 'var(--font-mono)' }}>
+                        <span>{template.fields} fields</span>
+                        <span>{template.pages}p</span>
+                      </div>
+                      <span className="btn btn--primary btn--sm" style={{ height: 22, fontSize: 10, padding: '0 8px' }}>
+                        Use template
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
 
             {/* Create new card */}

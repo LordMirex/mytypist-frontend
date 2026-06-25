@@ -17,8 +17,8 @@ const pipeline = [
 
 const metrics = [
   { value: '< 90s', label: 'Template → signed PDF' },
-  { value: '12k+',  label: 'Documents / month'     },
-  { value: '$0',    label: 'Per-transaction fee'   },
+  { value: '100+',  label: 'Ready-to-use templates' },
+  { value: '₦0',    label: 'Per-document fee'       },
 ]
 
 const testimonial = {
@@ -59,7 +59,7 @@ export function AuthPage() {
               One pipeline.<br />Zero document errors.
             </p>
             <p className="auth-brand-sub">
-              From first draft to archived signed record — without stitching five tools together.
+              From first draft to archived signed record · without stitching five tools together.
             </p>
 
             {/* Mini pipeline visualization */}
@@ -160,9 +160,9 @@ export function AuthPage() {
           <div className="auth-brand-footer">
             <div className="auth-brand-badges">
               {[
-                { icon: Shield, label: 'SOC 2 Type II' },
-                { icon: GitBranch, label: 'GDPR' },
-                { icon: Zap, label: 'AES-256' },
+                { icon: Shield, label: 'Encrypted storage' },
+                { icon: Zap, label: 'AES-256 at rest' },
+                { icon: GitBranch, label: 'Audit trail' },
               ].map(({ icon: Icon, label }) => (
                 <span key={label} className="auth-brand-badge" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                   <Icon size={9} />
@@ -205,7 +205,7 @@ export function AuthPage() {
                   className="input"
                   style={{ height: 42, fontSize: 14 }}
                   type="text"
-                  placeholder="Jane Smith"
+                  placeholder="Amaka Obi"
                   autoComplete="name"
                 />
               </div>

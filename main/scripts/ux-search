@@ -1,0 +1,4 @@
+#!/bin/bash
+# Usage: ./scripts/ux-search <query> [--domain <domain>] [--stack <stack>] [--design-system ...]
+cd "$(dirname "$0")/.."
+exec python3 scripts/search.py "$@"

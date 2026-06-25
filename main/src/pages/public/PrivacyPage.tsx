@@ -5,7 +5,7 @@ import { PublicFooter } from '@/components/layout/PublicFooter'
 const sections = [
   {
     title: '1. Information We Collect',
-    body: `We collect information you provide when you register for an account (name, email address, organization), information you create within the Service (documents, templates, field values), and usage data (feature interactions, pipeline activity, error logs). We do not collect payment card data directly — payments are processed by our PCI-compliant payment provider.`,
+    body: `We collect information you provide when you register for an account (name, email address, organization), information you create within the Service (documents, templates, field values), and usage data (feature interactions, pipeline activity, error logs). We do not collect payment card data directly · payments are processed by our PCI-compliant payment provider.`,
   },
   {
     title: '2. How We Use Your Information',
@@ -17,7 +17,7 @@ const sections = [
   },
   {
     title: '4. Data Storage and Security',
-    body: `Your data is stored on infrastructure with AES-256 encryption at rest and TLS 1.2+ encryption in transit. We maintain SOC 2 Type II compliance controls and conduct regular security reviews. Backups are encrypted and stored in geographically separated locations.`,
+    body: `Your data is stored on infrastructure with AES-256 encryption at rest and TLS 1.2+ encryption in transit. We follow industry-standard security practices and conduct regular security reviews. Backups are encrypted and stored in geographically separated locations.`,
   },
   {
     title: '5. Data Retention',

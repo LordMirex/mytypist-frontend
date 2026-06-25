@@ -34,7 +34,7 @@ const plans = {
       '50 professionally built templates',
       'Sequential e-signatures with full audit trail',
       'Full 5-stage operational pipeline',
-      'Document vault — versioned & searchable',
+      'Document vault · versioned & searchable',
       'PDF export with layout guarantee',
       'Email support · 4-hour response SLA',
       '14-day full-access trial · no card required',
@@ -58,7 +58,7 @@ const plans = {
       'SSO / SAML integration',
       'Full REST API with webhook delivery',
       'On-premise deployment option',
-      'Compliance package (HIPAA, ISO 27001)',
+      'Compliance support (data processing agreement)',
       'Dedicated account support · 1-hour SLA',
     ],
     cta: 'Contact sales',
@@ -119,7 +119,7 @@ const faqs = [
   },
   {
     q: 'Do recipients need a MyTypist account to sign?',
-    a: 'No. Recipients receive a secure signing link via email. They sign directly in the browser — no account, no app, no friction.',
+    a: 'No. Recipients receive a secure signing link via email. They sign directly in the browser · no account, no app, no friction.',
   },
   {
     q: 'What happens when the 14-day trial ends?',
@@ -127,11 +127,11 @@ const faqs = [
   },
   {
     q: 'Is my data encrypted?',
-    a: 'Yes. AES-256 encryption at rest and in transit. All signing events are cryptographically timestamped. SOC 2 Type II certified.',
+    a: 'Yes. AES-256 encryption at rest and in transit. All signing events are cryptographically timestamped.',
   },
   {
     q: 'Can I cancel anytime?',
-    a: 'Yes. Monthly plans have no minimum commitment. Cancel at any time — your subscription continues until the end of the billing period.',
+    a: 'Yes. Monthly plans have no minimum commitment. Cancel at any time · your subscription continues until the end of the billing period.',
   },
   {
     q: 'What is the on-premise deployment option?',
@@ -139,7 +139,7 @@ const faqs = [
   },
   {
     q: 'Do you offer custom contracts or compliance packages?',
-    a: 'Yes — for Enterprise. We support HIPAA, ISO 27001, and custom data processing agreements. Contact sales to discuss your requirements.',
+    a: 'Yes · for Enterprise. We offer custom data processing agreements. Contact sales to discuss your requirements.',
   },
 ]
 
@@ -162,7 +162,7 @@ export function PricingPage() {
         padding: '80px 20px 64px',
         textAlign: 'center',
         borderBottom: '1px solid var(--color-border)',
-        background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(108,71,255,0.06) 0%, transparent 70%)',
+        background: 'transparent',
       }}>
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <div className="lp-hero-eyebrow" style={{ margin: '0 auto 20px', justifyContent: 'center' }}>
@@ -176,7 +176,7 @@ export function PricingPage() {
             Start free. Scale when you're ready. No usage traps, no overage charges, no surprises.
           </p>
 
-          {/* Billing toggle — sliding pill */}
+          {/* Billing toggle · sliding pill */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
             <div style={{ position: 'relative', display: 'flex', background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '4px', borderRadius: 9999, width: 220 }}>
               {/* Sliding pill */}

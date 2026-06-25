@@ -4,6 +4,7 @@ import {
   Trash2, Mail, Smartphone, Check, ChevronRight,
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { Switch } from '@/components/ui/Switch'
 import { Link } from 'react-router-dom'
 
 const sections = [
@@ -15,7 +16,7 @@ const sections = [
 
 type Section = 'account' | 'security' | 'billing' | 'notifications'
 
-function SidebarItem({ id, label, icon: Icon, active, onClick }: { id: string; label: string; icon: any; active: boolean; onClick: () => void }) {
+function SidebarItem({ id: _id, label, icon: Icon, active, onClick }: { id: string; label: string; icon: any; active: boolean; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
@@ -77,9 +78,27 @@ function Divider() {
   return <div style={{ height: 1, background: 'var(--color-border-subtle)' }} />
 }
 
+const defaultNotifs = {
+  signatureSent: true,
+  documentSigned: true,
+  signatureExpired: true,
+  pipelineStageChange: false,
+  teamInvited: true,
+  fidelityCheckFailed: true,
+  weeklyDigest: false,
+  inAppAll: true,
+  inAppUpdates: true,
+  pushMobile: false,
+}
+
 export function SettingsPage() {
   const [active, setActive] = useState<Section>('account')
   const [saved, setSaved] = useState(false)
+  const [notifs, setNotifs] = useState(defaultNotifs)
+
+  function toggleNotif(key: keyof typeof defaultNotifs) {
+    setNotifs((prev) => ({ ...prev, [key]: !prev[key] }))
+  }
 
   function handleSave() {
     setSaved(true)
@@ -170,7 +189,7 @@ export function SettingsPage() {
                       <IconBox icon={CreditCard} color="var(--color-accent)" />
                       <div>
                         <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)' }}>Professional Plan</div>
-                        <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>$49/month · renews July 1, 2026</div>
+                        <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>₦75,000/month · renews July 1, 2026</div>
                       </div>
                     </div>
                     <Link to="/pricing">
@@ -285,7 +304,7 @@ export function SettingsPage() {
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                         <span style={{ background: 'var(--color-accent)', color: '#fff', fontSize: 9, fontWeight: 700, padding: '2px 7px', borderRadius: 3, letterSpacing: 0.3 }}>PROFESSIONAL</span>
                       </div>
-                      <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5, color: 'var(--color-text-primary)' }}>$49 <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--color-text-tertiary)' }}>/month</span></div>
+                      <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5, color: 'var(--color-text-primary)' }}>₦75,000 <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--color-text-tertiary)' }}>/month</span></div>
                       <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 4 }}>Next billing: July 1, 2026 · 1 of 10 seats used</div>
                     </div>
                     <Link to="/pricing"><Button variant="secondary" size="sm">Upgrade plan</Button></Link>
@@ -317,7 +336,7 @@ export function SettingsPage() {
                       {i > 0 && <Divider />}
                       <Row>
                         <div>
-                          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>{month} · $49.00</div>
+                          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>{month} · ₦75,000</div>
                           <div style={{ fontSize: 11, color: 'var(--color-text-tertiary)', marginTop: 2 }}>Professional · monthly</div>
                         </div>
                         <button style={{ fontSize: 12, color: 'var(--color-accent)', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 500, display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -334,43 +353,60 @@ export function SettingsPage() {
           {/* NOTIFICATIONS */}
           {active === 'notifications' && (
             <div>
-              <GroupHeader title="Notification Preferences" desc="Choose what you're notified about and how." />
+              <GroupHeader title="Email Notifications" desc="Choose what you're notified about via email." />
               <SettingsCard>
                 {[
-                  { label: 'Signature request sent', desc: 'When a recipient receives a signature request', on: true },
-                  { label: 'Document signed', desc: 'When a recipient completes signing', on: true },
-                  { label: 'Signature expired', desc: 'When a signature request expires without action', on: true },
-                  { label: 'Pipeline stage change', desc: 'When a document moves to the next stage', on: false },
-                  { label: 'Team member invited', desc: 'When someone accepts your workspace invite', on: true },
-                  { label: 'Fidelity check failed', desc: 'When a document fails the layout fidelity check before advancing', on: true },
-                  { label: 'Weekly digest', desc: 'Summary of pipeline activity every Monday', on: false },
-                ].map((item, i, arr) => (
-                  <div key={item.label}>
+                  { key: 'signatureSent' as const, label: 'Document signed by recipient', desc: 'When a recipient completes signing' },
+                  { key: 'signatureExpired' as const, label: 'Signature reminder (3 days before expiry)', desc: 'When a signature request is about to expire' },
+                  { key: 'pipelineStageChange' as const, label: 'Document moved to next pipeline stage', desc: 'When a document advances through the pipeline' },
+                  { key: 'teamInvited' as const, label: 'Team member invited or joined', desc: 'When someone accepts your workspace invite' },
+                ].map((item, i) => (
+                  <div key={item.key}>
                     {i > 0 && <Divider />}
                     <Row>
                       <div>
                         <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>{item.label}</div>
                         <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>{item.desc}</div>
                       </div>
-                      <button
-                        style={{
-                          width: 40, height: 22, borderRadius: 11,
-                          background: item.on ? 'var(--color-accent)' : 'var(--color-border)',
-                          border: 'none', cursor: 'pointer', position: 'relative',
-                          flexShrink: 0, transition: 'background 120ms',
-                        }}
-                      >
-                        <span style={{
-                          position: 'absolute', top: 3, left: item.on ? 21 : 3,
-                          width: 16, height: 16, borderRadius: '50%', background: '#fff',
-                          transition: 'left 120ms',
-                          boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
-                        }} />
-                      </button>
+                      <Switch checked={notifs[item.key]} onChange={() => toggleNotif(item.key)} />
                     </Row>
                   </div>
                 ))}
               </SettingsCard>
+
+              <div style={{ marginTop: 28 }}>
+                <GroupHeader title="In-App Notifications" desc="Notifications inside the MyTypist app." />
+                <SettingsCard>
+                  {[
+                    { key: 'inAppAll' as const, label: 'All of the above', desc: 'Receive in-app notifications for all email-triggered events' },
+                    { key: 'inAppUpdates' as const, label: 'System updates and new features', desc: 'Product announcements and feature releases' },
+                  ].map((item, i) => (
+                    <div key={item.key}>
+                      {i > 0 && <Divider />}
+                      <Row>
+                        <div>
+                          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>{item.label}</div>
+                          <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>{item.desc}</div>
+                        </div>
+                        <Switch checked={notifs[item.key]} onChange={() => toggleNotif(item.key)} />
+                      </Row>
+                    </div>
+                  ))}
+                </SettingsCard>
+              </div>
+
+              <div style={{ marginTop: 28 }}>
+                <GroupHeader title="Push Notifications" desc="Mobile push notifications." />
+                <SettingsCard>
+                  <Row>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-primary)' }}>Mobile push</div>
+                      <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)', marginTop: 2 }}>Coming soon</div>
+                    </div>
+                    <Switch checked={notifs.pushMobile} onChange={() => toggleNotif('pushMobile')} disabled />
+                  </Row>
+                </SettingsCard>
+              </div>
             </div>
           )}
 

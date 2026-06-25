@@ -23,7 +23,7 @@ export function Shell() {
 
   return (
     <div className={`shell${sidebarOpen ? '' : ' shell--sidebar-collapsed'}`}>
-      {/* Mobile backdrop — tap to close */}
+      {/* Mobile backdrop · tap to close */}
       <div
         className={`sidebar-backdrop${sidebarOpen ? ' sidebar-backdrop--visible' : ''}`}
         onClick={toggleSidebar}

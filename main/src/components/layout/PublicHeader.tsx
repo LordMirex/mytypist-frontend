@@ -4,11 +4,11 @@ import { ArrowRight } from 'lucide-react'
 import { LogoMark } from '@/components/brand/LogoMark'
 
 const navItems = [
-  { label: 'Product',    to: '/product',    badge: null   },
-  { label: 'Pricing',    to: '/pricing',    badge: null   },
-  { label: 'Create',     to: '/templates',  badge: 'Free' },
-  { label: 'Enterprise', to: '/pricing',    badge: null   },
-  { label: 'Support',    to: '/support',    badge: null   },
+  { label: 'Product',   to: '/product',    badge: null   },
+  { label: 'Pricing',   to: '/pricing',    badge: null   },
+  { label: 'Templates', to: '/templates',  badge: 'Free' },
+  { label: 'FAQ',       to: '/faq',        badge: null   },
+  { label: 'Support',   to: '/support',    badge: null   },
 ]
 
 export function PublicHeader() {

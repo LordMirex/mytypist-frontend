@@ -10,8 +10,8 @@ const stages = [
     color: '#6C47FF',
     icon: FileText,
     tagline: 'Draft with formatting guarantees.',
-    desc: 'A structured block editor with live PDF preview always visible. What you build on the left is exactly what prints on the right — pixel-perfect, every time. The field inspector validates every input in real time.',
-    details: ['Block-based document editor', 'Live PDF preview — WYSIWYG, guaranteed', 'Field types: text, date, currency, signature, conditional', 'Template import from DOCX', '100+ pre-built templates'],
+    desc: 'A structured block editor with live PDF preview always visible. What you build on the left is exactly what prints on the right · pixel-perfect, every time. The field inspector validates every input in real time.',
+    details: ['Block-based document editor', 'Live PDF preview · WYSIWYG, guaranteed', 'Field types: text, date, currency, signature, conditional', 'Template import from DOCX', '100+ pre-built templates'],
   },
   {
     num: '02',
@@ -19,7 +19,7 @@ const stages = [
     color: '#6C47FF',
     icon: GitBranch,
     tagline: 'Validate before any human sees it.',
-    desc: 'Before a document can advance to review, the system runs a full fidelity check. Layout overflow, empty required fields, margin violations, missing signatures — all flagged automatically. Nothing broken reaches your reviewers.',
+    desc: 'Before a document can advance to review, the system runs a full fidelity check. Layout overflow, empty required fields, margin violations, missing signatures · all flagged automatically. Nothing broken reaches your reviewers.',
     details: ['Margin and overflow validation', 'Required field completion checks', 'Typography and font-embedding audit', 'Detailed error report with field-level callouts', 'Documents blocked from advancing until resolved'],
   },
   {
@@ -27,7 +27,7 @@ const stages = [
     name: 'Approval Routing',
     color: '#D97706',
     icon: BarChart3,
-    tagline: 'Structured review — no email threads.',
+    tagline: 'Structured review · no email threads.',
     desc: 'Route documents to specific reviewers based on role and document type. Approvers see only what they need to review. Comments are attached to the document, not scattered across emails. Stage transitions require explicit clearance.',
     details: ['Role-gated reviewer access', 'Sequential and parallel approval flows', 'In-document commenting (no email)', 'Explicit approve / reject actions', 'Full approval history in audit trail'],
   },
@@ -37,8 +37,8 @@ const stages = [
     color: '#0891B2',
     icon: PenSquare,
     tagline: 'Recipients sign. No account required.',
-    desc: 'Send a secure signing link to any recipient. They sign directly in the browser — no account, no download, no friction. Every signing event is cryptographically timestamped and included in the tamper-evident audit log.',
-    details: ['Secure signing link — no recipient account needed', 'Sequential and parallel signing flows', 'Signature expiry dates and automatic reminders', 'Cryptographic timestamp on every event', 'Downloadable signed PDF with audit trail bundle'],
+    desc: 'Send a secure signing link to any recipient. They sign directly in the browser · no account, no download, no friction. Every signing event is cryptographically timestamped and included in the tamper-evident audit log.',
+    details: ['Secure signing link · no recipient account needed', 'Sequential and parallel signing flows', 'Signature expiry dates and automatic reminders', 'Cryptographic timestamp on every event', 'Downloadable signed PDF with audit trail bundle'],
   },
   {
     num: '05',
@@ -46,17 +46,17 @@ const stages = [
     color: '#059669',
     icon: Archive,
     tagline: 'Every document. Every version. Forever.',
-    desc: 'Once signed, documents move to the Vault — versioned, full-text searchable, and permanently preserved. Compare any two versions side by side. Set retention policies. Pull a complete diff history for any document at any time.',
+    desc: 'Once signed, documents move to the Vault · versioned, full-text searchable, and permanently preserved. Compare any two versions side by side. Set retention policies. Pull a complete diff history for any document at any time.',
     details: ['Full-text search across all field values', 'Version history with side-by-side diff', 'Tamper-evident audit log on every event', 'Configurable retention policies', 'Bulk export and compliance reporting'],
   },
 ]
 
 const compliance = [
-  'SOC 2 Type II certified',
+  'Encrypted at rest and in transit',
   'AES-256 encryption at rest and in transit',
   'GDPR compliant',
-  'HIPAA package available (Enterprise)',
-  'ISO 27001 package available (Enterprise)',
+  'Data processing agreement (Enterprise)',
+  'Custom data retention (Enterprise)',
   'On-premise deployment option (Enterprise)',
 ]
 
@@ -70,7 +70,7 @@ export function ProductPage() {
         padding: '80px 20px 72px',
         textAlign: 'center',
         borderBottom: '1px solid var(--color-border)',
-        background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(108,71,255,0.07) 0%, transparent 70%)',
+        background: 'transparent',
       }}>
         <div style={{ maxWidth: 680, margin: '0 auto' }}>
           <div className="lp-hero-eyebrow" style={{ margin: '0 auto 22px', justifyContent: 'center' }}>
@@ -87,7 +87,7 @@ export function ProductPage() {
           <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/auth">
               <button className="btn btn--primary" style={{ height: 44, padding: '0 24px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                Start free — 14 days
+                Start free · 14 days
                 <ArrowRight size={14} />
               </button>
             </Link>

@@ -686,7 +686,7 @@ function TemplateStudio({ template, onBack }: { template: Template; onBack: () =
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
             <FileText size={15} />
-            Use This Template — Free
+            Use This Template · Free
             <ArrowRight size={14} />
           </button>
         )}
@@ -742,7 +742,7 @@ function TemplateStudio({ template, onBack }: { template: Template; onBack: () =
             {template.category}
           </span>
         </div>
-        {/* Step indicator — desktop */}
+        {/* Step indicator · desktop */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0, fontSize: 11, color: 'var(--color-text-tertiary)' }} className="studio-step-indicator">
           <span style={{ fontWeight: 700, color: 'var(--color-accent)' }}>Step 1</span>
           <span>Fill fields</span>
@@ -768,7 +768,7 @@ function TemplateStudio({ template, onBack }: { template: Template; onBack: () =
         </div>
       </div>
 
-      {/* Studio body — two panels */}
+      {/* Studio body · two panels */}
       <div style={{ display: 'flex', flex: 1, minHeight: 0, height: 'calc(100vh - 120px)' }} className="studio-body">
         {/* Left: form */}
         <div style={{ width: '40%', minWidth: 280, borderRight: '1px solid var(--color-border)', overflowY: 'auto', background: 'var(--color-bg)', display: 'flex', flexDirection: 'column' }} className="studio-form-col">
@@ -838,7 +838,7 @@ export function PublicTemplatesPage() {
       {/* ── Page header bar ── */}
       <div style={{
         borderBottom: '1px solid var(--color-border)',
-        background: 'radial-gradient(ellipse 80% 120% at 50% 0%, rgba(108,71,255,0.05) 0%, transparent 70%)',
+        background: 'transparent',
         padding: '36px 24px 28px',
       }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
@@ -849,7 +849,7 @@ export function PublicTemplatesPage() {
                 Document Library
               </div>
               <h1 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, letterSpacing: -1, lineHeight: 1.1, color: 'var(--color-text-primary)', margin: 0 }}>
-                Create a document — free
+                Create a document · free
               </h1>
               <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--color-text-secondary)', marginTop: 8, maxWidth: 440 }}>
                 Pick a template, fill your details, preview it live. No account needed to start.
@@ -891,7 +891,7 @@ export function PublicTemplatesPage() {
       {/* ── Sidebar + Grid layout ── */}
       <div style={{ flex: 1, display: 'flex', maxWidth: 1200, margin: '0 auto', width: '100%' }}>
 
-        {/* Sidebar — desktop */}
+        {/* Sidebar · desktop */}
         <aside className="gallery-sidebar" style={{
           width: 220, flexShrink: 0, borderRight: '1px solid var(--color-border)',
           padding: '28px 0', position: 'sticky', top: 54, height: 'calc(100vh - 54px)',
@@ -941,7 +941,7 @@ export function PublicTemplatesPage() {
               Don't see your template?
             </p>
             <p style={{ fontSize: 11, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 10 }}>
-              Build a custom one in Studio — free.
+              Build a custom one in Studio · free.
             </p>
             <Link to="/auth">
               <button style={{

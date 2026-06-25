@@ -32,18 +32,18 @@ type DocCard = {
 }
 
 const documents: DocCard[] = [
-  { id: '1',  title: 'Employment Agreement — John Doe',  stage: 'draft',    date: '2h ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'Employment Agreement', pages: 4 },
+  { id: '1',  title: 'Employment Agreement · Ibrahim Bello',  stage: 'draft',    date: '2h ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'Employment Agreement', pages: 4 },
   { id: '2',  title: 'Service Level Agreement',          stage: 'draft',    date: '5h ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'SLA Template', pages: 8 },
-  { id: '3',  title: 'Invoice — Project Delta',          stage: 'draft',    date: '1h ago',  user: 'Finance', initials: 'F', userColor: '#059669', template: 'Invoice', pages: 2 },
-  { id: '4',  title: 'Mutual NDA — Acme Corp',           stage: 'fidelity', date: '1d ago',  user: 'Legal',   initials: 'L', userColor: '#D97706', template: 'Mutual NDA', pages: 2 },
+  { id: '3',  title: 'Invoice · Project Delta',          stage: 'draft',    date: '1h ago',  user: 'Finance', initials: 'F', userColor: '#059669', template: 'Invoice', pages: 2 },
+  { id: '4',  title: 'Mutual NDA · Eko Provisions',           stage: 'fidelity', date: '1d ago',  user: 'Legal',   initials: 'L', userColor: '#D97706', template: 'Mutual NDA', pages: 2 },
   { id: '5',  title: 'Q4 Budget Proposal',               stage: 'fidelity', date: '30m ago', user: 'Finance', initials: 'F', userColor: '#059669', template: 'Budget Proposal', pages: 6 },
   { id: '6',  title: 'Vendor Master Agreement',          stage: 'approval', date: '3d ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'Vendor Form', pages: 3 },
-  { id: '7',  title: 'Board Resolution — May 2026',      stage: 'approval', date: '2d ago',  user: 'Legal',   initials: 'L', userColor: '#D97706', template: 'Board Resolution', pages: 1 },
-  { id: '8',  title: 'Acceptance Letter — J. Okafor',   stage: 'sign',     date: '1d ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'Acceptance Letter', pages: 2 },
-  { id: '9',  title: 'Student ID Request — Batch 12',   stage: 'sign',     date: '6h ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'ID Request', pages: 1 },
-  { id: '10', title: 'Consulting Agreement — Tier 2',   stage: 'sign',     date: '4h ago',  user: 'Legal',   initials: 'L', userColor: '#D97706', template: 'Consulting Agreement', pages: 5 },
-  { id: '11', title: 'Partnership MOU — Greenfield',    stage: 'sign',     date: '2d ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'MOU', pages: 3 },
-  { id: '12', title: 'Offer Letter — Maria Santos',     stage: 'archive',  date: '3d ago',  user: 'HR',      initials: 'H', userColor: '#059669', template: 'Offer Letter', pages: 2 },
+  { id: '7',  title: 'Board Resolution · May 2026',      stage: 'approval', date: '2d ago',  user: 'Legal',   initials: 'L', userColor: '#D97706', template: 'Board Resolution', pages: 1 },
+  { id: '8',  title: 'Acceptance Letter · J. Okafor',   stage: 'sign',     date: '1d ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'Acceptance Letter', pages: 2 },
+  { id: '9',  title: 'Student ID Request · Batch 12',   stage: 'sign',     date: '6h ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'ID Request', pages: 1 },
+  { id: '10', title: 'Consulting Agreement · Tier 2',   stage: 'sign',     date: '4h ago',  user: 'Legal',   initials: 'L', userColor: '#D97706', template: 'Consulting Agreement', pages: 5 },
+  { id: '11', title: 'Partnership MOU · Greenfield',    stage: 'sign',     date: '2d ago',  user: 'Admin',   initials: 'A', userColor: '#6C47FF', template: 'MOU', pages: 3 },
+  { id: '12', title: 'Offer Letter · Amaka Obi',        stage: 'archive',  date: '3d ago',  user: 'HR',      initials: 'H', userColor: '#059669', template: 'Offer Letter', pages: 2 },
 ]
 
 function PipelineCard({ doc, stage }: { doc: DocCard; stage: typeof stages[0] }) {

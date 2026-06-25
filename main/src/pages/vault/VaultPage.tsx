@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  Search, FileText, MoreHorizontal, Filter, FileDown,
+  Search, FileText, MoreHorizontal, FileDown,
   Download, Eye, Clock, Archive, HardDrive, CheckCircle2, TrendingUp,
   GitBranch, ChevronUp, ChevronDown,
 } from 'lucide-react'
@@ -34,15 +34,15 @@ const typeColors: Record<DocType, { text: string; bg: string }> = {
 }
 
 const documents: Doc[] = [
-  { id: '1',  name: 'Acme Corp SLA.pdf',                status: 'complete', type: 'Contract', size: '1.2 MB', updated: '2h ago',  version: 3, pages: 8,  modBy: 'Admin',   modByInitials: 'AU', modByColor: '#6C47FF', signedBy: 'Sarah Mitchell' },
-  { id: '2',  name: 'John Doe Offer Letter.pdf',        status: 'pending',  type: 'HR',       size: '450 KB', updated: '5h ago',  version: 2, pages: 2,  modBy: 'HR Team', modByInitials: 'HR', modByColor: '#059669' },
+  { id: '1',  name: 'Eko Provisions SLA.pdf',                status: 'complete', type: 'Contract', size: '1.2 MB', updated: '2h ago',  version: 3, pages: 8,  modBy: 'Admin',   modByInitials: 'AU', modByColor: '#6C47FF', signedBy: 'Adaeze Okonkwo' },
+  { id: '2',  name: 'Ibrahim Bello Offer Letter.pdf',        status: 'pending',  type: 'HR',       size: '450 KB', updated: '5h ago',  version: 2, pages: 2,  modBy: 'HR Team', modByInitials: 'HR', modByColor: '#059669' },
   { id: '3',  name: 'University Admission Letter.pdf',  status: 'complete', type: 'Academic', size: '2.1 MB', updated: '1d ago',  version: 1, pages: 1,  modBy: 'Admin',   modByInitials: 'AU', modByColor: '#6C47FF', signedBy: 'J. Okafor' },
   { id: '4',  name: 'Q4 Budget Proposal.pdf',           status: 'draft',    type: 'Business', size: '890 KB', updated: '3d ago',  version: 4, pages: 6,  modBy: 'Finance', modByInitials: 'FN', modByColor: '#0891B2' },
-  { id: '5',  name: 'Employment Agreement — J. Doe.pdf',status: 'complete', type: 'Legal',    size: '1.5 MB', updated: '1w ago',  version: 2, pages: 4,  modBy: 'Legal',   modByInitials: 'LG', modByColor: '#DC2626', signedBy: 'John Doe' },
-  { id: '6',  name: 'Vendor Master Agreement.pdf',      status: 'complete', type: 'Contract', size: '2.8 MB', updated: '2w ago',  version: 5, pages: 12, modBy: 'Admin',   modByInitials: 'AU', modByColor: '#6C47FF', signedBy: 'D. Chen' },
-  { id: '7',  name: 'Board Resolution — May 2026.pdf',  status: 'complete', type: 'Legal',    size: '640 KB', updated: '2w ago',  version: 1, pages: 1,  modBy: 'Legal',   modByInitials: 'LG', modByColor: '#DC2626', signedBy: 'E. Rodriguez' },
+  { id: '5',  name: 'Employment Agreement · I. Bello.pdf',status: 'complete', type: 'Legal',    size: '1.5 MB', updated: '1w ago',  version: 2, pages: 4,  modBy: 'Legal',   modByInitials: 'LG', modByColor: '#DC2626', signedBy: 'Ibrahim Bello' },
+  { id: '6',  name: 'Vendor Master Agreement.pdf',       status: 'complete', type: 'Contract', size: '2.8 MB', updated: '2w ago',  version: 5, pages: 12, modBy: 'Admin',   modByInitials: 'AU', modByColor: '#6C47FF', signedBy: 'T. Bakare' },
+  { id: '7',  name: 'Board Resolution · May 2026.pdf',  status: 'complete', type: 'Legal',    size: '640 KB', updated: '2w ago',  version: 1, pages: 1,  modBy: 'Legal',   modByInitials: 'LG', modByColor: '#DC2626', signedBy: 'N. Adeyemi' },
   { id: '8',  name: 'Student ID Batch 12.pdf',          status: 'pending',  type: 'Academic', size: '320 KB', updated: '3w ago',  version: 1, pages: 1,  modBy: 'Admin',   modByInitials: 'AU', modByColor: '#6C47FF' },
-  { id: '9',  name: 'Internship Offer — M. Santos.pdf', status: 'failed',   type: 'HR',       size: '410 KB', updated: '1mo ago', version: 2, pages: 2,  modBy: 'HR Team', modByInitials: 'HR', modByColor: '#059669' },
+  { id: '9',  name: 'Internship Offer · F. Adebayo.pdf',status: 'failed',   type: 'HR',       size: '410 KB', updated: '1mo ago', version: 2, pages: 2,  modBy: 'HR Team', modByInitials: 'HR', modByColor: '#059669' },
 ]
 
 const tabs: { id: 'all' | DocType; label: string }[] = [
@@ -231,13 +231,12 @@ export function VaultPage() {
               </tr>
             ) : filtered.map(doc => {
               const tc = typeColors[doc.type]
-              const isHovered = hoveredId === doc.id
               return (
                 <tr
                   key={doc.id}
                   onMouseEnter={() => setHoveredId(doc.id)}
                   onMouseLeave={() => setHoveredId(null)}
-                  style={{ cursor: 'default' }}
+                  style={{ cursor: 'default', background: hoveredId === doc.id ? 'var(--color-hover)' : 'transparent', transition: 'background 100ms' }}
                 >
                   {/* Name */}
                   <td>
@@ -386,7 +385,7 @@ export function VaultPage() {
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--color-text-quaternary)' }}>
           <CheckCircle2 size={11} color="var(--color-status-complete)" />
-          All documents encrypted at rest · AES-256 · SOC 2 Type II
+          All documents encrypted at rest · AES-256 · full audit trail
         </div>
       </div>
     </div>

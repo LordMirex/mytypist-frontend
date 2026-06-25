@@ -1,3 +1,34 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text-primary);
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-text-primary);
+  --color-popover: var(--color-surface);
+  --color-popover-foreground: var(--color-text-primary);
+  --color-primary: var(--color-accent);
+  --color-primary-foreground: var(--color-accent-text);
+  --color-secondary: var(--color-bg-secondary);
+  --color-secondary-foreground: var(--color-text-primary);
+  --color-muted: var(--color-bg-secondary);
+  --color-muted-foreground: var(--color-text-secondary);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-text);
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #FFFFFF;
+  --color-border: var(--color-border);
+  --color-ring: var(--color-accent);
+  --color-input: var(--color-border);
+  --color-sidebar-background: var(--sidebar-bg);
+  --color-sidebar-foreground: #F0F0EC;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+}
+
 @import './tokens.css';
 
 *,
@@ -88,4 +119,12 @@ img {
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 1px;
+}
+
+/* Skeleton shimmer */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes skeleton-shimmer {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
 }

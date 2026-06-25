@@ -1,9 +1,9 @@
 /* ================================================================
-   LANDING — Mobile-First. Document-Centric. Editorial.
+   LANDING · Mobile-First. Document-Centric. Editorial.
    Base styles = mobile. Scale up with min-width breakpoints.
    ================================================================ */
 
-/* ── Scroll reveal — progressive enhancement only ── */
+/* ── Scroll reveal · progressive enhancement only ── */
 /* Elements are VISIBLE by default. Animation only kicks in when JS adds .js-scroll-ready to <html> */
 .lp-reveal {
   transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
@@ -90,7 +90,7 @@
   letter-spacing: -0.5px;
 }
 
-/* Desktop nav — hidden on mobile */
+/* Desktop nav · hidden on mobile */
 .lp-header-nav {
   display: none;
   align-items: center;
@@ -168,7 +168,7 @@
   transform: translateY(-5.5px) rotate(-45deg);
 }
 
-/* Desktop CTAs — hidden on mobile */
+/* Desktop CTAs · hidden on mobile */
 .lp-header-ctas {
   display: none;
   align-items: center;
@@ -248,7 +248,10 @@
 }
 
 .lp-hero-headline em {
-  font-style: normal;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
   color: var(--color-accent);
 }
 
@@ -314,11 +317,12 @@
 /* kept for any legacy refs */
 .lp-hero-trust { display: none; }
 
-/* Document mockup — hidden on mobile */
+/* Document mockup · hidden on mobile */
 .lp-hero-preview {
   display: none;
   order: 2;
-  background: #F0EFF8;
+  background: var(--color-bg-secondary);
+  border-left: 1px solid var(--color-border);
   align-items: center;
   justify-content: center;
   padding: 32px 24px;
@@ -534,7 +538,7 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   STATS STRIP — dark
+   STATS STRIP · dark
    ══════════════════════════════════════════════════════════ */
 .lp-stats {
   background: #111108;
@@ -752,7 +756,7 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   FEATURES TABLE (legacy — keep for ref)
+   FEATURES TABLE (legacy · keep for ref)
    ══════════════════════════════════════════════════════════ */
 .lp-features-table {
   border-top: 1px solid var(--color-border);
@@ -1010,7 +1014,7 @@
   font-size: 15px;
   line-height: 1.7;
   color: rgba(255,255,255,0.4);
-  margin-bottom: 36px;
+  margin-bottom: 20px;
   max-width: 460px;
   margin-left: auto;
   margin-right: auto;
@@ -1273,6 +1277,188 @@
   .lp-footer-bottom {
     flex-direction: row;
     justify-content: space-between;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   SOCIAL PROOF / TESTIMONIALS
+   ══════════════════════════════════════════════════════════ */
+.lp-testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.lp-testimonial {
+  padding: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.lp-testimonial::before {
+  content: '\201C';
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 52px;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.1;
+  font-family: var(--font-display);
+}
+
+.lp-testimonial-quote {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--color-text-primary);
+  font-style: italic;
+  flex: 1;
+}
+
+.lp-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lp-testimonial-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-muted);
+  border: 1px solid var(--color-accent-border);
+  color: var(--color-accent);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.3px;
+  font-family: var(--font-mono);
+}
+
+.lp-testimonial-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.1px;
+}
+
+.lp-testimonial-role {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PRICING TOGGLE
+   ══════════════════════════════════════════════════════════ */
+.lp-pricing-toggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lp-toggle-btn {
+  height: 32px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--radius-md) - 2px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 100ms;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+}
+
+.lp-toggle-btn--active {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.lp-toggle-save {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-status-complete);
+  background: rgba(5,150,105,0.1);
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.1px;
+}
+
+.lp-toggle-hint {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-quaternary);
+}
+
+/* ── Pro plan featured ── */
+.lp-plan--pro {
+  border-top: 3px solid var(--color-accent);
+}
+
+/* ══════════════════════════════════════════════════════════
+   CTA PROOF STRIP
+   ══════════════════════════════════════════════════════════ */
+.lp-cta-proof {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 36px;
+  text-align: left;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lp-cta-proof-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.55;
+}
+
+.lp-cta-proof-check {
+  color: var(--color-status-complete);
+  font-weight: 700;
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+@media (min-width: 768px) {
+  .lp-testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .lp-cta-proof {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+    gap: 12px 40px;
   }
 }
 

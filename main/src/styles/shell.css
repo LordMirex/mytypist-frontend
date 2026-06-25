@@ -6,7 +6,7 @@
 }
 
 /* ================================================================
-   SIDEBAR — Dark, Linear-quality, collapsible
+   SIDEBAR · Dark, Linear-quality, collapsible
    Background is ALWAYS #161615 (warm dark), never changes with theme.
    Only accent on active item. No color decoration anywhere else.
    ================================================================ */
@@ -138,7 +138,7 @@
 }
 
 .sidebar--collapsed .sidebar-toggle {
-  /* Keep visible so user can expand — becomes centered in collapsed header */
+  /* Keep visible so user can expand · becomes centered in collapsed header */
   margin: 0;
 }
 
@@ -1331,10 +1331,10 @@
 }
 
 /* ================================================================
-   SIDEBAR — Rebuilt to Linear/Dub quality
+   SIDEBAR · Rebuilt to Linear/Dub quality
    ================================================================ */
 
-/* Override base sidebar — remove old padding */
+/* Override base sidebar · remove old padding */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -1865,7 +1865,7 @@
   flex-shrink: 0;
 }
 
-/* Sidebar Enhancements — Legacy compat */
+/* Sidebar Enhancements · Legacy compat */
 .sidebar-logo-icon {
   display: none;
 }
@@ -2224,14 +2224,14 @@
   }
 }
 
-/* ── Sign stats grid — base (4 cols desktop) ── */
+/* ── Sign stats grid · base (4 cols desktop) ── */
 .sign-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 
-/* ── Sign filter row — base (side-by-side desktop) ── */
+/* ── Sign filter row · base (side-by-side desktop) ── */
 .sign-filter-row {
   display: flex;
   align-items: center;
@@ -2247,7 +2247,7 @@
 }
 
 /* ================================================================
-   AUTH PAGE — Split Panel
+   AUTH PAGE · Split Panel
    ================================================================ */
 
 .auth-shell {
@@ -2413,7 +2413,7 @@
   flex-direction: column;
 }
 
-/* Mobile logo — hidden on desktop */
+/* Mobile logo · hidden on desktop */
 .auth-mobile-logo {
   display: flex;
   align-items: center;
@@ -2547,4 +2547,250 @@
   .auth-brand { display: flex; }
   .auth-mobile-logo { display: none; }
   .auth-form-panel { min-height: auto; }
+}
+
+/* ================================================================
+   ADMIN SHELL
+   ================================================================ */
+
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ── Admin Sidebar ── */
+.admin-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.admin-sidebar-header {
+  padding: 16px 14px 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.admin-sidebar-logo-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc2626;
+  flex-shrink: 0;
+}
+
+.admin-sidebar-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.admin-sidebar-logo-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.2px;
+}
+
+.admin-sidebar-logo-sub {
+  font-size: 10px;
+  color: var(--color-text-quaternary);
+  font-weight: 500;
+}
+
+.admin-sidebar-nav {
+  flex: 1;
+  padding: 8px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: background 60ms, color 60ms;
+}
+
+.admin-nav-item:hover {
+  background: var(--color-hover);
+  color: var(--color-text-primary);
+}
+
+.admin-nav-item--active {
+  background: var(--color-accent-muted);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.admin-nav-icon {
+  flex-shrink: 0;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.admin-nav-item--active .admin-nav-icon {
+  opacity: 1;
+}
+
+.admin-sidebar-footer {
+  padding: 12px 8px;
+  border-top: 1px solid var(--color-border);
+}
+
+.admin-back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  transition: background 60ms, color 60ms;
+}
+
+.admin-back-link:hover {
+  background: var(--color-hover);
+  color: var(--color-text-primary);
+}
+
+/* ── Admin Content ── */
+.admin-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-topbar {
+  height: 48px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.admin-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.admin-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 8px;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #dc2626;
+  letter-spacing: 0.2px;
+}
+
+.admin-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 32px 28px 64px;
+  overflow-y: auto;
+}
+
+/* ── Admin page header ── */
+.admin-page-header {
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-page-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--color-text-primary);
+  margin: 0 0 4px;
+}
+
+.admin-page-subtitle {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  margin: 0;
+}
+
+.admin-page-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Mobile: stack sidebar on small screens */
+@media (max-width: 767px) {
+  .admin-sidebar {
+    display: none;
+  }
+
+  .admin-main {
+    padding: 20px 16px 48px;
+  }
+
+  .admin-topbar {
+    padding: 0 16px;
+  }
 }

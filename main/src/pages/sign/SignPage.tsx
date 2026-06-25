@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {
   Plus, Search, Send, Clock, CheckCircle, XCircle,
-  MoreHorizontal, FileText, User, Mail, Filter, ChevronDown,
+  MoreHorizontal, FileText, Mail, Filter, Copy,
 } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
@@ -22,13 +22,13 @@ type SignRequest = {
 }
 
 const requests: SignRequest[] = [
-  { id: '1', document: 'Vendor Master Agreement', recipient: 'Sarah Mitchell', email: 'sarah@acmecorp.com', initials: 'SM', avatarColor: '#6C47FF', status: 'pending', sent: '2h ago', expires: 'in 5 days', pages: 3 },
-  { id: '2', document: 'Acceptance Letter — J. Okafor', recipient: 'John Adeyemi Okafor', email: 'j.okafor@university.edu', initials: 'JO', avatarColor: '#059669', status: 'pending', sent: '1d ago', expires: 'in 4 days', pages: 2 },
-  { id: '3', document: 'Mutual NDA — Acme Corp', recipient: 'David Chen', email: 'dchen@acmecorp.com', initials: 'DC', avatarColor: '#D97706', status: 'complete', sent: '3d ago', expires: 'Signed', pages: 4 },
-  { id: '4', document: 'Board Resolution — May 2026', recipient: 'Emma Rodriguez', email: 'e.rodriguez@board.io', initials: 'ER', avatarColor: '#6C47FF', status: 'pending', sent: '2d ago', expires: 'in 3 days', pages: 1 },
-  { id: '5', document: 'Employment Agreement — John Doe', recipient: 'John Doe', email: 'john.doe@email.com', initials: 'JD', avatarColor: '#059669', status: 'complete', sent: '1w ago', expires: 'Signed', pages: 6 },
-  { id: '6', document: 'Service Level Agreement', recipient: 'Priya Sharma', email: 'priya@techpartner.io', initials: 'PS', avatarColor: '#DC2626', status: 'failed', sent: '1w ago', expires: 'Expired', pages: 8 },
-  { id: '7', document: 'Q4 Consulting Contract', recipient: 'Mark Johnson', email: 'mark.j@consulting.com', initials: 'MJ', avatarColor: '#6C47FF', status: 'draft', sent: '—', expires: '—', pages: 5 },
+  { id: '1', document: 'Vendor Master Agreement', recipient: 'Adaeze Okonkwo', email: 'adaeze@ekoprovisions.com', initials: 'AO', avatarColor: '#6C47FF', status: 'pending', sent: '2h ago', expires: 'in 5 days', pages: 3 },
+  { id: '2', document: 'Acceptance Letter · J. Okafor', recipient: 'John Adeyemi Okafor', email: 'j.okafor@university.edu', initials: 'JO', avatarColor: '#059669', status: 'pending', sent: '1d ago', expires: 'in 4 days', pages: 2 },
+  { id: '3', document: 'Mutual NDA · Eko Provisions', recipient: 'Chinedu Eze', email: 'chinedu@ekoprovisions.com', initials: 'CE', avatarColor: '#D97706', status: 'complete', sent: '3d ago', expires: 'Signed', pages: 4 },
+  { id: '4', document: 'Board Resolution · May 2026', recipient: 'Ngozi Adeyemi', email: 'ngozi.adeyemi@board.io', initials: 'NA', avatarColor: '#6C47FF', status: 'pending', sent: '2d ago', expires: 'in 3 days', pages: 1 },
+  { id: '5', document: 'Employment Agreement · Ibrahim Bello', recipient: 'Ibrahim Bello', email: 'ibrahim.bello@email.com', initials: 'IB', avatarColor: '#059669', status: 'complete', sent: '1w ago', expires: 'Signed', pages: 6 },
+  { id: '6', document: 'Service Level Agreement', recipient: 'Funke Adebayo', email: 'funke.adebayo@techpartner.io', initials: 'FA', avatarColor: '#DC2626', status: 'failed', sent: '1w ago', expires: 'Expired', pages: 8 },
+  { id: '7', document: 'Q4 Consulting Contract', recipient: 'Tunde Bakare', email: 'tunde.bakare@consulting.com', initials: 'TB', avatarColor: '#6C47FF', status: 'draft', sent: '·', expires: '·', pages: 5 },
 ]
 
 const tabs = [
@@ -245,6 +245,22 @@ export function SignPage() {
                         <Send size={12} />
                       </button>
                     )}
+                    <button
+                      title="Copy signing link"
+                      onClick={() => {
+                        const token = req.id === '1' ? 'demo-vendor-2026' : req.id === '2' ? 'demo-offer-2026' : ''
+                        if (token) navigator.clipboard.writeText(`${window.location.origin}/sign/${token}`)
+                      }}
+                      style={{
+                        width: 26, height: 26, border: 'none', background: 'none', borderRadius: 4,
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        color: 'var(--color-text-quaternary)', transition: 'background 60ms, color 60ms',
+                      }}
+                      onMouseOver={e => { (e.currentTarget as HTMLElement).style.background = 'var(--color-hover)'; (e.currentTarget as HTMLElement).style.color = 'var(--color-accent)' }}
+                      onMouseOut={e => { (e.currentTarget as HTMLElement).style.background = 'none'; (e.currentTarget as HTMLElement).style.color = 'var(--color-text-quaternary)' }}
+                    >
+                      <Copy size={12} />
+                    </button>
                     <button style={{
                       width: 26, height: 26, border: 'none', background: 'none', borderRadius: 4,
                       cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -274,7 +290,7 @@ export function SignPage() {
         }}>
           <Send size={14} color="var(--color-accent)" style={{ flexShrink: 0 }} />
           <p style={{ fontSize: 13, color: 'var(--color-accent)', margin: 0 }}>
-            <strong>1 draft</strong> is ready to send — open it in Studio or click <strong>New Request</strong> to send directly.
+            <strong>1 draft</strong> is ready to send · open it in Studio or click <strong>New Request</strong> to send directly.
           </p>
         </div>
       )}

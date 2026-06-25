@@ -1,0 +1,28 @@
+# MyTypist — Windsurf Rules (main app)
+
+READ `../ai-rules/MASTER.md` (or `ai-rules/MASTER.md` from repo root) BEFORE WRITING ANY UI CODE.
+
+## Project
+- Stack: React 18 + TypeScript + Vite, raw CSS with CSS variables, Zustand, Motion, Swiper
+- Code here in: `src/`
+- Accent: `#6C47FF` | Currency: ₦ only | Mobile-first CSS
+
+## Hard Banned
+- Soft gradients, glassmorphism, oversized radii, pill overload
+- 3-column equal feature cards
+- `Inter` as default font
+- Em-dashes (`—`), pure `#000`/`#fff`
+- `window.addEventListener('scroll', ...)` for scroll
+- Fake product UIs from `<div>` rectangles
+
+## What Good Looks Like
+Linear, Raycast, Stripe, GitHub — honest, functional.
+- Buttons: 8-10px radius, solid fill
+- Cards: 8-12px radius, 1px border, subtle shadow
+- Transitions: 100-200ms ease
+
+## Installed
+- `motion` → `import { motion } from "motion/react"`
+- `swiper` → `import { Swiper, SwiperSlide } from 'swiper/react'`
+
+## Full Rules → `../ai-rules/MASTER.md`

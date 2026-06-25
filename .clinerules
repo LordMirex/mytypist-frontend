@@ -1,0 +1,41 @@
+# MyTypist — Cline Rules
+
+READ `ai-rules/MASTER.md` BEFORE WRITING ANY UI CODE.
+
+This is the MyTypist project — a Document Operating System for Nigerian users.
+
+## Project
+- Stack: React 18 + TypeScript + Vite, raw CSS with CSS variables, Zustand, Motion, Swiper
+- Code in: `main/src/`
+- Accent: `#6C47FF` | Currency: ₦ only | Mobile-first CSS
+
+## Hard Banned
+- Soft gradients, glassmorphism, oversized radii, pill overload
+- Generic 3-column equal feature cards
+- `Inter` as default font
+- Em-dashes (`—`) anywhere
+- Pure `#000` or `#fff`
+- `window.addEventListener('scroll', ...)` for scroll effects
+- Fake product UIs from `<div>` rectangles
+- Metric-card grids as dashboard default
+
+## What Good Looks Like — Linear, Raycast, Stripe, GitHub
+- Sidebars: 240-260px fixed, solid bg, 1px border-right
+- Buttons: 8-10px radius, no gradients
+- Cards: 8-12px radius, subtle border, shadow ≤ 0 2px 8px rgba(0,0,0,0.08)
+- Transitions: 100-200ms ease
+
+## Tools
+1. `npx shadcn@latest add [component]`
+2. `npx shadcn@latest add [21st.dev URL]`
+3. `npx shadcn@latest add https://efferd.com/r/[block-name].json`
+4. Uiverse.io: fetch link, adapt code
+
+## Installed
+- `motion` → `import { motion } from "motion/react"`
+- `swiper` → `import { Swiper, SwiperSlide } from 'swiper/react'`
+
+## 3D / Spline
+STOP. Read `ai-rules/spline-handoff.md`. Write prompt for user. Wait for code.
+
+## Full Rules → `ai-rules/MASTER.md`

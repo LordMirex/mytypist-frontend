@@ -42,3 +42,9 @@ externalPort = 3001
 deploymentTarget = "static"
 build = ["bash", "-c", "cd main && npm run build"]
 publicDir = "main/dist"
+
+[mcp]
+[[mcp.servers]]
+name = "shadcn"
+command = "npx"
+args = ["-y", "@shadcn/mcp@latest"]

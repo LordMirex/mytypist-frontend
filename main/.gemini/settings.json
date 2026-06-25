@@ -1,0 +1,13 @@
+{
+  "context": {
+    "files": [
+      "../ai-rules/MASTER.md",
+      "../ai-rules/taste-skill/SKILL.md",
+      "../ai-rules/uncodixfy/SKILL.md",
+      "../ai-rules/ui-ux-pro-max/SKILL.md",
+      "../ai-rules/tools.md",
+      "../ai-rules/spline-handoff.md"
+    ],
+    "instructions": "READ ai-rules/MASTER.md from the repo root before writing any UI code. This project has strict design rules: no soft gradients, no glassmorphism, no oversized radii, no pill buttons, no 3-column equal feature cards, no Inter as default font, no em-dashes, no pure black/white. Think Linear, Raycast, Stripe, GitHub. Mobile-first CSS. Currency: ₦ only. Accent: #6C47FF."
+  }
+}

@@ -1,0 +1,55 @@
+# MyTypist — Cursor Rules
+
+READ `ai-rules/MASTER.md` BEFORE WRITING ANY UI CODE.
+
+This is the MyTypist project — a Document Operating System for Nigerian users.
+
+## Project
+- Stack: React 18 + TypeScript + Vite, raw CSS with CSS variables, Zustand, Motion, Swiper
+- Code in: `main/src/`
+- Accent: `#6C47FF` | Currency: ₦ only | Mobile-first CSS
+
+## Hard Banned (auto-fail)
+- Soft gradients as decoration
+- Glassmorphism / frosted panels as default
+- Rounded corners > 10px on cards, > 8px on buttons
+- Pill-shaped buttons everywhere
+- 3-column equal feature card layouts
+- `Inter` as default font
+- Em-dashes (`—`) anywhere in copy
+- Pure `#000` or `#fff`
+- `window.addEventListener('scroll', ...)` for scroll effects
+- Fake product UIs from `<div>` rectangles
+- Uppercase + letter-spacing eyebrow labels everywhere
+- Metric-card grids as first dashboard instinct
+
+## What Good Looks Like
+Think Linear, Raycast, Stripe, GitHub. Functional. Honest. No trying-too-hard.
+- Sidebars: 240-260px, solid bg, 1px border-right
+- Buttons: solid fill, 8-10px radius max
+- Cards: 8-12px radius, subtle 1px border, shadow max 0 2px 8px rgba(0,0,0,0.08)
+- Transitions: 100-200ms ease only
+- Typography: clamp-based display, 14-16px body, max 65ch line length
+
+## Tools
+1. `npx shadcn@latest add [component]`
+2. `npx shadcn@latest add [21st.dev URL]`
+3. `npx shadcn@latest add https://efferd.com/r/[block-name].json`
+4. Uiverse.io: fetch link, adapt code
+5. Brand reference: fetch `https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/brands/[name]/DESIGN.md`
+
+## Installed
+- `motion` → `import { motion } from "motion/react"`
+- `swiper` → `import { Swiper, SwiperSlide } from 'swiper/react'`
+- Icons: `lucide-react` already installed
+
+## 3D / Spline
+STOP. Do not build in Three.js. Read `ai-rules/spline-handoff.md`. Write prompt for user. Wait for exported code.
+
+## Full Rules
+- `ai-rules/MASTER.md` ← start here
+- `ai-rules/taste-skill/SKILL.md`
+- `ai-rules/uncodixfy/SKILL.md`
+- `ai-rules/ui-ux-pro-max/SKILL.md`
+- `ai-rules/tools.md`
+- `ai-rules/spline-handoff.md`

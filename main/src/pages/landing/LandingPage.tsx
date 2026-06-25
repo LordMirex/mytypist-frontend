@@ -6,12 +6,25 @@ import { PublicFooter } from '@/components/layout/PublicFooter'
 
 function useScrollReveal() {
   useEffect(() => {
+    // Mark <html> so CSS enables the animation (progressive enhancement)
+    document.documentElement.classList.add('js-scroll-ready')
+
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('lp-in-view') }),
-      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px 60px 0px' }
     )
     document.querySelectorAll('.lp-reveal').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+
+    // Fallback: force-reveal everything after 1.2s in case observer never fires
+    const fallback = setTimeout(() => {
+      document.querySelectorAll('.lp-reveal').forEach((el) => el.classList.add('lp-in-view'))
+    }, 1200)
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(fallback)
+      document.documentElement.classList.remove('js-scroll-ready')
+    }
   }, [])
 }
 
@@ -248,6 +261,9 @@ export function LandingPage() {
       {/* ══ HERO ══ */}
       <section className="lp-hero" id="product">
         <div className="lp-hero-copy">
+          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 20, fontFamily: 'var(--font-mono)' }}>
+            Document Operating System · Nigeria
+          </div>
           <h1 className="lp-hero-headline">
             From blank page<br />
             to signed document<br />
@@ -256,31 +272,31 @@ export function LandingPage() {
           <p className="lp-hero-sub">
             Pick a template, fill your details, get a perfectly formatted PDF.
             Route for approval and collect legally binding signatures —
-            all in one place, with zero per-transaction fees.
+            all in one place, zero per-transaction fees.
           </p>
           <div className="lp-hero-actions">
             <Link to="/templates" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--primary" style={{ height: 46, padding: '0 24px', fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <button className="btn btn--primary" style={{ height: 48, padding: '0 28px', fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
                 Create a document free
                 <ArrowRight size={14} />
               </button>
             </Link>
             <Link to="/auth" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--secondary" style={{ height: 46, padding: '0 24px', fontSize: 14 }}>
+              <button className="btn btn--secondary" style={{ height: 48, padding: '0 24px', fontSize: 14 }}>
                 Start free trial
               </button>
             </Link>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 20, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 24, flexWrap: 'wrap' }}>
             {[
-              { text: '₦0 to start' },
-              { text: 'No credit card' },
-              { text: '14-day free trial' },
-            ].map(item => (
-              <div key={item.text} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--color-text-tertiary)' }}>
-                <span style={{ color: '#059669', fontWeight: 700 }}>✓</span>
-                {item.text}
+              '₦0 to start',
+              'No credit card',
+              '14-day free trial',
+            ].map(text => (
+              <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, fontWeight: 500, color: 'var(--color-text-tertiary)' }}>
+                <span style={{ color: '#059669', fontWeight: 800, fontSize: 11 }}>✓</span>
+                {text}
               </div>
             ))}
           </div>
@@ -325,7 +341,7 @@ export function LandingPage() {
       {/* ══ FEATURES — Numbered table rows ══ */}
       <section className="lp-section" style={{ background: 'var(--color-surface)' }}>
         <div className="lp-section-inner">
-          <h2 className="lp-section-heading lp-reveal">Five capabilities. One coherent system.</h2>
+          <h2 className="lp-section-heading lp-reveal">Five capabilities.<br />One coherent system.</h2>
           <div className="lp-features-table">
             {features.map((f, i) => (
               <div key={f.num} className={`lp-feature-row lp-reveal lp-reveal--delay-${i % 2}`}>
@@ -399,7 +415,8 @@ export function LandingPage() {
             </div>
 
             {/* Pro */}
-            <div className="lp-plan">
+            <div className="lp-plan" style={{ borderTop: '3px solid var(--color-accent)', position: 'relative' }}>
+              <div style={{ position: 'absolute', top: 14, right: 20, fontSize: 9, fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.6px', fontFamily: 'var(--font-mono)' }}>Most used</div>
               <div className="lp-plan-tier">Professional</div>
               <div className="lp-plan-price">
                 <span className="lp-plan-amount">₦75,000</span>

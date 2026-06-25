@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check, CheckCircle2, FileText, GitBranch, PenSquare, Archive, BarChart3 } from 'lucide-react'
+import { ArrowRight, Check, FileText, GitBranch, PenSquare, Archive, BarChart3 } from 'lucide-react'
 import { PublicHeader } from '@/components/layout/PublicHeader'
 import { PublicFooter } from '@/components/layout/PublicFooter'
 
@@ -15,7 +15,7 @@ function useScrollReveal() {
   }, [])
 }
 
-/* ── Animated trust ticker ── */
+/* ── Trust ticker ── */
 const trustItems = [
   'No credit card · full feature access for 14 days',
   'Recipients sign without creating an account',
@@ -49,10 +49,9 @@ function TrustTicker() {
     <div className="lp-trust-ticker-wrap">
       <div className="lp-trust-ticker-track" ref={trackRef}>
         {items.map((item, i) => (
-          <div key={i} className="lp-trust-ticker-item">
-            <CheckCircle2 size={11} className="lp-hero-trust-check" />
+          <span key={i} className="lp-trust-ticker-item">
             {item}
-          </div>
+          </span>
         ))}
       </div>
     </div>
@@ -249,13 +248,9 @@ export function LandingPage() {
       {/* ══ HERO ══ */}
       <section className="lp-hero" id="product">
         <div className="lp-hero-copy">
-          <div className="lp-hero-eyebrow">
-            <div className="lp-hero-eyebrow-dot" />
-            Built for Nigerian students, freelancers &amp; businesses
-          </div>
           <h1 className="lp-hero-headline">
             From blank page<br />
-            to signed document —<br />
+            to signed document<br />
             <em>in minutes.</em>
           </h1>
           <p className="lp-hero-sub">
@@ -277,21 +272,19 @@ export function LandingPage() {
             </Link>
           </div>
 
-          {/* Trust proof */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 20, flexWrap: 'wrap' }}>
             {[
-              { icon: '✓', text: '₦0 to start' },
-              { icon: '✓', text: 'No credit card' },
-              { icon: '✓', text: '14-day free trial' },
+              { text: '₦0 to start' },
+              { text: 'No credit card' },
+              { text: '14-day free trial' },
             ].map(item => (
               <div key={item.text} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--color-text-tertiary)' }}>
-                <span style={{ color: '#059669', fontWeight: 700 }}>{item.icon}</span>
+                <span style={{ color: '#059669', fontWeight: 700 }}>✓</span>
                 {item.text}
               </div>
             ))}
           </div>
 
-          {/* Animated ticker */}
           <TrustTicker />
         </div>
         <div className="lp-hero-preview">
@@ -329,21 +322,19 @@ export function LandingPage() {
         </div>
       </div>
 
-      {/* ══ FEATURES — Card Grid ══ */}
+      {/* ══ FEATURES — Numbered table rows ══ */}
       <section className="lp-section" style={{ background: 'var(--color-surface)' }}>
         <div className="lp-section-inner">
-          <div className="lp-section-eyebrow lp-reveal">Capabilities</div>
           <h2 className="lp-section-heading lp-reveal">Five capabilities. One coherent system.</h2>
-          <div className="lp-features-grid">
+          <div className="lp-features-table">
             {features.map((f, i) => (
-              <div key={f.num} className={`lp-feature-card lp-reveal lp-reveal--delay-${i % 3}`}>
-                <div className="lp-feature-card-icon">
-                  <f.icon size={18} color="var(--color-accent)" />
+              <div key={f.num} className={`lp-feature-row lp-reveal lp-reveal--delay-${i % 2}`}>
+                <div className="lp-feature-header">
+                  <span className="lp-feature-num">{f.num}</span>
+                  <span className="lp-feature-name">{f.name}</span>
+                  <span className="lp-feature-tag">{f.tag}</span>
                 </div>
-                <div className="lp-feature-card-num">{f.num}</div>
-                <div className="lp-feature-card-name">{f.name}</div>
-                <p className="lp-feature-card-desc">{f.desc}</p>
-                <div className="lp-feature-tag" style={{ marginLeft: 0, marginTop: 'auto' }}>{f.tag}</div>
+                <p className="lp-feature-desc">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -353,7 +344,6 @@ export function LandingPage() {
       {/* ══ POSITIONING ══ */}
       <section className="lp-pos lp-section" id="enterprise">
         <div className="lp-section-inner">
-          <div className="lp-section-eyebrow lp-reveal">The market</div>
           <h2 className="lp-section-heading lp-reveal">You know the alternatives.<br />Here's why they fall short.</h2>
           <div className="lp-pos-grid lp-pos-grid--3">
             {competitors.map(c => (
@@ -377,7 +367,6 @@ export function LandingPage() {
       {/* ══ PRICING ══ */}
       <section className="lp-section" id="pricing" style={{ background: 'var(--color-bg)' }}>
         <div className="lp-section-inner">
-          <div className="lp-section-eyebrow lp-reveal">Pricing</div>
           <h2 className="lp-section-heading lp-reveal">Flat subscription. No surprises.</h2>
           <div className="lp-pricing-grid lp-reveal">
 
@@ -476,7 +465,7 @@ export function LandingPage() {
               </button>
             </Link>
             <Link to="/support" style={{ textDecoration: 'none' }}>
-              <button style={{ height: 46, padding: '0 28px', fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', borderRadius: 'var(--radius-md)', cursor: 'pointer' }}>
+              <button style={{ height: 46, padding: '0 28px', fontSize: 14, fontWeight: 500, color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.1)', background: 'transparent', borderRadius: 'var(--radius-md)', cursor: 'pointer' }}>
                 Talk to sales
               </button>
             </Link>

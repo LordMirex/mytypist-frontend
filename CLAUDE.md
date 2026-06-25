@@ -29,6 +29,10 @@ This is the MyTypist project — a Document Operating System for Nigerian users.
 ### For 3D / Spline work
 Stop. Read `ai-rules/spline-handoff.md`. Write the prompt for the user. Wait for them to paste the exported code.
 
+## Writing Rules
+No banned words: additionally, align with, crucial, delve, enhance, fostering, highlight (verb), intricate, key (filler), meticulous, pivotal, showcase, seamless, leverage (verb), utilize, empower, revolutionize, groundbreaking, robust, journey/ecosystem (metaphorical).
+Default to "is." No trailing "-ing" editorializing clauses. No AI sign-offs. Short declarative sentences. See `ai-rules/writing.md` for full rules.
+
 ## Full Rules
 - `ai-rules/MASTER.md` — complete design system (start here)
 - `ai-rules/taste-skill/SKILL.md` — anti-slop frontend rules (1200+ lines)

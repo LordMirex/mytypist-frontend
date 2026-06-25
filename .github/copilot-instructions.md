@@ -42,6 +42,10 @@ This is the MyTypist project — a Document Operating System for Nigerian users.
 3. `npx shadcn@latest add https://efferd.com/r/[block-name].json`
 4. Brand style reference: fetch `https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/brands/[name]/DESIGN.md`
 
+## Writing Rules
+Banned words (never use): additionally, align with, crucial, delve, enhance, fostering, highlight (verb), intricate, meticulous, pivotal, showcase, seamless, leverage (verb), utilize, empower, revolutionize, groundbreaking, robust, journey/ecosystem (metaphorical), and more — see `ai-rules/writing.md`.
+Default to "is." No trailing "-ing" editorializing clauses. No AI sign-offs. Short declarative sentences. UI copy: verb + noun buttons, literal placeholders, plain error messages.
+
 ## 3D / Spline — STOP
 Do not build in Three.js or canvas. See `ai-rules/spline-handoff.md`. Give user a Spline prompt. Wait for exported code.
 

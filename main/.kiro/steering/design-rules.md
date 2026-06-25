@@ -26,10 +26,14 @@ Linear, Raycast, Stripe, GitHub — functional, honest, no decoration for decora
 - `motion` → `import { motion } from "motion/react"`
 - `swiper` → `import { Swiper, SwiperSlide } from 'swiper/react'`
 
+## Writing
+Banned: additionally, align with, crucial, delve, enhance, fostering, highlight (verb), intricate, meticulous, pivotal, showcase, seamless, leverage (verb), utilize, empower, revolutionize, groundbreaking, robust, journey/ecosystem (metaphorical). Default to "is." Short declarative sentences. Full rules: `ai-rules/writing.md`
+
 ## Full Rules (from repo root)
 - `ai-rules/MASTER.md`
 - `ai-rules/taste-skill/SKILL.md`
 - `ai-rules/uncodixfy/SKILL.md`
 - `ai-rules/ui-ux-pro-max/SKILL.md`
 - `ai-rules/tools.md`
+- `ai-rules/writing.md`
 - `ai-rules/spline-handoff.md`

@@ -18,6 +18,9 @@ This is the MyTypist project — a Document Operating System for Nigerian users.
 3. `npx shadcn@latest add https://efferd.com/r/[block-name].json`
 4. Uiverse.io — fetch link content and adapt
 
+### Writing
+No banned words: additionally, align with, crucial, delve, enhance, fostering, highlight (verb), intricate, meticulous, pivotal, showcase, seamless, leverage (verb), utilize, empower, revolutionize, groundbreaking, robust, journey/ecosystem (metaphorical). Default to "is." No trailing "-ing" editorializing. Short declarative sentences. Full rules: `ai-rules/writing.md`
+
 ### Hard Bans
 - No soft gradients, glassmorphism, oversized radii, pill overload
 - No generic 3-column equal feature card layout

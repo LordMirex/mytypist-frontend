@@ -23,6 +23,7 @@ Full rules live in:
 - `ai-rules/uncodixfy/SKILL.md` — banned AI-UI patterns
 - `ai-rules/ui-ux-pro-max/SKILL.md` — styles, palettes, font pairings
 - `ai-rules/tools.md` — component sources and installed libraries
+- `ai-rules/writing.md` — writing rules for all copy and UI text
 - `ai-rules/spline-handoff.md` — 3D/Spline handoff protocol
 
 ## Key Conventions

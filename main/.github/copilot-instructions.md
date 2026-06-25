@@ -44,6 +44,10 @@ Linear. Raycast. Stripe. GitHub. Functional. No decoration for decoration's sake
 3. `npx shadcn@latest add https://efferd.com/r/[block-name].json`
 4. Brand style: fetch `https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/brands/[name]/DESIGN.md`
 
+## Writing Rules
+Banned words (never use): additionally, align with, crucial, delve, enhance, fostering, highlight (verb), intricate, meticulous, pivotal, showcase, seamless, leverage (verb), utilize, empower, revolutionize, groundbreaking, robust, journey/ecosystem (metaphorical), and more — see `ai-rules/writing.md`.
+Default to "is." No trailing "-ing" editorializing clauses. No AI sign-offs. Short declarative sentences. UI copy: verb + noun buttons, literal placeholders, plain error messages.
+
 ## 3D / Spline
 STOP. Do not build in Three.js. See `ai-rules/spline-handoff.md`. Give user a Spline prompt. Wait.
 
@@ -52,3 +56,4 @@ STOP. Do not build in Three.js. See `ai-rules/spline-handoff.md`. Give user a Sp
 - `../../ai-rules/taste-skill/SKILL.md`
 - `../../ai-rules/uncodixfy/SKILL.md`
 - `../../ai-rules/ui-ux-pro-max/SKILL.md`
+- `../../ai-rules/writing.md`

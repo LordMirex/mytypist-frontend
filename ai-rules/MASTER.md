@@ -189,7 +189,39 @@ When Spline is the right tool:
 
 ---
 
-## 10. Full Rule Files (read these for deep detail)
+## 10. Writing Rules
+
+Apply to all output: UI copy, button labels, error messages, placeholder text, comments, docs.
+
+**Banned words** (never use): additionally, align with, boasts, bolstered, crucial, delve, emphasizing, enduring, enhance, fostering, garner, highlight (as verb), intricate, key (as filler), landscape (abstract), meticulous, pivotal, showcase, tapestry (abstract), testament, underscore (as verb), valuable, vibrant, nestled, groundbreaking, robust, seamless, streamline, leverage (as verb), game-changer, cutting-edge, innovative (unless naming something specific), revolutionize, empower, unlock (metaphorical), journey (metaphorical), utilize.
+
+**Sentence rules:**
+- Default to "is." Never "serves as," "stands as," "marks a," "represents a" where "is" works.
+- No trailing "-ing" editorializing clauses (e.g. "…highlighting its importance").
+- No "not just X, but Y" unless the contrast is the actual point.
+
+**Structure rules:**
+- No summary paragraphs. No "in summary," "in conclusion," "overall this shows."
+- No vague-authority phrasing ("experts say," "studies show") without naming the source.
+- No significance inflation. Don't claim something "reflects a broader trend" without evidence.
+
+**Tone:**
+- Direct and specific. Short declarative sentences. State facts plainly.
+- No AI sign-offs: no "I hope this helps," "certainly!," "great question!," "as an AI."
+- Headings: sentence case, one to three words.
+- Minimal bold — for labels and structure only.
+
+**UI copy specifically:**
+- Buttons: verb + noun. "Create document", "Sign now". Not "Start your journey."
+- Errors: say what happened and what to do. "File too large. Max 10MB." Not "Oops!"
+- Empty states: fact + action. "No documents yet. Create your first one."
+- Placeholders: literal. "Document title" not "Give your masterpiece a name."
+
+Full file: `ai-rules/writing.md`
+
+---
+
+## 11. Full Rule Files (read these for deep detail)
 
 | File | Contents |
 |------|----------|
@@ -197,6 +229,7 @@ When Spline is the right tool:
 | `ai-rules/uncodixfy/SKILL.md` | Uncodixfy — banned patterns, normal implementations, color palettes |
 | `ai-rules/ui-ux-pro-max/SKILL.md` | UI/UX Pro Max — 67 styles, 96 palettes, 57 font pairings, 25 chart types |
 | `ai-rules/tools.md` | Complete tool setup reference |
+| `ai-rules/writing.md` | Writing rules — banned words, sentence rules, UI copy conventions |
 | `ai-rules/spline-handoff.md` | Spline handoff protocol in full detail |
 
 ---

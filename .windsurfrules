@@ -43,6 +43,9 @@ Think Linear, Raycast, Stripe, GitHub.
 ## 3D / Spline
 STOP. Do not build in Three.js. Read `ai-rules/spline-handoff.md`. Write prompt for user. Wait.
 
+## Writing
+Banned: additionally, align with, crucial, delve, enhance, fostering, highlight (verb), intricate, meticulous, pivotal, showcase, seamless, leverage (verb), utilize, empower, revolutionize, groundbreaking, robust, journey/ecosystem (metaphorical). Default to "is." Short declarative sentences. Full rules: `ai-rules/writing.md`
+
 ## Full Rules
 - `ai-rules/MASTER.md`
 - `ai-rules/taste-skill/SKILL.md`

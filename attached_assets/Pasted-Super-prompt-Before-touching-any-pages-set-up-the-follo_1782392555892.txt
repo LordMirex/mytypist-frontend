@@ -1,0 +1,17 @@
+Super prompt
+Before touching any pages, set up the following design tools so the UI stops looking like generic AI output. Confirm each one as you go — don’t redesign or build anything yet.
+	1.	Taste Skill (primary anti-slop rules) — install: npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend". If the command can’t run in this environment, fetch the raw SKILL.md from that repo and apply its rules directly.
+	2.	Uncodexify — a secondary rule file banning generic “AI-looking” UI patterns (soft gradients, floating panels, oversized rounded corners). Fetch and apply: https://github.com/cyxzdev/Uncodixfy (use the SKILL.md or Uncodixfy.md). Apply this alongside Taste Skill, not instead of it.
+	3.	UI UX Pro Max — design intelligence database (styles, palettes, fonts): npm install -g uipro-cli then uipro init --ai [your tool's name, or "all"].
+	4.	shadcn MCP server — gives you live, accurate access to real shadcn/ui components (no hallucinated props). Set up per the official docs at ui.shadcn.com/docs/mcp for whichever tool I’m using.
+	5.	21st.dev — pull components via npx shadcn@latest add [21st.dev component URL] when I ask for a specific section.
+	6.	Efferd — another free shadcn-compatible block library (heroes, pricing, auth, FAQ, etc.). Install blocks via: npx shadcn@latest add https://efferd.com/r/[block-name].json.
+	7.	Uiverse.io — if I give you a link to a specific component on uiverse.io, fetch and adapt its code (HTML/CSS/Tailwind/React) into the project.
+	8.	Swiper.js — install for any carousels/sliders: npm install swiper.
+	9.	Framer Motion — install the animation library: npm install motion.
+	10.	awesome-design-md — reference library of real brand design systems (Stripe, Notion, Linear, etc.) as markdown. When I name a brand style I want to match, fetch its DESIGN.md from https://github.com/VoltAgent/awesome-design-md and use it as the style reference for that section.
+	11.	Spline (manual handoff tool — you do NOT have access to this) — whenever a task needs a 3D scene or interactive animated element (e.g. a document that appears to type itself, an animated workflow diagram) that’s better built in Spline than in code:
+	•	STOP before attempting it in code.
+	•	Give me a clear, copy-pasteable Spline AI prompt describing exactly what to generate, plus what export format I need to bring back (React component via @splinetool/react-spline, or the <spline-viewer> embed tag).
+	•	Wait for me to paste back the exported code before continuing that part of the build.
+Confirm the status of each tool (installed / will fetch on demand / needs my manual input) and confirm you understand the Spline handoff process before we begin any actual page work.

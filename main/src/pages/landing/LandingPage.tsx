@@ -329,12 +329,16 @@ export function LandingPage() {
           <div className="lp-features-table">
             {features.map((f, i) => (
               <div key={f.num} className={`lp-feature-row lp-reveal lp-reveal--delay-${i % 2}`}>
-                <div className="lp-feature-header">
-                  <span className="lp-feature-num">{f.num}</span>
-                  <span className="lp-feature-name">{f.name}</span>
+                <div className="lp-feature-row-left">
+                  <div className="lp-feature-header">
+                    <span className="lp-feature-num">{f.num}</span>
+                    <span className="lp-feature-name">{f.name}</span>
+                  </div>
                   <span className="lp-feature-tag">{f.tag}</span>
                 </div>
-                <p className="lp-feature-desc">{f.desc}</p>
+                <div className="lp-feature-row-right">
+                  <p className="lp-feature-desc" style={{ paddingLeft: 0 }}>{f.desc}</p>
+                </div>
               </div>
             ))}
           </div>

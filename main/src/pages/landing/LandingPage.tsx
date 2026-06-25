@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'motion/react'
 import { ArrowRight, Check, FileText, GitBranch, PenSquare, Archive, BarChart3 } from 'lucide-react'
 import { PublicHeader } from '@/components/layout/PublicHeader'
 import { PublicFooter } from '@/components/layout/PublicFooter'
@@ -71,8 +72,45 @@ function TrustTicker() {
   )
 }
 
-/* ── Doc Mockup ── */
-function DocMockup() {
+/* ── Animated Doc Mockup ── */
+const STAGE_COLORS: Record<string, string> = {
+  done: '#059669', active: '#6C47FF', neutral: '#d1d0c8'
+}
+
+const SIDE_FIELDS = [
+  { label: 'Employer',  value: 'Acme Corp Ltd',    showAt: 1 },
+  { label: 'Employee',  value: 'Sarah Mitchell',   showAt: 1 },
+  { label: 'Job Title', value: 'Product Designer', showAt: 2 },
+  { label: 'Salary',    value: '₦4,200,000 / yr',  showAt: 2 },
+  { label: 'Location',  value: 'Lagos, Nigeria',   showAt: 2 },
+]
+
+const STAGES = ['Draft', 'Fidelity', 'Approval', 'Sign', 'Archive']
+
+function getStageState(stageName: string, phase: number): 'done' | 'active' | 'neutral' {
+  const idx = STAGES.indexOf(stageName)
+  if (idx < phase) return 'done'
+  if (idx === phase) return 'active'
+  return 'neutral'
+}
+
+function AnimatedDocMockup() {
+  const [phase, setPhase] = useState(0)
+
+  useEffect(() => {
+    const durations = [1600, 1400, 1400, 2200]
+    const t = setTimeout(() => setPhase(p => (p + 1) % 4), durations[phase])
+    return () => clearTimeout(t)
+  }, [phase])
+
+  const docTerms = [
+    { k: 'Employer',      v: phase >= 1 ? 'Acme Corp Ltd'    : null },
+    { k: 'Employee',      v: phase >= 1 ? 'Sarah Mitchell'   : null },
+    { k: 'Job Title',     v: phase >= 2 ? 'Product Designer' : null },
+    { k: 'Annual Salary', v: phase >= 2 ? '₦4,200,000/yr'   : null },
+    { k: 'Start Date',    v: 'January 15, 2026' },
+  ]
+
   return (
     <div className="lp-mockup">
       {/* Chrome bar */}
@@ -87,34 +125,64 @@ function DocMockup() {
 
       <div className="lp-mockup-body">
         {/* Left: Form panel */}
-        <div className="lp-mockup-sidebar" style={{ width: 110, padding: '10px 8px', gap: 8, background: '#f7f6f3', borderRight: '1px solid #e8e7e4', overflowY: 'hidden', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ fontSize: 7, fontWeight: 700, color: '#9e9e94', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 }}>Fields</div>
-          {[
-            { label: 'Employer', val: 'Acme Corp Ltd', filled: true },
-            { label: 'Employee', val: 'Sarah Mitchell', filled: true },
-            { label: 'Job Title', val: 'Product Designer', filled: true },
-            { label: 'Start Date', val: 'Jan 15, 2026', filled: true },
-            { label: 'Salary', val: '', filled: false },
-            { label: 'Location', val: '', filled: false },
-          ].map(f => (
-            <div key={f.label} style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <div style={{ fontSize: 6.5, color: '#9e9e94', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.3 }}>{f.label}</div>
-              <div style={{
-                fontSize: 7.5, padding: '2px 5px', borderRadius: 2,
-                background: f.filled ? 'rgba(5,150,105,0.1)' : 'rgba(108,71,255,0.07)',
-                border: `1px solid ${f.filled ? 'rgba(5,150,105,0.25)' : 'rgba(108,71,255,0.2)'}`,
-                color: f.filled ? '#059669' : '#a87fff',
-                fontWeight: f.filled ? 500 : 400,
-                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-              }}>
-                {f.val || `Enter ${f.label}…`}
+        <div style={{ width: 112, flexShrink: 0, padding: '10px 8px', gap: 6, background: '#f7f6f3', borderRight: '1px solid #e8e7e4', overflowY: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ fontSize: 7, fontWeight: 700, color: '#9e9e94', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>Fields</div>
+
+          {SIDE_FIELDS.map(f => {
+            const filled = phase >= f.showAt
+            const typing = phase === f.showAt - 1
+            return (
+              <div key={f.label} style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                <div style={{ fontSize: 6.5, color: '#9e9e94', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.3 }}>{f.label}</div>
+                <div style={{
+                  fontSize: 7.5, padding: '2px 5px', borderRadius: 2,
+                  background: filled ? 'rgba(5,150,105,0.1)' : typing ? 'rgba(108,71,255,0.08)' : 'rgba(0,0,0,0.03)',
+                  border: `1px solid ${filled ? 'rgba(5,150,105,0.25)' : typing ? 'rgba(108,71,255,0.3)' : 'rgba(0,0,0,0.07)'}`,
+                  transition: 'all 0.3s ease',
+                  display: 'flex', alignItems: 'center', gap: 1,
+                  overflow: 'hidden',
+                }}>
+                  <AnimatePresence mode="wait" initial={false}>
+                    {filled ? (
+                      <motion.span
+                        key="val"
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.25 }}
+                        style={{ color: '#059669', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                      >
+                        {f.value}
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="ph"
+                        exit={{ opacity: 0 }}
+                        style={{ color: '#b0a0e8', display: 'flex', alignItems: 'center', gap: 1, whiteSpace: 'nowrap' }}
+                      >
+                        Enter {f.label}…
+                        {typing && (
+                          <motion.span
+                            animate={{ opacity: [1, 0] }}
+                            transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
+                            style={{ display: 'inline-block', width: 1, height: 7, background: '#6C47FF', borderRadius: 1, marginLeft: 1 }}
+                          />
+                        )}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
-            </div>
-          ))}
-          <div style={{ marginTop: 'auto', paddingTop: 6 }}>
-            <div style={{ height: 22, borderRadius: 3, background: 'var(--color-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontSize: 7, fontWeight: 700, color: '#fff', letterSpacing: 0.3 }}>▶ Preview</span>
-            </div>
+            )
+          })}
+
+          <div style={{ marginTop: 'auto', paddingTop: 4 }}>
+            <motion.div
+              animate={{ background: phase >= 2 ? '#6C47FF' : '#c8c7c2' }}
+              transition={{ duration: 0.4 }}
+              style={{ height: 20, borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'default' }}
+            >
+              <span style={{ fontSize: 7, fontWeight: 700, color: phase >= 2 ? '#fff' : '#888', letterSpacing: 0.3 }}>▶ Preview</span>
+            </motion.div>
           </div>
         </div>
 
@@ -122,67 +190,92 @@ function DocMockup() {
         <div className="lp-mockup-doc-area">
           <div className="lp-mockup-paper">
             {/* Letterhead */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, paddingBottom: 10, borderBottom: '2px solid #6C47FF' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10, paddingBottom: 8, borderBottom: '2px solid #6C47FF' }}>
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 3 }}>
-                  <div style={{ width: 3, height: 14, background: '#6C47FF', borderRadius: 1 }} />
-                  <span style={{ fontSize: 10, fontWeight: 800, color: '#1a1a17', letterSpacing: -0.3 }}>ACME CORP LTD</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 2 }}>
+                  <div style={{ width: 3, height: 13, background: '#6C47FF', borderRadius: 1 }} />
+                  <span style={{ fontSize: 9.5, fontWeight: 800, color: '#1a1a17', letterSpacing: -0.2 }}>ACME CORP LTD</span>
                 </div>
-                <div style={{ fontSize: 7, color: '#9e9e94' }}>123 Business Avenue, Lagos, Nigeria</div>
+                <div style={{ fontSize: 6.5, color: '#9e9e94' }}>123 Business Avenue, Lagos, Nigeria</div>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: 7.5, fontWeight: 600, color: '#6C47FF' }}>EMPLOYMENT AGREEMENT</div>
-                <div style={{ fontSize: 6.5, color: '#9e9e94', marginTop: 1 }}>REF: HR/2026/00183</div>
-                <div style={{ fontSize: 6.5, color: '#9e9e94' }}>Date: January 8, 2026</div>
-              </div>
-            </div>
-
-            {/* Parties */}
-            <div style={{ marginBottom: 10 }}>
-              <div style={{ fontSize: 8, fontWeight: 700, color: '#1a1a17', marginBottom: 5, textTransform: 'uppercase', letterSpacing: 0.3 }}>Parties to this Agreement</div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-                <div style={{ background: 'rgba(5,150,105,0.06)', border: '1px solid rgba(5,150,105,0.2)', borderRadius: 3, padding: '6px 8px' }}>
-                  <div style={{ fontSize: 6.5, color: '#059669', fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>Employer</div>
-                  <div style={{ fontSize: 8, fontWeight: 600, color: '#1a1a17' }}>Acme Corp Ltd</div>
-                  <div style={{ fontSize: 6.5, color: '#6b6b63', marginTop: 1 }}>RC No. 123456</div>
-                </div>
-                <div style={{ background: 'rgba(5,150,105,0.06)', border: '1px solid rgba(5,150,105,0.2)', borderRadius: 3, padding: '6px 8px' }}>
-                  <div style={{ fontSize: 6.5, color: '#059669', fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>Employee</div>
-                  <div style={{ fontSize: 8, fontWeight: 600, color: '#1a1a17' }}>Sarah Mitchell</div>
-                  <div style={{ fontSize: 6.5, color: '#6b6b63', marginTop: 1 }}>Product Designer</div>
-                </div>
+                <div style={{ fontSize: 7, fontWeight: 600, color: '#6C47FF' }}>EMPLOYMENT AGREEMENT</div>
+                <div style={{ fontSize: 6, color: '#9e9e94', marginTop: 1 }}>REF: HR/2026/00183</div>
               </div>
             </div>
 
             {/* Terms */}
-            <div style={{ marginBottom: 10 }}>
-              <div style={{ fontSize: 8, fontWeight: 700, color: '#1a1a17', marginBottom: 5, textTransform: 'uppercase', letterSpacing: 0.3 }}>Terms of Employment</div>
+            <div style={{ marginBottom: 9 }}>
+              <div style={{ fontSize: 7.5, fontWeight: 700, color: '#1a1a17', marginBottom: 5, textTransform: 'uppercase', letterSpacing: 0.3 }}>Terms of Employment</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                {[
-                  ['Commencement Date', 'January 15, 2026', true],
-                  ['Annual Salary', <span style={{ color: '#a87fff', fontStyle: 'italic' }}>Enter Salary…</span>, false],
-                  ['Location', <span style={{ color: '#a87fff', fontStyle: 'italic' }}>Enter Location…</span>, false],
-                  ['Probation Period', '3 months', true],
-                ].map(([k, v, filled], i) => (
-                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '3px 0', borderBottom: '1px solid #f0efe9' }}>
-                    <span style={{ fontSize: 7.5, color: '#6b6b63' }}>{k}</span>
-                    <span style={{ fontSize: 7.5, fontWeight: filled ? 600 : 400, color: filled ? '#1a1a17' : '#a87fff' }}>{v}</span>
+                {docTerms.map(({ k, v }) => (
+                  <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '2px 0', borderBottom: '1px solid #f0efe9' }}>
+                    <span style={{ fontSize: 7, color: '#6b6b63' }}>{k}</span>
+                    <AnimatePresence mode="wait" initial={false}>
+                      {v ? (
+                        <motion.span
+                          key="v"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ fontSize: 7, fontWeight: 600, color: '#1a1a17' }}
+                        >
+                          {v}
+                        </motion.span>
+                      ) : (
+                        <motion.span key="ph" style={{ fontSize: 7, fontStyle: 'italic', color: '#c0b4f0' }}>
+                          —
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Signatures */}
-            <div className="lp-mockup-sig-block" style={{ marginTop: 8 }}>
-              <div className="lp-mockup-sig-line">
-                <div style={{ fontSize: 11, fontFamily: 'Georgia, serif', color: '#1a1a17', fontStyle: 'italic', lineHeight: 1 }}>J. Okafor</div>
-                <div className="lp-mockup-sig-rule" />
-                <div className="lp-mockup-sig-label">Authorized Signatory</div>
+            <div style={{ paddingTop: 8, borderTop: '1px dashed rgba(108,71,255,0.25)', display: 'flex', gap: 12 }}>
+              <div style={{ flex: 1 }}>
+                <div style={{ height: 14, marginBottom: 2, display: 'flex', alignItems: 'flex-end' }}>
+                  <AnimatePresence initial={false}>
+                    {phase >= 3 && (
+                      <motion.span
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                        style={{ fontSize: 11, fontFamily: 'Georgia, serif', color: '#1a1a17', fontStyle: 'italic', lineHeight: 1 }}
+                      >
+                        J. Okafor
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <div style={{ height: 1, background: 'rgba(0,0,0,0.12)', marginBottom: 2 }} />
+                <div style={{ fontSize: 6.5, color: '#9e9e94', textTransform: 'uppercase', letterSpacing: 0.3 }}>Authorized Signatory</div>
               </div>
-              <div className="lp-mockup-sig-line">
-                <div style={{ height: 14 }} />
-                <div className="lp-mockup-sig-rule" style={{ borderStyle: 'dashed', borderTop: '1px dashed rgba(108,71,255,0.4)', height: 0 }} />
-                <div className="lp-mockup-sig-label" style={{ color: '#a87fff' }}>Employee Signature Pending</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ height: 14, marginBottom: 2, display: 'flex', alignItems: 'flex-end' }}>
+                  <AnimatePresence initial={false}>
+                    {phase >= 3 && (
+                      <motion.span
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.25, ease: 'easeOut' }}
+                        style={{ fontSize: 11, fontFamily: 'Georgia, serif', color: '#6C47FF', fontStyle: 'italic', lineHeight: 1 }}
+                      >
+                        S. Mitchell
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <div style={{ height: 0, borderTop: '1px dashed rgba(108,71,255,0.35)', marginBottom: 2 }} />
+                <motion.div
+                  animate={{ color: phase >= 3 ? '#6C47FF' : '#b0a0e8' }}
+                  transition={{ duration: 0.4 }}
+                  style={{ fontSize: 6.5, textTransform: 'uppercase', letterSpacing: 0.3 }}
+                >
+                  {phase >= 3 ? 'Employee — Signed ✓' : 'Awaiting Employee…'}
+                </motion.div>
               </div>
             </div>
           </div>
@@ -191,23 +284,31 @@ function DocMockup() {
 
       {/* Pipeline status bar */}
       <div className="lp-mockup-pipeline">
-        {[
-          { label: 'Draft', s: 'done' },
-          { label: 'Fidelity', s: 'done' },
-          { label: 'Approval', s: 'active' },
-          { label: 'Sign', s: 'neutral' },
-          { label: 'Archive', s: 'neutral' },
-        ].map((st, i, arr) => (
-          <div key={st.label} style={{ display: 'flex', alignItems: 'center' }}>
-            <div className={`lp-mockup-stage lp-mockup-stage--${st.s}`}>
-              <div className="lp-mockup-stage-dot" style={{
-                background: st.s === 'done' ? '#059669' : st.s === 'active' ? '#6C47FF' : 'var(--color-border)'
-              }} />
-              {st.label}
+        {STAGES.map((label, i, arr) => {
+          const state = getStageState(label, phase)
+          const color = STAGE_COLORS[state]
+          return (
+            <div key={label} style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+                <motion.div
+                  animate={{ background: color }}
+                  transition={{ duration: 0.4 }}
+                  style={{ width: 5, height: 5, borderRadius: '50%', flexShrink: 0 }}
+                />
+                <motion.span
+                  animate={{ color, fontWeight: state === 'active' ? 700 : 400 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ fontSize: 8.5, whiteSpace: 'nowrap' }}
+                >
+                  {label}
+                </motion.span>
+              </div>
+              {i < arr.length - 1 && (
+                <div style={{ width: 12, height: 1, background: '#e0dfd8', flexShrink: 0, margin: '0 2px' }} />
+              )}
             </div>
-            {i < arr.length - 1 && <div className="lp-mockup-stage-arrow" />}
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )
@@ -303,8 +404,8 @@ export function LandingPage() {
 
           <TrustTicker />
         </div>
-        <div className="lp-hero-preview">
-          <DocMockup />
+        <div className="lp-hero-preview" style={{ display: 'flex', flex: '1', background: '#EAE7FF', alignItems: 'center', justifyContent: 'center', padding: '32px 28px' }}>
+          <AnimatedDocMockup />
         </div>
       </section>
 

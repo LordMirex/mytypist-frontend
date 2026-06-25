@@ -1165,9 +1165,35 @@
     flex-wrap: wrap;
   }
 
+  /* ── Hero goes side-by-side at tablet ── */
+  .lp-hero {
+    flex-direction: row;
+    min-height: calc(100vh - 54px);
+    max-height: 860px;
+  }
+
+  .lp-hero-copy {
+    flex: 1;
+    padding: 56px 40px 56px 32px;
+    border-right: 1px solid var(--color-border);
+    order: 1;
+  }
+
   .lp-hero-preview {
+    flex: 1;
     display: flex;
-    border-top: 1px solid var(--color-border-subtle);
+    border-top: none;
+    order: 2;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 28px;
+  }
+
+  /* ── Pricing plans fill equally ── */
+  .lp-plan { flex: 1; }
+  .lp-plan--enterprise {
+    border-top: none;
+    border-left: 1px solid rgba(108,71,255,0.12);
   }
 
   .lp-stats-inner {
@@ -1257,31 +1283,15 @@
 
   .lp-header { padding: 0 40px; }
 
-  .lp-hero {
-    flex-direction: row;
-    min-height: calc(100vh - 54px);
-    max-height: 840px;
-  }
+  .lp-hero { max-height: 840px; }
 
-  .lp-hero-copy {
-    flex: 1;
-    padding: 88px 64px 88px 40px;
-    border-right: 1px solid var(--color-border);
-    order: 1;
-  }
+  .lp-hero-copy { padding: 88px 64px 88px 40px; }
 
   .lp-hero-headline { font-size: 66px; max-width: 560px; letter-spacing: -3px; }
 
   .lp-hero-sub { max-width: 440px; }
 
-  .lp-hero-preview {
-    flex: 1;
-    padding: 48px 40px;
-    border-top: none;
-    order: 2;
-    align-items: center;
-    justify-content: center;
-  }
+  .lp-hero-preview { padding: 48px 40px; }
 
   .lp-mockup-body { height: 400px; }
 

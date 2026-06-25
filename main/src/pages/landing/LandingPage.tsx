@@ -63,6 +63,7 @@ function TrustTicker() {
 function DocMockup() {
   return (
     <div className="lp-mockup">
+      {/* Chrome bar */}
       <div className="lp-mockup-chrome">
         <div className="lp-mockup-dots">
           <div className="lp-mockup-dot" style={{ background: '#ff5f57' }} />
@@ -71,62 +72,125 @@ function DocMockup() {
         </div>
         <span className="lp-mockup-chrome-label">MyTypist · Studio — Employment Agreement</span>
       </div>
+
       <div className="lp-mockup-body">
-        <div className="lp-mockup-sidebar">
-          {[{ w: 18, c: 'var(--color-accent)' }, { w: 14, c: 'rgba(255,255,255,0.15)' }, { w: 16, c: 'rgba(255,255,255,0.1)' }, { w: 12, c: 'rgba(255,255,255,0.08)' }, { w: 15, c: 'rgba(255,255,255,0.08)' }].map((b, i) => (
-            <div key={i} style={{ width: b.w, height: 3, borderRadius: 2, background: b.c }} />
+        {/* Left: Form panel */}
+        <div className="lp-mockup-sidebar" style={{ width: 110, padding: '10px 8px', gap: 8, background: '#f7f6f3', borderRight: '1px solid #e8e7e4', overflowY: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ fontSize: 7, fontWeight: 700, color: '#9e9e94', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 }}>Fields</div>
+          {[
+            { label: 'Employer', val: 'Acme Corp Ltd', filled: true },
+            { label: 'Employee', val: 'Sarah Mitchell', filled: true },
+            { label: 'Job Title', val: 'Product Designer', filled: true },
+            { label: 'Start Date', val: 'Jan 15, 2026', filled: true },
+            { label: 'Salary', val: '', filled: false },
+            { label: 'Location', val: '', filled: false },
+          ].map(f => (
+            <div key={f.label} style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <div style={{ fontSize: 6.5, color: '#9e9e94', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.3 }}>{f.label}</div>
+              <div style={{
+                fontSize: 7.5, padding: '2px 5px', borderRadius: 2,
+                background: f.filled ? 'rgba(5,150,105,0.1)' : 'rgba(108,71,255,0.07)',
+                border: `1px solid ${f.filled ? 'rgba(5,150,105,0.25)' : 'rgba(108,71,255,0.2)'}`,
+                color: f.filled ? '#059669' : '#a87fff',
+                fontWeight: f.filled ? 500 : 400,
+                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+              }}>
+                {f.val || `Enter ${f.label}…`}
+              </div>
+            </div>
           ))}
+          <div style={{ marginTop: 'auto', paddingTop: 6 }}>
+            <div style={{ height: 22, borderRadius: 3, background: 'var(--color-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontSize: 7, fontWeight: 700, color: '#fff', letterSpacing: 0.3 }}>▶ Preview</span>
+            </div>
+          </div>
         </div>
+
+        {/* Right: Document preview */}
         <div className="lp-mockup-doc-area">
           <div className="lp-mockup-paper">
-            <div className="lp-mockup-doc-header">
-              <div className="lp-mockup-doc-logo-row">
-                <div style={{ width: 3, height: 18, background: 'var(--color-accent)', borderRadius: 2 }} />
-                <div style={{ width: 52, height: 6, borderRadius: 1, background: '#1a1a17' }} />
+            {/* Letterhead */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12, paddingBottom: 10, borderBottom: '2px solid #6C47FF' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 3 }}>
+                  <div style={{ width: 3, height: 14, background: '#6C47FF', borderRadius: 1 }} />
+                  <span style={{ fontSize: 10, fontWeight: 800, color: '#1a1a17', letterSpacing: -0.3 }}>ACME CORP LTD</span>
+                </div>
+                <div style={{ fontSize: 7, color: '#9e9e94' }}>123 Business Avenue, Lagos, Nigeria</div>
               </div>
-              <div className="lp-mockup-doc-title">Employment Agreement</div>
-              <div className="lp-mockup-doc-meta">REF · HR/2026/00183 · CONFIDENTIAL</div>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: 7.5, fontWeight: 600, color: '#6C47FF' }}>EMPLOYMENT AGREEMENT</div>
+                <div style={{ fontSize: 6.5, color: '#9e9e94', marginTop: 1 }}>REF: HR/2026/00183</div>
+                <div style={{ fontSize: 6.5, color: '#9e9e94' }}>Date: January 8, 2026</div>
+              </div>
             </div>
-            <div className="lp-mockup-doc-body">
-              <div className="lp-mockup-doc-line">
-                This Agreement is entered into between <span className="lp-mockup-field lp-mockup-field--filled">Employer</span>
-              </div>
-              <div className="lp-mockup-doc-line">
-                and <span className="lp-mockup-field lp-mockup-field--filled">Employee Name</span>, role: <span className="lp-mockup-field">Job Title</span>
-              </div>
-              <div className="lp-mockup-doc-line">
-                Start: <span className="lp-mockup-field">Start Date</span> · Salary: <span className="lp-mockup-field">Annual Salary</span>
-              </div>
-              <div className="lp-mockup-sig-block">
-                <div className="lp-mockup-sig-line">
-                  <div style={{ height: 14 }} />
-                  <div className="lp-mockup-sig-rule" />
-                  <div className="lp-mockup-sig-label">Director, HR</div>
+
+            {/* Parties */}
+            <div style={{ marginBottom: 10 }}>
+              <div style={{ fontSize: 8, fontWeight: 700, color: '#1a1a17', marginBottom: 5, textTransform: 'uppercase', letterSpacing: 0.3 }}>Parties to this Agreement</div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                <div style={{ background: 'rgba(5,150,105,0.06)', border: '1px solid rgba(5,150,105,0.2)', borderRadius: 3, padding: '6px 8px' }}>
+                  <div style={{ fontSize: 6.5, color: '#059669', fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>Employer</div>
+                  <div style={{ fontSize: 8, fontWeight: 600, color: '#1a1a17' }}>Acme Corp Ltd</div>
+                  <div style={{ fontSize: 6.5, color: '#6b6b63', marginTop: 1 }}>RC No. 123456</div>
                 </div>
-                <div className="lp-mockup-sig-line">
-                  <div style={{ height: 14 }} />
-                  <div className="lp-mockup-sig-rule" />
-                  <div className="lp-mockup-sig-label">Employee</div>
+                <div style={{ background: 'rgba(5,150,105,0.06)', border: '1px solid rgba(5,150,105,0.2)', borderRadius: 3, padding: '6px 8px' }}>
+                  <div style={{ fontSize: 6.5, color: '#059669', fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>Employee</div>
+                  <div style={{ fontSize: 8, fontWeight: 600, color: '#1a1a17' }}>Sarah Mitchell</div>
+                  <div style={{ fontSize: 6.5, color: '#6b6b63', marginTop: 1 }}>Product Designer</div>
                 </div>
               </div>
-              <div className="lp-mockup-inspector">
-                <div className="lp-mockup-inspector-label">Inspector · Employee Name</div>
-                {[['Value', 'Sarah Mitchell'], ['Type', 'Text · Required'], ['Status', '✓ Filled']].map(([k, v]) => (
-                  <div key={k} className="lp-mockup-inspector-row">
-                    <span style={{ color: '#9e9e94' }}>{k}</span>
-                    <span style={{ color: k === 'Status' ? '#059669' : '#3a3a35' }}>{v}</span>
+            </div>
+
+            {/* Terms */}
+            <div style={{ marginBottom: 10 }}>
+              <div style={{ fontSize: 8, fontWeight: 700, color: '#1a1a17', marginBottom: 5, textTransform: 'uppercase', letterSpacing: 0.3 }}>Terms of Employment</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                {[
+                  ['Commencement Date', 'January 15, 2026', true],
+                  ['Annual Salary', <span style={{ color: '#a87fff', fontStyle: 'italic' }}>Enter Salary…</span>, false],
+                  ['Location', <span style={{ color: '#a87fff', fontStyle: 'italic' }}>Enter Location…</span>, false],
+                  ['Probation Period', '3 months', true],
+                ].map(([k, v, filled], i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '3px 0', borderBottom: '1px solid #f0efe9' }}>
+                    <span style={{ fontSize: 7.5, color: '#6b6b63' }}>{k}</span>
+                    <span style={{ fontSize: 7.5, fontWeight: filled ? 600 : 400, color: filled ? '#1a1a17' : '#a87fff' }}>{v}</span>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Signatures */}
+            <div className="lp-mockup-sig-block" style={{ marginTop: 8 }}>
+              <div className="lp-mockup-sig-line">
+                <div style={{ fontSize: 11, fontFamily: 'Georgia, serif', color: '#1a1a17', fontStyle: 'italic', lineHeight: 1 }}>J. Okafor</div>
+                <div className="lp-mockup-sig-rule" />
+                <div className="lp-mockup-sig-label">Authorized Signatory</div>
+              </div>
+              <div className="lp-mockup-sig-line">
+                <div style={{ height: 14 }} />
+                <div className="lp-mockup-sig-rule" style={{ borderStyle: 'dashed', borderTop: '1px dashed rgba(108,71,255,0.4)', height: 0 }} />
+                <div className="lp-mockup-sig-label" style={{ color: '#a87fff' }}>Employee Signature Pending</div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Pipeline status bar */}
       <div className="lp-mockup-pipeline">
-        {[{ label: 'Draft', s: 'done' }, { label: 'Fidelity', s: 'done' }, { label: 'Approval', s: 'active' }, { label: 'Sign', s: 'neutral' }, { label: 'Archive', s: 'neutral' }].map((st, i, arr) => (
+        {[
+          { label: 'Draft', s: 'done' },
+          { label: 'Fidelity', s: 'done' },
+          { label: 'Approval', s: 'active' },
+          { label: 'Sign', s: 'neutral' },
+          { label: 'Archive', s: 'neutral' },
+        ].map((st, i, arr) => (
           <div key={st.label} style={{ display: 'flex', alignItems: 'center' }}>
             <div className={`lp-mockup-stage lp-mockup-stage--${st.s}`}>
-              <div className="lp-mockup-stage-dot" style={{ background: st.s === 'done' ? 'var(--color-status-complete)' : st.s === 'active' ? 'var(--color-accent)' : 'var(--color-border)' }} />
+              <div className="lp-mockup-stage-dot" style={{
+                background: st.s === 'done' ? '#059669' : st.s === 'active' ? '#6C47FF' : 'var(--color-border)'
+              }} />
               {st.label}
             </div>
             {i < arr.length - 1 && <div className="lp-mockup-stage-arrow" />}

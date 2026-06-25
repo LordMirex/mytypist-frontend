@@ -177,52 +177,55 @@ export function PricingPage() {
           </p>
 
           {/* Billing toggle — sliding pill */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '4px', borderRadius: 9999, position: 'relative' }}>
-            {/* Sliding pill background */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+            <div style={{ position: 'relative', display: 'flex', background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '4px', borderRadius: 9999, width: 220 }}>
+              {/* Sliding pill */}
+              <div style={{
+                position: 'absolute',
+                top: 4, bottom: 4,
+                left: 4,
+                width: 'calc(50% - 4px)',
+                background: 'var(--color-accent)',
+                borderRadius: 9999,
+                transform: yearly ? 'translateX(calc(100% + 4px))' : 'translateX(0)',
+                transition: 'transform 240ms cubic-bezier(.4,0,.2,1)',
+                pointerEvents: 'none',
+              }} />
+              <button
+                onClick={() => setYearly(false)}
+                style={{
+                  flex: 1, position: 'relative', zIndex: 1,
+                  padding: '7px 0', borderRadius: 9999, fontSize: 13, fontWeight: 600,
+                  color: !yearly ? '#fff' : 'var(--color-text-secondary)',
+                  border: 'none', cursor: 'pointer', background: 'none',
+                  transition: 'color 180ms',
+                }}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setYearly(true)}
+                style={{
+                  flex: 1, position: 'relative', zIndex: 1,
+                  padding: '7px 0', borderRadius: 9999, fontSize: 13, fontWeight: 600,
+                  color: yearly ? '#fff' : 'var(--color-text-secondary)',
+                  border: 'none', cursor: 'pointer', background: 'none',
+                  transition: 'color 180ms',
+                }}
+              >
+                Yearly
+              </button>
+            </div>
             <div style={{
-              position: 'absolute',
-              top: 4, bottom: 4,
-              left: yearly ? 'calc(50% - 2px)' : '4px',
-              right: yearly ? '4px' : 'calc(50% - 2px)',
-              background: 'var(--color-accent)',
+              fontSize: 11, fontWeight: 700, letterSpacing: 0.2,
+              color: yearly ? '#059669' : 'var(--color-text-quaternary)',
+              background: yearly ? 'rgba(5,150,105,0.09)' : 'transparent',
+              padding: yearly ? '3px 10px' : '3px 10px',
               borderRadius: 9999,
-              transition: 'left 220ms cubic-bezier(.4,0,.2,1), right 220ms cubic-bezier(.4,0,.2,1)',
-              pointerEvents: 'none',
-            }} />
-            <button
-              onClick={() => setYearly(false)}
-              style={{
-                position: 'relative', zIndex: 1,
-                padding: '6px 20px', borderRadius: 9999, fontSize: 13, fontWeight: 600,
-                color: !yearly ? '#fff' : 'var(--color-text-secondary)',
-                border: 'none', cursor: 'pointer', background: 'none',
-                transition: 'color 180ms',
-              }}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setYearly(true)}
-              style={{
-                position: 'relative', zIndex: 1,
-                padding: '6px 20px', borderRadius: 9999, fontSize: 13, fontWeight: 600,
-                color: yearly ? '#fff' : 'var(--color-text-secondary)',
-                border: 'none', cursor: 'pointer', background: 'none',
-                transition: 'color 180ms',
-                display: 'flex', alignItems: 'center', gap: 6,
-              }}
-            >
-              Yearly
-              <span style={{
-                padding: '2px 7px',
-                background: yearly ? 'rgba(255,255,255,0.25)' : 'rgba(5,150,105,0.12)',
-                color: yearly ? '#fff' : '#059669',
-                borderRadius: 9999, fontSize: 10, fontWeight: 700,
-                transition: 'background 180ms, color 180ms',
-              }}>
-                Save 20%
-              </span>
-            </button>
+              transition: 'color 200ms, background 200ms',
+            }}>
+              {yearly ? '✓ Saving 20% with annual billing' : 'Switch to yearly to save 20%'}
+            </div>
           </div>
         </div>
       </section>

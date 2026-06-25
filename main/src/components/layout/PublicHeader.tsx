@@ -4,11 +4,11 @@ import { ArrowRight } from 'lucide-react'
 import { LogoMark } from '@/components/brand/LogoMark'
 
 const navItems = [
-  { label: 'Product',    to: '/product'   },
-  { label: 'Pricing',    to: '/pricing'   },
-  { label: 'Templates',  to: '/templates' },
-  { label: 'Enterprise', to: '/pricing'   },
-  { label: 'Support',    to: '/support'   },
+  { label: 'Product',    to: '/product',    badge: null   },
+  { label: 'Pricing',    to: '/pricing',    badge: null   },
+  { label: 'Create',     to: '/templates',  badge: 'Free' },
+  { label: 'Enterprise', to: '/pricing',    badge: null   },
+  { label: 'Support',    to: '/support',    badge: null   },
 ]
 
 export function PublicHeader() {
@@ -26,7 +26,19 @@ export function PublicHeader() {
 
         <nav className="lp-header-nav">
           {navItems.map(item => (
-            <Link key={item.label} to={item.to}>{item.label}</Link>
+            <Link key={item.label} to={item.to} style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              {item.label}
+              {item.badge && (
+                <span style={{
+                  fontSize: 9, fontWeight: 800, letterSpacing: 0.3, padding: '2px 5px',
+                  borderRadius: 4, background: 'rgba(108,71,255,0.12)',
+                  color: 'var(--color-accent)', border: '1px solid rgba(108,71,255,0.2)',
+                  lineHeight: 1,
+                }}>
+                  {item.badge}
+                </span>
+              )}
+            </Link>
           ))}
         </nav>
 

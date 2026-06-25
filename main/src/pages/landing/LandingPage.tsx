@@ -251,29 +251,44 @@ export function LandingPage() {
         <div className="lp-hero-copy">
           <div className="lp-hero-eyebrow">
             <div className="lp-hero-eyebrow-dot" />
-            Document tools built for students &amp; professionals
+            Built for Nigerian students, freelancers &amp; businesses
           </div>
           <h1 className="lp-hero-headline">
-            Stop patching your<br />
-            document workflow<br />
-            with <em>five different tools.</em>
+            From blank page<br />
+            to signed document —<br />
+            <em>in minutes.</em>
           </h1>
           <p className="lp-hero-sub">
-            MyTypist is one structured pipeline from first draft to archived signed record.
-            Formatting guarantees. Binding signatures with no per-transaction fees. Full audit trail.
+            Pick a template, fill your details, get a perfectly formatted PDF.
+            Route for approval and collect legally binding signatures —
+            all in one place, with zero per-transaction fees.
           </p>
           <div className="lp-hero-actions">
-            <Link to="/auth" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--primary" style={{ height: 44, padding: '0 24px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                Start free — 14 days
+            <Link to="/templates" style={{ textDecoration: 'none' }}>
+              <button className="btn btn--primary" style={{ height: 46, padding: '0 24px', fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
+                Create a document free
                 <ArrowRight size={14} />
               </button>
             </Link>
-            <Link to="/support" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--secondary" style={{ height: 44, padding: '0 24px', fontSize: 14 }}>
-                Request a demo
+            <Link to="/auth" style={{ textDecoration: 'none' }}>
+              <button className="btn btn--secondary" style={{ height: 46, padding: '0 24px', fontSize: 14 }}>
+                Start free trial
               </button>
             </Link>
+          </div>
+
+          {/* Trust proof */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 20, flexWrap: 'wrap' }}>
+            {[
+              { icon: '✓', text: '₦0 to start' },
+              { icon: '✓', text: 'No credit card' },
+              { icon: '✓', text: '14-day free trial' },
+            ].map(item => (
+              <div key={item.text} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--color-text-tertiary)' }}>
+                <span style={{ color: '#059669', fontWeight: 700 }}>{item.icon}</span>
+                {item.text}
+              </div>
+            ))}
           </div>
 
           {/* Animated ticker */}

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { Search, X, ArrowRight, FileText } from 'lucide-react'
+import { Search, ArrowRight, FileText, Briefcase, GraduationCap, Scale, Users, TrendingUp, LayoutGrid, SlidersHorizontal, ChevronRight, X } from 'lucide-react'
 import { PublicHeader } from '@/components/layout/PublicHeader'
 import { PublicFooter } from '@/components/layout/PublicFooter'
 
@@ -715,25 +715,39 @@ function TemplateStudio({ template, onBack }: { template: Template; onBack: () =
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
       {/* Studio top bar */}
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 12,
-        padding: '12px 20px', borderBottom: '1px solid var(--color-border)',
-        background: 'var(--color-surface)', flexShrink: 0, position: 'sticky', top: 56, zIndex: 10,
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '10px 20px', borderBottom: '1px solid var(--color-border)',
+        background: 'var(--color-surface)', flexShrink: 0, position: 'sticky', top: 54, zIndex: 10,
       }}>
         <button
           onClick={onBack}
           style={{
-            display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px',
+            display: 'flex', alignItems: 'center', gap: 5, padding: '6px 12px',
             background: 'var(--color-bg)', border: '1px solid var(--color-border)',
-            borderRadius: 8, cursor: 'pointer', fontSize: 13, fontWeight: 600,
-            color: 'var(--color-text-secondary)', flexShrink: 0,
+            borderRadius: 7, cursor: 'pointer', fontSize: 12, fontWeight: 600,
+            color: 'var(--color-text-secondary)', flexShrink: 0, whiteSpace: 'nowrap',
           }}
         >
-          ← Templates
+          ← Gallery
         </button>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: -0.3, color: 'var(--color-text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+        <ChevronRight size={12} color="var(--color-text-quaternary)" style={{ flexShrink: 0 }} />
+        <div style={{ flex: 1, minWidth: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 14, fontWeight: 700, letterSpacing: -0.2, color: 'var(--color-text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {template.name}
-          </div>
+          </span>
+          <span style={{
+            flexShrink: 0, padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700,
+            background: `${template.color}14`, border: `1px solid ${template.color}28`, color: template.color,
+          }}>
+            {template.category}
+          </span>
+        </div>
+        {/* Step indicator — desktop */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0, fontSize: 11, color: 'var(--color-text-tertiary)' }} className="studio-step-indicator">
+          <span style={{ fontWeight: 700, color: 'var(--color-accent)' }}>Step 1</span>
+          <span>Fill fields</span>
+          <ChevronRight size={10} />
+          <span>Step 2 Sign up to download</span>
         </div>
         {/* Mobile tab toggle */}
         <div style={{ display: 'flex', background: 'var(--color-bg)', border: '1px solid var(--color-border)', borderRadius: 7, padding: 3, gap: 2, flexShrink: 0 }} className="studio-mobile-tabs">
@@ -785,10 +799,20 @@ function TemplateStudio({ template, onBack }: { template: Template; onBack: () =
   )
 }
 
+const catMeta: Record<Category, { icon: React.ReactNode; color: string }> = {
+  'All':        { icon: <LayoutGrid size={14} />,       color: '#6C47FF' },
+  'Legal':      { icon: <Scale size={14} />,            color: '#DC2626' },
+  'Academic':   { icon: <GraduationCap size={14} />,   color: '#6C47FF' },
+  'Business':   { icon: <Briefcase size={14} />,        color: '#D97706' },
+  'HR & People':{ icon: <Users size={14} />,            color: '#059669' },
+  'Finance':    { icon: <TrendingUp size={14} />,       color: '#0891B2' },
+}
+
 export function PublicTemplatesPage() {
   const [activeCategory, setActiveCategory] = useState<Category>('All')
   const [query, setQuery] = useState('')
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null)
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
 
   const filtered = templates.filter(t => {
     const matchCat = activeCategory === 'All' || t.category === activeCategory
@@ -796,7 +820,8 @@ export function PublicTemplatesPage() {
     return matchCat && matchQ
   })
 
-  // When a template is selected, show full-page studio (no modal)
+  const catCount = (cat: Category) => cat === 'All' ? templates.length : templates.filter(t => t.category === cat).length
+
   if (selectedTemplate) {
     return (
       <div style={{ minHeight: '100vh', background: 'var(--color-bg)', display: 'flex', flexDirection: 'column' }}>
@@ -810,109 +835,206 @@ export function PublicTemplatesPage() {
     <div style={{ minHeight: '100vh', background: 'var(--color-bg)', display: 'flex', flexDirection: 'column' }}>
       <PublicHeader />
 
-      {/* ── Hero ── */}
-      <section style={{
-        padding: '72px 20px 56px',
-        textAlign: 'center',
-        background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(108,71,255,0.06) 0%, transparent 70%)',
+      {/* ── Page header bar ── */}
+      <div style={{
         borderBottom: '1px solid var(--color-border)',
+        background: 'radial-gradient(ellipse 80% 120% at 50% 0%, rgba(108,71,255,0.05) 0%, transparent 70%)',
+        padding: '36px 24px 28px',
       }}>
-        <div style={{ maxWidth: 640, margin: '0 auto' }}>
-          <div className="lp-hero-eyebrow" style={{ margin: '0 auto 20px', justifyContent: 'center' }}>
-            <div className="lp-hero-eyebrow-dot" />
-            Template Library
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 20, flexWrap: 'wrap', justifyContent: 'space-between' }}>
+            <div>
+              <div className="lp-hero-eyebrow" style={{ marginBottom: 10, fontSize: 11 }}>
+                <div className="lp-hero-eyebrow-dot" />
+                Document Library
+              </div>
+              <h1 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, letterSpacing: -1, lineHeight: 1.1, color: 'var(--color-text-primary)', margin: 0 }}>
+                Create a document — free
+              </h1>
+              <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--color-text-secondary)', marginTop: 8, maxWidth: 440 }}>
+                Pick a template, fill your details, preview it live. No account needed to start.
+              </p>
+            </div>
+            {/* Search */}
+            <div style={{ position: 'relative', width: '100%', maxWidth: 360, flexShrink: 0 }}>
+              <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-tertiary)', pointerEvents: 'none' }} />
+              {query && (
+                <button onClick={() => setQuery('')} style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-text-tertiary)', display: 'flex', padding: 2 }}>
+                  <X size={13} />
+                </button>
+              )}
+              <input
+                className="input"
+                style={{ height: 42, paddingLeft: 36, paddingRight: query ? 30 : 12, fontSize: 16, width: '100%', boxSizing: 'border-box', boxShadow: '0 1px 6px rgba(0,0,0,0.06)' }}
+                placeholder="Search templates…"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+              />
+            </div>
           </div>
-          <h1 style={{ fontSize: 'clamp(28px, 5vw, 44px)', fontWeight: 800, letterSpacing: -1.5, lineHeight: 1.1, color: 'var(--color-text-primary)', marginBottom: 16 }}>
-            100+ professionally built<br />document templates.
-          </h1>
-          <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--color-text-secondary)', marginBottom: 28 }}>
-            Click any template to fill it and see a live preview instantly.
-            Students, freelancers, and businesses — all covered.
-          </p>
-
-          {/* Search */}
-          <div style={{ position: 'relative', maxWidth: 440, margin: '0 auto' }}>
-            <Search size={15} style={{ position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-tertiary)', pointerEvents: 'none' }} />
-            <input
-              className="input"
-              style={{ height: 44, paddingLeft: 40, fontSize: 16, width: '100%', boxSizing: 'border-box', boxShadow: 'var(--shadow-floating)' }}
-              placeholder="Search templates…"
-              value={query}
-              onChange={e => setQuery(e.target.value)}
-            />
-          </div>
-
-          {/* Stats row */}
-          <div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap', marginTop: 28, fontSize: 12, color: 'var(--color-text-tertiary)' }}>
-            {[['16', 'Ready-to-use templates'], ['6', 'Categories'], ['Free', 'No account to preview']].map(([num, label]) => (
-              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                <span style={{ fontWeight: 800, color: 'var(--color-accent)' }}>{num}</span>
-                <span>{label}</span>
+          {/* Quick stats */}
+          <div style={{ display: 'flex', gap: 20, marginTop: 20, flexWrap: 'wrap' }}>
+            {[
+              { val: templates.length.toString(), label: 'templates' },
+              { val: categories.filter(c => c !== 'All').length.toString(), label: 'categories' },
+              { val: 'Free', label: 'no account to preview' },
+            ].map(s => (
+              <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, color: 'var(--color-text-tertiary)' }}>
+                <span style={{ fontWeight: 800, color: 'var(--color-accent)', fontSize: 13 }}>{s.val}</span>
+                <span>{s.label}</span>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* ── Category filter + Grid ── */}
-      <section style={{ padding: '48px 20px 80px', flex: 1 }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          {/* Category pills */}
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 32 }}>
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                style={{
-                  padding: '7px 16px',
-                  borderRadius: 9999,
-                  fontSize: 13,
-                  fontWeight: activeCategory === cat ? 600 : 400,
-                  background: activeCategory === cat ? 'var(--color-accent)' : 'var(--color-surface)',
-                  color: activeCategory === cat ? '#fff' : 'var(--color-text-secondary)',
-                  border: activeCategory === cat ? '1px solid var(--color-accent)' : '1px solid var(--color-border)',
-                  cursor: 'pointer',
-                  transition: 'all 120ms',
-                }}
-              >
-                {cat}
-                {cat !== 'All' && (
-                  <span style={{ marginLeft: 6, opacity: 0.65, fontSize: 11 }}>
-                    {templates.filter(t => t.category === cat).length}
+      {/* ── Sidebar + Grid layout ── */}
+      <div style={{ flex: 1, display: 'flex', maxWidth: 1200, margin: '0 auto', width: '100%' }}>
+
+        {/* Sidebar — desktop */}
+        <aside className="gallery-sidebar" style={{
+          width: 220, flexShrink: 0, borderRight: '1px solid var(--color-border)',
+          padding: '28px 0', position: 'sticky', top: 54, height: 'calc(100vh - 54px)',
+          overflowY: 'auto', background: 'var(--color-bg)',
+        }}>
+          <div style={{ padding: '0 16px 10px', fontSize: 10, fontWeight: 800, letterSpacing: 0.8, color: 'var(--color-text-tertiary)', textTransform: 'uppercase' }}>
+            Categories
+          </div>
+          <nav>
+            {categories.map(cat => {
+              const isActive = activeCategory === cat
+              const meta = catMeta[cat]
+              const count = catCount(cat)
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  style={{
+                    width: '100%', display: 'flex', alignItems: 'center', gap: 9,
+                    padding: '9px 16px', border: 'none', cursor: 'pointer',
+                    background: isActive ? 'rgba(108,71,255,0.08)' : 'transparent',
+                    color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)',
+                    textAlign: 'left', fontSize: 13, fontWeight: isActive ? 700 : 400,
+                    transition: 'all 100ms', boxSizing: 'border-box',
+                    borderLeft: isActive ? '3px solid var(--color-accent)' : '3px solid transparent',
+                  }}
+                >
+                  <span style={{ opacity: isActive ? 1 : 0.6, color: isActive ? 'var(--color-accent)' : meta.color, flexShrink: 0 }}>
+                    {meta.icon}
                   </span>
-                )}
+                  <span style={{ flex: 1 }}>{cat}</span>
+                  <span style={{
+                    fontSize: 10, fontWeight: 700, padding: '1px 6px', borderRadius: 9999, flexShrink: 0,
+                    background: isActive ? 'rgba(108,71,255,0.15)' : 'var(--color-border)',
+                    color: isActive ? 'var(--color-accent)' : 'var(--color-text-tertiary)',
+                  }}>
+                    {count}
+                  </span>
+                </button>
+              )
+            })}
+          </nav>
+
+          {/* Sidebar CTA */}
+          <div style={{ margin: '20px 12px 0', padding: '14px', background: 'rgba(108,71,255,0.06)', border: '1px solid rgba(108,71,255,0.15)', borderRadius: 10 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4, lineHeight: 1.4 }}>
+              Don't see your template?
+            </p>
+            <p style={{ fontSize: 11, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 10 }}>
+              Build a custom one in Studio — free.
+            </p>
+            <Link to="/auth">
+              <button style={{
+                width: '100%', padding: '7px 0', background: 'var(--color-accent)', color: '#fff',
+                border: 'none', borderRadius: 7, fontSize: 11, fontWeight: 700, cursor: 'pointer',
+              }}>
+                Open Studio →
               </button>
-            ))}
+            </Link>
+          </div>
+        </aside>
+
+        {/* Main area */}
+        <main style={{ flex: 1, padding: '28px 24px 80px', minWidth: 0 }}>
+
+          {/* Mobile filter bar */}
+          <div className="gallery-mobile-filter" style={{ display: 'none', marginBottom: 16, gap: 8 }}>
+            <button
+              onClick={() => setMobileSidebarOpen(v => !v)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 6, padding: '8px 14px',
+                border: '1px solid var(--color-border)', borderRadius: 8, background: 'var(--color-surface)',
+                fontSize: 13, fontWeight: 600, color: 'var(--color-text-secondary)', cursor: 'pointer',
+              }}
+            >
+              <SlidersHorizontal size={13} />
+              {activeCategory === 'All' ? 'Filter' : activeCategory}
+            </button>
+            {activeCategory !== 'All' && (
+              <button onClick={() => setActiveCategory('All')} style={{
+                padding: '8px 12px', border: '1px solid var(--color-border)', borderRadius: 8,
+                background: 'var(--color-surface)', fontSize: 12, color: 'var(--color-text-tertiary)', cursor: 'pointer',
+              }}>
+                Clear
+              </button>
+            )}
           </div>
 
-          {/* Results count */}
-          <div style={{ marginBottom: 20, fontSize: 13, color: 'var(--color-text-tertiary)' }}>
-            {filtered.length} template{filtered.length !== 1 ? 's' : ''}
-            {activeCategory !== 'All' && ` in ${activeCategory}`}
-            {query && ` matching "${query}"`}
-            {' '}· <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>Click any card to preview & fill</span>
+          {/* Mobile category drawer */}
+          {mobileSidebarOpen && (
+            <div style={{
+              marginBottom: 20, padding: 12, background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)', borderRadius: 10,
+            }} className="gallery-mobile-filter">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {categories.map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => { setActiveCategory(cat); setMobileSidebarOpen(false) }}
+                    style={{
+                      padding: '6px 12px', borderRadius: 9999, fontSize: 12, fontWeight: activeCategory === cat ? 700 : 400,
+                      background: activeCategory === cat ? 'var(--color-accent)' : 'var(--color-bg)',
+                      color: activeCategory === cat ? '#fff' : 'var(--color-text-secondary)',
+                      border: activeCategory === cat ? '1px solid var(--color-accent)' : '1px solid var(--color-border)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {cat} <span style={{ opacity: 0.6 }}>{catCount(cat)}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Results info */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, flexWrap: 'wrap', gap: 8 }}>
+            <div style={{ fontSize: 13, color: 'var(--color-text-tertiary)' }}>
+              <span style={{ fontWeight: 700, color: 'var(--color-text-primary)' }}>{filtered.length}</span>
+              {' '}template{filtered.length !== 1 ? 's' : ''}
+              {activeCategory !== 'All' && <span> in <span style={{ color: catMeta[activeCategory].color, fontWeight: 600 }}>{activeCategory}</span></span>}
+              {query && <span> matching "<strong>{query}</strong>"</span>}
+            </div>
+            <div style={{ fontSize: 12, color: 'var(--color-accent)', fontWeight: 600 }}>
+              Click any card to fill &amp; preview free
+            </div>
           </div>
 
-          {/* Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
+          {/* Template grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 14 }}>
             {filtered.map(template => (
               <div
                 key={template.id}
                 onClick={() => setSelectedTemplate(template)}
                 style={{
-                  background: 'var(--color-surface)',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 10,
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'border-color 120ms, box-shadow 120ms, transform 120ms',
-                  cursor: 'pointer',
+                  background: 'var(--color-surface)', border: '1px solid var(--color-border)',
+                  borderRadius: 12, overflow: 'hidden', display: 'flex', flexDirection: 'column',
+                  cursor: 'pointer', transition: 'border-color 140ms, box-shadow 140ms, transform 140ms',
+                  position: 'relative',
                 }}
                 onMouseEnter={e => {
                   const el = e.currentTarget as HTMLDivElement
-                  el.style.borderColor = `${template.color}50`
-                  el.style.boxShadow = `0 8px 28px ${template.color}18`
+                  el.style.borderColor = `${template.color}55`
+                  el.style.boxShadow = `0 8px 32px ${template.color}1a`
                   el.style.transform = 'translateY(-2px)'
                 }}
                 onMouseLeave={e => {
@@ -922,94 +1044,95 @@ export function PublicTemplatesPage() {
                   el.style.transform = 'translateY(0)'
                 }}
               >
-                <TemplateMiniPreview color={template.color} />
+                {/* Color accent bar + mini doc preview */}
+                <div style={{ position: 'relative' }}>
+                  <div style={{ height: 4, background: template.color, opacity: 0.85 }} />
+                  <TemplateMiniPreview color={template.color} />
+                </div>
 
-                <div style={{ padding: '16px 18px 18px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
-                    <h3 style={{ fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1.3, letterSpacing: -0.2 }}>
-                      {template.name}
-                    </h3>
-                    <div style={{
-                      width: 28, height: 28, borderRadius: 6, flexShrink: 0,
-                      background: `${template.color}12`,
-                      border: `1px solid ${template.color}28`,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    }}>
-                      <FileText size={12} color={template.color} />
-                    </div>
-                  </div>
-                  <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--color-text-secondary)', flex: 1 }}>
-                    {template.desc}
-                  </p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
+                <div style={{ padding: '14px 16px 16px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {/* Category + icon row */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>
                     <span style={{
-                      padding: '3px 9px', borderRadius: 9999, fontSize: 10, fontWeight: 700,
+                      padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700,
                       color: catColors[template.category] || 'var(--color-accent)',
                       background: `${catColors[template.category] || '#6C47FF'}12`,
+                      border: `1px solid ${catColors[template.category] || '#6C47FF'}20`,
                     }}>
                       {template.category}
                     </span>
+                    <div style={{
+                      width: 26, height: 26, borderRadius: 6, flexShrink: 0,
+                      background: `${template.color}10`, border: `1px solid ${template.color}22`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      <FileText size={11} color={template.color} />
+                    </div>
+                  </div>
+
+                  {/* Name */}
+                  <h3 style={{ fontSize: 14, fontWeight: 700, color: 'var(--color-text-primary)', lineHeight: 1.3, letterSpacing: -0.2, margin: 0 }}>
+                    {template.name}
+                  </h3>
+
+                  {/* Description */}
+                  <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--color-text-secondary)', flex: 1, margin: 0 }}>
+                    {template.desc}
+                  </p>
+
+                  {/* Fields / pages meta */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, paddingTop: 4 }}>
                     <span style={{ fontSize: 11, color: 'var(--color-text-quaternary)' }}>{template.fields} fields</span>
-                    <span style={{ fontSize: 11, color: 'var(--color-text-quaternary)' }}>·</span>
-                    <span style={{ fontSize: 11, color: 'var(--color-text-quaternary)' }}>{template.pages}p</span>
+                    <span style={{ fontSize: 10, color: 'var(--color-border)' }}>·</span>
+                    <span style={{ fontSize: 11, color: 'var(--color-text-quaternary)' }}>{template.pages} page{template.pages !== 1 ? 's' : ''}</span>
                   </div>
                 </div>
 
-                {/* Click hint at bottom */}
+                {/* CTA bar */}
                 <div style={{
-                  padding: '10px 18px',
+                  padding: '10px 16px',
                   borderTop: `1px solid ${template.color}18`,
-                  background: `${template.color}06`,
-                  fontSize: 11, fontWeight: 600, color: template.color,
-                  display: 'flex', alignItems: 'center', gap: 5,
+                  background: `linear-gradient(135deg, ${template.color}07 0%, transparent 100%)`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 }}>
-                  <ArrowRight size={11} />
-                  Preview & fill this template
+                  <span style={{ fontSize: 11, fontWeight: 700, color: template.color }}>
+                    Fill &amp; preview free
+                  </span>
+                  <ArrowRight size={12} color={template.color} />
                 </div>
               </div>
             ))}
           </div>
 
           {filtered.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '64px 20px', color: 'var(--color-text-tertiary)' }}>
-              <div style={{ fontSize: 32, marginBottom: 12 }}>🗂️</div>
-              <p style={{ fontSize: 15, fontWeight: 600, color: 'var(--color-text-secondary)', marginBottom: 6 }}>No templates found</p>
-              <p style={{ fontSize: 13 }}>Try a different category or search term.</p>
+            <div style={{ textAlign: 'center', padding: '80px 20px', color: 'var(--color-text-tertiary)' }}>
+              <div style={{ fontSize: 36, marginBottom: 14 }}>🗂️</div>
+              <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--color-text-secondary)', marginBottom: 6 }}>No templates found</p>
+              <p style={{ fontSize: 13, lineHeight: 1.6 }}>
+                Try a different category or clear the search.{' '}
+                <Link to="/auth" style={{ color: 'var(--color-accent)', fontWeight: 600, textDecoration: 'none' }}>Build a custom one →</Link>
+              </p>
             </div>
           )}
-        </div>
-      </section>
+        </main>
+      </div>
 
-      {/* ── CTA ── */}
-      <section style={{
-        padding: '48px 20px',
-        background: 'var(--color-surface)',
-        borderTop: '1px solid var(--color-border)',
-        borderBottom: '1px solid var(--color-border)',
-        textAlign: 'center',
-      }}>
-        <div style={{ maxWidth: 560, margin: '0 auto' }}>
-          <h2 style={{ fontSize: 22, fontWeight: 800, letterSpacing: -0.5, color: 'var(--color-text-primary)', marginBottom: 10 }}>
-            Can't find the template you need?
-          </h2>
-          <p style={{ fontSize: 14, color: 'var(--color-text-secondary)', lineHeight: 1.65, marginBottom: 24 }}>
-            Build your own in Studio in under 10 minutes — or request one from our team.
-          </p>
-          <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/auth">
-              <button className="btn btn--primary" style={{ height: 42, padding: '0 22px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                Build in Studio — Free
-                <ArrowRight size={14} />
-              </button>
-            </Link>
-            <Link to="/support">
-              <button className="btn btn--secondary" style={{ height: 42, padding: '0 22px', fontSize: 14 }}>
-                Request a template
-              </button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Responsive CSS */}
+      <style>{`
+        @media (max-width: 720px) {
+          .gallery-sidebar { display: none !important; }
+          .gallery-mobile-filter { display: flex !important; }
+        }
+        @media (min-width: 721px) {
+          .gallery-mobile-filter { display: none !important; }
+        }
+        .studio-step-indicator {
+          display: flex;
+        }
+        @media (max-width: 560px) {
+          .studio-step-indicator { display: none !important; }
+        }
+      `}</style>
 
       <PublicFooter />
     </div>

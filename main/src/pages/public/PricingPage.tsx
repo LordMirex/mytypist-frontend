@@ -345,57 +345,62 @@ export function PricingPage() {
             Everything, side by side.
           </h2>
 
-          {/* Table header */}
-          <div style={{
-            display: 'grid', gridTemplateColumns: '1fr 110px 110px 120px',
-            padding: '10px 16px', borderRadius: '8px 8px 0 0',
-            background: 'var(--color-bg-secondary)',
-            border: '1px solid var(--color-border)',
-            borderBottom: 'none',
-          }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Feature</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Free</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Pro</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-accent)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Enterprise</div>
-          </div>
+          {/* Scrollable table wrapper */}
+          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <div style={{ minWidth: 560 }}>
+              {/* Table header */}
+              <div style={{
+                display: 'grid', gridTemplateColumns: '1fr 110px 110px 120px',
+                padding: '10px 16px', borderRadius: '8px 8px 0 0',
+                background: 'var(--color-bg-secondary)',
+                border: '1px solid var(--color-border)',
+                borderBottom: 'none',
+              }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Feature</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Free</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Pro</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-accent)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Enterprise</div>
+              </div>
 
-          <div style={{ border: '1px solid var(--color-border)', borderRadius: '0 0 8px 8px', overflow: 'hidden' }}>
-            {comparisonRows.map((section, si) => (
-              <div key={section.category}>
-                <div style={{
-                  padding: '10px 16px',
-                  background: 'var(--color-bg-secondary)',
-                  borderTop: si > 0 ? '1px solid var(--color-border)' : 'none',
-                  fontSize: 11, fontWeight: 700, textTransform: 'uppercase',
-                  letterSpacing: 0.5, color: 'var(--color-text-tertiary)',
-                }}>
-                  {section.category}
-                </div>
-                {section.features.map((feat, fi) => (
-                  <div
-                    key={feat.label}
-                    style={{
-                      display: 'grid', gridTemplateColumns: '1fr 110px 110px 120px',
-                      padding: '11px 16px',
-                      borderTop: '1px solid var(--color-border-subtle)',
-                      background: fi % 2 === 0 ? 'var(--color-surface)' : 'rgba(0,0,0,0.01)',
-                      transition: 'background 80ms',
-                    }}
-                  >
-                    <div style={{ fontSize: 13, color: 'var(--color-text-secondary)' }}>{feat.label}</div>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      <CellValue value={feat.free} />
+              <div style={{ border: '1px solid var(--color-border)', borderRadius: '0 0 8px 8px', overflow: 'hidden' }}>
+                {comparisonRows.map((section, si) => (
+                  <div key={section.category}>
+                    <div style={{
+                      padding: '10px 16px',
+                      background: 'var(--color-bg-secondary)',
+                      borderTop: si > 0 ? '1px solid var(--color-border)' : 'none',
+                      fontSize: 11, fontWeight: 700, textTransform: 'uppercase',
+                      letterSpacing: 0.5, color: 'var(--color-text-tertiary)',
+                    }}>
+                      {section.category}
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      <CellValue value={feat.pro} />
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                      <CellValue value={feat.ent} />
-                    </div>
+                    {section.features.map((feat, fi) => (
+                      <div
+                        key={feat.label}
+                        style={{
+                          display: 'grid', gridTemplateColumns: '1fr 110px 110px 120px',
+                          padding: '11px 16px',
+                          borderTop: '1px solid var(--color-border-subtle)',
+                          background: fi % 2 === 0 ? 'var(--color-surface)' : 'rgba(0,0,0,0.01)',
+                          transition: 'background 80ms',
+                        }}
+                      >
+                        <div style={{ fontSize: 13, color: 'var(--color-text-secondary)' }}>{feat.label}</div>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                          <CellValue value={feat.free} />
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                          <CellValue value={feat.pro} />
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                          <CellValue value={feat.ent} />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

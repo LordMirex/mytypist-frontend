@@ -566,9 +566,10 @@ function LiveDocPreview({ sections, color }: { sections: PreviewSection[]; color
   )
 }
 
-function TemplateModal({ template, onClose }: { template: Template; onClose: () => void }) {
+function TemplateStudio({ template, onBack }: { template: Template; onBack: () => void }) {
   const [values, setValues] = useState<Record<string, string>>({})
   const [showAuthPrompt, setShowAuthPrompt] = useState(false)
+  const [mobileTab, setMobileTab] = useState<'form' | 'preview'>('form')
 
   const handleChange = useCallback((key: string, val: string) => {
     setValues(prev => ({ ...prev, [key]: val }))
@@ -576,205 +577,208 @@ function TemplateModal({ template, onClose }: { template: Template; onClose: () 
 
   const previewSections = template.previewFn(values)
   const filledCount = Object.values(values).filter(v => v.trim()).length
+  const progress = Math.min(100, Math.round((filledCount / template.formFields.length) * 100))
 
-  return (
-    <div
-      style={{
-        position: 'fixed', inset: 0, zIndex: 1000,
-        background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(4px)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: 16,
-      }}
-      onClick={e => { if (e.target === e.currentTarget) onClose() }}
-    >
-      <div style={{
-        background: 'var(--color-bg)',
-        borderRadius: 14,
-        boxShadow: '0 24px 80px rgba(0,0,0,0.3)',
-        width: '100%', maxWidth: 920,
-        maxHeight: '92vh',
-        overflowY: 'auto',
-        position: 'relative',
-      }}>
-        {/* Modal Header */}
-        <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '20px 24px',
-          borderBottom: '1px solid var(--color-border)',
-          position: 'sticky', top: 0, background: 'var(--color-bg)', zIndex: 2,
-          borderRadius: '14px 14px 0 0',
-        }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
-              <div style={{ width: 8, height: 8, borderRadius: '50%', background: template.color }} />
-              <span style={{ fontSize: 11, fontWeight: 700, color: catColors[template.category] || 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                {template.category}
-              </span>
-            </div>
-            <h2 style={{ fontSize: 18, fontWeight: 800, letterSpacing: -0.4, color: 'var(--color-text-primary)', margin: 0 }}>{template.name}</h2>
-          </div>
-          <button onClick={onClose} style={{
-            width: 36, height: 36, borderRadius: 8, background: 'var(--color-surface)',
-            border: '1px solid var(--color-border)', display: 'flex', alignItems: 'center',
-            justifyContent: 'center', cursor: 'pointer', flexShrink: 0,
-          }}>
-            <X size={16} color="var(--color-text-tertiary)" />
-          </button>
+  const formPanel = (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      {/* Form header */}
+      <div style={{ padding: '20px 24px 16px', borderBottom: '1px solid var(--color-border)', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: template.color }} />
+          <span style={{ fontSize: 11, fontWeight: 700, color: catColors[template.category] || 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            {template.category}
+          </span>
         </div>
-
+        <p style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.55, margin: '0 0 12px' }}>{template.desc}</p>
+        <div style={{ display: 'flex', gap: 6 }}>
+          <span style={{ padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700, background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-tertiary)' }}>
+            {template.fields} fields
+          </span>
+          <span style={{ padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700, background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-tertiary)' }}>
+            {template.pages} page{template.pages > 1 ? 's' : ''}
+          </span>
+          <span style={{ padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700, background: `${template.color}14`, border: `1px solid ${template.color}30`, color: template.color }}>
+            {progress}% filled
+          </span>
+        </div>
         {/* Progress bar */}
-        <div style={{ height: 3, background: 'var(--color-border)' }}>
+        <div style={{ marginTop: 10, height: 3, background: 'var(--color-border)', borderRadius: 9999 }}>
           <div style={{
-            height: '100%', background: template.color,
-            width: `${Math.min(100, (filledCount / template.formFields.length) * 100)}%`,
-            transition: 'width 200ms',
-            borderRadius: '0 3px 3px 0',
+            height: '100%', borderRadius: 9999, background: template.color,
+            width: `${progress}%`, transition: 'width 250ms',
           }} />
         </div>
+      </div>
 
-        {/* Two-column body */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
-          gap: 0,
-        }} className="template-modal-grid">
-          {/* Form panel */}
-          <div style={{ padding: '28px 24px', borderRight: '1px solid var(--color-border)' }}>
-            <div style={{ marginBottom: 20 }}>
-              <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.6, margin: 0 }}>
-                {template.desc}
-              </p>
-              <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-                <span style={{ padding: '3px 9px', borderRadius: 9999, fontSize: 10, fontWeight: 700, background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-tertiary)' }}>
-                  {template.fields} fields
-                </span>
-                <span style={{ padding: '3px 9px', borderRadius: 9999, fontSize: 10, fontWeight: 700, background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-tertiary)' }}>
-                  {template.pages} page{template.pages > 1 ? 's' : ''}
-                </span>
-              </div>
+      {/* Fields */}
+      <div style={{ flex: 1, overflowY: 'auto', padding: '20px 24px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          {template.formFields.map(field => (
+            <div key={field.key}>
+              <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 5 }}>
+                {field.label}
+              </label>
+              {field.type === 'select' ? (
+                <select
+                  value={values[field.key] || ''}
+                  onChange={e => handleChange(field.key, e.target.value)}
+                  style={{
+                    width: '100%', height: 40, padding: '0 12px',
+                    border: '1px solid var(--color-border)', borderRadius: 7,
+                    background: 'var(--color-surface)', color: 'var(--color-text-primary)',
+                    fontSize: 16, cursor: 'pointer', outline: 'none', boxSizing: 'border-box',
+                  }}
+                >
+                  <option value="">Select…</option>
+                  {field.options?.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                </select>
+              ) : (
+                <input
+                  type={field.type || 'text'}
+                  value={values[field.key] || ''}
+                  onChange={e => handleChange(field.key, e.target.value)}
+                  placeholder={field.placeholder}
+                  style={{
+                    width: '100%', height: 40, padding: '0 12px',
+                    border: `1px solid ${values[field.key] ? template.color + '60' : 'var(--color-border)'}`,
+                    borderRadius: 7, background: 'var(--color-surface)',
+                    color: 'var(--color-text-primary)', fontSize: 16,
+                    outline: 'none', boxSizing: 'border-box', transition: 'border-color 150ms',
+                  }}
+                  onFocus={e => { e.target.style.borderColor = template.color; e.target.style.boxShadow = `0 0 0 3px ${template.color}18` }}
+                  onBlur={e => { e.target.style.borderColor = values[field.key] ? template.color + '60' : 'var(--color-border)'; e.target.style.boxShadow = 'none' }}
+                />
+              )}
             </div>
+          ))}
+        </div>
+      </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {template.formFields.map(field => (
-                <div key={field.key}>
-                  <label style={{
-                    display: 'block', fontSize: 12, fontWeight: 600,
-                    color: 'var(--color-text-primary)', marginBottom: 6,
-                  }}>
-                    {field.label}
-                  </label>
-                  {field.type === 'select' ? (
-                    <select
-                      value={values[field.key] || ''}
-                      onChange={e => handleChange(field.key, e.target.value)}
-                      style={{
-                        width: '100%', height: 40, padding: '0 12px',
-                        border: '1px solid var(--color-border)',
-                        borderRadius: 7, background: 'var(--color-surface)',
-                        color: values[field.key] ? 'var(--color-text-primary)' : 'var(--color-text-tertiary)',
-                        fontSize: 16, cursor: 'pointer',
-                        outline: 'none', boxSizing: 'border-box',
-                        appearance: 'none',
-                        backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23999\' d=\'M6 8L1 3h10z\'/%3E%3C/svg%3E")',
-                        backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center',
-                      }}
-                    >
-                      <option value="">Select…</option>
-                      {field.options?.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                    </select>
-                  ) : (
-                    <input
-                      type={field.type || 'text'}
-                      value={values[field.key] || ''}
-                      onChange={e => handleChange(field.key, e.target.value)}
-                      placeholder={field.placeholder}
-                      style={{
-                        width: '100%', height: 40, padding: '0 12px',
-                        border: `1px solid ${values[field.key] ? template.color + '50' : 'var(--color-border)'}`,
-                        borderRadius: 7, background: 'var(--color-surface)',
-                        color: 'var(--color-text-primary)',
-                        fontSize: 16, outline: 'none', boxSizing: 'border-box',
-                        transition: 'border-color 150ms',
-                      }}
-                      onFocus={e => { e.target.style.borderColor = template.color; e.target.style.boxShadow = `0 0 0 3px ${template.color}18` }}
-                      onBlur={e => { e.target.style.borderColor = values[field.key] ? template.color + '50' : 'var(--color-border)'; e.target.style.boxShadow = 'none' }}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Auth prompt */}
-            {showAuthPrompt ? (
-              <div style={{
-                marginTop: 24, padding: 16, background: 'rgba(108,71,255,0.06)',
-                border: '1px solid rgba(108,71,255,0.2)', borderRadius: 10,
-              }}>
-                <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 6 }}>
-                  Create a free account to continue
-                </p>
-                <p style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.55, marginBottom: 14 }}>
-                  Sign up free — no card required. Your filled fields will be saved.
-                </p>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <Link to="/auth" style={{ flex: 1 }}>
-                    <button className="btn btn--primary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 700 }}>
-                      Sign up free
-                    </button>
-                  </Link>
-                  <Link to="/auth" style={{ flex: 1 }}>
-                    <button className="btn btn--secondary" style={{ width: '100%', height: 40, fontSize: 13 }}>
-                      Log in
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <button
-                onClick={() => setShowAuthPrompt(true)}
-                style={{
-                  marginTop: 24, width: '100%', height: 46,
-                  background: template.color, color: '#fff',
-                  border: 'none', borderRadius: 9, fontSize: 14, fontWeight: 700,
-                  cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                  boxShadow: `0 4px 16px ${template.color}40`,
-                  transition: 'opacity 120ms',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')}
-                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-              >
-                <FileText size={15} />
-                Use This Template — Free
-                <ArrowRight size={14} />
-              </button>
-            )}
-          </div>
-
-          {/* Live preview panel */}
-          <div style={{
-            padding: '28px 24px',
-            background: 'var(--color-bg-secondary)',
-          }}>
-            <div style={{
-              fontSize: 11, fontWeight: 700, letterSpacing: 0.5, textTransform: 'uppercase',
-              color: 'var(--color-text-tertiary)', marginBottom: 16,
-              display: 'flex', alignItems: 'center', gap: 6,
-            }}>
-              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e', animation: 'pulse 2s infinite' }} />
-              Live Preview — updates as you type
-            </div>
-            <LiveDocPreview sections={previewSections} color={template.color} />
-            <p style={{ fontSize: 11, color: 'var(--color-text-quaternary)', marginTop: 12, textAlign: 'center', lineHeight: 1.5 }}>
-              Actual document rendered in Studio after sign-up.
+      {/* CTA footer */}
+      <div style={{ padding: '16px 24px', borderTop: '1px solid var(--color-border)', flexShrink: 0, background: 'var(--color-bg)' }}>
+        {showAuthPrompt ? (
+          <div style={{ padding: 14, background: 'rgba(108,71,255,0.06)', border: '1px solid rgba(108,71,255,0.2)', borderRadius: 10 }}>
+            <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-primary)', marginBottom: 4 }}>
+              Create a free account to download
             </p>
+            <p style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 12 }}>
+              No card required. Your progress is saved.
+            </p>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <Link to="/auth" style={{ flex: 1 }}>
+                <button className="btn btn--primary" style={{ width: '100%', height: 40, fontSize: 13, fontWeight: 700 }}>Sign up free</button>
+              </Link>
+              <Link to="/auth" style={{ flex: 1 }}>
+                <button className="btn btn--secondary" style={{ width: '100%', height: 40, fontSize: 13 }}>Log in</button>
+              </Link>
+            </div>
           </div>
+        ) : (
+          <button
+            onClick={() => setShowAuthPrompt(true)}
+            style={{
+              width: '100%', height: 46, background: template.color, color: '#fff',
+              border: 'none', borderRadius: 9, fontSize: 14, fontWeight: 700,
+              cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              boxShadow: `0 4px 16px ${template.color}35`, transition: 'opacity 120ms',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+          >
+            <FileText size={15} />
+            Use This Template — Free
+            <ArrowRight size={14} />
+          </button>
+        )}
+      </div>
+    </div>
+  )
+
+  const previewPanel = (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#f0efe9' }}>
+      <div style={{ padding: '16px 20px 12px', borderBottom: '1px solid var(--color-border)', flexShrink: 0, background: 'var(--color-surface)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.4 }}>
+          <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e' }} />
+          Live Preview · updates as you type
+        </div>
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', padding: 20 }}>
+        <LiveDocPreview sections={previewSections} color={template.color} />
+        <p style={{ fontSize: 11, color: 'var(--color-text-quaternary)', marginTop: 10, textAlign: 'center' }}>
+          Full document renders in Studio after sign-up.
+        </p>
+      </div>
+    </div>
+  )
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
+      {/* Studio top bar */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 12,
+        padding: '12px 20px', borderBottom: '1px solid var(--color-border)',
+        background: 'var(--color-surface)', flexShrink: 0, position: 'sticky', top: 56, zIndex: 10,
+      }}>
+        <button
+          onClick={onBack}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6, padding: '7px 14px',
+            background: 'var(--color-bg)', border: '1px solid var(--color-border)',
+            borderRadius: 8, cursor: 'pointer', fontSize: 13, fontWeight: 600,
+            color: 'var(--color-text-secondary)', flexShrink: 0,
+          }}
+        >
+          ← Templates
+        </button>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: -0.3, color: 'var(--color-text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {template.name}
+          </div>
+        </div>
+        {/* Mobile tab toggle */}
+        <div style={{ display: 'flex', background: 'var(--color-bg)', border: '1px solid var(--color-border)', borderRadius: 7, padding: 3, gap: 2, flexShrink: 0 }} className="studio-mobile-tabs">
+          {(['form', 'preview'] as const).map(tab => (
+            <button
+              key={tab}
+              onClick={() => setMobileTab(tab)}
+              style={{
+                padding: '5px 12px', borderRadius: 5, border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 600,
+                background: mobileTab === tab ? 'var(--color-accent)' : 'none',
+                color: mobileTab === tab ? '#fff' : 'var(--color-text-secondary)',
+                transition: 'all 150ms',
+              }}
+            >
+              {tab === 'form' ? 'Form' : 'Preview'}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Studio body — two panels */}
+      <div style={{ display: 'flex', flex: 1, minHeight: 0, height: 'calc(100vh - 120px)' }} className="studio-body">
+        {/* Left: form */}
+        <div style={{ width: '40%', minWidth: 280, borderRight: '1px solid var(--color-border)', overflowY: 'auto', background: 'var(--color-bg)', display: 'flex', flexDirection: 'column' }} className="studio-form-col">
+          {formPanel}
+        </div>
+        {/* Right: preview */}
+        <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }} className="studio-preview-col">
+          {previewPanel}
         </div>
       </div>
 
       <style>{`
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
         @media (max-width: 680px) {
-          .template-modal-grid { grid-template-columns: 1fr !important; }
+          .studio-body { height: calc(100vh - 110px); }
+          .studio-form-col {
+            width: 100% !important;
+            display: ${mobileTab === 'form' ? 'flex' : 'none'} !important;
+            border-right: none !important;
+          }
+          .studio-preview-col { display: ${mobileTab === 'preview' ? 'flex' : 'none'} !important; }
+        }
+        @media (min-width: 681px) {
+          .studio-mobile-tabs { display: none !important; }
         }
       `}</style>
     </div>
@@ -791,6 +795,16 @@ export function PublicTemplatesPage() {
     const matchQ = !query || t.name.toLowerCase().includes(query.toLowerCase()) || t.desc.toLowerCase().includes(query.toLowerCase())
     return matchCat && matchQ
   })
+
+  // When a template is selected, show full-page studio (no modal)
+  if (selectedTemplate) {
+    return (
+      <div style={{ minHeight: '100vh', background: 'var(--color-bg)', display: 'flex', flexDirection: 'column' }}>
+        <PublicHeader />
+        <TemplateStudio template={selectedTemplate} onBack={() => setSelectedTemplate(null)} />
+      </div>
+    )
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--color-bg)', display: 'flex', flexDirection: 'column' }}>
@@ -998,14 +1012,6 @@ export function PublicTemplatesPage() {
       </section>
 
       <PublicFooter />
-
-      {/* Template fill/preview modal */}
-      {selectedTemplate && (
-        <TemplateModal
-          template={selectedTemplate}
-          onClose={() => setSelectedTemplate(null)}
-        />
-      )}
     </div>
   )
 }

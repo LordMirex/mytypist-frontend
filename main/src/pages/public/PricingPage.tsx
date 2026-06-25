@@ -254,7 +254,7 @@ export function PricingPage() {
               {plans.free.name}
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
-              <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1, color: 'var(--color-text-primary)' }}>$0</span>
+              <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1, color: 'var(--color-text-primary)' }}>₦0</span>
               <span style={{ fontSize: 14, color: 'var(--color-text-tertiary)' }}>/month</span>
             </div>
             <div style={{ fontSize: 12, color: 'var(--color-text-quaternary)', marginBottom: 6 }}>Always free · no card required</div>
@@ -282,12 +282,11 @@ export function PricingPage() {
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
               <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1, color: 'var(--color-text-primary)' }}>
-                ${yearly ? plans.pro.yearlyPrice : plans.pro.monthlyPrice}
+                {yearly ? plans.pro.local.yearly : plans.pro.local.monthly}
               </span>
-              <span style={{ fontSize: 14, color: 'var(--color-text-tertiary)' }}>/month</span>
             </div>
             <div style={{ fontSize: 12, color: 'var(--color-text-quaternary)', marginBottom: 6 }}>
-              ≈ {yearly ? plans.pro.local.yearly : plans.pro.local.monthly} · billed {yearly ? 'yearly' : 'monthly'}
+              per month · billed {yearly ? 'yearly' : 'monthly'}
             </div>
             <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 24 }}>{plans.pro.description}</p>
             <Link to={plans.pro.ctaTo} style={{ display: 'block', marginBottom: 24 }}>
@@ -316,12 +315,11 @@ export function PricingPage() {
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
               <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1, color: 'var(--color-text-primary)' }}>
-                ${yearly ? plans.enterprise.yearlyPrice : plans.enterprise.monthlyPrice}
+                {yearly ? plans.enterprise.local.yearly : plans.enterprise.local.monthly}
               </span>
-              <span style={{ fontSize: 14, color: 'var(--color-text-tertiary)' }}>/month</span>
             </div>
             <div style={{ fontSize: 12, color: 'var(--color-text-quaternary)', marginBottom: 6 }}>
-              ≈ {yearly ? plans.enterprise.local.yearly : plans.enterprise.local.monthly} · billed {yearly ? 'yearly' : 'monthly'}
+              per month · billed {yearly ? 'yearly' : 'monthly'}
             </div>
             <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: 24 }}>{plans.enterprise.description}</p>
             <Link to={plans.enterprise.ctaTo} style={{ display: 'block', marginBottom: 24 }}>

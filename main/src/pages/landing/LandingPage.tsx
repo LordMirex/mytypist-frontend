@@ -142,7 +142,7 @@ const stats = [
   { num: '12k', unit: '+', label: 'Documents processed monthly' },
   { num: '< 90', unit: 's', label: 'Template to signed PDF' },
   { num: '99.97', unit: '%', label: 'Formatting fidelity rate' },
-  { num: '$0', unit: '', label: 'Per-transaction fees. Ever.' },
+  { num: '₦0', unit: '', label: 'Per-transaction fees. Ever.' },
 ]
 
 const pipeline = [

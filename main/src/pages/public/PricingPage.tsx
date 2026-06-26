@@ -176,26 +176,26 @@ export function PricingPage() {
             Start free. Scale when you're ready. No usage traps, no overage charges, no surprises.
           </p>
 
-          {/* Billing toggle · sliding pill */}
+          {/* Billing toggle */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-            <div style={{ position: 'relative', display: 'flex', background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '4px', borderRadius: 9999, width: 220 }}>
-              {/* Sliding pill */}
+            <div style={{ position: 'relative', display: 'flex', background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '3px', borderRadius: 8, width: 220 }}>
+              {/* Sliding indicator */}
               <div style={{
                 position: 'absolute',
-                top: 4, bottom: 4,
-                left: 4,
-                width: 'calc(50% - 4px)',
+                top: 3, bottom: 3,
+                left: 3,
+                width: 'calc(50% - 3px)',
                 background: 'var(--color-accent)',
-                borderRadius: 9999,
-                transform: yearly ? 'translateX(calc(100% + 4px))' : 'translateX(0)',
-                transition: 'transform 240ms cubic-bezier(.4,0,.2,1)',
+                borderRadius: 6,
+                transform: yearly ? 'translateX(calc(100% + 3px))' : 'translateX(0)',
+                transition: 'transform 200ms cubic-bezier(.4,0,.2,1)',
                 pointerEvents: 'none',
               }} />
               <button
                 onClick={() => setYearly(false)}
                 style={{
                   flex: 1, position: 'relative', zIndex: 1,
-                  padding: '7px 0', borderRadius: 9999, fontSize: 13, fontWeight: 600,
+                  padding: '7px 0', borderRadius: 6, fontSize: 13, fontWeight: 600,
                   color: !yearly ? '#fff' : 'var(--color-text-secondary)',
                   border: 'none', cursor: 'pointer', background: 'none',
                   transition: 'color 180ms',
@@ -207,7 +207,7 @@ export function PricingPage() {
                 onClick={() => setYearly(true)}
                 style={{
                   flex: 1, position: 'relative', zIndex: 1,
-                  padding: '7px 0', borderRadius: 9999, fontSize: 13, fontWeight: 600,
+                  padding: '7px 0', borderRadius: 6, fontSize: 13, fontWeight: 600,
                   color: yearly ? '#fff' : 'var(--color-text-secondary)',
                   border: 'none', cursor: 'pointer', background: 'none',
                   transition: 'color 180ms',
@@ -217,12 +217,9 @@ export function PricingPage() {
               </button>
             </div>
             <div style={{
-              fontSize: 11, fontWeight: 700, letterSpacing: 0.2,
+              fontSize: 11, fontWeight: 600,
               color: yearly ? '#059669' : 'var(--color-text-quaternary)',
-              background: yearly ? 'rgba(5,150,105,0.09)' : 'transparent',
-              padding: yearly ? '3px 10px' : '3px 10px',
-              borderRadius: 9999,
-              transition: 'color 200ms, background 200ms',
+              transition: 'color 200ms',
             }}>
               {yearly ? '✓ Saving 20% with annual billing' : 'Switch to yearly to save 20%'}
             </div>
@@ -243,7 +240,7 @@ export function PricingPage() {
         }}>
           {/* Free */}
           <div style={{ padding: '32px 28px', background: 'var(--color-surface)', borderRight: '1px solid var(--color-border)' }}>
-            <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.7, color: 'var(--color-text-tertiary)', marginBottom: 16 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-text-tertiary)', marginBottom: 16 }}>
               {plans.free.name}
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
@@ -270,7 +267,7 @@ export function PricingPage() {
 
           {/* Pro */}
           <div style={{ padding: '32px 28px', background: 'var(--color-surface)', borderRight: '1px solid var(--color-border)' }}>
-            <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.7, color: 'var(--color-text-tertiary)', marginBottom: 16 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-text-tertiary)', marginBottom: 16 }}>
               {plans.pro.name}
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
@@ -299,11 +296,11 @@ export function PricingPage() {
           </div>
 
           {/* Enterprise */}
-          <div style={{ padding: '32px 28px', background: 'linear-gradient(135deg, rgba(108,71,255,0.04) 0%, rgba(108,71,255,0.01) 100%)', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: 20, right: 20, background: 'linear-gradient(135deg, #6C47FF, #9B72FF)', color: '#fff', fontSize: 9, fontWeight: 700, letterSpacing: 0.4, textTransform: 'uppercase', padding: '3px 9px', borderRadius: 9999 }}>
-              Most Popular
+          <div style={{ padding: '32px 28px', background: 'var(--color-surface)', position: 'relative', borderTop: '3px solid var(--color-accent)' }}>
+            <div style={{ position: 'absolute', top: 20, right: 20, background: 'var(--color-accent-muted)', color: 'var(--color-accent)', fontSize: 10, fontWeight: 700, padding: '3px 9px', borderRadius: 4, border: '1px solid var(--color-accent-border)' }}>
+              Most popular
             </div>
-            <div style={{ fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.7, color: 'var(--color-accent)', marginBottom: 16 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-accent)', marginBottom: 16 }}>
               {plans.enterprise.name}
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
@@ -356,10 +353,10 @@ export function PricingPage() {
                 border: '1px solid var(--color-border)',
                 borderBottom: 'none',
               }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.5 }}>Feature</div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Free</div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Pro</div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-accent)', textAlign: 'center', textTransform: 'uppercase', letterSpacing: 0.5 }}>Enterprise</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-tertiary)' }}>Feature</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-tertiary)', textAlign: 'center' }}>Free</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-tertiary)', textAlign: 'center' }}>Pro</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-accent)', textAlign: 'center' }}>Enterprise</div>
               </div>
 
               <div style={{ border: '1px solid var(--color-border)', borderRadius: '0 0 8px 8px', overflow: 'hidden' }}>
@@ -369,8 +366,7 @@ export function PricingPage() {
                       padding: '10px 16px',
                       background: 'var(--color-bg-secondary)',
                       borderTop: si > 0 ? '1px solid var(--color-border)' : 'none',
-                      fontSize: 11, fontWeight: 700, textTransform: 'uppercase',
-                      letterSpacing: 0.5, color: 'var(--color-text-tertiary)',
+                      fontSize: 11, fontWeight: 600, color: 'var(--color-text-secondary)',
                     }}>
                       {section.category}
                     </div>

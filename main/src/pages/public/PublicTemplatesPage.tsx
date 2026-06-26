@@ -585,19 +585,19 @@ function TemplateStudio({ template, onBack }: { template: Template; onBack: () =
       <div style={{ padding: '20px 24px 16px', borderBottom: '1px solid var(--color-border)', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: template.color }} />
-          <span style={{ fontSize: 11, fontWeight: 700, color: catColors[template.category] || 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+          <span style={{ fontSize: 11, fontWeight: 700, color: catColors[template.category] || 'var(--color-accent)' }}>
             {template.category}
           </span>
         </div>
         <p style={{ fontSize: 12, color: 'var(--color-text-secondary)', lineHeight: 1.55, margin: '0 0 12px' }}>{template.desc}</p>
         <div style={{ display: 'flex', gap: 6 }}>
-          <span style={{ padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700, background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-tertiary)' }}>
+          <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 700, background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-tertiary)' }}>
             {template.fields} fields
           </span>
-          <span style={{ padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700, background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-tertiary)' }}>
+          <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 700, background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-tertiary)' }}>
             {template.pages} page{template.pages > 1 ? 's' : ''}
           </span>
-          <span style={{ padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700, background: `${template.color}14`, border: `1px solid ${template.color}30`, color: template.color }}>
+          <span style={{ padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 700, background: `${template.color}14`, border: `1px solid ${template.color}30`, color: template.color }}>
             {progress}% filled
           </span>
         </div>
@@ -697,9 +697,9 @@ function TemplateStudio({ template, onBack }: { template: Template; onBack: () =
   const previewPanel = (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#f0efe9' }}>
       <div style={{ padding: '16px 20px 12px', borderBottom: '1px solid var(--color-border)', flexShrink: 0, background: 'var(--color-surface)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.4 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)' }}>
           <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e' }} />
-          Live Preview · updates as you type
+          Live preview · updates as you type
         </div>
       </div>
       <div style={{ flex: 1, overflowY: 'auto', padding: 20 }}>
@@ -897,7 +897,7 @@ export function PublicTemplatesPage() {
           padding: '28px 0', position: 'sticky', top: 54, height: 'calc(100vh - 54px)',
           overflowY: 'auto', background: 'var(--color-bg)',
         }}>
-          <div style={{ padding: '0 16px 10px', fontSize: 10, fontWeight: 800, letterSpacing: 0.8, color: 'var(--color-text-tertiary)', textTransform: 'uppercase' }}>
+          <div style={{ padding: '0 16px 10px', fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)' }}>
             Categories
           </div>
           <nav>
@@ -924,7 +924,7 @@ export function PublicTemplatesPage() {
                   </span>
                   <span style={{ flex: 1 }}>{cat}</span>
                   <span style={{
-                    fontSize: 10, fontWeight: 700, padding: '1px 6px', borderRadius: 9999, flexShrink: 0,
+                    fontSize: 10, fontWeight: 700, padding: '1px 6px', borderRadius: 4, flexShrink: 0,
                     background: isActive ? 'rgba(108,71,255,0.15)' : 'var(--color-border)',
                     color: isActive ? 'var(--color-accent)' : 'var(--color-text-tertiary)',
                   }}>
@@ -992,7 +992,7 @@ export function PublicTemplatesPage() {
                     key={cat}
                     onClick={() => { setActiveCategory(cat); setMobileSidebarOpen(false) }}
                     style={{
-                      padding: '6px 12px', borderRadius: 9999, fontSize: 12, fontWeight: activeCategory === cat ? 700 : 400,
+                      padding: '6px 12px', borderRadius: 6, fontSize: 12, fontWeight: activeCategory === cat ? 700 : 400,
                       background: activeCategory === cat ? 'var(--color-accent)' : 'var(--color-bg)',
                       color: activeCategory === cat ? '#fff' : 'var(--color-text-secondary)',
                       border: activeCategory === cat ? '1px solid var(--color-accent)' : '1px solid var(--color-border)',
@@ -1054,7 +1054,7 @@ export function PublicTemplatesPage() {
                   {/* Category + icon row */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>
                     <span style={{
-                      padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700,
+                      padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 700,
                       color: catColors[template.category] || 'var(--color-accent)',
                       background: `${catColors[template.category] || '#6C47FF'}12`,
                       border: `1px solid ${catColors[template.category] || '#6C47FF'}20`,

@@ -389,10 +389,9 @@ export function LandingPage() {
       {/* ══ HERO ══ */}
       <section className="lp-hero" id="product">
         <div className="lp-hero-copy">
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, fontSize: 13, fontWeight: 500, color: 'var(--color-text-secondary)' }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-status-complete)' }} />
+          <p style={{ fontSize: 12, fontWeight: 500, color: 'var(--color-text-tertiary)', marginBottom: 24, letterSpacing: 0.1 }}>
             Document workflow for Nigerian teams
-          </div>
+          </p>
           <h1 className="lp-hero-headline">
             From blank page<br />
             to signed document<br />
@@ -432,7 +431,7 @@ export function LandingPage() {
 
           <TrustTicker />
         </div>
-        <div className="lp-hero-preview" style={{ display: 'flex', flex: '1', background: '#EAE7FF', alignItems: 'center', justifyContent: 'center', padding: '32px 28px' }}>
+        <div className="lp-hero-preview" style={{ display: 'flex', flex: '1', background: 'var(--color-bg-secondary)', alignItems: 'center', justifyContent: 'center', padding: '32px 28px' }}>
           <AnimatedDocMockup />
         </div>
       </section>
@@ -581,7 +580,7 @@ export function LandingPage() {
 
             {/* Pro */}
             <div className="lp-plan lp-plan--pro" style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', top: 14, right: 20, fontSize: 9, fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.6px', fontFamily: 'var(--font-mono)' }}>Most used</div>
+              <div style={{ position: 'absolute', top: 14, right: 20, fontSize: 10, fontWeight: 700, color: 'var(--color-accent)', background: 'var(--color-accent-muted)', border: '1px solid var(--color-accent-border)', padding: '2px 8px', borderRadius: 4 }}>Most used</div>
               <div className="lp-plan-tier">Professional</div>
               <div className="lp-plan-price">
                 <span className="lp-plan-amount">{proPrice}</span>

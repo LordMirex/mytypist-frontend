@@ -47,7 +47,7 @@ export function PublicHeader() {
             <button className="btn btn--ghost btn--sm">Sign in</button>
           </Link>
           <Link to="/auth">
-            <button className="btn btn--primary btn--sm">Start free trial</button>
+            <button style={{ height: 28, padding: '0 12px', fontSize: 12, fontWeight: 600, display: 'inline-flex', alignItems: 'center', background: '#111', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', letterSpacing: '-0.01em', flexShrink: 0 }}>Start free trial</button>
           </Link>
         </div>
 

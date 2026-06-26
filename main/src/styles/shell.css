@@ -2304,7 +2304,7 @@
 .auth-brand-icon {
   width: 28px;
   height: 28px;
-  background: linear-gradient(135deg, #6C47FF 0%, #9B72FF 100%);
+  background: #6C47FF;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -2313,7 +2313,6 @@
   font-weight: 800;
   font-size: 14px;
   flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(108,71,255,0.4);
 }
 
 .auth-brand-name {

@@ -404,7 +404,7 @@ export function LandingPage() {
           </p>
           <div className="lp-hero-actions">
             <Link to="/templates" style={{ textDecoration: 'none' }}>
-              <button className="btn btn--primary" style={{ height: 48, padding: '0 28px', fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <button style={{ height: 48, padding: '0 28px', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6, background: '#111', color: '#fff', border: 'none', borderRadius: 8, cursor: 'pointer', letterSpacing: '-0.01em' }}>
                 Create a document free
                 <ArrowRight size={14} />
               </button>

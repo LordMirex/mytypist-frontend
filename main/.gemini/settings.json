@@ -6,8 +6,10 @@
       "../ai-rules/uncodixfy/SKILL.md",
       "../ai-rules/ui-ux-pro-max/SKILL.md",
       "../ai-rules/tools.md",
-      "../ai-rules/spline-handoff.md"
+      "../ai-rules/writing.md",
+      "../ai-rules/spline-handoff.md",
+      "../AGENTS.md"
     ],
-    "instructions": "READ ai-rules/MASTER.md from the repo root before writing any UI code. This project has strict design rules: no soft gradients, no glassmorphism, no oversized radii, no pill buttons, no 3-column equal feature cards, no Inter as default font, no em-dashes, no pure black/white. Think Linear, Raycast, Stripe, GitHub. Mobile-first CSS. Currency: ₦ only. Accent: #6C47FF."
+    "instructions": "READ ai-rules/MASTER.md first before any UI code. State dials before building: 'Reading this as: [page kind] for [audience], [vibe], dials: V=X M=Y D=Z'. Hard rules: no soft gradients, no glassmorphism, no oversized radii (max 10px cards/8px buttons), no pill buttons everywhere, no 3-column equal feature cards, no Inter as default font, no em-dashes, no pure black/white, no window.addEventListener scroll. Think Linear, Raycast, Stripe, GitHub. Mobile-first CSS. Currency: ₦ only. Accent: #6C47FF. 21st.dev Magic Chat API key lives in ai-rules/tools.md — use it automatically for components. Context7 MCP installed globally — resolve live library docs automatically on every library/framework task."
   }
 }

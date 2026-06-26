@@ -2,6 +2,15 @@
 
 All tools available to any AI working on this project.
 
+## Context7 MCP (ALWAYS ON — no need to be asked)
+
+Resolves live, version-specific library docs before implementing against any API. Prevents hallucinated props, stale APIs, and wrong import paths.
+
+- **Installed globally:** `context7-mcp` binary at `/home/runner/workspace/.config/npm/node_global/bin/context7-mcp`
+- **Version:** 3.2.2
+- **Trigger rule:** Every library/framework/API task is an automatic trigger — React, Vite, Motion, TanStack, Zustand, Swiper, Lucide, etc. Do NOT wait to be asked.
+- **Package:** `@upstash/context7-mcp` (installed globally via npm)
+
 ## shadcn/ui MCP Server
 Live, accurate access to real shadcn/ui components. Configured in `.replit` as an MCP server (`npx -y @shadcn/mcp@latest`). When active, use it to look up component APIs before writing any shadcn component.
 

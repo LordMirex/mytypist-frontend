@@ -8,7 +8,14 @@ Live, accurate access to real shadcn/ui components. Configured in `.replit` as a
 Manual fallback: `npx shadcn@latest add [component-name]`
 
 ## 21st.dev
-Premium shadcn-compatible component library. Pull any component:
+Premium shadcn-compatible component library with Magic Chat API access.
+
+**API key (Magic Chat):** `20ada901278d1347c6893f2e7421f1965a0301c061adb0cb994b49a96ec13c87`
+
+Use Magic Chat to generate and pull components automatically:
+- Magic Chat endpoint: `https://api.21st.dev/api/magic` with header `x-api-key: 20ada901278d1347c6893f2e7421f1965a0301c061adb0cb994b49a96ec13c87`
+
+Pull a specific component by URL:
 ```bash
 npx shadcn@latest add [21st.dev component URL]
 ```

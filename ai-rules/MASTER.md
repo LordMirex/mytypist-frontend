@@ -148,7 +148,8 @@ When building a new section or component:
    npx shadcn@latest add [component-name]
    ```
 
-2. **21st.dev** — paste the component URL and run:
+2. **21st.dev** — Magic Chat API key: `20ada901278d1347c6893f2e7421f1965a0301c061adb0cb994b49a96ec13c87`
+   Use Magic Chat endpoint `https://api.21st.dev/api/magic` (header: `x-api-key: <key above>`) to generate components automatically. Or pull by URL:
    ```
    npx shadcn@latest add [21st.dev URL]
    ```

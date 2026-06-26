@@ -104,12 +104,12 @@ export function BlogPage() {
             transition: 'border-color 120ms',
             cursor: 'default',
           }}
-          onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(108,71,255,0.25)')}
+          onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--color-border-strong)')}
           onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{
-                fontSize: 10, fontWeight: 700, letterSpacing: 0.3,
+                fontSize: 10, fontWeight: 700,
                 padding: '2px 7px', borderRadius: 3,
                 color: categoryColor[featured.category] ?? 'var(--color-accent)',
                 background: categoryBg[featured.category] ?? 'var(--color-accent-muted)',
@@ -149,12 +149,12 @@ export function BlogPage() {
                   cursor: 'default',
                   transition: 'border-color 120ms',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(108,71,255,0.25)')}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--color-border-strong)')}
                 onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{
-                    fontSize: 10, fontWeight: 700, letterSpacing: 0.3,
+                    fontSize: 10, fontWeight: 700,
                     padding: '2px 7px', borderRadius: 3,
                     color: categoryColor[post.category] ?? 'var(--color-accent)',
                     background: categoryBg[post.category] ?? 'var(--color-accent-muted)',

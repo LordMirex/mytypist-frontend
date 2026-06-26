@@ -128,7 +128,7 @@ export function ProductPage() {
                     <stage.icon size={18} color={stage.color} />
                   </div>
                   <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: stage.color, textTransform: 'uppercase', letterSpacing: 0.6 }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: stage.color }}>
                       Stage {stage.num}
                     </div>
                     <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: -0.4, color: 'var(--color-text-primary)', lineHeight: 1.2 }}>
@@ -162,7 +162,7 @@ export function ProductPage() {
                 borderRadius: 10,
                 borderLeft: `3px solid ${stage.color}`,
               }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 16 }}>
+                <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)', marginBottom: 16 }}>
                   Pipeline position
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'wrap', rowGap: 8 }}>

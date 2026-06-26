@@ -815,7 +815,7 @@ function ArticleView({ article, onBack, onCategory }: {
           <div style={{ width: 28, height: 28, borderRadius: 7, background: 'rgba(108,71,255,0.08)', border: '1px solid rgba(108,71,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <cat.icon size={14} color="var(--color-accent)" />
           </div>
-          <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: 0.4 }}>{article.category}</span>
+          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-accent)' }}>{article.category}</span>
         </div>
         <h1 style={{ fontSize: 'clamp(22px, 4vw, 30px)', fontWeight: 800, letterSpacing: -0.8, color: 'var(--color-text-primary)', marginBottom: 12, lineHeight: 1.2 }}>
           {article.title}
@@ -833,7 +833,7 @@ function ArticleView({ article, onBack, onCategory }: {
 
       {/* Related articles footer */}
       <div style={{ marginTop: 48, paddingTop: 28, borderTop: '1px solid var(--color-border)' }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.4, marginBottom: 16 }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text-tertiary)', marginBottom: 16 }}>
           More in {article.category}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -1081,7 +1081,7 @@ export function SupportPage() {
                     borderRadius: 10, padding: '24px', cursor: 'pointer',
                     transition: 'border-color 120ms, box-shadow 120ms',
                   }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.borderColor = 'rgba(108,71,255,0.3)'; el.style.boxShadow = '0 4px 20px rgba(108,71,255,0.08)' }}
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.borderColor = 'var(--color-border-strong)'; el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)' }}
                   onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.borderColor = 'var(--color-border)'; el.style.boxShadow = 'none' }}
                 >
                   <div style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(108,71,255,0.08)', border: '1px solid rgba(108,71,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
@@ -1132,7 +1132,7 @@ export function SupportPage() {
                   onMouseLeave={e => (e.currentTarget.style.background = 'none')}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 0 }}>
-                    <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--color-accent)', background: 'rgba(108,71,255,0.08)', border: '1px solid rgba(108,71,255,0.15)', padding: '2px 7px', borderRadius: 9999, flexShrink: 0 }}>
+                    <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--color-accent)', background: 'rgba(108,71,255,0.08)', border: '1px solid rgba(108,71,255,0.15)', padding: '2px 7px', borderRadius: 4, flexShrink: 0 }}>
                       {article.category}
                     </span>
                     <span style={{ fontSize: 13, color: 'var(--color-text-primary)', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

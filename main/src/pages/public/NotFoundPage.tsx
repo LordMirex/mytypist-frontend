@@ -21,11 +21,7 @@ export function NotFoundPage() {
 
           <div style={{
             display: 'inline-block',
-            fontSize: 11, fontWeight: 700, letterSpacing: 0.6,
-            textTransform: 'uppercase', color: 'var(--color-accent)',
-            background: 'rgba(108,71,255,0.06)',
-            border: '1px solid rgba(108,71,255,0.15)',
-            padding: '4px 12px', borderRadius: 9999,
+            fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)',
             marginBottom: 20,
           }}>
             404 · Page not found
@@ -49,7 +45,7 @@ export function NotFoundPage() {
 
           <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/">
-              <button className="btn btn--primary" style={{ height: 42, padding: '0 22px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 7 }}>
+              <button style={{ height: 42, padding: '0 22px', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 7, background: '#111', color: '#fff', border: 'none', borderRadius: 7, cursor: 'pointer' }}>
                 <ArrowLeft size={14} />
                 Back to home
               </button>
@@ -73,7 +69,7 @@ export function NotFoundPage() {
                   display: 'inline-block',
                   padding: '5px 13px',
                   border: '1px solid var(--color-border)',
-                  borderRadius: 9999,
+                  borderRadius: 6,
                   fontSize: 12,
                   color: 'var(--color-text-secondary)',
                   background: 'var(--color-surface)',

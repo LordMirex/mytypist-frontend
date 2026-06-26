@@ -185,7 +185,7 @@ export function PricingPage() {
                 top: 3, bottom: 3,
                 left: 3,
                 width: 'calc(50% - 3px)',
-                background: 'var(--color-accent)',
+                background: '#111',
                 borderRadius: 6,
                 transform: yearly ? 'translateX(calc(100% + 3px))' : 'translateX(0)',
                 transition: 'transform 200ms cubic-bezier(.4,0,.2,1)',

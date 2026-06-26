@@ -68,11 +68,10 @@ export function TermsPage() {
           <div style={{ maxWidth: 640, margin: '0 auto' }}>
             <div style={{
               display: 'inline-block',
-              fontSize: 11, fontWeight: 700, letterSpacing: 0.6,
-              textTransform: 'uppercase', color: 'var(--color-accent)',
-              background: 'rgba(108,71,255,0.06)',
-              border: '1px solid rgba(108,71,255,0.15)',
-              padding: '4px 12px', borderRadius: 9999,
+              fontSize: 11, fontWeight: 600, color: 'var(--color-text-tertiary)',
+              background: 'var(--color-bg-secondary)',
+              border: '1px solid var(--color-border)',
+              padding: '4px 12px', borderRadius: 4,
               marginBottom: 20,
             }}>
               Legal

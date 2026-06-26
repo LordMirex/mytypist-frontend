@@ -121,7 +121,7 @@ export function FaqPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 56 }}>
             {faqSections.map(section => (
               <div key={section.heading}>
-                <h2 style={{ fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.8, color: 'var(--color-accent)', marginBottom: 20 }}>
+                <h2 style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text-secondary)', marginBottom: 20 }}>
                   {section.heading}
                 </h2>
                 <div style={{ borderTop: '1px solid var(--color-border)' }}>

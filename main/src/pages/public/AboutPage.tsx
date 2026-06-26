@@ -133,7 +133,7 @@ export function AboutPage() {
                   background: 'var(--color-accent)',
                   border: '2px solid var(--color-bg)',
                 }} />
-                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--color-accent)', marginBottom: 6 }}>
                   {item.year}
                 </div>
                 <p style={{ fontSize: 14, lineHeight: 1.7, color: 'var(--color-text-secondary)' }}>{item.event}</p>
@@ -165,7 +165,7 @@ export function AboutPage() {
                 display: 'flex', alignItems: 'center', gap: 8,
                 padding: '8px 14px',
                 border: '1px solid var(--color-border)',
-                borderRadius: 9999,
+                borderRadius: 6,
                 background: 'var(--color-surface)',
                 fontSize: 13,
                 color: 'var(--color-text-secondary)',

@@ -736,7 +736,7 @@ function TemplateStudio({ template, onBack }: { template: Template; onBack: () =
             {template.name}
           </span>
           <span style={{
-            flexShrink: 0, padding: '2px 8px', borderRadius: 9999, fontSize: 10, fontWeight: 700,
+            flexShrink: 0, padding: '2px 8px', borderRadius: 4, fontSize: 10, fontWeight: 700,
             background: `${template.color}14`, border: `1px solid ${template.color}28`, color: template.color,
           }}>
             {template.category}

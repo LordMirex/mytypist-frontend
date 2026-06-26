@@ -133,7 +133,7 @@ export function ContactPage() {
                     <Icon size={15} style={{ color: 'var(--color-accent)' }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-text-tertiary)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 3 }}>{heading}</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-tertiary)', marginBottom: 3 }}>{heading}</div>
                     <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 2 }}>{body}</div>
                     <div style={{ fontSize: 12, color: 'var(--color-text-tertiary)' }}>{sub}</div>
                   </div>

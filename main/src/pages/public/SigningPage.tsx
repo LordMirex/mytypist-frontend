@@ -215,7 +215,7 @@ export function SigningPage() {
 
         {/* Recipient info */}
         <div style={{ background: '#ffffff', border: '1px solid #e5e5e0', borderRadius: 10, padding: '16px 20px', boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}>
-          <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, color: '#9999a0', marginBottom: 8 }}>Signing as</div>
+          <div style={{ fontSize: 10, fontWeight: 600, color: '#9999a0', marginBottom: 8 }}>Signing as</div>
           <div style={{ fontSize: 14, fontWeight: 600, color: '#1a1a1a' }}>{doc.recipientName}</div>
           <div style={{ fontSize: 12, color: '#6b6b6b' }}>{doc.recipientEmail}</div>
         </div>
@@ -229,7 +229,6 @@ export function SigningPage() {
               background: '#6C47FF', color: '#ffffff',
               border: 'none', borderRadius: 8, cursor: 'pointer',
               fontSize: 14, fontWeight: 700, letterSpacing: -0.2,
-              boxShadow: '0 2px 8px rgba(108,71,255,0.28)',
             }}
           >
             Review and sign <ChevronRight size={15} />
@@ -322,7 +321,6 @@ export function SigningPage() {
                 border: 'none', borderRadius: 8,
                 cursor: sigReady ? 'pointer' : 'not-allowed',
                 fontSize: 14, fontWeight: 700, letterSpacing: -0.2,
-                boxShadow: sigReady ? '0 2px 8px rgba(108,71,255,0.28)' : 'none',
                 transition: 'all 100ms',
               }}
             >

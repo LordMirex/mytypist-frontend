@@ -1,44 +1,117 @@
 # MyTypist — Cline Rules
 
-READ `ai-rules/MASTER.md` BEFORE WRITING ANY UI CODE.
+---
 
-This is the MyTypist project — a Document Operating System for Nigerian users.
+## MANDATORY PRE-FLIGHT — read all four before any UI code
+
+1. `ai-rules/taste-skill/SKILL.md` — 1206 lines, anti-slop rules (GitHub fresh)
+2. `ai-rules/uncodixfy/SKILL.md` — banned AI-UI patterns (GitHub fresh)
+3. `ai-rules/ui-ux-pro-max/SKILL.md` — 67 styles, 96 palettes, 57 font pairings
+4. `ai-rules/MASTER.md` — project design system
+
+Before any code, state:
+> "Reading this as: [page kind] for [audience], [vibe], dials: V=[1-10] M=[1-10] D=[1-10]"
+
+---
+
+## COMPONENT SELF-FETCH — do not hand-roll, do not ask user for links
+
+### 1. 21st.dev Magic Chat — call yourself
+```
+POST https://api.21st.dev/api/magic
+x-api-key: 20ada901278d1347c6893f2e7421f1965a0301c061adb0cb994b49a96ec13c87
+Content-Type: application/json
+{"message": "describe the component"}
+```
+Use Cline's native fetch/browser tool. Do not ask the user. Do not wait for a URL.
+
+### 2. Uiverse.io — browse yourself
+Use Cline's browser/fetch tool to access:
+```
+https://uiverse.io/elements?search=[component-type]
+```
+Pick the best match. Adapt to this project's stack and design rules. Never paste raw.
+
+### 3. Efferd blocks
+```
+npx shadcn@latest add https://efferd.com/r/[block-name].json
+```
+
+### 4. shadcn
+```
+npx shadcn@latest add [component-name]
+```
+
+### 5. awesome-design-md (when user names a brand style)
+```
+https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/design-md/[brand]/DESIGN.md
+```
+
+### 6. Hand-roll — last resort only, still must pass all design rules
+
+---
+
+## CONTEXT7 — automatic, not on-demand
+
+Before any library/API implementation (React, Motion, TanStack, Zustand, Swiper, Lucide, Vite):
+Use Context7 MCP to pull live docs. Never use guessed props.
+
+---
+
+## VISUAL QA — mandatory after every visible change
+
+Use BrowserMCP or Cline's native screenshot/preview after every component/section/page.
+Do not declare done without looking. If it looks AI-generated — fix it first.
+
+---
 
 ## Project
-- Stack: React 18 + TypeScript + Vite, raw CSS with CSS variables, Zustand, Motion, Swiper
-- Code in: `main/src/`
-- Accent: `#6C47FF` | Currency: ₦ only | Mobile-first CSS
 
-## Hard Banned
-- Soft gradients, glassmorphism, oversized radii, pill overload
-- Generic 3-column equal feature cards
-- `Inter` as default font
+- Stack: React 18 + TypeScript + Vite, raw CSS with CSS variables, Zustand, TanStack Query, Motion, Swiper
+- Code: `main/src/` | Accent: `#6C47FF` | Currency: ₦ only | Mobile-first CSS
+- All inputs: `font-size: 16px` min. Never override below 16px.
+
+---
+
+## Hard-banned (auto-fail)
+
+- Soft gradients as decoration
+- Glassmorphism as default UI
+- Corners > 10px cards / > 8px buttons / > 6px inputs
+- Pill buttons everywhere
+- 3-column equal feature cards
+- `Inter` as default font — use `Geist`, `Outfit`, `Cabinet Grotesk`, `Satoshi`
 - Em-dashes (`—`) anywhere
 - Pure `#000` or `#fff`
-- `window.addEventListener('scroll', ...)` for scroll effects
+- `window.addEventListener('scroll', ...)` — use `motion/react` `useScroll()`
+- `useState` for scroll/mouse values — use `useMotionValue`
+- Animating `top/left/width/height` — only `transform` and `opacity`
 - Fake product UIs from `<div>` rectangles
-- Metric-card grids as dashboard default
+- Hero sections inside dashboards
+- Metric-card grid as dashboard default
 
-## What Good Looks Like — Linear, Raycast, Stripe, GitHub
-- Sidebars: 240-260px fixed, solid bg, 1px border-right
-- Buttons: 8-10px radius, no gradients
-- Cards: 8-12px radius, subtle border, shadow ≤ 0 2px 8px rgba(0,0,0,0.08)
-- Transitions: 100-200ms ease
-
-## Tools
-1. `npx shadcn@latest add [component]`
-2. `npx shadcn@latest add [21st.dev URL]`
-3. `npx shadcn@latest add https://efferd.com/r/[block-name].json`
-4. Uiverse.io: fetch link, adapt code
-
-## Installed
-- `motion` → `import { motion } from "motion/react"`
-- `swiper` → `import { Swiper, SwiperSlide } from 'swiper/react'`
-
-## 3D / Spline
-STOP. Read `ai-rules/spline-handoff.md`. Write prompt for user. Wait for code.
+---
 
 ## Writing
-Banned: additionally, align with, crucial, delve, enhance, fostering, highlight (verb), intricate, meticulous, pivotal, showcase, seamless, leverage (verb), utilize, empower, revolutionize, groundbreaking, robust, journey/ecosystem (metaphorical). Default to "is." Short declarative sentences. Full rules: `ai-rules/writing.md`
 
-## Full Rules → `ai-rules/MASTER.md`
+Default to "is." No trailing "-ing" clauses. No AI sign-offs.
+Banned: additionally, crucial, delve, enhance, seamless, leverage, utilize, empower, revolutionize, groundbreaking, robust, showcase, pivotal, meticulous, journey (metaphorical), vibrant, nestled.
+Full rules: `ai-rules/writing.md`
+
+---
+
+## Spline
+
+STOP. Read `ai-rules/spline-handoff.md`. Write prompt. Specify export format. Wait for pasted code.
+
+---
+
+## Shell CSS
+
+`main/src/styles/shell.css` has two `.sidebar` definitions — do NOT merge them.
+
+---
+
+## All rules
+
+`ai-rules/MASTER.md` | `ai-rules/taste-skill/SKILL.md` | `ai-rules/uncodixfy/SKILL.md` | `ai-rules/ui-ux-pro-max/SKILL.md` | `ai-rules/tools.md` | `ai-rules/writing.md` | `ai-rules/spline-handoff.md`

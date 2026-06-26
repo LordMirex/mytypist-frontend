@@ -1,72 +1,145 @@
 # Design Tools Reference
 
-All tools available to any AI working on this project.
+All tools for any AI working on this project. Every tool below is self-operated — fetch yourself, do not ask the user.
 
-## Context7 MCP (ALWAYS ON — no need to be asked)
+---
 
-Resolves live, version-specific library docs before implementing against any API. Prevents hallucinated props, stale APIs, and wrong import paths.
+## Context7 MCP — ALWAYS ON, automatic
 
-- **Installed globally:** `context7-mcp` binary at `/home/runner/workspace/.config/npm/node_global/bin/context7-mcp`
-- **Version:** 3.2.2
-- **Trigger rule:** Every library/framework/API task is an automatic trigger — React, Vite, Motion, TanStack, Zustand, Swiper, Lucide, etc. Do NOT wait to be asked.
-- **Package:** `@upstash/context7-mcp` (installed globally via npm)
+Resolves live library docs before any API implementation. No hallucinated props, no stale APIs.
 
-## shadcn/ui MCP Server
-Live, accurate access to real shadcn/ui components. Configured in `.replit` as an MCP server (`npx -y @shadcn/mcp@latest`). When active, use it to look up component APIs before writing any shadcn component.
+- **Binary:** `context7-mcp` (installed globally at `/home/runner/workspace/.config/npm/node_global/bin/context7-mcp`)
+- **Version:** 3.2.2 (npm: `@upstash/context7-mcp`)
+- **Trigger rule:** Every library/framework task — React, Vite, Motion, TanStack, Zustand, Swiper, Lucide. Automatic. Do not wait to be asked.
 
-Manual fallback: `npx shadcn@latest add [component-name]`
+---
 
-## 21st.dev
-Premium shadcn-compatible component library with Magic Chat API access.
+## 21st.dev Magic Chat — self-call, no user input needed
 
-**API key (Magic Chat):** `20ada901278d1347c6893f2e7421f1965a0301c061adb0cb994b49a96ec13c87`
+Generates and retrieves premium shadcn-compatible components via AI. Call this yourself before hand-rolling anything.
 
-Use Magic Chat to generate and pull components automatically:
-- Magic Chat endpoint: `https://api.21st.dev/api/magic` with header `x-api-key: 20ada901278d1347c6893f2e7421f1965a0301c061adb0cb994b49a96ec13c87`
+**API key:** `20ada901278d1347c6893f2e7421f1965a0301c061adb0cb994b49a96ec13c87`
 
-Pull a specific component by URL:
+```
+POST https://api.21st.dev/api/magic
+x-api-key: 20ada901278d1347c6893f2e7421f1965a0301c061adb0cb994b49a96ec13c87
+Content-Type: application/json
+
+{"message": "describe the component you need in plain English"}
+```
+
+Use your native HTTP/fetch tool. Do not ask the user for a URL. Do not wait.
+
+Pull a known component by URL:
 ```bash
 npx shadcn@latest add [21st.dev component URL]
 ```
-Browse at https://21st.dev
 
-## Efferd
-Free shadcn-compatible block library (heroes, pricing, auth, FAQ, CTAs, etc.):
+Browse: https://21st.dev
+
+---
+
+## Uiverse.io — browse yourself using your native browser tool
+
+Do not wait for the user to paste a link. Use your agent's native browse/fetch capability.
+
+```
+https://uiverse.io/elements?search=[component-type]
+```
+
+Fetch the page, pick the best result, adapt the HTML/CSS/Tailwind/React to this project's stack and design rules (check against taste-skill + uncodixfy first — never paste raw).
+
+Note: Uiverse uses Cloudflare — local agents (Cursor, Windsurf, Cline, Claude Code) running on the user's machine can browse it normally via browser tools.
+
+---
+
+## shadcn/ui MCP Server — ALWAYS ON
+
+Live, accurate component specs. Configured in `.replit` as `npx -y @shadcn/mcp@latest`.
+Use before writing any shadcn component. Manual fallback: `npx shadcn@latest add [component-name]`.
+
+---
+
+## Efferd — 130+ blocks, self-fetch
+
+Free shadcn-compatible block library. Heroes, pricing, auth, FAQ, CTAs, app shell, dashboard, and more.
+
 ```bash
 npx shadcn@latest add https://efferd.com/r/[block-name].json
 ```
-Browse at https://efferd.com
 
-## Uiverse.io
-When the user gives a Uiverse.io link, fetch the page content and adapt the HTML/CSS/Tailwind/React code directly into the project component. No install needed.
+Browse for block names: https://efferd.com
 
-## Swiper.js
-Already installed: `swiper ^12.2.0`
+---
+
+## awesome-design-md — fetch when user names a brand
+
+When the user references a brand style (Linear, Stripe, Notion, GitHub, Apple, Vercel, Raycast, Figma, etc.), fetch its design spec:
+
+```
+curl https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/design-md/[brand-name]/DESIGN.md
+```
+
+70+ brands available. Browse: https://github.com/VoltAgent/awesome-design-md/tree/main/design-md
+
+---
+
+## Motion — already installed
+
+`motion ^12.42.0`
+
+```tsx
+import { motion, useScroll, useMotionValue, useTransform, AnimatePresence } from 'motion/react'
+```
+
+Rules:
+- Only animate `transform` and `opacity`
+- Use `useScroll()` not `window.addEventListener('scroll', ...)`
+- Use `useMotionValue` not `useState` for continuous values
+- Always respect `prefers-reduced-motion`
+- No bouncy springs on standard UI
+
+---
+
+## Swiper.js — already installed
+
+`swiper ^12.2.0`
+
 ```tsx
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 ```
 
-## Motion (Framer Motion)
-Already installed: `motion ^12.42.0`
-```tsx
-import { motion, useScroll, useMotionValue, useTransform } from 'motion/react'
-```
-Note: `framer-motion` still works as legacy alias. Prefer `motion/react`.
+---
 
-## awesome-design-md
-When user names a brand style to match (Stripe, Linear, Notion, GitHub, Apple, etc.), fetch:
-```
-https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/brands/[brand-name]/DESIGN.md
-```
-Use the fetched DESIGN.md as the style reference for that section.
+## Icons — priority order
 
-## UI/UX Pro Max
-Database of 67 styles, 96 color palettes, 57 font pairings across 13 stacks.
-Installed globally. Rules at `main/.agent/skills/ui-ux-pro-max/SKILL.md`
+1. `@phosphor-icons/react` (preferred for new components)
+2. `lucide-react` (already installed — continue using in existing components)
+3. `@radix-ui/react-icons`
+4. `@tabler/icons-react`
 
-## Taste Skill
-Anti-slop frontend rules. Full file: `ai-rules/taste-skill/SKILL.md`
+One icon family per component tree. Never hand-roll SVG paths.
 
-## Uncodixfy
-Bans generic "AI-looking" UI patterns. Full file: `ai-rules/uncodixfy/SKILL.md`
+---
+
+## UI/UX Pro Max — installed v2.2.3
+
+67 design styles, 96 color palettes, 57 font pairings across 13 stacks.
+Full skill: `ai-rules/ui-ux-pro-max/SKILL.md`
+
+---
+
+## Taste Skill — GitHub fresh
+
+Anti-slop frontend rules. 1206 lines.
+Source: https://github.com/Leonxlnx/taste-skill
+Local: `ai-rules/taste-skill/SKILL.md`
+
+---
+
+## Uncodixfy — GitHub fresh
+
+Bans generic AI-UI patterns.
+Source: https://github.com/cyxzdev/Uncodixfy
+Local: `ai-rules/uncodixfy/SKILL.md`

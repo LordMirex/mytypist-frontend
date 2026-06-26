@@ -1,0 +1,195 @@
+# Design Tooling Setup — Anti-Slop Protocol
+
+This is a project-level system prompt for AI coding agents (Claude Code, OpenCode,
+or any tool that reads SKILL.md / MCP config). Before touching any pages, set up
+every tool below in order. Confirm each one as you go. Do not redesign or build
+anything until every step is confirmed.
+
+**Priority rule: these tools are not optional flavor — they are mandatory for every
+single piece of UI you generate in this project, for the rest of this project’s
+lifetime.** Skipping them is the default failure mode for AI-generated frontends,
+which is the entire reason this file exists. If you (the agent) ever generate a
+component, page, or section without having read Taste Skill + Uncodixfy first in
+this session, stop and re-read them before continuing. Re-confirm this checklist
+at the start of any new session or context reset.
+
+-----
+
+## Setup checklist — confirm each before any page work
+
+### 1. Taste Skill (primary anti-slop rules)
+
+Real, actively maintained repo (Leonxlnx/taste-skill).
+
+```
+npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
+```
+
+- This installs the v2 (current default) skill. If the install command fails in
+  this environment, fetch the raw SKILL.md directly from the repo and apply its
+  rules manually:
+  `https://github.com/Leonxlnx/taste-skill/blob/main/skills/taste-skill/SKILL.md`
+- Before any code: state in one line — *“Reading this as: [page kind] for
+  [audience], with a [vibe] language, leaning toward [design system/aesthetic].”*
+  This is required by the skill itself, not optional.
+
+### 2. Uncodixfy (secondary anti-pattern rules)
+
+**Correction:** the repo is `cyxzdev/Uncodixfy` (not “Uncodexify”). Real, confirmed.
+
+```
+npx skills add cyxzdev/Uncodixfy
+```
+
+- If that fails, fetch `SKILL.md` or `Uncodixfy.md` directly from
+  `https://github.com/cyxzdev/Uncodixfy` and apply manually.
+- Apply **alongside** Taste Skill, never instead of it. Uncodixfy bans the
+  specific tells (soft gradients, floating glass panels, oversized rounded
+  corners, decorative eyebrow labels) that Taste Skill’s broader judgment calls
+  might still let slip through.
+
+### 3. UI/UX Pro Max (design intelligence database)
+
+Real package (`uipro-cli` on npm, by nextlevelbuilder).
+
+```
+npm install -g uipro-cli
+uipro init --ai claude
+```
+
+- **Correction:** `--ai` takes a specific flag value, not free text — use the
+  flag matching whichever agent is running (`claude`, `cursor`, `opencode`,
+  `codex`, `windsurf`, `all`, etc.), not `[your tool's name]` literally.
+- Requires Python 3.x for the search script (`search.py`) — verify
+  `python3 --version` before relying on style/palette lookups.
+- Run `uipro versions` / `uipro update` periodically; design databases get
+  revised.
+
+### 4. shadcn MCP server
+
+Set up per the official docs at `ui.shadcn.com/docs/mcp` for the agent in use.
+This gives live, accurate shadcn/ui component specs — no hallucinated props.
+
+### 5. 21st.dev
+
+Pull a specific component when asked for a named section:
+
+```
+npx shadcn@latest add [21st.dev component URL]
+```
+
+### 6. Efferd (shadcn-compatible block library)
+
+**Correction:** Efferd is registered in the actual shadcn registry. The
+`.json` raw-URL form in the original draft is not the supported syntax —
+use the registry shorthand:
+
+```
+npx shadcn@latest add @efferd/[block-name]
+```
+
+- 130+ blocks across 14 categories (hero, pricing, auth, FAQ, dashboard, app
+  shell, etc.). Requires an existing shadcn/ui project setup first.
+
+### 7. Uiverse.io
+
+If given a link to a specific component on uiverse.io, fetch and adapt its
+code (HTML/CSS/Tailwind/React) into the project’s actual stack and styling —
+don’t paste it in raw without reconciling it against Taste Skill / Uncodixfy
+rules first.
+
+### 8. Swiper.js
+
+For any carousels/sliders:
+
+```
+npm install swiper
+```
+
+### 9. Framer Motion (now published as `motion`)
+
+```
+npm install motion
+```
+
+### 10. awesome-design-md (real brand design systems)
+
+Real repo (VoltAgent/awesome-design-md). When a brand style is named, fetch
+its DESIGN.md and use it as the style reference for that section:
+
+```
+curl -O https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/design-md/<brand>/DESIGN.md
+```
+
+(e.g. `stripe`, `linear.app`, `notion`, `vercel`, `apple` — 70+ brands available;
+browse `https://github.com/VoltAgent/awesome-design-md/tree/main/design-md`)
+
+### 11. Context7 MCP (NEW — live library/API documentation)
+
+Solves a different problem than the design tools above: stops the agent from
+writing code against outdated or hallucinated library APIs (React, Next.js,
+Tailwind, etc.) by pulling real, version-specific docs at request time.
+
+```
+claude mcp add context7 -- npx -y @upstash/context7-mcp@latest
+```
+
+- Works without an API key (lower rate limit) or with a free key from
+  `context7.com/dashboard` for higher limits.
+- **Make this a standing rule, not an on-demand tool:** add to project
+  instructions — *“Always use Context7 MCP when implementing against any
+  library or framework API, without needing to be asked each time.”* Don’t
+  wait for the literal phrase “use context7” in chat; treat any
+  library/framework/API task as an automatic trigger.
+
+### 12. BrowserMCP (NEW — visual QA / click-through verification)
+
+Lets the agent actually look at the page it just built, in a real connected
+browser tab, instead of declaring success from reading code.
+
+```
+claude mcp add --scope user browsermcp npx @browsermcp/mcp@latest
+```
+
+- Requires the BrowserMCP browser extension installed and a tab “Connected”
+  via the extension before the MCP tools will do anything.
+- This rides your real logged-in browser session (faster, no separate browser
+  process) rather than spinning up an isolated instance — convenient, but
+  treat it like handing the agent your actual browser: don’t leave it
+  connected on tabs with sensitive sessions (banking, admin panels) while
+  it’s driving.
+- **Standing rule:** after generating or editing any visible UI, use
+  BrowserMCP to navigate to the page and take a screenshot/snapshot before
+  declaring the section done. Visual self-check is mandatory, not optional —
+  this is how slop gets caught before you see it.
+
+### 13. Spline (manual handoff tool — agent has NO direct access)
+
+Whenever a task needs a 3D scene or interactive animated element (a document
+that appears to type itself, an animated workflow diagram, etc.) that’s better
+built in Spline than in code:
+
+- **STOP** before attempting it in code.
+- Give a clear, copy-pasteable Spline AI prompt describing exactly what to
+  generate, plus the exact export format needed back: either a React
+  component via `@splinetool/react-spline`, or the `<spline-viewer>` embed tag.
+- Wait for the exported code to be pasted back before continuing that part of
+  the build. Do not attempt a code-only approximation as a placeholder unless
+  explicitly asked to.
+
+-----
+
+## Confirmation required before any page work
+
+State the status of each of the 13 items above as one of:
+
+- ✅ Installed / configured
+- 🔁 Will fetch or install on demand when first needed
+- ⏸ Needs manual input from me (e.g. Spline, shadcn MCP auth, BrowserMCP
+  extension connection)
+
+And separately confirm: *“I understand the Spline handoff process — I stop,
+hand you a prompt + required export format, and wait for pasted-back code
+before continuing that section.”*
+
+Do not start building any page until this confirmation is given.
